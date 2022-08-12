@@ -1,4 +1,4 @@
-# Q_eggs
+# Ashu_eggs
 Custom eggs for [pterodactyl.io](https://pterodactyl.io). 
 Some of them work on ARM and also ARM form Oracle Free Tier
 
