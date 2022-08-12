@@ -1,0 +1,102 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2022-08-12T14:49:11-03:00",
+    "name": "tModLoader ARM",
+    "author": "parker@parkervcp.com",
+    "description": "tModLoader para Terraria modificado por Ashu",
+    "features": null,
+    "docker_images": {
+        "ghcr.io\/alzhahir\/terraria:main": "ghcr.io\/alzhahir\/terraria:main"
+    },
+    "file_denylist": [],
+    "startup": "mono .\/tModLoader*.exe -ip 0.0.0.0 -port ${SERVER_PORT} -maxplayers ${MAX_PLAYERS} -difficulty ${DIFFICULTY} -password \"${SERVER_PASSWORD}\" -motd \"${MOTD}\" -world ~\/Worlds\/${WORLD_NAME}.wld -worldname ${WORLD_NAME} -autocreate ${WORLD_SIZE} -savedirectory ~\/ -tmlsavedirectory ~\/saves -modpath ~\/Mods",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Type 'help' for a list of commands\",\r\n    \"userInteraction\": []\r\n}",
+        "logs": "{}",
+        "stop": "exit"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# Vanilla tModloader Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\n## install packages to get version and download links\r\napt update\r\napt install -y curl p7zip-full wget jq file\r\n\r\n\r\nGITHUB_PACKAGE=Dradonhunter11\/tModLoader64bit\r\n\r\n\r\n## get release info and download links\r\nLATEST_JSON=$(curl --silent \"https:\/\/api.github.com\/repos\/$GITHUB_PACKAGE\/releases\" | jq -c '.[]' | head -1)\r\nRELEASES=$(curl --silent \"https:\/\/api.github.com\/repos\/$GITHUB_PACKAGE\/releases\" | jq '.[]')\r\n\r\nif [ -z \"$VERSION\" ] || [ \"$VERSION\" == \"latest\" ]; then\r\n    echo -e \"defaulting to latest release\"\r\n    DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i Linux)\r\nelse\r\n    VERSION_CHECK=$(echo $RELEASES | jq -r --arg VERSION \"$VERSION\" '. | select(.tag_name==$VERSION) | .tag_name')\r\n    if [ \"$VERSION\" == \"$VERSION_CHECK\" ]; then\r\n        if [[ \"$VERSION\" == v0* ]]; then\r\n            echo -e \"tentativa 1\"\r\n            DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION \"$VERSION\" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i Linux)\r\n        else\r\n            echo -e \"Tentativa 2\"\r\n            DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION \"$VERSION\" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i tModLoader | grep -v -i vulkan | grep -v -i Windows)\r\n        fi\r\n        \r\n    else         \r\n    echo -e \"Vers\u00e3o incorreta, baixando a mais recente.\"\r\n    DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i Linux)\r\n    fi\r\nfi\r\n\r\n\r\n\r\n## mkdir and cd to \/mnt\/server\/\r\nmkdir -p \/mnt\/server\r\n\r\ncd \/mnt\/server\r\n\r\n## download release\r\n\r\nif [ \"-e -i tMod*.exe\" ] \r\nthen\r\n    echo -e \"Removendo arquivos antigos\"\r\n    rm -rf *\r\nelse\r\n    echo -e \"Pulando remo\u00e7\u00e3o dos arquivos, primeira instala\u00e7\u00e3o\"\r\nfi\r\n\r\n\r\necho -e \"Executando 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*\/}'\" \r\ncurl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*\/}\r\n\r\n    echo -e \"Descompactando arquivos\"\r\n    7z e ${DOWNLOAD_LINK##*\/} -y\r\n\r\necho -e \"Limpando arquivos in\u00fateis...\"\r\nrm -rf ${DOWNLOAD_LINK##*\/}\r\necho -e \"Instala\u00e7\u00e3o completa\"",
+            "container": "debian:buster-slim",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "World Name",
+            "description": "The name for the world file.",
+            "env_variable": "WORLD_NAME",
+            "default_value": "world",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Players",
+            "description": "The maximum number of players a server will hold.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "8",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|numeric|digits_between:1,3",
+            "field_type": "text"
+        },
+        {
+            "name": "World Size",
+            "description": "Defines the worlds size. 3 sizes 1 (small), 2 (medium), 3 (large) 4(Extra-Large?).",
+            "env_variable": "WORLD_SIZE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|digits_between:1,4",
+            "field_type": "text"
+        },
+        {
+            "name": "Difficulty",
+            "description": "Sets the difficulty of the world when using autocreate 0(normal), 1(expert)",
+            "env_variable": "DIFFICULTY",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|digits_between:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Password",
+            "description": "Server password for users to connect to your server",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "string|nullable|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "MOTD",
+            "description": "Message of the Day for the server",
+            "env_variable": "MOTD",
+            "default_value": "Please don\u2019t cut the purple trees!",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:40",
+            "field_type": "text"
+        },
+        {
+            "name": "tModloader Vers\u00e3o",
+            "description": "The version of tModloader that is to be used. Ex:\r\n||  0.11.8.2 || \r\n0.11.8.3 || \r\n0.11.8.4 || \r\n0.11.8.5 || \r\nv.0.11.8.6 || \r\nv0.11.8.8 || \r\nv0.11.8.9",
+            "env_variable": "VERSION",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        }
+    ]
+}
