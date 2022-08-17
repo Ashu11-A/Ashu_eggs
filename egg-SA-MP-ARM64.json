@@ -4,13 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-08-17T18:05:25-03:00",
+    "exported_at": "2022-08-17T18:57:15-03:00",
     "name": "SA-MP Arm",
     "author": "matheusn.biolowons@gmail.com",
-    "description": "SA-MP \u00e9 um mod de jogo Massively Multiplayer Online gratuito para a vers\u00e3o para PC da Rockstar Games Grand Theft Auto: San Andreas (tm).",
+    "description": "SA-MP is a free Massively Multiplayer Online game mod for the PC version of Rockstar Games Grand Theft Auto: San Andreas (tm).\r\nModified by Ashu.\r\nCheck for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "matheusnbiolowons\/box86-pterodactyl:latest": "matheusnbiolowons\/box86-pterodactyl:latest"
+        "ashu11a\/box86-pterodactyl:latest": "ashu11a\/box86-pterodactyl:latest",
+        "ashu11a\/box86-pterodactyl:slim": "ashu11a\/box86-pterodactyl:slim"
     },
     "file_denylist": [],
     "startup": "box86 samp03svr",
@@ -22,7 +23,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\napt -y update\r\napt -y --no-install-recommends install curl unzip lib32gcc1-x32-cross ca-certificates\r\n\r\ncd \/tmp\r\ncurl -sSL -o samp.tar.gz http:\/\/files.sa-mp.com\/samp037svr_R2-1.tar.gz\r\n\r\nmkdir -p \/mnt\/server\r\ntar -xzvf samp.tar.gz -C \/mnt\/server\/\r\ncp -r \/mnt\/server\/samp03\/* \/mnt\/server\r\nrm -rf \/mnt\/server\/samp03\/\r\ncd \/mnt\/server\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"rcon_password changemeplease\" >> \/mnt\/server\/server.cfg\r\necho \"Note\" >> \/mnt\/server\/server.cfg\r\necho \"Notas\" >> \/mnt\/server\/server.cfg\r\n\r\nchown -R root:root \/mnt\r\n\r\nexport HOME=\/mnt\/server",
+            "script": "#!\/bin\/bash\r\napt -y update\r\napt -y --no-install-recommends install curl unzip lib32gcc1-x32-cross ca-certificates libstdc++6 libc6 libc-bin\r\n\r\ncd \/tmp\r\ncurl -sSL -o samp.tar.gz http:\/\/files.sa-mp.com\/samp037svr_R2-1.tar.gz\r\n\r\nmkdir -p \/mnt\/server\r\ntar -xzvf samp.tar.gz -C \/mnt\/server\/\r\ncp -r \/mnt\/server\/samp03\/* \/mnt\/server\r\nrm -rf \/mnt\/server\/samp03\/\r\ncd \/mnt\/server\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"rcon_password changemeplease\" >> \/mnt\/server\/server.cfg\r\necho \"Note\" >> \/mnt\/server\/server.cfg\r\necho \"Notas\" >> \/mnt\/server\/server.cfg\r\n\r\nchown -R root:root \/mnt\r\n\r\nexport HOME=\/mnt\/server",
             "container": "ubuntu:22.04",
             "entrypoint": "bash"
         }
