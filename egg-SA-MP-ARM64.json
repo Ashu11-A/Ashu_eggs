@@ -4,7 +4,7 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-08-12T12:00:39-03:00",
+    "exported_at": "2022-08-17T18:05:25-03:00",
     "name": "SA-MP Arm",
     "author": "matheusn.biolowons@gmail.com",
     "description": "SA-MP \u00e9 um mod de jogo Massively Multiplayer Online gratuito para a vers\u00e3o para PC da Rockstar Games Grand Theft Auto: San Andreas (tm).",
@@ -15,17 +15,88 @@
     "file_denylist": [],
     "startup": "box86 samp03svr",
     "config": {
-        "files": "{\r\n    \"server.cfg\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"port\": \"port {{server.build.default.port}}\"\r\n        }\r\n    }\r\n}",
+        "files": "{\r\n    \"server.cfg\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"Note\": \"Note: To change some values go to startup, and change it!\",\r\n            \"Notas\": \"Notas: Para alterar alguns valores va para startup, e altere la!\",\r\n            \"port\": \"port {{server.build.default.port}}\",\r\n            \"maxplayers\": \"maxplayers {{server.build.env.MAX_PLAYERS}}\",\r\n            \"hostname\": \"hostname {{server.build.env.HOST_NAME}}\",\r\n            \"announce\": \"announce {{server.build.env.ANNONCE}}\",\r\n            \"weburl\": \"weburl {{server.build.env.WEB_URL}}\",\r\n            \"maxnpc\": \"maxnpc {{server.build.env.MAX_NPC}}\",\r\n            \"query\": \"query {{server.build.env.QUERY}}\",\r\n            \"rcon_password\": \"rcon_password {{server.build.env.PASSWORD}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Started server on \",\r\n    \"userInteraction\": []\r\n}",
         "logs": "{\r\n    \"custom\": true,\r\n    \"location\": \"samp.log\"\r\n}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\napt -y update\r\napt -y --no-install-recommends install curl unzip lib32gcc1-x32-cross ca-certificates\r\n\r\ncd \/tmp\r\ncurl -sSL -o samp.tar.gz http:\/\/files.sa-mp.com\/samp037svr_R2-1.tar.gz\r\n\r\nmkdir -p \/mnt\/server\r\ntar -xzvf samp.tar.gz -C \/mnt\/server\/\r\ncp -r \/mnt\/server\/samp03\/* \/mnt\/server\r\nrm -rf \/mnt\/server\/samp03\/\r\ncd \/mnt\/server\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"rcon_password changemeplease\" >> \/mnt\/server\/server.cfg\r\n\r\nchown -R root:root \/mnt\r\n\r\nexport HOME=\/mnt\/server",
+            "script": "#!\/bin\/bash\r\napt -y update\r\napt -y --no-install-recommends install curl unzip lib32gcc1-x32-cross ca-certificates\r\n\r\ncd \/tmp\r\ncurl -sSL -o samp.tar.gz http:\/\/files.sa-mp.com\/samp037svr_R2-1.tar.gz\r\n\r\nmkdir -p \/mnt\/server\r\ntar -xzvf samp.tar.gz -C \/mnt\/server\/\r\ncp -r \/mnt\/server\/samp03\/* \/mnt\/server\r\nrm -rf \/mnt\/server\/samp03\/\r\ncd \/mnt\/server\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"rcon_password changemeplease\" >> \/mnt\/server\/server.cfg\r\necho \"Note\" >> \/mnt\/server\/server.cfg\r\necho \"Notas\" >> \/mnt\/server\/server.cfg\r\n\r\nchown -R root:root \/mnt\r\n\r\nexport HOME=\/mnt\/server",
             "container": "ubuntu:22.04",
             "entrypoint": "bash"
         }
     },
-    "variables": []
+    "variables": [
+        {
+            "name": "Host Name",
+            "description": "",
+            "env_variable": "HOST_NAME",
+            "default_value": "SA-MP 0.3 Server",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:40",
+            "field_type": "text"
+        },
+        {
+            "name": "Max Players",
+            "description": "The maximum amount of players your server can hold. By changing this number you can alter how many players can enter the server.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "50",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|digits_between:1,3",
+            "field_type": "text"
+        },
+        {
+            "name": "Max NPC",
+            "description": "The maximum amount of NPCs your server can hold. By changing this number you can alter how many of the player slots can be used by NPCs.",
+            "env_variable": "MAX_NPC",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|digits_between:1,3",
+            "field_type": "text"
+        },
+        {
+            "name": "Web URL",
+            "description": "The website people can visit to gain more information about the server.",
+            "env_variable": "WEB_URL",
+            "default_value": "www.sa-mp.com",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:40",
+            "field_type": "text"
+        },
+        {
+            "name": "Announce",
+            "description": "Toggles if the server should be announced to SA-MP masterlist.",
+            "env_variable": "ANNONCE",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Query",
+            "description": "Toggles if the server information should be displayed in the server browser. Players can still join a server that has disabled querying, but the server browser will not display any information.",
+            "env_variable": "QUERY",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Rcon Password",
+            "description": "The password used to administrate the server and use the remote console (rcon). You must make sure to change this to something hard to crack so that others cannot take control of your server. Your server will NOT start if changeme is the RCON password!",
+            "env_variable": "PASSWORD",
+            "default_value": "changemeplease",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "string|nullable|max:20",
+            "field_type": "text"
+        }
+    ]
 }
