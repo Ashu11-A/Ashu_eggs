@@ -4,10 +4,10 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-08-17T18:57:15-03:00",
+    "exported_at": "2022-08-17T19:02:55-03:00",
     "name": "SA-MP Arm",
     "author": "matheusn.biolowons@gmail.com",
-    "description": "SA-MP is a free Massively Multiplayer Online game mod for the PC version of Rockstar Games Grand Theft Auto: San Andreas (tm).\r\nModified by Ashu.\r\nCheck for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "SA-MP is a free Massively Multiplayer Online game mod for the PC version of Rockstar Games Grand Theft Auto: San Andreas (tm).\r\nModified by Ashu.\r\nVersion: 1.3\r\nCheck for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
         "ashu11a\/box86-pterodactyl:latest": "ashu11a\/box86-pterodactyl:latest",
