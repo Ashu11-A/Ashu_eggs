@@ -4,10 +4,10 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-08-17T21:01:30-03:00",
+    "exported_at": "2022-08-17T21:26:24-03:00",
     "name": "tModLoader ARM",
     "author": "parker@parkervcp.com",
-    "description": "tModLoader modified by Ashu.\r\nVersion: 1.9\r\nCheck for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "tModLoader modified by Ashu.\r\nVersion: 1.9.1\r\nCheck for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
         "ghcr.io\/alzhahir\/terraria:main": "ghcr.io\/alzhahir\/terraria:main"
@@ -15,7 +15,7 @@
     "file_denylist": [],
     "startup": "mono .\/tModLoader*.exe -config serverconfig.txt",
     "config": {
-        "files": "{\r\n    \"serverconfig.txt\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"Note\": \" to change any value go to startup, and change there!\",\r\n            \"Notas\": \" para alterar qualquer valor va para startup, e altere la!\",\r\n            \"worldpath\": \"\/home\/container\/saves\/Worlds\",\r\n            \"worldname\": \"{{server.build.env.WORLD_NAME}}\",\r\n            \"world\": \"\/home\/container\/saves\/Worlds\/{{server.build.env.WORLD_NAME}}.wld\",\r\n            \"difficulty\": \"{{server.build.env.DIFFICULTY}}\",\r\n            \"autocreate\": \"{{server.build.env.AUTO_CREATE}}\",\r\n            \"port\": \"{{server.build.default.port}}\",\r\n            \"maxplayers\": \"{{server.build.env.MAX_PLAYERS}}\",\r\n            \"motd\": \"{{server.build.env.SERVER_MOTD}}\",\r\n            \"password\": \"{{server.build.env.SERVER_PASSWORD}}\",\r\n            \"modpath\": \"\/home\/container\/Mods\",\r\n            \"secure\": \"{{server.build.env.SECURE}}\"\r\n        }\r\n    },\r\n    \"Mods\/enabled.json\": {\r\n        \"parser\": \"json\",\r\n        \"find\": {\r\n            \"\": \"\"\r\n        }\r\n    }\r\n}",
+        "files": "{\r\n    \"serverconfig.txt\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"Note\": \" to change any value go to startup, and change there!\",\r\n            \"Notas\": \" para alterar qualquer valor va para startup, e altere la!\",\r\n            \"worldpath\": \"\/home\/container\/saves\/Worlds\",\r\n            \"worldname\": \"{{server.build.env.WORLD_NAME}}\",\r\n            \"world\": \"\/home\/container\/saves\/Worlds\/{{server.build.env.WORLD_NAME}}.wld\",\r\n            \"difficulty\": \"{{server.build.env.DIFFICULTY}}\",\r\n            \"autocreate\": \"{{server.build.env.AUTO_CREATE}}\",\r\n            \"port\": \"{{server.build.default.port}}\",\r\n            \"maxplayers\": \"{{server.build.env.MAX_PLAYERS}}\",\r\n            \"motd\": \"{{server.build.env.MOTD}}\",\r\n            \"password\": \"{{server.build.env.SERVER_PASSWORD}}\",\r\n            \"modpath\": \"\/home\/container\/Mods\",\r\n            \"secure\": \"{{server.build.env.SECURE}}\"\r\n        }\r\n    },\r\n    \"Mods\/enabled.json\": {\r\n        \"parser\": \"json\",\r\n        \"find\": {\r\n            \"\": \"\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Type 'help' for a list of commands\",\r\n    \"userInteraction\": []\r\n}",
         "logs": "{}",
         "stop": "exit"
