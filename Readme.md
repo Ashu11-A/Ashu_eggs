@@ -4,7 +4,7 @@ Some of them work on ARM and also ARM form Oracle Free Tier
 
 | Service | file* | AMD64 | ARM64 | ARM Oracle | More info |
 |--|--|--|--|--|--|
-| tModLoader | [egg-tModloader_ARM64.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-tModloader_ARM64.json) | ✅ | ✅ | ✅ | 
+| tModLoader | [egg-tModloader_ARM64.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-tModloader_ARM64.json) | ✅ | ✅ | ✅ |running with mono 
 | SA-MP | [egg-SA-MP-ARM64.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-SA-MP-ARM64.json) | ✅ | ✅ | ✅ |
 
 *Right click and click save  
