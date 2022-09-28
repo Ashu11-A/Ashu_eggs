@@ -4,18 +4,17 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-08-18T18:38:10-03:00",
+    "exported_at": "2022-09-27T22:32:31-03:00",
     "name": "SA-MP Arm",
     "author": "matheusn.biolowons@gmail.com",
-    "description": "SA-MP is a free Massively Multiplayer Online game mod for the PC version of Rockstar Games Grand Theft Auto: San Andreas (tm).\r\nModified by Ashu.\r\nVersion: 1.4\r\nCheck for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "SA-MP is a free Massively Multiplayer Online game mod for the PC version of Rockstar Games Grand Theft Auto: San Andreas (tm).\r\nModified by Ashu.\r\nVersion: 1.5\r\nCheck for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ARM64 Slim": "ashu11a\/box86-pterodactyl:slim",
-        "ARM64 Latest": "ashu11a\/box86-pterodactyl:latest",
+        "ARM64 Latest": "ashu11a\/samp-pterodactyl",
         "AMD64": "ghcr.io\/parkervcp\/games:samp"
     },
     "file_denylist": [],
-    "startup": "$(if [ \"${ARCH}\" == \"arm64\" ]; then echo -n \"box86 .\/samp03svr\"; else echo -n \".\/samp03svr\"; fi)",
+    "startup": "ARCH=$([ \"$(uname -m)\" == \"x86_64\" ] && echo \"amd64\" || echo \"arm64\") && $(if [ \"${ARCH}\" == \"arm64\" ]; then echo -n \"box86 .\/samp03svr\"; else echo -n \".\/samp03svr\"; fi)",
     "config": {
         "files": "{\r\n    \"server.cfg\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"Note\": \"Note: To change some values go to startup, and change it!\",\r\n            \"Notas\": \"Notas: Para alterar alguns valores va para startup, e altere la!\",\r\n            \"port\": \"port {{server.build.default.port}}\",\r\n            \"maxplayers\": \"maxplayers {{server.build.env.MAX_PLAYERS}}\",\r\n            \"hostname\": \"hostname {{server.build.env.HOST_NAME}}\",\r\n            \"announce\": \"announce {{server.build.env.ANNONCE}}\",\r\n            \"weburl\": \"weburl {{server.build.env.WEB_URL}}\",\r\n            \"maxnpc\": \"maxnpc {{server.build.env.MAX_NPC}}\",\r\n            \"query\": \"query {{server.build.env.QUERY}}\",\r\n            \"rcon_password\": \"rcon_password {{server.build.env.PASSWORD}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Started server on \",\r\n    \"userInteraction\": []\r\n}",
@@ -24,8 +23,8 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\napt -y update\r\napt -y --no-install-recommends install curl unzip lib32gcc1-x32-cross ca-certificates libstdc++6 libc6 libc-bin\r\n\r\ncd \/tmp\r\ncurl -sSL -o samp.tar.gz http:\/\/files.sa-mp.com\/samp037svr_R2-1.tar.gz\r\n\r\nmkdir -p \/mnt\/server\r\ntar -xzvf samp.tar.gz -C \/mnt\/server\/\r\ncp -r \/mnt\/server\/samp03\/* \/mnt\/server\r\nrm -rf \/mnt\/server\/samp03\/\r\ncd \/mnt\/server\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"rcon_password changemeplease\" >> \/mnt\/server\/server.cfg\r\necho \"Note\" >> \/mnt\/server\/server.cfg\r\necho \"Notas\" >> \/mnt\/server\/server.cfg\r\n\r\nchown -R root:root \/mnt\r\n\r\nexport HOME=\/mnt\/server",
-            "container": "ubuntu:22.04",
+            "script": "#!\/bin\/bash\r\napt -y update\r\napt -y --no-install-recommends install curl unzip ca-certificates\r\ncd \/tmp\r\ncurl -sSL -o samp.tar.gz http:\/\/files.sa-mp.com\/samp037svr_R2-1.tar.gz\r\nmkdir -p \/mnt\/server\r\ntar -xzvf samp.tar.gz -C \/mnt\/server\/\r\ncp -r \/mnt\/server\/samp03\/* \/mnt\/server\r\nrm -rf \/mnt\/server\/samp03\/\r\ncd \/mnt\/server\r\nchmod 777 samp03svr\r\nsed -i '3d' \/mnt\/server\/server.cfg\r\necho \"rcon_password changemeplease\" >> \/mnt\/server\/server.cfg\r\necho \"Note To change some values go to startup, and change it!\" >> \/mnt\/server\/server.cfg\r\necho \"Notas Para alterar alguns valores va para startup, e altere la!\" >> \/mnt\/server\/server.cfg\r\necho \"output 1\" >> \/mnt\/server\/server.cfg\r\nchown -R root:root \/mnt\r\nexport HOME=\/mnt\/server",
+            "container": "ubuntu:16.04",
             "entrypoint": "bash"
         }
     },
@@ -98,16 +97,6 @@
             "user_viewable": true,
             "user_editable": true,
             "rules": "string|nullable|max:20",
-            "field_type": "text"
-        },
-        {
-            "name": "CPU Architecture",
-            "description": "Are you on ARM64 or AMD64",
-            "env_variable": "ARCH",
-            "default_value": "arm64",
-            "user_viewable": false,
-            "user_editable": false,
-            "rules": "required|in:arm64,amd64",
             "field_type": "text"
         }
     ]
