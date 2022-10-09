@@ -6,7 +6,7 @@
     },
     "exported_at": "2022-10-09T01:25:03-03:00",
     "name": "Jellyfin",
-    "author": "Matheusn.biolowons@gmail.com",
+    "author": "matheusn.biolowons@gmail.com",
     "description": "Sistema de M\u00eddia de Software Livre.\r\nVers\u00e3o: 1.1\r\nPor: Ashu\r\nCheck para updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
