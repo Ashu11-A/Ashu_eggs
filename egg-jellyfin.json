@@ -4,13 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-10-09T00:23:32-03:00",
+    "exported_at": "2022-10-09T01:25:03-03:00",
     "name": "Jellyfin",
-    "author": "matheusn.biolowons@gmail.com",
-    "description": "Sistema de M\u00eddia de Software Livre.\r\nVers\u00e3o: 1.0\r\nPor: Ashu\r\nCheck para updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "author": "Matheusn.biolowons@gmail.com",
+    "description": "Sistema de M\u00eddia de Software Livre.\r\nVers\u00e3o: 1.1\r\nPor: Ashu\r\nCheck para updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ashu11a\/jellyfin:latest": "ashu11a\/jellyfin:latest"
+        "ARM64 ": " ashu11a\/jellyfin:latest",
+        "64x ": " ashu11a\/jellyfin:latest_64x"
     },
     "file_denylist": [],
     "startup": "dotnet jellyfin.dll",
