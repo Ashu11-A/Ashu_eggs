@@ -8,6 +8,7 @@ Some of them work on ARM and also ARM form Oracle Free Tier
 | SA-MP | [egg-SA-MP-ARM64.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-SA-MP-ARM64.json) | ✅ | ✅ | ✅ |Emulado no ARM com Box86
 | Jellyfin | [egg-jellyfin.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/egg-jellyfin.json) | ✅ | ✅ | ✅ |
 | Frp | [egg-frp.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/egg-frp.json) | ✅ | ✅ | ✅ |
+| Nextcloud | [egg-nextcloud.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/egg-nextcloud.json) | ✅ | ✅ | ✅ |
 
 *Right click and click save  
 ✅ - Working (Normal ARM was tested on Oracle Cloud)  
