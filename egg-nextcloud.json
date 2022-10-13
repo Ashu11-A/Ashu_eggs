@@ -4,25 +4,25 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-10-13T11:05:19-03:00",
+    "exported_at": "2022-10-13T18:15:00-03:00",
     "name": "Nextcloud",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "Nextcloud \u00e9 uma plataforma de colabora\u00e7\u00e3o em nuvem de c\u00f3digo aberto que possibilita a cria\u00e7\u00e3o de servidores de hospedagem de arquivos privados ou empresariais.\r\nVers\u00e3o: 1.1\r\nPor: Ashu\r\nCheck para updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "Nextcloud \u00e9 uma plataforma de colabora\u00e7\u00e3o em nuvem de c\u00f3digo aberto que possibilita a cria\u00e7\u00e3o de servidores de hospedagem de arquivos privados ou empresariais.\r\nVers\u00e3o: 1.2\r\nPor: Ashu\r\nCheck para updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs\r\nOque h\u00e1 de novo:\r\nN\u00e3o h\u00e1 mais necessidade de reiniciar o egg na primeira inicializa\u00e7\u00e3o.\r\nVari\u00e1vel OCC adicionada, permite que voc\u00ea execute comandos no Nextcloud, com: atualizar, Modo Manuten\u00e7\u00e3o, etc\u2026\r\nForma como o Download \u00e9 feito mudou, agora sempre instalar\u00e1 a vers\u00e3o mais recente, a menos que voc\u00ea especifique uma.",
     "features": null,
     "docker_images": {
         "ARM64, ARM, 64x,  ": " ashu11a\/nextcloud:latest"
     },
     "file_denylist": [],
-    "startup": ".\/start.sh",
+    "startup": "$(if [ \"${OCC}\" == \"1\" ]; then \r\n echo -n \"php .\/nextcloud\/occ {{COMMANDO_OCC}}\";\r\n else\r\n echo -n \".\/start.sh\";\r\n fi)",
     "config": {
         "files": "{\r\n    \"nginx\/conf.d\/default.conf\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"    listen \": \"    listen {{server.build.default.port}};\"\r\n        }\r\n    }\r\n}",
-        "startup": "{\r\n    \"done\": \"\",\r\n    \"userInteraction\": []\r\n}",
+        "startup": "{\r\n    \"done\": \"Inicializado com sucesso\",\r\n    \"userInteraction\": []\r\n}",
         "logs": "{\r\n    \"custom\": false,\r\n    \"location\": \"logs\/latest.log\"\r\n}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/ash\r\ncd \/mnt\/server\r\napk --update add git curl file unzip tar autoconf automake git wget\r\nmkdir php-fpm\r\ngit clone https:\/\/github.com\/finnie2006\/ptero-nginx .\/temp\r\ncp -r .\/temp\/nginx \/mnt\/server\/\r\ncp -r .\/temp\/php-fpm \/mnt\/server\/\r\nwget https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Nextcloud\/start.sh\r\nchmod +x \/mnt\/server\/start.sh\r\nrm -rf .\/temp\r\nrm -rf \/mnt\/server\/webroot\/*\r\nmkdir logs\r\nrm nginx\/conf.d\/default.conf\r\ncd nginx\/conf.d\/\r\nwget https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Nextcloud\/default.conf\r\ncd \/mnt\/server\r\necho \"**** download nextcloud ****\"\r\ncurl -sSL https:\/\/download.nextcloud.com\/server\/releases\/nextcloud-${NEXTCLOUD_RELEASE}.tar.bz2 -o nextcloud-${NEXTCLOUD_RELEASE}.tar.bz2\r\necho \"**** test tarball ****\"\r\ntar xvf nextcloud-${NEXTCLOUD_RELEASE}.tar.bz2\r\ncat <<EOF > install_log.txt\r\nVers\u00e3o: ${NEXTCLOUD_RELEASE}\r\nLink: https:\/\/download.nextcloud.com\/server\/releases\/nextcloud-${NEXTCLOUD_RELEASE}.tar.bz2\r\nArquivo: nextcloud-${NEXTCLOUD_RELEASE}.tar.bz2\r\nEOF\r\nchown -R nginx:nginx nextcloud && chmod -R 755 nextcloud\r\necho \"**** cleanup ****\"\r\nrm -rf \/tmp\/*\r\nrm -rf nextcloud-${NEXTCLOUD_RELEASE}.tar.bz2\r\necho \"**** configure php and nginx for nextcloud ****\" && \\\r\necho \"extension=\"smbclient.so\"\" > php-fpm\/conf.d\/00_smbclient.ini && \\\r\necho 'apc.enable_cli=1' >> php-fpm\/conf.d\/apcu.ini && \\\r\nsed -i \\\r\n-e 's\/;opcache.enable.*=.*\/opcache.enable=1\/g' \\\r\n-e 's\/;opcache.interned_strings_buffer.*=.*\/opcache.interned_strings_buffer=16\/g' \\\r\n-e 's\/;opcache.max_accelerated_files.*=.*\/opcache.max_accelerated_files=10000\/g' \\\r\n-e 's\/;opcache.memory_consumption.*=.*\/opcache.memory_consumption=128\/g' \\\r\n-e 's\/;opcache.save_comments.*=.*\/opcache.save_comments=1\/g' \\\r\n-e 's\/;opcache.revalidate_freq.*=.*\/opcache.revalidate_freq=1\/g' \\\r\n-e 's\/;always_populate_raw_post_data.*=.*\/always_populate_raw_post_data=-1\/g' \\\r\n-e 's\/memory_limit.*=.*128M\/memory_limit=512M\/g' \\\r\n-e 's\/max_execution_time.*=.*30\/max_execution_time=120\/g' \\\r\n-e 's\/upload_max_filesize.*=.*2M\/upload_max_filesize=1024M\/g' \\\r\n-e 's\/post_max_size.*=.*8M\/post_max_size=1024M\/g' \\\r\n-e 's\/output_buffering.*=.*\/output_buffering=0\/g' \\\r\nphp-fpm\/php.ini && \\\r\nsed -i \\\r\n'\/opcache.enable=1\/a opcache.enable_cli=1' \\\r\nphp-fpm\/php.ini && \\\r\necho \"env[PATH] = \/usr\/local\/bin:\/usr\/bin:\/bin\" >> php-fpm\/php-fpm.conf",
+            "script": "#!\/bin\/ash\r\ncd \/mnt\/server\r\napk --update add git curl file unzip tar autoconf automake git wget\r\nmkdir php-fpm\r\nif [ \"${INSTALL_NEXT}\" == \"1\" ] ; then\r\necho \"**** download nextcloud ****\"\r\nrm -rf nextcloud\/\r\nif [ \"${NEXTCLOUD_RELEASE}\" == \"latest\" ] ; then\r\nDOWNLOAD_LINK=$(echo -e \"${NEXTCLOUD_RELEASE}.zip\")\r\nelse\r\nDOWNLOAD_LINK=$(echo -e \"nextcloud-${NEXTCLOUD_RELEASE}.zip\")\r\nfi\r\nelse\r\necho \"**** Pulando instala\u00e7\u00e3o e removendo arquivos antigos ****\"\r\nrm -rf logs\r\nrm -rf nginx\r\nrm -rf php*\r\nrm -rf start*\r\nrm -rf tmp\r\nfi\r\ngit clone https:\/\/github.com\/finnie2006\/ptero-nginx .\/temp\r\ncp -r .\/temp\/nginx \/mnt\/server\/\r\ncp -r .\/temp\/php-fpm \/mnt\/server\/\r\nwget https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Nextcloud\/start.sh\r\nchmod +x \/mnt\/server\/start.sh\r\nrm -rf .\/temp\r\nrm -rf \/mnt\/server\/webroot\/*\r\nmkdir logs\r\nrm nginx\/conf.d\/default.conf\r\ncd nginx\/conf.d\/\r\nwget https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Nextcloud\/default.conf\r\ncd \/mnt\/server\r\ncat <<EOF > install_log.txt\r\nVers\u00e3o: $NEXTCLOUD_RELEASE\r\nLink: https:\/\/download.nextcloud.com\/server\/releases\/${DOWNLOAD_LINK}\r\nArquivo: ${DOWNLOAD_LINK}\r\nEOF\r\nif [ \"${INSTALL_NEXT}\" == \"1\" ] ; then\r\nwget https:\/\/download.nextcloud.com\/server\/releases\/${DOWNLOAD_LINK}\r\nunzip ${DOWNLOAD_LINK}\r\nrm -rf ${DOWNLOAD_LINK}\r\nelse\r\necho \"**** Pulando Instala\u00e7\u00e3o ****\"\r\nfi\r\nchown -R nginx:nginx nextcloud && chmod -R 755 nextcloud\r\necho \"**** cleanup ****\"\r\nrm -rf \/tmp\/*\r\necho \"**** configure php and nginx for nextcloud ****\" && \\\r\necho \"extension=\"smbclient.so\"\" > php-fpm\/conf.d\/00_smbclient.ini && \\\r\necho 'apc.enable_cli=1' >> php-fpm\/conf.d\/apcu.ini && \\\r\nsed -i \\\r\n-e 's\/;opcache.enable.*=.*\/opcache.enable=1\/g' \\\r\n-e 's\/;opcache.interned_strings_buffer.*=.*\/opcache.interned_strings_buffer=16\/g' \\\r\n-e 's\/;opcache.max_accelerated_files.*=.*\/opcache.max_accelerated_files=10000\/g' \\\r\n-e 's\/;opcache.memory_consumption.*=.*\/opcache.memory_consumption=128\/g' \\\r\n-e 's\/;opcache.save_comments.*=.*\/opcache.save_comments=1\/g' \\\r\n-e 's\/;opcache.revalidate_freq.*=.*\/opcache.revalidate_freq=1\/g' \\\r\n-e 's\/;always_populate_raw_post_data.*=.*\/always_populate_raw_post_data=-1\/g' \\\r\n-e 's\/memory_limit.*=.*128M\/memory_limit=512M\/g' \\\r\n-e 's\/max_execution_time.*=.*30\/max_execution_time=120\/g' \\\r\n-e 's\/upload_max_filesize.*=.*2M\/upload_max_filesize=1024M\/g' \\\r\n-e 's\/post_max_size.*=.*8M\/post_max_size=1024M\/g' \\\r\n-e 's\/output_buffering.*=.*\/output_buffering=0\/g' \\\r\nphp-fpm\/php.ini && \\\r\nsed -i \\\r\n'\/opcache.enable=1\/a opcache.enable_cli=1' \\\r\nphp-fpm\/php.ini && \\\r\necho \"env[PATH] = \/usr\/local\/bin:\/usr\/bin:\/bin\" >> php-fpm\/php-fpm.conf\r\nmkdir tmp",
             "container": "alpine:latest",
             "entrypoint": "ash"
         }
@@ -30,12 +30,42 @@
     "variables": [
         {
             "name": "Vers\u00e3o",
-            "description": "Vers\u00e3o do Nextcloud\r\n\r\nEx: \"24.0.6\"",
+            "description": "Vers\u00e3o do Nextcloud, latest instalar\u00e1 a vers\u00e3o mais recente.\r\n\r\nEx: \"24.0.6\"",
             "env_variable": "NEXTCLOUD_RELEASE",
-            "default_value": "24.0.6",
+            "default_value": "latest",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:12",
+            "field_type": "text"
+        },
+        {
+            "name": "Habilitar OCC",
+            "description": "Somente use para fazer Manuten\u00e7\u00f5es.\r\nExecute o comando e depois desabilite isso.\r\nOcc \u00e9 a interface de linha de comando do Nextcloud. Voc\u00ea pode realizar muitas opera\u00e7\u00f5es comuns de servidor com o occ, como instalar e atualizar o Nextcloud, gerenciar usu\u00e1rios, criptografia, senhas, configura\u00e7\u00e3o LDAP e muito mais.",
+            "env_variable": "OCC",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Comando OCC",
+            "description": "Escreva aqui o comando que ser\u00e1 executado pelo occ na inicializa\u00e7\u00e3o. Ex: list (ir\u00e1 listar todos os comando existentes)",
+            "env_variable": "COMMANDO_OCC",
+            "default_value": "list",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "string|nullable|max:50",
+            "field_type": "text"
+        },
+        {
+            "name": "Instalar Nextcloud?",
+            "description": "Se ativado, ele ira instalar o Nextxloud na reinstala\u00e7\u00e3o do servidor.",
+            "env_variable": "INSTALL_NEXT",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
             "field_type": "text"
         }
     ]
