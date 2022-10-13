@@ -4,14 +4,13 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-10-13T01:20:10-03:00",
+    "exported_at": "2022-10-13T11:05:19-03:00",
     "name": "Nextcloud",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "Nextcloud \u00e9 uma plataforma de colabora\u00e7\u00e3o em nuvem de c\u00f3digo aberto que possibilita a cria\u00e7\u00e3o de servidores de hospedagem de arquivos privados ou empresariais.\r\nVers\u00e3o: 1.0\r\nPor: Ashu\r\nCheck para updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "Nextcloud \u00e9 uma plataforma de colabora\u00e7\u00e3o em nuvem de c\u00f3digo aberto que possibilita a cria\u00e7\u00e3o de servidores de hospedagem de arquivos privados ou empresariais.\r\nVers\u00e3o: 1.1\r\nPor: Ashu\r\nCheck para updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ARM64 ": " ashu11a\/nextcloud:latest",
-        "64x ": " ashu11a\/nextcloud:latest64x"
+        "ARM64, ARM, 64x,  ": " ashu11a\/nextcloud:latest"
     },
     "file_denylist": [],
     "startup": ".\/start.sh",
