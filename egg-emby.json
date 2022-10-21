@@ -4,10 +4,10 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-10-19T22:14:43-03:00",
+    "exported_at": "2022-10-20T23:55:20-03:00",
     "name": "Emby",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "Emby \u00e9 um servidor de m\u00eddia projetado para organizar, reproduzir e transmitir \u00e1udio e v\u00eddeo para uma variedade de dispositivos.\r\nVers\u00e3o: 1.1\r\nPor: Ashu\r\nCheck para updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs\r\nBugs corrigidos\/changelogs: FFmpeg corrigido.",
+    "description": "Emby \u00e9 um servidor de m\u00eddia projetado para organizar, reproduzir e transmitir \u00e1udio e v\u00eddeo para uma variedade de dispositivos.\r\nVers\u00e3o: 1.2\r\nPor: Ashu\r\nCheck para updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs\r\nBugs corrigidos\/changelogs: Docker 64x Arrumado.",
     "features": null,
     "docker_images": {
         "ARM64 ": " ashu11a\/emby:latest",
