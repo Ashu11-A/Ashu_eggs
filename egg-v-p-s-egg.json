@@ -1,0 +1,31 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-01-17T19:50:35-04:00",
+    "name": "VPS Egg",
+    "author": "Matheusn.biolowons@gmail.com",
+    "description": "Pterodactyl Egg - VPS Egg",
+    "features": null,
+    "docker_images": {
+        "quay.io\/parkervcp\/pterodactyl-images:base_debian": "quay.io\/parkervcp\/pterodactyl-images:base_debian"
+    },
+    "file_denylist": [],
+    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/drylian\/tralhas\/main\/installer.sh)",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Default\"\r\n}",
+        "logs": "{}",
+        "stop": "exit"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# Debian Proot Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\ncd \/mnt\/server\/\r\nmkdir etc\r\necho \"nameserver 8.8.8.8\" > \/mnt\/server\/etc\/resolv.conf",
+            "container": "ghcr.io\/pterodactyl\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": []
+}
