@@ -34,6 +34,7 @@ ${bold}${lightblue} :           :     : :: ::    :   : :   : :  :         :     
                                                                                                   
                                                                                                                 
 ${bold}${lightgreen}========================================================================
+${bold}${lightblue}          ...ISTO PODE DEMORAR MAIS DE 15 MINUTOS SEJA PACIENTE...
  "
  
 echo "${nc}"
@@ -54,11 +55,10 @@ if [[ -f "./instalado" ]]; then
     }
     runcmd
 else
-    ${bold}${lightblue}          ...ISTO PODE DEMORAR MAIS DE 15 MINUTOS SEJA PACIENTE...
     echo "Fazendo o download dos arquivos."
     curl -sSLo ngrok https://github.com/Ashu11-A/Ashu_eggs/raw/main/vps/ARM64/ngrok >/dev/null 2>err.log
     echo -ne '#                   (5%)\r'
-    curl -sSLo root.tar.xz https://github.com/termux/proot-distro/releases/download/v3.3.0/debian-aarch64-pd-v3.3.0.tar.xz >/dev/null 2>err.log
+    curl -sSLo root.tar.xz https://github.com/termux/proot-distro/releases/download/v2.0.1/debian-aarch64-pd-v2.0.1.tar.xz >/dev/null 2>err.log
     echo -ne '##                  (10%)\r'
     mkdir libraries
     curl -sSLo ./libraries/proot https://github.com/Ashu11-A/Ashu_eggs/raw/main/vps/ARM64/proot-v5.3.0-aarch64-static >/dev/null 2>err.log
