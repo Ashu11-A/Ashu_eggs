@@ -19,21 +19,21 @@ lightblue=$(echo -en "\e[94m")
 lightgreen=$(echo -en "\e[92m")
 
 echo "
-${bold}${lightgreen}========================================================================
+${bold}${lightgreen}=================================================================================
                                                                                                   
-${bold}${lightblue}@@@@@@@   @@@@@@@  @@@@@@@@  @@@@@@@    @@@@@@      @@@  @@@  @@@@@@@@@@
-${bold}${lightblue}@@@@@@@@  @@@@@@@  @@@@@@@@  @@@@@@@@  @@@@@@@@     @@@  @@@  @@@@@@@@@@@    
-${bold}${lightblue}@@!  @@@    @@!    @@!       @@!  @@@  @@!  @@@     @@!  @@@  @@! @@! @@!    
-${bold}${lightblue}!@!  @!@    !@!    !@!       !@!  @!@  !@!  @!@     !@!  @!@  !@! !@! !@!     
-${bold}${lightblue}@!@@!@!     @!!    @!!!:!    @!@!!@!   @!@  !@!     @!@  !@!  @!! !!@ @!@      
-${bold}${lightblue}!!@!!!      !!!    !!!!!:    !!@!@!    !@!  !!!     !@!  !!!  !@!   ! !@!        
-${bold}${lightblue}!!:         !!:    !!:       !!: :!!   !!:  !!!     :!:  !!:  !!:     !!:        
-${bold}${lightblue}:!:         :!:    :!:       :!:  !:!  :!:  !:!      ::!!:!   :!:     :!:            
-${bold}${lightblue} ::          ::     :: ::::  ::   :::  ::::: ::       ::::    :::     ::        
-${bold}${lightblue} :           :     : :: ::    :   : :   : :  :         :       :      :          
+${bold}${lightblue}@@@@@@@   @@@@@@@  @@@@@@@@  @@@@@@@    @@@@@@      @@@  @@@  @@@@@@       @@@@@@@ 
+${bold}${lightblue}@@@@@@@@  @@@@@@@  @@@@@@@@  @@@@@@@@  @@@@@@@@     @@@  @@@  @@@@@@@@   @@@@@@@ 
+${bold}${lightblue}@@!  @@@    @@!    @@!       @@!  @@@  @@!  @@@     @@!  @@@  @@!   @@!  @@!  
+${bold}${lightblue}!@!  @!@    !@!    !@!       !@!  @!@  !@!  @!@     !@!  @!@  !@!   @!@  !@!   
+${bold}${lightblue}@!@@!@!     @!!    @!!!:!    @!@!!@!   @!@  !@!     @!@  !@!  @!@!@!@!    !@!@!@!   
+${bold}${lightblue}!!@!!!      !!!    !!!!!:    !!@!@!    !@!  !!!     !@!  !!!  !@!!@!@      !@!!@!@    
+${bold}${lightblue}!!:         !!:    !!:       !!: :!!   !!:  !!!     :!:  !!:  !::              !::
+${bold}${lightblue}:!:         :!:    :!:       :!:  !:!  :!:  !:!      ::!!:!   :!:              :!:      
+${bold}${lightblue} ::          ::     :: ::::  ::   :::  ::::: ::       ::::    :::          :::::::     
+${bold}${lightblue} :           :     : :: ::    :   : :   : :  :         :      :::        :::::::      
                                                                                                   
                                                                                                                 
-${bold}${lightgreen}========================================================================
+${bold}${lightgreen}=================================================================================
 ${bold}${lightblue}       ...ISTO PODE DEMORAR MAIS DE 15 MINUTOS SEJA PACIENTE...
  "
  
@@ -55,30 +55,34 @@ if [[ -f "./instalado" ]]; then
     }
     runcmd
 else
-    echo "Fazendo o download dos arquivos."
-    curl -sSLo ngrok https://github.com/Ashu11-A/Ashu_eggs/raw/main/vps/ARM64/ngrok >/dev/null 2>err.log
+    echo "Baixando arquivos para iniciar a vps"
+    curl -sSLo ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.tgz >/dev/null 2>err.log
     echo -ne '#                   (5%)\r'
-    curl -sSLo root.tar.xz https://github.com/termux/proot-distro/releases/download/v3.3.0/debian-aarch64-pd-v3.3.0.tar.xz >/dev/null 2>err.log
-    echo -ne '##                  (10%)\r'
     mkdir libraries
-    curl -sSLo ./libraries/proot https://github.com/Ashu11-A/Ashu_eggs/raw/main/vps/ARM64/proot-v5.3.0-aarch64-static >/dev/null 2>err.log
+    curl -sSLo ./libraries/proot https://github.com/proot-me/proot/releases/download/v5.3.0/proot-v5.3.0-aarch64-static >/dev/null 2>err.log
+    echo -ne '##                  (10%)\r'
+    curl -sSLo root.tar.xz https://github.com/termux/proot-distro/releases/download/v3.3.0/debian-aarch64-pd-v3.3.0.tar.xz >/dev/null 2>err.log
     echo -ne '####                (20%)\r'
-    curl -sSLo gotty https://github.com/Ashu11-A/Ashu_eggs/raw/main/vps/ARM64/gotty >/dev/null 2>err.log
+    curl -sSLo gotty.tar.gz https://github.com/sorenisanerd/gotty/releases/download/v1.5.0/gotty_v1.5.0_linux_arm64.tar.gz >/dev/null 2>err.log
     echo -ne '#####               (25%)\r'
-    chmod +x unzip >/dev/null 2>err.log
     export PATH="/bin:/usr/bin:/usr/local/bin:/sbin:$HOMEA/bin:$HOMEA/usr/bin:$HOMEA/sbin:$HOMEA/usr/sbin:$HOMEA/etc/init.d:$PATH"
     echo -ne '######               (30%)\r'
     tar -xvf root.tar.xz >/dev/null 2>err.log
-    echo "nameserver 8.8.8.8" > ./etc/resolv.conf
     echo -ne '#######              (35%)\r'
     chmod +x ./libraries/proot >/dev/null 2>err.log
     echo -ne '########             (40%)\r'
-    chmod +x ngrok >/dev/null 2>err.log
+    tar -cvzf ngrok.tgz >/dev/null 2>err.log
     echo -ne '#########            (45%)\r'
-    chmod +x gotty >/dev/null 2>err.log
+    chmod +x ngrok >/dev/null 2>err.log
     echo -ne '##########           (50%)\r'
-    #rm -rf root.tar.xz >/dev/null 2>err.log
+    tar -xzvf gotty.tar.gz
+    chmod +x gotty >/dev/null 2>err.log
     echo -ne '###########          (55%)\r'
+    rm -rf files.zip >/dev/null 2>err.log
+    rm -rf root.zip >/dev/null 2>err.log
+    rm -rf root.tar.xz >/dev/null 2>err.log
+    rm -rf gotty.tar.gz >/dev/null 2>err.log
+    rm -rf ngrok.tgz >/dev/null 2>err.log
     echo -ne '############         (60%)\r'
 
     cmds=("mv gotty /usr/bin/" "mv unzip /usr/bin/" "mv ngrok /usr/bin/" "apt-get update" "apt-get -y upgrade" "apt-get -y install sudo curl wget hwloc htop nano neofetch python3" "curl -o /bin/systemctl https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py")
@@ -91,21 +95,21 @@ else
     touch instalado
     
     echo "
-${bold}${lightgreen}========================================================================
+${bold}${lightgreen}=================================================================================
                                                                                                   
-${bold}${lightblue}@@@@@@@   @@@@@@@  @@@@@@@@  @@@@@@@    @@@@@@      @@@  @@@  @@@@@@@@@@
-${bold}${lightblue}@@@@@@@@  @@@@@@@  @@@@@@@@  @@@@@@@@  @@@@@@@@     @@@  @@@  @@@@@@@@@@@    
-${bold}${lightblue}@@!  @@@    @@!    @@!       @@!  @@@  @@!  @@@     @@!  @@@  @@! @@! @@!    
-${bold}${lightblue}!@!  @!@    !@!    !@!       !@!  @!@  !@!  @!@     !@!  @!@  !@! !@! !@!     
-${bold}${lightblue}@!@@!@!     @!!    @!!!:!    @!@!!@!   @!@  !@!     @!@  !@!  @!! !!@ @!@      
-${bold}${lightblue}!!@!!!      !!!    !!!!!:    !!@!@!    !@!  !!!     !@!  !!!  !@!   ! !@!        
-${bold}${lightblue}!!:         !!:    !!:       !!: :!!   !!:  !!!     :!:  !!:  !!:     !!:        
-${bold}${lightblue}:!:         :!:    :!:       :!:  !:!  :!:  !:!      ::!!:!   :!:     :!:            
-${bold}${lightblue} ::          ::     :: ::::  ::   :::  ::::: ::       ::::    :::     ::        
-${bold}${lightblue} :           :     : :: ::    :   : :   : :  :         :       :      :          
+${bold}${lightblue}@@@@@@@   @@@@@@@  @@@@@@@@  @@@@@@@    @@@@@@      @@@  @@@  @@@@@@       @@@@@@@ 
+${bold}${lightblue}@@@@@@@@  @@@@@@@  @@@@@@@@  @@@@@@@@  @@@@@@@@     @@@  @@@  @@@@@@@@   @@@@@@@ 
+${bold}${lightblue}@@!  @@@    @@!    @@!       @@!  @@@  @@!  @@@     @@!  @@@  @@!   @@!  @@!  
+${bold}${lightblue}!@!  @!@    !@!    !@!       !@!  @!@  !@!  @!@     !@!  @!@  !@!   @!@  !@!   
+${bold}${lightblue}@!@@!@!     @!!    @!!!:!    @!@!!@!   @!@  !@!     @!@  !@!  @!@!@!@!    !@!@!@!   
+${bold}${lightblue}!!@!!!      !!!    !!!!!:    !!@!@!    !@!  !!!     !@!  !!!  !@!!@!@      !@!!@!@    
+${bold}${lightblue}!!:         !!:    !!:       !!: :!!   !!:  !!!     :!:  !!:  !::              !::
+${bold}${lightblue}:!:         :!:    :!:       :!:  !:!  :!:  !:!      ::!!:!   :!:              :!:      
+${bold}${lightblue} ::          ::     :: ::::  ::   :::  ::::: ::       ::::    :::          :::::::     
+${bold}${lightblue} :           :     : :: ::    :   : :   : :  :         :      :::        :::::::         
                                                                                                   
                                                                                                                 
-${bold}${lightgreen}========================================================================
+${bold}${lightgreen}=================================================================================
  "
  
 echo "${nc}"
