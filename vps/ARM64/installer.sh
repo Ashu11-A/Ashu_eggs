@@ -34,7 +34,7 @@ ${bold}${lightblue} :           :     : :: ::    :   : :   : :  :         :     
                                                                                                   
                                                                                                                 
 ${bold}${lightgreen}========================================================================
-${bold}${lightblue}          ...ISTO PODE DEMORAR MAIS DE 15 MINUTOS SEJA PACIENTE...
+${bold}${lightblue}       ...ISTO PODE DEMORAR MAIS DE 15 MINUTOS SEJA PACIENTE...
  "
  
 echo "${nc}"
