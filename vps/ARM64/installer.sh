@@ -88,7 +88,7 @@ else
     cmds=("mv gotty /usr/bin/" "mv unzip /usr/bin/" "mv ngrok /usr/bin/" "apt-get update" "apt-get -y upgrade" "apt-get -y install sudo curl wget hwloc htop nano neofetch python3" "curl -o /bin/systemctl https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py")
 
     for cmd in "${cmds[@]}"; do
-        ./libraries/proot -S . /bin/bash -c "$cmd -q qemu-arm >/dev/null 2>err.log"
+        ./libraries/proot -S . /bin/bash -c "$cmd -q qemu-arm64 >/dev/null 2>err.log"
     done
     echo -ne '####################(100%)\r'
     echo -ne '\n'
