@@ -58,7 +58,7 @@ else
     echo "Fazendo o download dos arquivos."
     curl -sSLo ngrok https://github.com/Ashu11-A/Ashu_eggs/raw/main/vps/ARM64/ngrok >/dev/null 2>err.log
     echo -ne '#                   (5%)\r'
-    curl -sSLo root.tar.xz https://github.com/termux/proot-distro/releases/download/v2.0.1/debian-aarch64-pd-v2.0.1.tar.xz >/dev/null 2>err.log
+    curl -sSLo root.tar.xz https://github.com/termux/proot-distro/releases/download/v3.3.0/debian-aarch64-pd-v3.3.0.tar.xz >/dev/null 2>err.log
     echo -ne '##                  (10%)\r'
     mkdir libraries
     curl -sSLo ./libraries/proot https://github.com/Ashu11-A/Ashu_eggs/raw/main/vps/ARM64/proot-v5.3.0-aarch64-static >/dev/null 2>err.log
@@ -68,9 +68,7 @@ else
     chmod +x unzip >/dev/null 2>err.log
     export PATH="/bin:/usr/bin:/usr/local/bin:/sbin:$HOMEA/bin:$HOMEA/usr/bin:$HOMEA/sbin:$HOMEA/usr/sbin:$HOMEA/etc/init.d:$PATH"
     echo -ne '######               (30%)\r'
-    tar xf root.tar.xz >/dev/null 2>err.log
-    mv debian-aarch64/* ./
-    rm -r debian-aarch64
+    tar -xvf root.tar.xz >/dev/null 2>err.log
     echo "nameserver 8.8.8.8" > ./etc/resolv.conf
     echo -ne '#######              (35%)\r'
     chmod +x ./libraries/proot >/dev/null 2>err.log
