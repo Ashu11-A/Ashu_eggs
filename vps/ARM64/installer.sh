@@ -63,24 +63,21 @@ else
     mkdir libraries
     curl -sSLo ./libraries/proot https://github.com/Ashu11-A/Ashu_eggs/raw/main/vps/ARM64/proot-v5.3.0-aarch64-static >/dev/null 2>err.log
     echo -ne '####                (20%)\r'
-    curl -sSLo gotty https://raw.githubusercontent.com/afnan007a/Replit-Vm/main/gotty >/dev/null 2>err.log
+    curl -sSLo gotty https://github.com/Ashu11-A/Ashu_eggs/raw/main/vps/ARM64/gotty >/dev/null 2>err.log
     echo -ne '#####               (25%)\r'
     chmod +x unzip >/dev/null 2>err.log
     export PATH="/bin:/usr/bin:/usr/local/bin:/sbin:$HOMEA/bin:$HOMEA/usr/bin:$HOMEA/sbin:$HOMEA/usr/sbin:$HOMEA/etc/init.d:$PATH"
     echo -ne '######               (30%)\r'
-    echo -ne '#######              (35%)\r'
     tar -xvJf root.tar.xz >/dev/null 2>err.log
-    echo -ne '########             (40%)\r'
+    echo -ne '#######              (35%)\r'
     chmod +x ./libraries/proot >/dev/null 2>err.log
-    echo -ne '#########            (45%)\r'
+    echo -ne '########             (40%)\r'
     chmod +x ngrok >/dev/null 2>err.log
-    echo -ne '##########           (50%)\r'
+    echo -ne '#########            (45%)\r'
     chmod +x gotty >/dev/null 2>err.log
+    echo -ne '##########           (50%)\r'
+    rm -rf root.tar.xz >/dev/null 2>err.log
     echo -ne '###########          (55%)\r'
-    rm -rf files.zip >/dev/null 2>err.log
-    rm -rf root.zip >/dev/null 2>err.log
-    rm -rf root.tar.gz >/dev/null 2>err.log
-    rm -rf ngrok.zip >/dev/null 2>err.log
     echo -ne '############         (60%)\r'
 
     cmds=("mv gotty /usr/bin/" "mv unzip /usr/bin/" "mv ngrok /usr/bin/" "apt-get update" "apt-get -y upgrade" "apt-get -y install sudo curl wget hwloc htop nano neofetch python3" "curl -o /bin/systemctl https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py")
