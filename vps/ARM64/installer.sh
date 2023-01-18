@@ -57,38 +57,38 @@ if [[ -f "./instalado" ]]; then
 else
     echo "Baixando arquivos para iniciar a vps"
     curl -sSLo ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.tgz >/dev/null 2>err.log
-    echo '#                   (5%)\r'
+    echo '#                   (5%)'
     mkdir libraries
     curl -sSLo ./libraries/proot https://github.com/proot-me/proot/releases/download/v5.3.0/proot-v5.3.0-aarch64-static >/dev/null 2>err.log
-    echo '##                  (10%)\r'
+    echo '##                  (10%)'
     curl -sSLo root.tar.xz https://github.com/termux/proot-distro/releases/download/v3.3.0/debian-aarch64-pd-v3.3.0.tar.xz >/dev/null 2>err.log
-    echo '####                (20%)\r'
+    echo '####                (20%)'
     curl -sSLo gotty.tar.gz https://github.com/sorenisanerd/gotty/releases/download/v1.5.0/gotty_v1.5.0_linux_arm64.tar.gz >/dev/null 2>err.log
-    echo '#####               (25%)\r'
+    echo '#####               (25%)'
     export PATH="/bin:/usr/bin:/usr/local/bin:/sbin:$HOMEA/bin:$HOMEA/usr/bin:$HOMEA/sbin:$HOMEA/usr/sbin:$HOMEA/etc/init.d:$PATH"
-    echo '######               (30%)\r'
+    echo '######               (30%)'
     tar -xvf root.tar.xz >/dev/null 2>err.log
-    echo '#######              (35%)\r'
+    echo '#######              (35%)'
     chmod +x ./libraries/proot >/dev/null 2>err.log
-    echo '########             (40%)\r'
+    echo '########             (40%)'
     tar -cvzf ngrok.tgz >/dev/null 2>err.log
-    echo '#########            (45%)\r'
+    echo '#########            (45%)'
     chmod +x ngrok >/dev/null 2>err.log
-    echo '##########           (50%)\r'
+    echo '##########           (50%)'
     tar -xzvf gotty.tar.gz
     chmod +x gotty >/dev/null 2>err.log
-    echo '###########          (55%)\r'
+    echo '###########          (55%)'
     rm -rf files.zip >/dev/null 2>err.log
     rm -rf root.zip >/dev/null 2>err.log
     rm -rf root.tar.xz >/dev/null 2>err.log
     rm -rf gotty.tar.gz >/dev/null 2>err.log
     rm -rf ngrok.tgz >/dev/null 2>err.log
-    echo '############         (60%)\r'
+    echo '############         (60%)'
 
     cmds=("mv gotty /usr/bin/" "mv unzip /usr/bin/" "mv ngrok /usr/bin/" "apt-get update" "apt-get -y upgrade" "apt-get -y install sudo curl wget hwloc htop nano neofetch python3" "curl -o /bin/systemctl https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py")
 
     for cmd in "${cmds[@]}"; do
-        ./libraries/proot -S . /bin/bash -c "$cmd -q qemu-arm64 >/dev/null 2>err.log"
+        ./libraries/proot -S . /bin/bash -c "$cmd >/dev/null 2>err.log"
     done
     echo -ne '####################(100%)\r'
     echo -ne '\n'
