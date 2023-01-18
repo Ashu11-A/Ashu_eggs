@@ -69,7 +69,7 @@ else
     export PATH="/bin:/usr/bin:/usr/local/bin:/sbin:$HOMEA/bin:$HOMEA/usr/bin:$HOMEA/sbin:$HOMEA/usr/sbin:$HOMEA/etc/init.d:$PATH"
     echo -ne '######               (30%)\r'
     tar xf root.tar.xz >/dev/null 2>err.log
-    mv mv debian-aarch64/* ./
+    mv debian-aarch64/* ./
     rm -r debian-aarch64
     echo "nameserver 8.8.8.8" > ./etc/resolv.conf
     echo -ne '#######              (35%)\r'
