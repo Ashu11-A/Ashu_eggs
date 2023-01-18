@@ -56,23 +56,20 @@ if [[ -f "./instalado" ]]; then
 else
     ${bold}${lightblue}          ...ISTO PODE DEMORAR MAIS DE 15 MINUTOS SEJA PACIENTE...
     echo "Fazendo o download dos arquivos."
-    curl -sSLo ngrok.zip https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip >/dev/null 2>err.log
+    curl -sSLo ngrok https://github.com/Ashu11-A/Ashu_eggs/raw/main/vps/ARM64/ngrok >/dev/null 2>err.log
     echo -ne '#                   (5%)\r'
     curl -sSLo root.tar.xz https://github.com/termux/proot-distro/releases/download/v3.3.0/debian-aarch64-pd-v3.3.0.tar.xz >/dev/null 2>err.log
     echo -ne '##                  (10%)\r'
     mkdir libraries
-    curl -sSLo ./libraries/proot https://github.com/Ashu11-A/Ashu_eggs/raw/main/vps/ARM64/proot-v5.3.0-x86_64-static >/dev/null 2>err.log
+    curl -sSLo ./libraries/proot https://github.com/Ashu11-A/Ashu_eggs/raw/main/vps/ARM64/proot-v5.3.0-aarch64-static >/dev/null 2>err.log
     echo -ne '####                (20%)\r'
     curl -sSLo gotty https://raw.githubusercontent.com/afnan007a/Replit-Vm/main/gotty >/dev/null 2>err.log
     echo -ne '#####               (25%)\r'
     chmod +x unzip >/dev/null 2>err.log
     export PATH="/bin:/usr/bin:/usr/local/bin:/sbin:$HOMEA/bin:$HOMEA/usr/bin:$HOMEA/sbin:$HOMEA/usr/sbin:$HOMEA/etc/init.d:$PATH"
-    unzip ngrok.zip >/dev/null 2>err.log
     echo -ne '######               (30%)\r'
-    unzip files.zip >/dev/null 2>err.log
     echo -ne '#######              (35%)\r'
-    unzip root.zip
-    tar -xf root.tar.gz >/dev/null 2>err.log
+    tar -xvJf root.tar.xz >/dev/null 2>err.log
     echo -ne '########             (40%)\r'
     chmod +x ./libraries/proot >/dev/null 2>err.log
     echo -ne '#########            (45%)\r'
