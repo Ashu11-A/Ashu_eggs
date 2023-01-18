@@ -77,7 +77,7 @@ else
     echo -ne '#########            (45%)\r'
     chmod +x gotty >/dev/null 2>err.log
     echo -ne '##########           (50%)\r'
-    rm -rf root.tar.xz >/dev/null 2>err.log
+    #rm -rf root.tar.xz >/dev/null 2>err.log
     echo -ne '###########          (55%)\r'
     echo -ne '############         (60%)\r'
 
