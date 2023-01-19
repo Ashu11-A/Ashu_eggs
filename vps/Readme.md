@@ -1,4 +1,4 @@
-# Ptero-VM
+# Ptero-VPS
 
 Root-Instance dentro do contêiner do Pterodactyl com Proot.
 
