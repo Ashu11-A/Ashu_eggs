@@ -39,7 +39,7 @@
             "name": "Server Jar File",
             "description": "O nome do jarfile do servidor para executar o servidor.",
             "env_variable": "SERVER_JARFILE",
-            "default_value": "server.jar",
+            "default_value": "ServerJars.jar",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|regex:\/^([\\w\\d._-]+)(\\.jar)$\/",
