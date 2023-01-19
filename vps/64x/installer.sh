@@ -54,6 +54,7 @@ if [[ -f "./instalado" ]]; then
     }
     runcmd
 else
+    echo "${bold}${lightblue}                    ...Arquitetura x86_64 detectada..."
     echo "${bold}${lightblue}          ...ISTO PODE DEMORAR MAIS DE 15 MINUTOS SEJA PACIENTE..."
     echo "Baixando arquivos para iniciar a vps"
     curl -sSLo ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-amd64.tgz >/dev/null 2>err.log
