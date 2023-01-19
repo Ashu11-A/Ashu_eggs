@@ -39,7 +39,7 @@ ${bold}${lightgreen}============================================================
  
 echo "${nc}"
 
-if [[ -f "./instalado" ]]; then
+if [[ -f "./libraries/instalado" ]]; then
     echo "${bold}${lightgreen}==> ${lightblue}Container${lightgreen} Iniciado <=="
     function runcmd1 {
         printf "${bold}${lightgreen}Default${nc}@${lightblue}Container${nc}:~ "
@@ -95,7 +95,7 @@ else
     done
     echo -ne '####################(100%)\r'
     echo -ne '\n'
-    touch instalado
+    touch ./libraries/instalado
     
     echo "
 ${bold}${lightgreen}===================================================================================
