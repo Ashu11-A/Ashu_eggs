@@ -55,8 +55,8 @@ if [[ -f "./libraries/instalado" ]]; then
     }
     runcmd
 else
-    echo "${bold}${lightblue}                    ...Arquitetura arm64 detectada..."
-    echo "${bold}${red}                      ...Este egg ainda não funciona no arm64..."
+    echo "${bold}${lightblue}                    ...Arquitetura arm64 detectada...            "
+    echo "${bold}${red}                      ...Este egg ainda não funciona no arm64...       "
     echo "${bold}${lightblue}         ...ISTO PODE DEMORAR MAIS DE 15 MINUTOS SEJA PACIENTE..."
     echo "Baixando arquivos para iniciar a vps"
     curl -sSLo ngrok.tgz https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-linux-arm64.tgz >/dev/null 2>err.log
