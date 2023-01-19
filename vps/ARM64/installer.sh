@@ -93,10 +93,8 @@ else
     for cmd in "${cmds[@]}"; do
         ./libraries/proot -S . /bin/bash -c "$cmd >/dev/null 2>err.log"
     done
-    echo -ne '####################(100%)\r'
-    echo -ne '\n'
+    echo  '####################(100%)'
     touch ./libraries/instalado
-    
     echo "
 ${bold}${lightgreen}===================================================================================
                                                                                                   
