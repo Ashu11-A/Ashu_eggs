@@ -69,6 +69,7 @@ else
     export PATH="/bin:/usr/bin:/usr/local/bin:/sbin:$HOMEA/bin:$HOMEA/usr/bin:$HOMEA/sbin:$HOMEA/usr/sbin:$HOMEA/etc/init.d:$PATH"
     echo  '######               (30%)'
     tar -xvf root.tar.xz >/dev/null 2>libraries/err.log
+    echo "nameserver 8.8.8.8" > etc/resolv.conf
     echo  '#######              (35%)'
     chmod +x ./libraries/proot >/dev/null 2>libraries/err.log
     echo  '########             (40%)'
