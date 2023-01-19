@@ -1,6 +1,3 @@
-bold=$(echo -en "\e[1m")
-lightblue=$(echo -en "\e[94m")
-
 ARCH=$([ "$(uname -m)" == "x86_64" ] && echo "amd64" || echo "arm64")
 
 if [ "${ARCH}" == "arm64" ];
