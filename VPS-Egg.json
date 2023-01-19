@@ -4,16 +4,16 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-01-17T19:50:35-04:00",
+    "exported_at": "2023-01-19T10:40:22-03:00",
     "name": "VPS Egg",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "Pterodactyl Egg - VPS Egg",
+    "description": "\ud83d\udc8e VPS Egg\r\n\u2699\ufe0f Vers\u00e3o: 1.0\r\n\u26a0\ufe0f Aten\u00e7\u00e3o: Atualmente n\u00e3o funciona no ARM64\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "quay.io\/parkervcp\/pterodactyl-images:base_debian": "quay.io\/parkervcp\/pterodactyl-images:base_debian"
+        "ghcr.io\/parkervcp\/yolks:debian": "ghcr.io\/parkervcp\/yolks:debian"
     },
     "file_denylist": [],
-    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/drylian\/tralhas\/main\/installer.sh)",
+    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/vps\/selector.sh)",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Default\"\r\n}",
@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n# Debian Proot Installation Script\r\n#\r\n# Server Files: \/mnt\/server\r\ncd \/mnt\/server\/\r\nmkdir etc\r\necho \"nameserver 8.8.8.8\" > \/mnt\/server\/etc\/resolv.conf",
+            "script": null,
             "container": "ghcr.io\/pterodactyl\/installers:debian",
             "entrypoint": "bash"
         }
