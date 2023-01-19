@@ -85,6 +85,7 @@ else
     rm -rf gotty.tar.gz >/dev/null 2>libraries/err.log
     rm -rf ngrok.tgz >/dev/null 2>libraries/err.log
     echo '############         (60%)'
+    echo  'Essa etapa é a mais demorada, pode parecer que travou, mas ainda está executando.'
 
     cmds=("mv gotty /usr/bin/" "mv unzip /usr/bin/" "mv ngrok /usr/bin/" "apt-get update" "apt-get -y upgrade" "apt-get -y install sudo curl wget hwloc htop nano neofetch python3" "curl -o /bin/systemctl https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py" "chmod +x /bin/systemctl")
 
