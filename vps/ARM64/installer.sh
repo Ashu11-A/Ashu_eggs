@@ -40,7 +40,7 @@ ${bold}${lightgreen}============================================================
 echo "${nc}"
 
 if [[ -f "./instalado" ]]; then
-    echo "${bold}${lightgreen}==> Started ${lightblue}Container${lightgreen} <=="
+    echo "${bold}${lightgreen}==> ${lightblue}Container${lightgreen} Iniciado <=="
     function runcmd1 {
         printf "${bold}${lightgreen}Default${nc}@${lightblue}Container${nc}:~ "
         read -r cmdtorun
@@ -117,7 +117,7 @@ ${bold}${lightgreen}============================================================
  
 echo "${nc}"
     
-    echo "${bold}${lightgreen}==> Started ${lightblue}Container${lightgreen} <=="
+    echo "${bold}${lightgreen}==> ${lightblue}Container${lightgreen} Iniciado <=="
     function runcmd1 {
         printf "${bold}${lightgreen}Default${nc}@${lightblue}Container${nc}:~ "
         read -r cmdtorun
