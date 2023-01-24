@@ -1,0 +1,112 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-01-24T18:54:00-03:00",
+    "name": "Stress",
+    "author": "admin@pterodactyl.shop",
+    "description": "\ud83d\udc8e Egg: Stress\r\n\u2699\ufe0f Vers\u00e3o: 1.1\r\n\u2753 Oque \u00e9: Este Egg ira estressar sua m\u00e1quina (recomendo usar se voc\u00ea tem alguma VM da Oracle, se sua VM ficar muito tempo sem uso, sua conta ser\u00e1 suspensa)\r\n\ud83d\udc1b Bugs corrigidos\/changelogs: corre\u00e7\u00e3o de ortografia.\r\n\u26a0\ufe0f Aten\u00e7\u00e3o: Use com cuidado!\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "features": null,
+    "docker_images": {
+        "stress-ng [Multi-Arch]": "ashu11a\/stress:latest"
+    },
+    "file_denylist": [],
+    "startup": "curl -o https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Stress\/start.sh start.sh && .\/start.sh",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"stress-ng:\"\r\n}",
+        "logs": "{}",
+        "stop": "exit"
+    },
+    "scripts": {
+        "installation": {
+            "script": null,
+            "container": "ghcr.io\/pterodactyl\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Stress CPU",
+            "description": "Isso ir\u00e1 ativar somente o estresse de CPU, Isso ira adicionar o argumento (--cpu)",
+            "env_variable": "CPU",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Stress de CPU + Mem\u00f3ria RAM",
+            "description": "Isso ir\u00e1 ativar o argumento (--vm) + (--vm-bytes), Desative o Stress CPU para isso funcionar corretamente.",
+            "env_variable": "CPU_MEMORY",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "CPU N\u00facleos",
+            "description": "Quantos n\u00facleos voc\u00ea deseja estressar?",
+            "env_variable": "CPU_CORES",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|max:150",
+            "field_type": "text"
+        },
+        {
+            "name": "Mem\u00f3ria RAM",
+            "description": "Coloque aqui em MB, quantos de Mem\u00f3ria RAM ser\u00e3o estressadas.",
+            "env_variable": "MEMORY",
+            "default_value": "1024",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric",
+            "field_type": "text"
+        },
+        {
+            "name": "M\u00e9tricas",
+            "description": "habilitar m\u00e9tricas e mostrar somente resultados que n\u00e3o sejam nulos. (--metrics-brief)",
+            "env_variable": "METRICS",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Tempo de Execu\u00e7\u00e3o",
+            "description": "Tempo que o comando ir\u00e1 executar em segundos. Se n\u00e3o especificado, ir\u00e1 executar por 1 Dia (--timeout 30s)",
+            "env_variable": "TIMEOUT",
+            "default_value": "60",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|numeric",
+            "field_type": "text"
+        },
+        {
+            "name": "Usar seus argumentos?",
+            "description": "Habilitar o uso dos seus argumentos",
+            "env_variable": "CONSOLE",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Seus Argumentos",
+            "description": "Caso queira colocar seus pr\u00f3prios argumentos, veja a Wiki do stress-ng: https:\/\/manpages.ubuntu.com\/manpages\/bionic\/man1\/stress-ng.1.html",
+            "env_variable": "CONSOLE_OCC",
+            "default_value": "--cpu 2 --timeout 60s --metrics-brief",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        }
+    ]
+}
