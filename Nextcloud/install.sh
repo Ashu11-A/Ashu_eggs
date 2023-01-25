@@ -1,5 +1,9 @@
 #!/bin/ash
 if [[ -f "./logs/instalado" ]]; then
+    echo "✓ Atualizando o script install.sh"
+    curl -o install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/install.sh;
+    chmod a+x ./install.sh
+    echo "✓ Atualizando o script start.sh"
     curl -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/start.sh;
     chmod a+x ./start.sh;
     ./start.sh;
@@ -7,7 +11,7 @@ else
     cd /mnt/server/
     mkdir php-fpm
 
-    echo "**** download nextcloud ****"
+    echo "**** Fazendo o download do nextcloud ****"
     rm -rf nextcloud/
     if [ "${NEXTCLOUD_RELEASE}" == "latest" ] ; then
         DOWNLOAD_LINK=$(echo -e "${NEXTCLOUD_RELEASE}.zip")
@@ -37,7 +41,7 @@ unzip ${DOWNLOAD_LINK}
 rm -rf ${DOWNLOAD_LINK}
 
 chown -R nginx:nginx nextcloud && chmod -R 755 nextcloud
-echo "**** cleanup ****"
+echo "**** Limpando ****"
 rm -rf /tmp/*
 echo "**** configure php and nginx for nextcloud ****" && \
 echo "extension="smbclient.so"" > php-fpm/conf.d/00_smbclient.ini && \
