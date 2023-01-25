@@ -1,7 +1,4 @@
 #!/bin/ash
-echo "✓ Atualizando o script install.sh"
-curl -o install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/install.sh
-
 if [[ -f "./logs/instalado" ]]; then
     if [ "${OCC}" == "1" ]; then 
         php ./nextcloud/occ ${COMMANDO_OCC}
@@ -16,6 +13,10 @@ if [[ -f "./logs/instalado" ]]; then
         ./start.sh;
     fi
 else
+
+    echo "✓ Atualizando o script install.sh"
+    curl -o install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/install.sh
+
     cd /mnt/server/
     mkdir php-fpm
 
@@ -27,6 +28,9 @@ else
         DOWNLOAD_LINK=$(echo -e "nextcloud-${NEXTCLOUD_RELEASE}.zip")
     fi
 fi
+
+echo "✓ Atualizando o script install.sh"
+curl -o install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/install.sh
 
 git clone https://github.com/finnie2006/ptero-nginx ./temp
 cp -r ./temp/nginx /mnt/server/
