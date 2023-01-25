@@ -1,12 +1,16 @@
 #!/bin/ash
 if [[ -f "./logs/instalado" ]]; then
-    echo "✓ Atualizando o script install.sh"
-    curl -o install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/install.sh;
-    chmod a+x ./install.sh
-    echo "✓ Atualizando o script start.sh"
-    curl -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/start.sh;
-    chmod a+x ./start.sh;
-    ./start.sh;
+    if [ "${OCC}" == "1" ]; then 
+        echo -n "php ./nextcloud/occ {{COMMANDO_OCC}}";
+    else
+        echo "✓ Atualizando o script install.sh"
+        curl -o install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/install.sh;
+        chmod a+x ./install.sh
+        echo "✓ Atualizando o script start.sh"
+        curl -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/start.sh;
+        chmod a+x ./start.sh;
+        ./start.sh;
+    fi
 else
     cd /mnt/server/
     mkdir php-fpm
