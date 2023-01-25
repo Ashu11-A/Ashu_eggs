@@ -1,7 +1,7 @@
 #!/bin/ash
 if [[ -f "./logs/instalado" ]]; then
     if [ "${OCC}" == "1" ]; then 
-        echo -n "php ./nextcloud/occ {{COMMANDO_OCC}}";
+        echo -n "php ./nextcloud/occ ${COMMANDO_OCC}";
     else
         echo "✓ Atualizando o script install.sh"
         curl -o install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/install.sh;
