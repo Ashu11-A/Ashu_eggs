@@ -16,8 +16,6 @@ fi
 git clone https://github.com/finnie2006/ptero-nginx ./temp
 cp -r ./temp/nginx /mnt/server/
 cp -r ./temp/php-fpm /mnt/server/
-wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/start.sh
-chmod +x /mnt/server/start.sh
 rm -rf ./temp
 rm -rf /mnt/server/webroot/*
 mkdir logs
