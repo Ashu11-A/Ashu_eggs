@@ -1,19 +1,19 @@
 #!/bin/ash
-cd /mnt/server/
-if [[ -f "./instalado" ]]; then
-    curl -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/start.sh
-    chmod a+x ./start.sh
-    ./start.sh
+if [[ -f "./logs/instalado" ]]; then
+    curl -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/start.sh;
+    chmod a+x ./start.sh;
+    ./start.sh;
 else
+    cd /mnt/server/
     mkdir php-fpm
 
     echo "**** download nextcloud ****"
-rm -rf nextcloud/
-if [ "${NEXTCLOUD_RELEASE}" == "latest" ] ; then
-    DOWNLOAD_LINK=$(echo -e "${NEXTCLOUD_RELEASE}.zip")
-else
-    DOWNLOAD_LINK=$(echo -e "nextcloud-${NEXTCLOUD_RELEASE}.zip")
-fi
+    rm -rf nextcloud/
+    if [ "${NEXTCLOUD_RELEASE}" == "latest" ] ; then
+        DOWNLOAD_LINK=$(echo -e "${NEXTCLOUD_RELEASE}.zip")
+    else
+        DOWNLOAD_LINK=$(echo -e "nextcloud-${NEXTCLOUD_RELEASE}.zip")
+    fi
 fi
 
 git clone https://github.com/finnie2006/ptero-nginx ./temp
@@ -26,7 +26,7 @@ rm nginx/conf.d/default.conf
 cd nginx/conf.d/
 wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/default.conf
 cd /mnt/server
-cat <<EOF > install_log.txt
+cat <<EOF > ./logs/install_log.txt
 Versão: $NEXTCLOUD_RELEASE
 Link: https://download.nextcloud.com/server/releases/${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK}
@@ -60,5 +60,5 @@ sed -i \
 '/opcache.enable=1/a opcache.enable_cli=1' \
 php-fpm/php.ini && \
 echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> php-fpm/php-fpm.conf
-touch ./instalado
+touch ./logs/instalado
 mkdir tmp
