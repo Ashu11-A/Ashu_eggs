@@ -12,24 +12,23 @@ if [ "${NEXTCLOUD_RELEASE}" == "latest" ] ; then
 else
     DOWNLOAD_LINK=$(echo -e "nextcloud-${NEXTCLOUD_RELEASE}.zip")
 fi
+fi
 
 git clone https://github.com/finnie2006/ptero-nginx ./temp
-cp -r ./temp/nginx /mnt/server/
-cp -r ./temp/php-fpm /mnt/server/
+cp -r ./temp/nginx ./
+cp -r ./temp/php-fpm ./
 rm -rf ./temp
-rm -rf /mnt/server/webroot/*
+rm -rf webroot/*
 mkdir logs
 rm nginx/conf.d/default.conf
 cd nginx/conf.d/
 wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/default.conf
-cd /mnt/server
 cat <<EOF > install_log.txt
 Versão: $NEXTCLOUD_RELEASE
 Link: https://download.nextcloud.com/server/releases/${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK}
 EOF
 
-wget https://download.nextcloud.com/server/releases/${DOWNLOAD_LINK}
 unzip ${DOWNLOAD_LINK}
 rm -rf ${DOWNLOAD_LINK}
 
