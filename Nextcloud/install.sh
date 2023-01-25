@@ -29,6 +29,7 @@ Link: https://download.nextcloud.com/server/releases/${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK}
 EOF
 
+wget https://download.nextcloud.com/server/releases/${DOWNLOAD_LINK}
 unzip ${DOWNLOAD_LINK}
 rm -rf ${DOWNLOAD_LINK}
 
