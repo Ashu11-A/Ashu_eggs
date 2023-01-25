@@ -1,3 +1,5 @@
+#!/bin/ash
+cd /mnt/server/
 if [[ -f "./instalado" ]]; then
     curl -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/start.sh
     chmod a+x ./start.sh
@@ -15,14 +17,15 @@ fi
 fi
 
 git clone https://github.com/finnie2006/ptero-nginx ./temp
-cp -r ./temp/nginx ./
-cp -r ./temp/php-fpm ./
+cp -r ./temp/nginx /mnt/server/
+cp -r ./temp/php-fpm /mnt/server/
 rm -rf ./temp
-rm -rf webroot/*
+rm -rf /mnt/server/webroot/*
 mkdir logs
 rm nginx/conf.d/default.conf
 cd nginx/conf.d/
 wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/default.conf
+cd /mnt/server
 cat <<EOF > install_log.txt
 Versão: $NEXTCLOUD_RELEASE
 Link: https://download.nextcloud.com/server/releases/${DOWNLOAD_LINK}
