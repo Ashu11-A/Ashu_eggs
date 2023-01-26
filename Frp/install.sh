@@ -38,9 +38,11 @@ else
     fi
 fi
 
-rm -rf *
+mv ./* Frp_OLD
 
-cat <<EOF > log_install.txt
+mkdir Logs
+
+cat <<EOF > ./Logs/log_install.txt
 Versão: ${VERSION}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}
@@ -117,7 +119,7 @@ if [ "${INSTALL_EX}" == "1" ]; then
         fi
     fi
 
-cat <<EOF > log_install.txt
+cat <<EOF > ../Logs/log_install_win.txt
 Versão: ${VERSION}
 Link: ${DOWNLOAD_LINK_EX}
 Arquivo: ${DOWNLOAD_LINK_EX##*/}
