@@ -3,7 +3,7 @@ if [[ -f "./Emby/EmbyServer.dll" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Emby/start.sh)
 else
 
-GITHUB_PACKAGE=fatedier/frp
+GITHUB_PACKAGE=MediaBrowser/Emby.Releases
 LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
 RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq '.[]')
 
