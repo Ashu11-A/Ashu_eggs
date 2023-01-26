@@ -94,9 +94,15 @@ authenticate_heartbeats =
 token =
 EOF
 
+mkdir Frps
+mv frps* ./Frps
+
+mkdir Frpc
+mv frpc* ./Frpc
+
 if [ "${INSTALL_EX}" == "1" ]; then
     mkdir exemplo_frpc_windows64
-    cp -f frpc.ini ./exemplo_frpc_windows64/frpc.ini
+    cp -f ./Frpc/frpc.ini ./exemplo_frpc_windows64/frpc.ini
     cd exemplo_frpc_windows64
         if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
             echo -e "defaulting to latest release"
