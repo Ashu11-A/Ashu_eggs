@@ -38,6 +38,7 @@ else
     fi
 fi
 if [[ -f "./Frps/frps" ]]; then
+    mkdir Frp_OLD
     mv ./* Frp_OLD
 else
     echo "Instalação Limpa"
