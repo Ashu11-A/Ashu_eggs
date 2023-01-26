@@ -6,13 +6,13 @@ Some of them work on ARM and also ARM form Oracle Free Tier
 |--|--|--|--|--|--|
 | tModLoader | [egg-tModloader_ARM64.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-tModloader_ARM64.json) | ✅ | ✅ | ✅ |Rodando nativamente
 | SA-MP | [egg-SA-MP-ARM64.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-SA-MP-ARM64.json) | ✅ | ✅ | ✅ |Emulado no ARM com Box86
-| Jellyfin | [egg-jellyfin.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/egg-jellyfin.json) | ✅ | ✅ | ✅ |
-| Emby | [egg-emby.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/egg-emby.json) | ✅ | ✅ | ✅ |
-| Frp | [egg-frp.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/egg-frp.json) | ✅ | ✅ | ✅ |
-| Nextcloud | [egg-nextcloud.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/egg-nextcloud.json) | ✅ | ✅ | ✅ |
-| VPS | [VPS-Egg.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/VPS-Egg.json) | ✅ | ❌ | ❌ | Root com Proot
-| ServerJars | [egg-ServerJars.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/egg-ServerJars.json) | ✅ | ✅ | ✅ |
-| Stress | [Egg-Stress.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/Egg-Stress.json) | ✅ | ✅ | ✅ |
+| Jellyfin | [egg-jellyfin.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-jellyfin.json) | ✅ | ✅ | ✅ |
+| Emby | [egg-emby.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-emby.json) | ✅ | ✅ | ✅ |
+| Frp | [egg-frp.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-frp.json) | ✅ | ✅ | ✅ |
+| Nextcloud | [egg-nextcloud.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-nextcloud.json) | ✅ | ✅ | ✅ |
+| VPS | [VPS-Egg.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/VPS-Egg.json) | ✅ | ❌ | ❌ | Root com Proot
+| ServerJars | [egg-ServerJars.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-ServerJars.json) | ✅ | ✅ | ✅ |
+| Stress | [Egg-Stress.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Egg-Stress.json) | ✅ | ✅ | ✅ |
 
 
 *Right click and click save  
