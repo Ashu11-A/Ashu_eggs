@@ -42,8 +42,6 @@ rm -rf *
 
 cat <<EOF > log_install.txt
 Versão: ${VERSION}
-Versão Limpa: ${CLEAN_VERSION}
-VERSION_CHECK: ${VERSION_CHECK}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}
 EOF
@@ -112,6 +110,13 @@ if [ "${INSTALL_EX}" == "1" ]; then
             DOWNLOAD_LINK_EX=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i frp | grep -i windows | grep -i amd64)
         fi
     fi
+
+cat <<EOF > log_install.txt
+Versão: ${VERSION}
+Link: ${DOWNLOAD_LINK_EX}
+Arquivo: ${DOWNLOAD_LINK_EX##*/}
+EOF
+
 echo -e "running 'curl -sSL ${DOWNLOAD_LINK_EX} -o ${DOWNLOAD_LINK_EX##*/}'"
 curl -sSL ${DOWNLOAD_LINK_EX} -o ${DOWNLOAD_LINK_EX##*/}
 echo -e "Unpacking server files"
