@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ -f "./jellyfin/jellyfin.dll" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Jellyfin/install.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Jellyfin/start.sh)
 else
 
 mkdir -p /mnt/server
