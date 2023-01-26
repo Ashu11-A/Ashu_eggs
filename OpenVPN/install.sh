@@ -1,5 +1,5 @@
 #!/bin/bash
-if [[ -f "./Emby/EmbyServer.dll" ]]; then
+if [[ -f "./Logs/instalado" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/OpenVPN/start.sh)
 else
     export AUTO_INSTALL=y
