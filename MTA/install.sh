@@ -29,6 +29,7 @@ else
     rm multitheftauto_linux_x64.tar.gz
     rm mtasa-resources-latest.zip
     rm mta-baseconfig.tar.gz
+    rm -rf multitheftauto_linux_x64
     cat <<EOF > /mnt/server/mods/deathmatch/mtaserver.conf
 <config>
 <!-- Este parâmetro especifica o nome que o servidor estará visível como no navegador

@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ -f "./mta-server64" ]]; then
-    echo "⚙️ Versão do Script: 1.1"
+    echo "⚙️ Versão do Script: 1.2"
     echo "✅ Iniciando MTA"
     ./mta-server64 -n
 else
