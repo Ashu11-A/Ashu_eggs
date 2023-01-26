@@ -5,6 +5,14 @@ else
 
     mkdir -p /mnt/server
     cd /mnt/server
+
+    if [[ -f "./mta-server64" ]]; then
+        mkdir MTA_OLD
+        mv ./* Emby_OLD
+    else
+        echo "Instalação Limpa"
+    fi
+
     curl -L -o multitheftauto_linux_x64.tar.gz https://linux.mtasa.com/dl/multitheftauto_linux_x64.tar.gz
     curl -L -o mta-baseconfig.tar.gz https://linux.mtasa.com/dl/baseconfig.tar.gz
     curl -L -o mtasa-resources-latest.zip http://mirror.mtasa.com/mtasa/resources/mtasa-resources-latest.zip
