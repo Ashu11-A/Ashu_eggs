@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ -f "./jellyfin/jellyfin.dll" ]]; then
-    echo "⚙️ Versão do Script: 1.1"
+    echo "⚙️ Versão do Script: 1.2"
     echo "✅ Iniciando Jellyfin"
     dotnet jellyfin/jellyfin.dll --ffmpeg /usr/lib/jellyfin-ffmpeg/ffmpeg
 else
