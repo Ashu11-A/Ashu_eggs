@@ -75,7 +75,7 @@ type = tcp
 local_ip = 0.0.0.0
 local_port = 7777
 remote_port = 25310
-use_compression = false
+use_compression = true
 EOF
 
 cat <<EOF > frps.ini
