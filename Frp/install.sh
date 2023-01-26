@@ -37,8 +37,11 @@ else
         fi
     fi
 fi
-
-mv ./* Frp_OLD
+if [[ -f "./Frps/frps" ]]; then
+    mv ./* Frp_OLD
+else
+    echo "Instalação Limpa"
+fi
 
 mkdir Logs
 
