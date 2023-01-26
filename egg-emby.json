@@ -4,17 +4,16 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2022-10-20T23:55:20-03:00",
+    "exported_at": "2023-01-26T13:49:57-03:00",
     "name": "Emby",
-    "author": "matheusn.biolowons@gmail.com",
-    "description": "Emby \u00e9 um servidor de m\u00eddia projetado para organizar, reproduzir e transmitir \u00e1udio e v\u00eddeo para uma variedade de dispositivos.\r\nVers\u00e3o: 1.2\r\nPor: Ashu\r\nCheck para updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs\r\nBugs corrigidos\/changelogs: Docker 64x Arrumado.",
+    "author": "josdekurk@gmail.com",
+    "description": "\ud83d\udc8e Egg: Emby\r\n\u2699\ufe0f Vers\u00e3o: 2.0\r\n\u2753 Oque \u00e9: Resumindo, voc\u00ea pode ter sua pr\u00f3pria Netflix. Emby \u00e9 um servidor de m\u00eddia projetado para organizar, reproduzir e transmitir \u00e1udio e v\u00eddeo para uma variedade de dispositivos.\r\n\ud83d\udc1b Bugs corrigidos\/changelogs: \r\n   \u2022 Forma como \u00e9 feito o Download mudou, agora sempre instalar\u00e1 a vers\u00e3o mais recente\r\n   \u2022 Agora o Egg n\u00e3o \u00e9 dependente de atualiza\u00e7\u00f5es, tudo \u00e9 feito por scripts, o que ocasiona na sua melhor manuten\u00e7\u00e3o.\r\n   \u2022 C\u00f3digo agora est\u00e1 mais limpo.\r\n  \ud83d\udce6Docker:\r\n     \u2022 Docker Atualizado (Vers\u00e3o do Dotnet: 6.0.13)\r\n     \u2022 Compatibilidade com ARM adicionada\r\n     \u2022 Agora n\u00e3o h\u00e1 necessidade de alterar entre 64x e ARM64 Use a imagem: ashu11a\/emby:latest\r\n\u26a0\ufe0f Aten\u00e7\u00e3o:\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ARM64 ": " ashu11a\/emby:latest",
-        "64x ": " ashu11a\/emby:latest_64x"
+        "ARM64, ARM, 64x, 86x ": " ashu11a\/emby:latest"
     },
     "file_denylist": [],
-    "startup": "dotnet Emby\/EmbyServer.dll -ffmpeg \/usr\/bin\/ffmpeg -ffprobe \/usr\/bin\/ffprobe",
+    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Emby\/install.sh)",
     "config": {
         "files": "{\r\n    \"programdata\/config\/system.xml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"<HttpServerPortNumber>\": \"<HttpServerPortNumber>{{server.build.default.port}}<\/HttpServerPortNumber>\",\r\n            \"<PublicPort>\": \"<PublicPort>{{server.build.default.port}}<\/PublicPort>\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"All entry points have started\"\r\n}",
@@ -23,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n#\r\n# Server Files: \/mnt\/server\r\n## install packages to get version and download links\r\napt update\r\napt upgrade -y\r\napt install -y curl wget unzip git tar ca-certificates jq fuse unzip\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\nDOWNLOAD_LINK=$(echo https:\/\/github.com\/MediaBrowser\/Emby.Releases\/releases\/download\/${VERSION}\/embyserver-netcore_${VERSION}.zip)\r\ncat <<EOF > .log.txt\r\nVers\u00e3o: ${VERSION}\r\nLink: ${DOWNLOAD_LINK}\r\nArquivo: embyserver-netcore_${VERSION}.zip\r\nEOF\r\nrm -rf *\r\nwget ${DOWNLOAD_LINK}\r\nunzip embyserver-netcore_${VERSION}.zip\r\nrm embyserver-netcore_${VERSION}.zip\r\nmv system Emby\r\nmkdir programdata\/\r\nmkdir programdata\/config\/\r\ncat <<EOF > programdata\/config\/system.xml\r\n<?xml version=\"1.0\"?>\r\n<ServerConfiguration xmlns:xsi=\"http:\/\/www.w3.org\/2001\/XMLSchema-instance\" xmlns:xsd=\"http:\/\/www.w3.org\/2001\/XMLSchema\">\r\n<EnableDebugLevelLogging>false<\/EnableDebugLevelLogging>\r\n<EnableAutoUpdate>true<\/EnableAutoUpdate>\r\n<LogFileRetentionDays>3<\/LogFileRetentionDays>\r\n<RunAtStartup>true<\/RunAtStartup>\r\n<IsStartupWizardCompleted>false<\/IsStartupWizardCompleted>\r\n<EnableUPnP>true<\/EnableUPnP>\r\n<PublicPort>8096<\/PublicPort>\r\n<PublicHttpsPort>8920<\/PublicHttpsPort>\r\n<HttpServerPortNumber>8096<\/HttpServerPortNumber>\r\n<HttpsPortNumber>8920<\/HttpsPortNumber>\r\n<EnableHttps>false<\/EnableHttps>\r\n<IsPortAuthorized>true<\/IsPortAuthorized>\r\n<AutoRunWebApp>true<\/AutoRunWebApp>\r\n<EnableRemoteAccess>true<\/EnableRemoteAccess>\r\n<LogAllQueryTimes>false<\/LogAllQueryTimes>\r\n<EnableCaseSensitiveItemIds>true<\/EnableCaseSensitiveItemIds>\r\n<PreferredMetadataLanguage>en<\/PreferredMetadataLanguage>\r\n<MetadataCountryCode>US<\/MetadataCountryCode>\r\n<SortRemoveWords>\r\n<string>the<\/string>\r\n<string>a<\/string>\r\n<string>an<\/string>\r\n<string>das<\/string>\r\n<string>der<\/string>\r\n<string>el<\/string>\r\n<string>la<\/string>\r\n<\/SortRemoveWords>\r\n<LibraryMonitorDelay>60<\/LibraryMonitorDelay>\r\n<EnableDashboardResponseCaching>true<\/EnableDashboardResponseCaching>\r\n<ImageSavingConvention>Compatible<\/ImageSavingConvention>\r\n<EnableAutomaticRestart>true<\/EnableAutomaticRestart>\r\n<CollectionFolderIdsMigrated>false<\/CollectionFolderIdsMigrated>\r\n<UICulture>en-us<\/UICulture>\r\n<SaveMetadataHidden>false<\/SaveMetadataHidden>\r\n<RemoteClientBitrateLimit>0<\/RemoteClientBitrateLimit>\r\n<DisplaySpecialsWithinSeasons>true<\/DisplaySpecialsWithinSeasons>\r\n<LocalNetworkSubnets \/>\r\n<LocalNetworkAddresses \/>\r\n<EnableExternalContentInSuggestions>true<\/EnableExternalContentInSuggestions>\r\n<RequireHttps>false<\/RequireHttps>\r\n<IsBehindProxy>false<\/IsBehindProxy>\r\n<RemoteIPFilter \/>\r\n<IsRemoteIPFilterBlacklist>false<\/IsRemoteIPFilterBlacklist>\r\n<ImageExtractionTimeoutMs>0<\/ImageExtractionTimeoutMs>\r\n<PathSubstitutions \/>\r\n<UninstalledPlugins \/>\r\n<CollapseVideoFolders>true<\/CollapseVideoFolders>\r\n<EnableOriginalTrackTitles>false<\/EnableOriginalTrackTitles>\r\n<VacuumDatabaseOnStartup>false<\/VacuumDatabaseOnStartup>\r\n<SimultaneousStreamLimit>0<\/SimultaneousStreamLimit>\r\n<DatabaseCacheSizeMB>96<\/DatabaseCacheSizeMB>\r\n<EnableSqLiteMmio>false<\/EnableSqLiteMmio>\r\n<NextUpUpgraded>false<\/NextUpUpgraded>\r\n<ChannelOptionsUpgraded>false<\/ChannelOptionsUpgraded>\r\n<TimerIdsUpgraded>false<\/TimerIdsUpgraded>\r\n<ForcedSortNameUpgraded>false<\/ForcedSortNameUpgraded>\r\n<InheritedParentalRatingValueUpgraded>false<\/InheritedParentalRatingValueUpgraded>\r\n<EnablePeopleLetterSubFolders>false<\/EnablePeopleLetterSubFolders>\r\n<OptimizeDatabaseOnShutdown>true<\/OptimizeDatabaseOnShutdown>\r\n<DatabaseAnalysisLimit>400<\/DatabaseAnalysisLimit>\r\n<DisableAsyncIO>false<\/DisableAsyncIO>\r\n<\/ServerConfiguration>\r\nEOF",
+            "script": "#!\/bin\/bash\r\napt update\r\napt upgrade -y\r\napt install -y curl wget unzip git tar ca-certificates jq fuse unzip\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Emby\/install.sh)",
             "container": "debian:buster-slim",
             "entrypoint": "bash"
         }
@@ -33,10 +32,10 @@
             "name": "VERSION",
             "description": "Vers\u00e3o do Emby.\r\n\r\nEx: \"4.7.8.0\"",
             "env_variable": "VERSION",
-            "default_value": "4.7.8.0",
+            "default_value": "latest",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|max:10",
+            "rules": "nullable|string",
             "field_type": "text"
         }
     ]
