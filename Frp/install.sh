@@ -120,7 +120,7 @@ EOF
 echo -e "running 'curl -sSL ${DOWNLOAD_LINK_EX} -o ${DOWNLOAD_LINK_EX##*/}'"
 curl -sSL ${DOWNLOAD_LINK_EX} -o ${DOWNLOAD_LINK_EX##*/}
 echo -e "Unpacking server files"
-tar -xvzf ${DOWNLOAD_LINK_EX##*/}
+unzip ${DOWNLOAD_LINK_EX##*/}
 cp -R frp*/* ./
 rm -rf frp*windows*
 rm -rf ${DOWNLOAD_LINK_EX##*/}
