@@ -55,9 +55,8 @@ tar -xvzf ${DOWNLOAD_LINK##*/}
 cp -R frp*/* ./
 rm -rf frp*linux*
 rm -rf ${DOWNLOAD_LINK##*/}
-mv frpc.ini Exemplo_frpc.ini
 
-cat <<EOF > Exemplo_frpc.ini
+cat <<EOF > frpc.ini
 [common]
 #Aqui conecta no servidor externo (pode ser ip tambem)
 server_addr = apenas-um.exemplo.net
@@ -97,6 +96,39 @@ authenticate_heartbeats =
 token =
 EOF
 
-echo -e "install complete"
+if [ "${INSTALL_EX}" == "1" ]; then
+    mkdir exemplo_frpc_windows64
+    cp -f frpc.ini ./exemplo_frpc_windows64/frpc.ini
+    cd exemplo_frpc_windows64
+        if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
+            echo -e "defaulting to latest release"
+            DOWNLOAD_LINK_EX=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i frp | grep -i windows | grep -i amd64)
+        else
+            VERSION_CHECK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .tag_name')
+        if [ "$VERSION" == "$VERSION_CHECK" ]; then
+            DOWNLOAD_LINK_EX=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i frp | grep -i windows | grep -i amd64)
+        else
+            echo -e "defaulting to latest release"
+            DOWNLOAD_LINK_EX=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i frp | grep -i windows | grep -i amd64)
+        fi
+    fi
+fi
+echo -e "running 'curl -sSL ${DOWNLOAD_LINK_EX} -o ${DOWNLOAD_LINK_EX##*/}'"
+curl -sSL ${DOWNLOAD_LINK_EX} -o ${DOWNLOAD_LINK_EX##*/}
+echo -e "Unpacking server files"
+tar -xvzf ${DOWNLOAD_LINK_EX##*/}
+cp -R frp*/* ./
+rm -rf frp*windows*
+rm -rf ${DOWNLOAD_LINK_EX##*/}
+rm frps*
+rm LICENSE
+cat <<EOF > start.bat
+frpc.exe -c frpc.ini
+EOF
+else
+    echo "Pulando Instalação do Exemplo Windows64"
+fi
+
+echo -e "Instalação Completa"
 exit 0
 fi
