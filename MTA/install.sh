@@ -8,7 +8,7 @@ else
 
     if [[ -f "./mta-server64" ]]; then
         mkdir MTA_OLD
-        mv ./* Emby_OLD
+        mv ./* MTA_OLD
     else
         echo "Instalação Limpa"
     fi
