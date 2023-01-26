@@ -3,50 +3,50 @@ if [[ -f "./Emby/EmbyServer.dll" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Emby/start.sh)
 else
 
-GITHUB_PACKAGE=MediaBrowser/Emby.Releases
-LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
-RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq '.[]')
+    GITHUB_PACKAGE=MediaBrowser/Emby.Releases
+    LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
+    RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq '.[]')
 
-if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
-    echo -e "defaulting to latest release"
-    DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i netcore)
-else
-    VERSION_CHECK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .tag_name')
-if [ "$VERSION" == "$VERSION_CHECK" ]; then
-    DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i netcore)
-else
-    echo -e "defaulting to latest release"
-    DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i netcore)
-fi
+    if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
+        echo -e "defaulting to latest release"
+        DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i netcore)
+    else
+        VERSION_CHECK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .tag_name')
+    if [ "$VERSION" == "$VERSION_CHECK" ]; then
+        DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i netcore)
+    else
+        echo -e "defaulting to latest release"
+        DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i netcore)
+    fi
 
-mkdir -p /mnt/server
-cd /mnt/server
+    mkdir -p /mnt/server
+    cd /mnt/server
 
-if [[ -f "./Emby/EmbyServer.dll" ]]; then
-    mkdir Emby_OLD
-    mv ./* Emby_OLD
-else
-    echo "Instalação Limpa"
-fi
+    if [[ -f "./Emby/EmbyServer.dll" ]]; then
+        mkdir Emby_OLD
+        mv ./* Emby_OLD
+    else
+        echo "Instalação Limpa"
+    fi
 
-mkdir Logs
+    mkdir Logs
 
-cat <<EOF > ./Logs/log_install.txt
+    cat <<EOF > ./Logs/log_install.txt
 Versão: ${VERSION}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}
 EOF
 
-echo -e "running 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
-curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}
-echo -e "Unpacking server files"
-unzip ${DOWNLOAD_LINK##*/}
-rm -rf ${DOWNLOAD_LINK##*/}
-mv system Emby
-mkdir programdata/
-mkdir programdata/config/
+    echo -e "running 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
+    curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}
+    echo -e "Unpacking server files"
+    unzip ${DOWNLOAD_LINK##*/}
+    rm -rf ${DOWNLOAD_LINK##*/}
+    mv system Emby
+    mkdir programdata/
+    mkdir programdata/config/
 
-cat <<EOF > programdata/config/system.xml
+    cat <<EOF > programdata/config/system.xml
 <?xml version="1.0"?>
 <ServerConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <EnableDebugLevelLogging>false</EnableDebugLevelLogging>
@@ -112,3 +112,4 @@ cat <<EOF > programdata/config/system.xml
 <DisableAsyncIO>false</DisableAsyncIO>
 </ServerConfiguration>
 EOF
+fi

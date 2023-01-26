@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ -f "./Emby/EmbyServer.dll" ]]; then
-    echo "⚙️ Versão do Script: 1.0"
+    echo "⚙️ Versão do Script: 1.1"
     echo "✅ Iniciando Emby"
     dotnet Emby/EmbyServer.dll -ffmpeg /usr/bin/ffmpeg -ffprobe /usr/bin/ffprobe
 else
