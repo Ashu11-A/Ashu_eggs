@@ -12,6 +12,8 @@ Some of them work on ARM and also ARM form Oracle Free Tier
 | Nextcloud | [egg-nextcloud.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/egg-nextcloud.json) | ✅ | ✅ | ✅ |
 | VPS | [VPS-Egg.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/VPS-Egg.json) | ✅ | ❌ | ❌ | Root com Proot
 | ServerJars | [egg-ServerJars.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/egg-ServerJars.json) | ✅ | ✅ | ✅ |
+| Stress | [Egg-Stress.json](https://github.com/Ashu11-A/Ashu_eggs/blob/main/Egg-Stress.json) | ✅ | ✅ | ✅ |
+
 
 *Right click and click save  
 ✅ - Working (Normal ARM was tested on Oracle Cloud)  
