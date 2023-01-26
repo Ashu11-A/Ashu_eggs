@@ -112,7 +112,6 @@ if [ "${INSTALL_EX}" == "1" ]; then
             DOWNLOAD_LINK_EX=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i frp | grep -i windows | grep -i amd64)
         fi
     fi
-fi
 echo -e "running 'curl -sSL ${DOWNLOAD_LINK_EX} -o ${DOWNLOAD_LINK_EX##*/}'"
 curl -sSL ${DOWNLOAD_LINK_EX} -o ${DOWNLOAD_LINK_EX##*/}
 echo -e "Unpacking server files"
