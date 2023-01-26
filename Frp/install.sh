@@ -103,9 +103,9 @@ mkdir Frpc
 mv frpc* ./Frpc
 
 if [ "${INSTALL_EX}" == "1" ]; then
-    mkdir exemplo_frpc_windows64
-    cp -f ./Frpc/frpc.ini ./exemplo_frpc_windows64/frpc.ini
-    cd exemplo_frpc_windows64
+    mkdir Exemplo_Frpc_Windows64
+    cp -f ./Frpc/frpc.ini ./Exemplo_Frpc_Windows64/frpc.ini
+    cd Exemplo_Frpc_Windows64
         if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
             echo -e "defaulting to latest release"
             DOWNLOAD_LINK_EX=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i frp | grep -i windows | grep -i amd64)
