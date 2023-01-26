@@ -1,6 +1,6 @@
 #!/bin/ash
 rm -rf /home/container/tmp/*
-echo "Versão do Script: 1.4"
+echo "⊝ Versão do Script: 1.4"
 echo "⟳ Iniciando PHP-FPM..."
 /usr/sbin/php-fpm8 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
 

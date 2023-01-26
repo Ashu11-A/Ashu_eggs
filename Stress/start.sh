@@ -5,7 +5,7 @@ CPU_ON=$([ "${CPU}" == "1" ] && echo "--cpu ${CPU_CORES}" || echo "")
 CPU_RAM=$([ "${CPU_MEMORY}" == "1" ] && echo "--vm ${CPU_CORES} --vm-bytes ${MEMORY}M" || echo "")
 TIME=$([ "${TIMEOUT}" == "0" ] && echo "" || echo "--timeout ${TIMEOUT}s")
 
-echo "Versão do Script: 1.0"
+echo "⊝ Versão do Script: 1.0"
 if [ "${CONSOLE}" == "1" ]; then
     echo "Executando: stress-ng ${CONSOLE_OCC}"
     stress-ng ${CONSOLE_OCC}
