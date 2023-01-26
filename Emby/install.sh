@@ -12,11 +12,12 @@ else
         DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i netcore)
     else
         VERSION_CHECK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .tag_name')
-    if [ "$VERSION" == "$VERSION_CHECK" ]; then
-        DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i netcore)
-    else
-        echo -e "defaulting to latest release"
-        DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i netcore)
+        if [ "$VERSION" == "$VERSION_CHECK" ]; then
+            DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i netcore)
+        else
+            echo -e "defaulting to latest release"
+            DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i netcore)
+        fi
     fi
 
     mkdir -p /mnt/server
