@@ -50,6 +50,8 @@ else
     echo "Fazendo o Download do Steamworks.NET.dll Modificado"
     curl -sSL https://github.com/Ashu11-A/Ashu_eggs/raw/main/tModLoader/Steamworks.NET.dll -o Steamworks.NET.dll
     mv Steamworks.NET.dll Libraries/steamworks.net/20.1.0/lib/netstandard2.1/
+    echo -e "Colocando permisão para os arquivos para evitar erros."
+    chmod -R 755 ./*
     chmod +x tModLoaderServer.bin.x86_64
     echo 'dotnet tModLoader.dll -server "$@"' > tModLoaderServer
     chmod +x tModLoaderServer
