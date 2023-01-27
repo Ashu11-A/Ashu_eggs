@@ -46,7 +46,7 @@ else
     #cd Libraries/steamworks.net/20.1.0/lib/netstandard2.1/
     #wget https://github.com/Ashu11-A/Ashu_eggs/raw/main/Steamworks.NET.dll
     #cd /mnt/server
-    curl -s -o https://github.com/Ashu11-A/Ashu_eggs/raw/main/Steamworks.NET.dll ./Libraries/steamworks.net/20.1.0/lib/netstandard2.1/Steamworks.NET.dll
+    curl -s -C - -O Libraries/steamworks.net/20.1.0/lib/netstandard2.1/Steamworks.NET.dll https://github.com/Ashu11-A/Ashu_eggs/raw/main/Steamworks.NET.dll 
     chmod +x tModLoaderServer.bin.x86_64
     echo 'dotnet tModLoader.dll -server "$@"' > tModLoaderServer
     chmod +x tModLoaderServer
