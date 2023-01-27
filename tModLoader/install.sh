@@ -23,11 +23,11 @@ else
             DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i tmodloader.zip)
         fi
     fi
+    apt update
+    apt install -y p7zip-full wget file curl
 
     mkdir -p /mnt/server
     cd /mnt/server
-    mkdir Mods
-    rm -rf /mnt/server/.local/share/Terraria/ModLoader/Mods
     ## download release
     if [ "-f tModLoaderServer" ]; then
         echo -e "Movendo arquivos antigos para tModLoader_OLD"
@@ -36,6 +36,7 @@ else
     else
         echo -e "Primeira instalação"
     fi
+    mkdir Mods
     echo -e "Executando 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
     curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}
     echo -e "Descompactando Arquivos"
@@ -56,10 +57,13 @@ else
     echo 'dotnet tModLoader.dll -server "$@"' > tModLoaderServer
     chmod +x tModLoaderServer
     echo -e "Limpando arquivos extras."
+    rm -rf /mnt/server/.local/share/Terraria/ModLoader/Mods
     rm -rf terraria-server-*.zip
     rm ${DOWNLOAD_LINK##*/}
     rm -rf DedicatedServerUtils LaunchUtils PlatformVariantLibs tModPorter RecentGitHubCommits.txt *.bat *.sh serverconfig.txt
     echo -e "Gerando arquivo de configuração"
+    touch ./Mods/enabled.json
+    touch ./banlist.txt
     cat <<EOF > serverconfig.txt
 ||----------------------------------------------------------------||
 Note: To change any value go to Startup, and change there!
