@@ -43,7 +43,7 @@ else
     echo -e "Limpando arquivos inúteis..."
     rm -rf ${DOWNLOAD_LINK##*/}
     rm -rf Libraries/steamworks.net/20.1.0/lib/netstandard2.1/Steamworks.NET.dll
-    curl -o ./Libraries/steamworks.net/20.1.0/lib/netstandard2.1/Steamworks.NET.dll https://github.com/Ashu11-A/Ashu_eggs/raw/main/Steamworks.NET.dll
+    curl -sSL ./Libraries/steamworks.net/20.1.0/lib/netstandard2.1/Steamworks.NET.dll https://github.com/Ashu11-A/Ashu_eggs/raw/main/Steamworks.NET.dll
     chmod +x tModLoaderServer.bin.x86_64
     echo 'dotnet tModLoader.dll -server "$@"' > tModLoaderServer
     chmod +x tModLoaderServer
