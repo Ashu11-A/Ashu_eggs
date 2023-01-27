@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ -f "./tModLoader.dll" ]]; then
-    echo "⚙️ Versão do Script: 1.1"
+    echo "⚙️ Versão do Script: 1.2"
     echo "✅ Iniciando tModLoader"
     dotnet tModLoader.dll -server "$@" -config serverconfig.txt
 else
