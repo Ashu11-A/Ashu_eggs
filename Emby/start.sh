@@ -4,5 +4,5 @@ if [[ -f "./Emby/EmbyServer.dll" ]]; then
     echo "✅ Iniciando Emby"
     dotnet Emby/EmbyServer.dll -ffmpeg /usr/bin/ffmpeg -ffprobe /usr/bin/ffprobe
 else
-    echo "Painel Não Instalado, isso é realmente muito estranho, essa é uma segunda verificação."
+    echo "Emby Não Instalado, isso é realmente muito estranho, essa é uma segunda verificação."
 fi
