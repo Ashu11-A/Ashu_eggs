@@ -30,34 +30,7 @@ else
     rm mtasa-resources-latest.zip
     rm mta-baseconfig.tar.gz
     rm -rf multitheftauto_linux_x64
-    cat <<EOF > /mnt/server/mods/deathmatch/mtaserver.conf
-<config>
-<!-- Este parâmetro especifica o nome que o servidor estará visível como no navegador
-do servidor do jogo e no Game-Monitor. É um parâmetro obrigatório. -->
-<servername>Default MTA Server</servername>
-<serverport>22003</serverport>
-<!-- Este parâmetro especifica o número máximo de slots de jogador disponíveis no servidor;
-valor padrão: 32. É um parâmetro obrigatório. -->
-<maxplayers>32</maxplayers>
-<!-- Este parâmetro especifica se o servidor http construído será utilizado.
-Valores: 0 - Desativado , 1 - Ativado ; valor padrão: 1. Parâmetro opcional. -->
-<httpserver>1</httpserver>
-<!-- Este parâmetro especifica a porta TCP na qual o servidor estará aceitando http de entrada
-conexões. Pode ser ajustado para o mesmo valor que <serverport>. É um parâmetro obrigatório
-se <httpserver> estiver definido para 1. -->
-<httpport>22005</httpport>
-<!-- Se definido, os jogadores terão que fornecer uma senha especificada abaixo, antes de poderem se conectar ao
-servidor. Se deixado em branco, o servidor não requer uma senha deles. -->
-<password></password>
-<!-- Este parâmetro reduz o uso da largura de banda do servidor, utilizando várias otimizações.
-Valores: none, medium or maximum ; valor padrão: medium -->
-<bandwidth_reduction>medium</bandwidth_reduction>
-<!-- Especifica o limite de taxa de quadros que será aplicado para conectar clientes.
-Faixa disponível: 25 a 100. Default: 36. -->
-<fpslimit>36</fpslimit>
-</config>
-EOF
-chown -R root:root /mnt
-export HOME=/mnt/server
-echo "done"
+    chown -R root:root /mnt
+    export HOME=/mnt/server
+    echo "done"
 fi
