@@ -8,7 +8,7 @@ if [[ -f "./logs/instalado" ]]; then
         curl -o -s install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/install.sh;
         chmod a+x ./install.sh
         echo "✓ Atualizando o script start.sh"
-        curl -o -s start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/start.sh;
+        curl -s -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/start.sh;
         chmod a+x ./start.sh;
         ./start.sh;
     fi
@@ -26,7 +26,7 @@ else
 fi
 
 echo "✓ Atualizando o script install.sh"
-curl -o -s install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/install.sh
+curl -s -o install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/install.sh
 
 git clone https://github.com/finnie2006/ptero-nginx ./temp
 cp -r ./temp/nginx /mnt/server/
