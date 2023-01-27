@@ -29,7 +29,7 @@ else
     mkdir Mods
     rm -rf /mnt/server/.local/share/Terraria/ModLoader/Mods
     ## download release
-    if [ "-e -i tMod*" ]; then
+    if [ "-f tModLoaderServer" ]; then
         echo -e "Movendo arquivos antigos para tModLoader_OLD"
         mkdir tModLoader_OLD
         mv ./* tModLoader_OLD
