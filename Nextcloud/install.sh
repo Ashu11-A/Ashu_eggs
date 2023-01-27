@@ -5,7 +5,7 @@ if [[ -f "./logs/instalado" ]]; then
         exit
     else
         echo "✓ Atualizando o script install.sh"
-        curl -o -s install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/install.sh;
+        curl -s -o install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/install.sh;
         chmod a+x ./install.sh
         echo "✓ Atualizando o script start.sh"
         curl -s -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/start.sh;
