@@ -5,7 +5,7 @@ if [ "${ARCH}" == "amd64" ];
 then
     echo "🔎 Arquitetura Identificada: 64x"
     if [[ -f "./mta-server64" ]]; then
-        echo "⚙️ Versão do Script: 1.7"
+        echo "⚙️ Versão do Script: 1.8"
         echo "✅ Iniciando MTA"
         ./mta-server64 --maxplayers ${MAX_PLAYERS} --port ${SERVER_PORT} --httpport ${SERVER_WEBPORT} -n
     else
@@ -15,7 +15,7 @@ else
     echo "🔎 Arquitetura Identificada: ARM64"
     echo "⚠️ Atenção: Este Egg ainda não funciona no ARM64"
     if [[ -f "./mta-server64" ]]; then
-        echo "⚙️ Versão do Script: 1.7"
+        echo "⚙️ Versão do Script: 1.8"
         echo "✅ Iniciando MTA"
         ./mta-server64 --maxplayers ${MAX_PLAYERS} --port ${SERVER_PORT} --httpport ${SERVER_WEBPORT} -n
     else
