@@ -44,13 +44,13 @@ if [[ -f "./libraries/instalado" ]]; then
     function runcmd1 {
         printf "${bold}${lightgreen}Default${nc}@${lightblue}Container${nc}:~ "
         read -r cmdtorun
-        ./libraries/proot -S . /bin/bash -c "$cmdtorun"
+        ./libraries/proot -0 -r . -b /dev -b /proc -b /sys -w / /bin/bash -c "$cmdtorun"
         runcmd
     }
     function runcmd {
         printf "${bold}${lightgreen}Default${nc}@${lightblue}Container${nc}:~ "
         read -r cmdtorun
-        ./libraries/proot -S . /bin/bash -c "$cmdtorun"
+        ./libraries/proot -0 -r . -b /dev -b /proc -b /sys -w / /bin/bash -c "$cmdtorun"
         runcmd1
     }
     runcmd
@@ -91,7 +91,7 @@ else
     cmds=("mv gotty /usr/bin/" "mv unzip /usr/bin/" "mv ngrok /usr/bin/" "apt-get update" "apt-get -y upgrade" "apt-get -y install sudo curl wget hwloc htop nano neofetch python3" "curl -o /bin/systemctl https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py" "chmod +x /bin/systemctl")
 
     for cmd in "${cmds[@]}"; do
-        ./libraries/proot -S . /bin/bash -c "$cmd >/dev/null 2>libraries/err.log"
+        ./libraries/proot -0 -r . -b /dev -b /proc -b /sys -w / /bin/bash -c "$cmd >/dev/null 2>libraries/err.log"
     done
     echo  '####################(100%)'
     touch ./libraries/instalado
@@ -119,13 +119,13 @@ echo "${nc}"
     function runcmd1 {
         printf "${bold}${lightgreen}Default${nc}@${lightblue}Container${nc}:~ "
         read -r cmdtorun
-        ./libraries/proot -S . /bin/bash -c "$cmdtorun"
+        ./libraries/proot -0 -r . -b /dev -b /proc -b /sys -w / /bin/bash -c "$cmdtorun"
         runcmd
     }
     function runcmd {
         printf "${bold}${lightgreen}Default${nc}@${lightblue}Container${nc}:~ "
         read -r cmdtorun
-        ./libraries/proot -S . /bin/bash -c "$cmdtorun"
+        ./libraries/proot -0 -r . -b /dev -b /proc -b /sys -w / /bin/bash -c "$cmdtorun"
         runcmd1
     }
     runcmd
