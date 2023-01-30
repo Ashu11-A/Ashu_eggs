@@ -20,8 +20,8 @@ lightgreen=$(echo -en "\e[92m")
 lightred=$(echo -en "\e[31m")
 redback=$(echo -en "\e[41m")
 
-version_egg="2.0"
-version_script="2.1"
+export version_egg="2.0"
+export version_script="2.1"
 
 echo "
 ${bold}${lightgreen}===================================================================================
