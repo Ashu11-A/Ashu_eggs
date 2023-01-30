@@ -1,0 +1,62 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-01-30T01:23:01-04:00",
+    "name": "VPS",
+    "author": "admin@pterodactyl.shop",
+    "description": "\ud83d\udc8e Egg: VPS\r\n\u2699\ufe0f Vers\u00e3o: 2.0\r\n\u2753 Oque \u00e9:  Uma VPS, este egg utiliza Proot (FakeRoot) que engana o sistema dizendo que voc\u00ea \u00e9 um superusu\u00e1rio, instalar um Pterodactyl dentro de outro Pterodactyl nunca foi t\u00e3o real!\r\n\r\n\u26a0\ufe0f Aten\u00e7\u00e3o: \r\n     \u2022 N\u00e3o \u00e9 recomend\u00e1vel de forma alguma, a utiliza\u00e7\u00e3o de Root no Docker. Eu n\u00e3o me responsabilizo por qualquer dano\/a\u00e7\u00e3o que voc\u00ea ira fazer com isso.\r\n     \u2022 \u00c9 necess\u00e1rio de no m\u00ednimo 1GB de espa\u00e7o\r\n     \u2022 Distribui\u00e7\u00f5es Debian\/Ubuntu podem levar mais de 15min para terminar a instala\u00e7\u00e3o\r\n     \u2022 Distribui\u00e7\u00f5es Ubuntu n\u00e3o est\u00e1 funcionando no momento\r\n\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n     \u2022 (1.0) Lan\u00e7amento.\r\n     \u2022 (2.0) Detecta se o Egg est\u00e1 atualizado ou n\u00e3o.\r\n     \u2022 (2.0) Possibilidade de trocar de Distribui\u00e7\u00e3o Linux: (Debian, Ubuntu, Alpine).\r\n     \u2022 (2.0) Argumentos atualizados, agora o sistema n\u00e3o est\u00e1 t\u00e3o restrito.\r\n     \u2022 (2.0) Possibilidade de trocar os argumentos.\r\n     \u2022 (2.0) Corre\u00e7\u00e3o do comando de Desligamento, agora n\u00e3o \u00e9 mais necess\u00e1rio matar o servidor.\r\n     \u2022 (2.0) Corre\u00e7\u00e3o da Inicializa\u00e7\u00e3o, agora o Painel sabe que o Servidor est\u00e1 ligado.\r\n     \u2022 (2.0) Script de Instala\u00e7\u00e3o foi reconstru\u00eddo\r\n\r\n\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "features": null,
+    "docker_images": {
+        "ghcr.io\/parkervcp\/yolks:debian": "ghcr.io\/parkervcp\/yolks:debian"
+    },
+    "file_denylist": [],
+    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/vps\/selector.sh)",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Iniciado\"\r\n}",
+        "logs": "{}",
+        "stop": "^^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\nmkdir -p \/mnt\/server > \/dev\/null\r\ncd \/mnt\/server\r\nmkdir libraries > \/dev\/null\r\necho \"2.0\" > libraries\/version\r\necho \"true\" > libraries\/version_system",
+            "container": "ghcr.io\/pterodactyl\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Usar seus argumentos?",
+            "description": "Habilitar o uso dos seus argumentos? N\u00e3o habilite isso se voc\u00ea n\u00e3o sabe oque faz.",
+            "env_variable": "CONSOLE",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Seus Argumentos",
+            "description": "CUIDADO, mude somente se voc\u00ea sabe oque est\u00e1 fazendo. Caso queira colocar seus pr\u00f3prios argumentos, veja a Wiki do PRoot: https:\/\/github.com\/proot-me\/proot\/blob\/master\/doc\/proot\/manual.rst\r\nOs argumentos padr\u00f5es s\u00e3o: -0 -r . -b \/dev -b \/proc -b \/sys -w \/",
+            "env_variable": "CONSOLE_OCC",
+            "default_value": "-0 -r . -b \/dev -b \/proc -b \/sys -w \/",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Distribui\u00e7\u00e3o Linux",
+            "description": "Selecione qual Distribui\u00e7\u00e3o Linux voc\u00ea deseja que o script baixe. \u00c9 atualmente essas distribui\u00e7\u00f5es est\u00e3o dispon\u00edveis: Debian, Ubuntu, Alpine.",
+            "env_variable": "LINUX_ISO",
+            "default_value": "Debian",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:Debian,Ubuntu,Alpine",
+            "field_type": "text"
+        }
+    ]
+}
