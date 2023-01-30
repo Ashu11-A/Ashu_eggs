@@ -141,7 +141,6 @@ else
     else
     echo  "${bold}${lightred}⚠️  Distribuições Debian/Ubuntu podem levar mais de 15min para terminar a instalação."
     fi
-    echo "⚙️  Versão do Script: ${version_script}"
     echo "📥  Baixando arquivos para instalar a vps"
     mkdir libraries >/dev/null
     echo "Disto Instalada: $LINUX_ISO" > libraries/distro_installed
