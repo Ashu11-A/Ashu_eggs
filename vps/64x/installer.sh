@@ -56,7 +56,7 @@ else
     if [ $install = "0" ]; then
         cmds=("mv gotty /usr/bin/" "mv unzip /usr/bin/" "mv ngrok /usr/bin/" "apt clean" "apt-get update" "apt-get -y upgrade" "apt-get -y install sudo curl wget hwloc htop nano neofetch python3")
         else
-        cmds=("apt clean" "apt-get update" "apt-get -y upgrade")
+        cmds=("apt clean" "apt-get update" "apt-get -y upgrade" "apt-get -y install python3")
         fi
     fi
     if [ $LINUX_ISO = "Ubuntu" ]; then
@@ -65,7 +65,7 @@ else
         if [ $install = "0" ]; then
         cmds=("mv gotty /usr/bin/" "mv unzip /usr/bin/" "mv ngrok /usr/bin/" "apt clean" "rm -rf /etc/apt/trusted.gpg.d/*" "apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32" "apt-get update" "apt-get -y upgrade" "apt-get -y install sudo curl wget hwloc htop nano neofetch python3")
         else
-        cmds=("apt clean" "apt-get update" "apt-get -y upgrade")
+        cmds=("apt clean" "apt-get update" "apt-get -y upgrade" "apt-get -y install python3")
         fi
     fi
     if [ $LINUX_ISO = "Alpine" ]; then
@@ -136,7 +136,7 @@ else
     if [ $install = "1" ]; then
     echo  "
 📌  Variavel: (Instalação Limpa) 🟢  Ativada
-📌  Os seguintes pacotes não serão Instalados: sudo wget hwloc htop nano neofetch python3 ngrok gotty curl
+📌  Os seguintes pacotes não serão Instalados: sudo wget hwloc htop nano neofetch ngrok gotty curl
     "
     else
     echo  "${bold}${lightred}⚠️  Distribuições Debian/Ubuntu podem levar mais de 15min para terminar a instalação."
