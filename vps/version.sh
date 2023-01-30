@@ -1,6 +1,6 @@
 version_egg="2.0"
 version_script="2.1"
-
+echo "⚙️  Versão do Script: ${version_script}"
 if [[ -f "./libraries/version" ]]; then
     versions=" $(cat ./libraries/version) " 
     comm1=$( printf '%s\n' "$versions" | tr -d '.' )

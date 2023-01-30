@@ -79,7 +79,6 @@ proot=$([ "${PROOT}" == "PRoot-rs" ] && echo "./libraries/proot-rs" || echo "./l
 echo "${nc}"
 
 if [[ -f "./libraries/instalado" ]]; then
-echo "⚙️  Versão do Script: ${version_script}"
 
     if [ "${PROOT}" = "PRoot-rs" ]; then
         echo "
