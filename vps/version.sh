@@ -1,7 +1,7 @@
 if [[ -f "./libraries/version" ]]; then
     versions=" $(cat ./libraries/version) " 
     comm1=$( printf '%s\n' "$versions" | tr -d '.' )
-    comm2=$( printf '%s\n' "$version_egg" | tr -d '.' )
+    comm2=$( printf '%s\n' "${version_egg}" | tr -d '.' )
     if [[ -f "./libraries/version_system" ]]; then
         version_system=" $(cat ./libraries/version_system) " 
         if [ "$version_system" = "true" ]; then
