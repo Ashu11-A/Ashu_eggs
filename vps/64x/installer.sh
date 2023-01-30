@@ -21,7 +21,7 @@ lightred=$(echo -en "\e[31m")
 redback=$(echo -en "\e[41m")
 
 version_egg="2.0"
-version_script="2.0"
+version_script="2.1"
 
 echo "
 ${bold}${lightgreen}===================================================================================
@@ -62,73 +62,71 @@ else
     fi
 fi
 
-console=$([ "${CONSOLE}" == "1" ] && echo "${CONSOLE_OCC}" || echo "-0 -r . -b /dev -b /proc -b /sys -w /")
+console=$([ "${CONSOLE}" == "1" ] && echo "${CONSOLE_OCC}" || echo "-0 -r . -b /dev -b /proc -b /sys -w / -b .")
+
+if [ -z "${PROOT}" ]; then
+    proot="./libraries/proot"
+fi
+if [ "${PROOT}" = "PRoot (padrão)" ]; then
+    proot="./libraries/proot"
+fi
+if [ "${PROOT}" = "PRoot-rs" ]; then
+    proot="./libraries/proot-rs"
+fi
+if [ "${PROOT}" = "FakechRoot + FakeRoot" ]; then
+    proot="fakechroot fakeroot"
+fi
+
+proot=$([ "${PROOT}" == "PRoot-rs" ] && echo "./libraries/proot-rs" || echo "./libraries/proot")
 
 echo "${nc}"
 
 if [[ -f "./libraries/instalado" ]]; then
 echo "⚙️  Versão do Script: ${version_script}"
-    if [[ -f "./libraries/version" ]]; then
-        versions=" $(cat ./libraries/version) " 
-        comm1=$( printf '%s\n' "$versions" | tr -d '.' )
-        comm2=$( printf '%s\n' "$version_egg" | tr -d '.' )
-        if [[ -f "./libraries/version_system" ]]; then
-            version_system=" $(cat ./libraries/version_system) " 
-            if [ $version_system = "true" ]; then
-                if [ $comm1 -ge $comm2  ]; then
-                    echo "✅  Egg Atualizado."
-                else
-                    echo "
-    
-⚠️  Egg Desatualizado.
-🔴  Versão Instalado: ${versions}
-🟢  Versão mais Recente: ${version_egg}
-🌐  Acesse: https://github.com/Ashu11-A/Ashu_eggs
-    
-"
-                fi
-            fi
-        fi
-    else
+
+    if [ "${PROOT}" = "PRoot-rs" ]; then
         echo "
-    
-⚠️  Egg Desatualizado.
-🔴  Versão Instalado: 1.0 (respectivamente).
-🟠  Caso tenha acabado de atualizar o Egg, basta Reinstalar seu Servidor (nada será apagado).
-🟢  Versão mais Recente: ${version_egg}
-🌐  Acesse: https://github.com/Ashu11-A/Ashu_eggs
-    
-"
+
+${bold}${lightred}⛔️  Root executado a partir do PRoot-rs, você sabe oque está fazendo?
+        "
     fi
+    if [ "${PROOT}" = "FakechRoot + FakeRoot" ]; then
+        echo "
+
+${bold}${lightred}⛔️  Root executado a partir do FakechRoot + FakeRoot, você sabe oque está fazendo?
+${bold}${lightred}⛔️  Para utilizar essa variável, você tem que estar usado o docker: ashu11a/proot:latest
+        "
+    fi
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/vps/version.sh)
     echo "✅  Iniciando VPS"
     echo "${bold}${lightgreen}==> ${lightblue}Container${lightgreen} Iniciado <=="
     function runcmd1 {
         printf "${bold}${lightgreen}Default${nc}@${lightblue}Container${nc}:~ "
         read -r cmdtorun
-        ./libraries/proot $console $bash "$cmdtorun"
+        $proot  $console $bash "$cmdtorun"
         runcmd
     }
     function runcmd {
         printf "${bold}${lightgreen}Default${nc}@${lightblue}Container${nc}:~ "
         read -r cmdtorun
-        ./libraries/proot $console $bash "$cmdtorun"
+        $proot $console $bash "$cmdtorun"
         runcmd1
     }
     runcmd
 else
-    echo "${bold}${lightblue}                    ...Arquitetura x86_64 detectada..."
-    echo "${bold}${lightblue}          ...ISTO PODE DEMORAR MAIS DE 15 MINUTOS SEJA PACIENTE..."
+    echo "${bold}${lightblue}🔎  Arquitetura Identificada: 64x"
     if [ $LINUX_ISO = "Ubuntu" ]; then
-    echo "${redback} NÃO ESTÁ FUNCIONADO A DISTRO UBUNTU NO MOMENTO!!"
+    echo "${redback} A DISTRO UBUNTU NÃO ESTÁ FUNCIONADO NO MOMENTO!!"
     exit
     fi
-    echo  "${bold}${lightred} Distribuições Debian/Ubuntu podem levar mais de 15min para terminar a instalação."
+    echo  "${bold}${lightred}⚠️  Distribuições Debian/Ubuntu podem levar mais de 15min para terminar a instalação."
     echo "⚙️  Versão do Script: ${version_script}"
     echo "Baixando arquivos para iniciar a vps"
     mkdir libraries >/dev/null
     echo "Disto Instalada: $LINUX_ISO" > libraries/distro_installed
     echo "true" > libraries/version_system
     curl -sSLo ./libraries/proot https://github.com/proot-me/proot/releases/download/v5.3.0/proot-v5.3.0-x86_64-static >/dev/null 2>libraries/err.log
+    curl -sSLo proot-rs-x86_64.tar.gz https://github.com/proot-me/proot-rs/releases/download/v0.1.0/proot-rs-v0.1.0-x86_64-unknown-linux-gnu.tar.gz >/dev/null 2>libraries/err.log
     echo  '#                   (5%)'
     curl -sSLo root.tar.xz $linux_iso >/dev/null 2>libraries/err.log
     echo  '##                  (10%)'
@@ -144,7 +142,10 @@ else
     echo  '######              (30%)'
     tar -xvf root.tar.xz >/dev/null 2>libraries/err.log
     echo  '#######             (35%)'
+    tar -xzvf proot-rs-x86_64.tar.gz >/dev/null 2>libraries/err.log
+    mv proot-rs ./libraries/
     chmod +x ./libraries/proot >/dev/null 2>libraries/err.log
+    chmod +x ./libraries/proot-rs >/dev/null 2>libraries/err.log
     echo  '########            (40%)'
     if [ $LINUX_ISO = "Alpine" ]; then
     echo  '########            (45%)'
@@ -159,6 +160,7 @@ else
     chmod +x gotty >/dev/null 2>libraries/err.log
     fi
     echo  '###########         (55%)'
+    rm -rf proot-rs-x86_64.tar.gz >/dev/null 2>libraries/err.log
     rm -rf root.tar.xz >/dev/null 2>libraries/err.log
     rm -rf gotty.tar.gz >/dev/null 2>libraries/err.log
     rm -rf ngrok.tgz >/dev/null 2>libraries/err.log
@@ -171,11 +173,11 @@ else
     if [ $LINUX_ISO = "Alpine" ]; then
         echo  '############        (80%)'
     else
-        echo  "${bold}${lightred} Distribuições Debian/Ubuntu podem levar mais de 15min para terminar a instalação."
+        echo  "${bold}${lightred} ⚠️  Essa é a etapa mais demorada, pode levar até 15min para termina-la"
     fi
 
     for cmd in "${cmds[@]}"; do
-        ./libraries/proot $console $bash "$cmd >/dev/null 2>libraries/err.log"
+        $proot $console $bash "$cmd >/dev/null 2>libraries/err.log"
     done
     echo  '####################(100%)'
     touch ./libraries/instalado
@@ -198,19 +200,19 @@ ${bold}${lightblue} :           :     : :: ::    :   : :   : :  :         :     
 ${bold}${lightgreen}===================================================================================
  "
  
-echo "${nc}"
-    
+    echo "${nc}"
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/vps/version.sh)
     echo "${bold}${lightgreen}==> ${lightblue}Container${lightgreen} Iniciado <=="
     function runcmd1 {
         printf "${bold}${lightgreen}Default${nc}@${lightblue}Container${nc}:~ "
         read -r cmdtorun
-        ./libraries/proot $console $bash "$cmdtorun"
+        $proot $console $bash "$cmdtorun"
         runcmd
     }
     function runcmd {
         printf "${bold}${lightgreen}Default${nc}@${lightblue}Container${nc}:~ "
         read -r cmdtorun
-        ./libraries/proot $console $bash "$cmdtorun"
+        $proot $console $bash "$cmdtorun"
         runcmd1
     }
     runcmd
