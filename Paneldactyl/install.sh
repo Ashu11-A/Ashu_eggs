@@ -18,21 +18,21 @@ else
     mkdir php-fpm
 
     echo "**** Fazendo o download do painel ****"
-    
+
     GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
-    LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
+    LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases/latest" | jq -c '.[]' | head -1)
     RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq '.[]')
 
     if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
         echo -e "defaulting to latest release"
-        DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i panel)
+        DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i panel.tar.gz)
     else
         VERSION_CHECK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .tag_name')
         if [ "$VERSION" == "$VERSION_CHECK" ]; then
-            DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i panel)
+            DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i panel.tar.gz)
         else
             echo -e "defaulting to latest release"
-            DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i panel)
+            DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i panel.tar.gz)
         fi
     fi
 
