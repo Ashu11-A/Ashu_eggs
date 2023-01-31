@@ -18,7 +18,11 @@ else
     mkdir php-fpm
 
     echo "**** Fazendo o download do painel ****"
+    
     GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
+    LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
+    RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq '.[]')
+
     if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
         echo -e "defaulting to latest release"
         DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i panel)
