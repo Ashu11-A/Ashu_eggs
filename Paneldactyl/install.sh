@@ -45,7 +45,7 @@ else
     cd nginx/conf.d/
     wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/default.conf
     cd /mnt/server
-    cat <<EOF > ./Logs/log_install.txt
+    cat <<EOF > ./logs/log_install.txt
 Versão: ${VERSION}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}
