@@ -24,11 +24,12 @@ else
         DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i panel)
     else
         VERSION_CHECK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .tag_name')
-    if [ "$VERSION" == "$VERSION_CHECK" ]; then
-        DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i panel)
-    else
-        echo -e "defaulting to latest release"
-        DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i panel)
+        if [ "$VERSION" == "$VERSION_CHECK" ]; then
+            DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i panel)
+        else
+            echo -e "defaulting to latest release"
+            DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i panel)
+        fi
     fi
 
     echo "✓ Atualizando o script install.sh"
