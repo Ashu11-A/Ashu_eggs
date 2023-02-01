@@ -5,13 +5,24 @@ if [[ -f "./logs/instalado" ]]; then
         php ${COMMANDO_OCC}
         exit
     else
-        echo "✓ Atualizando o script install.sh"
-        curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/install.sh -o install.sh;
-        chmod a+x ./install.sh
-        echo "✓ Atualizando o script start.sh"
-        curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/start.sh -o start.sh;
-        chmod a+x ./start.sh;
-        ./start.sh;
+        if [[ -f "./logs/instalado_database" ]]; then
+            echo "✓ Atualizando o script install.sh"
+            curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/install.sh -o install.sh;
+            chmod a+x ./install.sh
+            echo "✓ Atualizando o script start.sh"
+            curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/start.sh -o start.sh;
+            chmod a+x ./start.sh;
+            ./start.sh;
+        else
+            cp .env.example .env
+            composer install --no-interaction --no-dev --optimize-autoloader
+            php artisan key:generate --force
+            php artisan p:environment:setup
+            php artisan p:environment:database
+            php artisan migrate --seed --force
+            php artisan p:user:make
+            fakeroot chown -R nginx:nginx /home/container/painel/*
+            touch ./logs/instalado_database
     fi
 else
     cd /mnt/server/
