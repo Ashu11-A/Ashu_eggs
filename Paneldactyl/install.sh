@@ -6,7 +6,7 @@ if [[ -f "./logs/instalado" ]]; then
         exit
     else
         if [[ -f "./logs/instalado_database" ]]; then
-            bash <( curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/start.sh )
+            bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/start.sh)
         else
             cd painel
             cp .env.example .env
