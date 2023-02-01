@@ -79,8 +79,6 @@ EOF
     chmod -R 755 storage/* bootstrap/cache/
     chown -R nginx:nginx /home/container/painel/*
     cd ..
-
-    chown -R nginx:nginx painel && chmod -R 755 painel
     echo "**** Limpando ****"
     rm -rf /tmp/*
     echo "**** configure php and nginx for panels ****" && \
