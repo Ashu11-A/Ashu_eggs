@@ -6,4 +6,5 @@ echo "🛠 Iniciando PHP-FPM..."
 
 echo "🛠 Iniciando Nginx..."
 echo "✅ Inicializado com sucesso"
-/usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/
+nohup /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/ &
+php /home/container/painel/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3

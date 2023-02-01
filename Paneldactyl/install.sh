@@ -63,6 +63,12 @@ EOF
     cd painel
     tar -xvzf ${DOWNLOAD_LINK##*/}
     rm -rf ${DOWNLOAD_LINK##*/}
+    chmod -R 755 storage/* bootstrap/cache/
+    cp .env.example .env
+    composer install --no-interaction --no-dev --optimize-autoloader
+    php artisan key:generate --force
+    php artisan migrate --seed --force
+    chown -R nginx:nginx /var/www/jexactyl/*
     cd ..
 
     chown -R nginx:nginx painel && chmod -R 755 painel
