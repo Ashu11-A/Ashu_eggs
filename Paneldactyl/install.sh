@@ -6,13 +6,7 @@ if [[ -f "./logs/instalado" ]]; then
         exit
     else
         if [[ -f "./logs/instalado_database" ]]; then
-            echo "✓ Atualizando o script install.sh"
-            curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/install.sh -o install.sh;
-            chmod a+x ./install.sh
-            echo "✓ Atualizando o script start.sh"
-            curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/start.sh -o start.sh;
-            chmod a+x ./start.sh;
-            ./start.sh;
+            bash <( curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/start.sh )
         else
             cd painel
             cp .env.example .env
