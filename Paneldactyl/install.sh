@@ -23,6 +23,7 @@ if [[ -f "./logs/instalado" ]]; then
             php artisan p:user:make
             fakeroot chown -R nginx:nginx /home/container/painel/*
             touch ./logs/instalado_database
+        fi
     fi
 else
     cd /mnt/server/
