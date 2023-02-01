@@ -25,6 +25,8 @@ if [[ -f "./logs/instalado" ]]; then
             cd ..
             fakeroot chown -R nginx:nginx /home/container/painel/*
             touch ./logs/instalado_database
+            echo "Instalação do painel concluída, reiniciando…"
+            exit
         fi
     fi
 else
