@@ -14,6 +14,7 @@ if [[ -f "./logs/instalado" ]]; then
             chmod a+x ./start.sh;
             ./start.sh;
         else
+            cd painel
             cp .env.example .env
             composer install --no-interaction --no-dev --optimize-autoloader
             php artisan key:generate --force
@@ -21,6 +22,7 @@ if [[ -f "./logs/instalado" ]]; then
             php artisan p:environment:database
             php artisan migrate --seed --force
             php artisan p:user:make
+            cd ..
             fakeroot chown -R nginx:nginx /home/container/painel/*
             touch ./logs/instalado_database
         fi
