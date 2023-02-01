@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/bash
 rm -rf /home/container/tmp/*
 echo "⚙️ Versão do Script: 1.0"
 echo "🛠 Iniciando PHP-FPM..."

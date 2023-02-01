@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/bash
 if [[ -f "./logs/instalado" ]]; then
     if [ "${OCC}" == "1" ]; then 
         cd painel 
