@@ -33,7 +33,11 @@ cp -r ./temp/nginx /mnt/server/
 cp -r ./temp/php-fpm /mnt/server/
 rm -rf ./temp
 rm -rf /mnt/server/webroot/*
-mkdir logs
+if [ -d logs ]; then
+    echo "Pasta Logs já existe, pulando..."
+else
+    mkdir logs
+fi
 rm nginx/conf.d/default.conf
 cd nginx/conf.d/
 wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Nextcloud/default.conf

@@ -142,7 +142,11 @@ else
     echo  "${bold}${lightred}⚠️  Distribuições Debian/Ubuntu podem levar mais de 15min para terminar a instalação."
     fi
     echo "📥  Baixando arquivos para instalação da vps"
-    mkdir libraries >/dev/null
+    if [ -d libraries ]; then
+    echo "Pasta libraries já existe, pulando..."
+    else
+    mkdir libraries
+    fi
     echo "Disto Instalada: $LINUX_ISO" > libraries/distro_installed
     echo "true" > libraries/version_system
     curl -sSLo ./libraries/proot https://github.com/proot-me/proot/releases/download/v5.3.0/proot-v5.3.0-x86_64-static >/dev/null 2>libraries/err.log
