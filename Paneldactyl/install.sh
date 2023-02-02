@@ -127,6 +127,7 @@ if [[ -f "./logs/instalado" ]]; then
    
 "
             exit
+            exit
         fi
     fi
 else
