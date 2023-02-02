@@ -9,17 +9,123 @@ if [[ -f "./logs/instalado" ]]; then
             bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/start.sh)
         else
             cd painel
+            if [[ -f "../logs/instalado_key_generate" ]]; then
+            echo "
+    
+🔐  Key já foi gerada! pulando a geração de nova key... por que isso pode afetar a conexão do database
+    
+"
+            else
+            echo "
+    
+⚙️  Executando: cp .env.example .env
+    
+"
             cp .env.example .env
+            echo "
+
+⚙️  Executando: composer install --no-interaction --no-dev --optimize-autoloader
+       
+"
             composer install --no-interaction --no-dev --optimize-autoloader
+            echo "
+        
+⚙️  Executando: php artisan key:generate --force
+       
+"
             php artisan key:generate --force
+            touch ./logs/instalado_key_generate
+            
+            fi
+            echo "
+    
+⚙️  Executando: php artisan p:environment:setup
+      
+"
             php artisan p:environment:setup
+            echo "
+
+📌  Executar o comando anterior novamente? [y/N]
+
+"
+            read -r response
+                case "$response" in
+                    [yY][eE][sS]|[yY]) 
+                        php artisan p:environment:setup
+                        ;;
+                    *)
+                        echo "
+    
+⚙️  Executando: php artisan p:environment:database
+      
+"
+                        ;;
+            esac
             php artisan p:environment:database
+            echo "
+    
+📌  Executar o comando anterior novamente? [y/N]
+    
+"
+            read -r  response
+                case "$response" in
+                    [yY][eE][sS]|[yY]) 
+                        php artisan p:environment:database
+                        ;;
+                    *)
+                        echo "
+    
+⚙️  Executando: php artisan migrate --seed --force
+      
+"
+                        ;;
+            esac
             php artisan migrate --seed --force
+            echo "
+    
+📌  Executar o comando anterior novamente? [y/N]
+    
+"
+            read -r response
+                case "$response" in
+                    [yY][eE][sS]|[yY]) 
+                        php artisan migrate --seed --force
+                        ;;
+                    *)
+                        echo "
+    
+⚙️  Executando: php artisan p:user:make
+   
+"
+                        ;;
+            esac
             php artisan p:user:make
+            echo "
+
+📌  Executar o comando anterior novamente? [y/N]
+    
+"
+            read -r response
+                case "$response" in
+                    [yY][eE][sS]|[yY]) 
+                         php artisan p:user:make
+                        ;;
+                    *)
+                        echo "
+    
+⚙️  Executando: Atribuir permissões para a pasta painel
+    
+"
+                        ;;
+            esac
             cd ..
             fakeroot chown -R nginx:nginx /home/container/painel/*
             touch ./logs/instalado_database
-            echo "Instalação do painel concluída, reiniciando…"
+            echo "
+    
+⚙️  Instalação do painel concluída, reiniciando…
+   
+"
             exit
         fi
     fi
