@@ -135,15 +135,19 @@ else
 
 if [ -z "${PANEL}" ]; then
     GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
+    FILE=panel.tar.gz
 else
     if [ "${PANEL}" = "Pterodactyl" ]; then
         GITHUB_PACKAGE=pterodactyl/panel
+        FILE=panel.tar.gz
     fi
     if [ "${PANEL}" = "Jexactyl" ]; then
         GITHUB_PACKAGE=Jexactyl/Jexactyl
+        FILE=panel.tar.gz
     fi
     if [ "${PANEL}" = "Jexactyl Brasil" ]; then
         GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
+        FILE=panel.tar.gz
     fi
 fi
 
@@ -154,16 +158,16 @@ fi
 
     if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
         echo -e "Baixando a versão mais recente por causa de um erro"
-        DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i panel.tar.gz)
+        DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i $FILE)
     else
     VERSION_CHECK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .tag_name')
         if [ "$VERSION" == "$VERSION_CHECK" ]; then
             if [[ "$VERSION" == v* ]]; then
-                DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i panel.tar.gz)
+                DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i $FILE)
             fi
         else
             echo -e "Baixando a versão mais recente por causa de um erro"
-            DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i panel.tar.gz)
+            DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i $FILE)
         fi
     fi
 
