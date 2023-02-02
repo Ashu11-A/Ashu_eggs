@@ -182,6 +182,7 @@ fi
     cd /mnt/server
     cat <<EOF > ./logs/log_install.txt
 Versão: ${VERSION}
+Git: ${GITHUB_PACKAGE}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}
 EOF
