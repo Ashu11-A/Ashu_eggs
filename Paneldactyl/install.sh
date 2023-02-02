@@ -34,7 +34,7 @@ if [[ -f "./logs/instalado" ]]; then
        
 "
             php artisan key:generate --force
-            touch ./logs/instalado_key_generate
+            touch ../logs/instalado_key_generate
             
             fi
             echo "
