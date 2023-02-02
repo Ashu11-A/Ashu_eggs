@@ -133,9 +133,22 @@ else
     cd /mnt/server/
     mkdir php-fpm
 
-    echo "**** Fazendo o download do painel ****"
-
+if [ -z "${PANEL}" ]; then
     GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
+else
+    if [ "${PANEL}" = "Pterodactyl" ]; then
+        GITHUB_PACKAGE=pterodactyl/panel
+    fi
+    if [ "${PANEL}" = "Jexactyl" ]; then
+        GITHUB_PACKAGE=Jexactyl/Jexactyl
+    fi
+    if [ "${PANEL}" = "Jexactyl Brasil" ]; then
+        GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
+    fi
+fi
+
+    echo "**** Fazendo o download do painel ****"
+    
     LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
     RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq '.[]')
 
