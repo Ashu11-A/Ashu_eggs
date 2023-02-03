@@ -9,7 +9,6 @@ printf "
 |_|       \_||_||_| |_| \____)|_| \____| \_||_| \____) \___) \__  ||_|
                                                             (____/    
 \n \n"
-echo "⚙️  Versão do Script: 1.3"
 echo "🟢  Iniciando PHP-FPM..."
 nohup /usr/sbin/php-fpm81 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize >/dev/null 2>&1 &
 

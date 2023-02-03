@@ -103,6 +103,7 @@ if [[ -f "./logs/instalado" ]]; then
         fi
     fi
     if [[ -f "./logs/panel_instalado" ]]; then
+        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/vps/version.sh)
         bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/launch.sh)
     fi
 else
