@@ -7,50 +7,31 @@ if [[ -f "./logs/instalado" ]]; then
     else
         cd painel || exit
         if [[ -f ".env" ]]; then
-            echo "🟢  arquivo .env já configurado"
+            printf "\n⚙️  Apenas um test\n"
+            echo "🟢  .env Configurado"
         else
-            echo "
-    
-⚙️  Executando: cp .env.example .env
-    
-"
+            printf "\n⚙️  Executando: cp .env.example .env\n"
             cp .env.example .env
         fi
         if [[ -f "../logs/composer_instalado" ]]; then
-            echo "🟢  composer instalado"
+            echo "🟢  Composer Instalado"
         else
-            echo "
-
-⚙️  Executando: composer install --no-interaction --no-dev --optimize-autoloader
-       
-"
+            printf "\n⚙️  Executando: composer install --no-interaction --no-dev --optimize-autoloader\n"
             composer install --no-interaction --no-dev --optimize-autoloader
             touch ../logs/composer_instalado
         fi
         if [[ -f "../logs/key_generate_instalado" ]]; then
-            echo "
-    
-🔐  Key já foi gerada! pulando a geração de nova key... por que isso pode afetar a conexão do database
-    
-"
+            echo "🟢  Key Gerada"
         else
-            echo "
-        
-⚙️  Executando: php artisan key:generate --force
-       
-"
+            printf "\n⚙️  Executando: php artisan key:generate --force\n"
             php artisan key:generate --force
             touch ../logs/key_generate_instalado
         fi
 
         if [[ -f "../logs/environment_setup_instalado" ]]; then
-            echo "🟢  environment:setup configurado"
+            echo "🟢  environment:setup Configurado"
         else
-            echo "
-    
-⚙️  Executando: php artisan p:environment:setup
-      
-"
+            printf "\n⚙️  Executando: php artisan p:environment:setup\n"
             php artisan p:environment:setup
             touch ../logs/environment_setup_instalado
             echo "
@@ -64,16 +45,12 @@ if [[ -f "./logs/instalado" ]]; then
                 php artisan p:environment:setup
                 ;;
             *)
-                echo "
-    
-⚙️  Executando: php artisan p:environment:database
-      
-"
+                printf "\n⚙️  Executando: php artisan p:environment:database\n"
                 ;;
             esac
         fi
         if [[ -f "../logs/environment_database_instalado" ]]; then
-            echo "🟢  environment:database configurado"
+            echo "🟢  environment:database Configurado"
         else
             php artisan p:environment:database
             touch ../logs/environment_database_instalado
@@ -88,16 +65,12 @@ if [[ -f "./logs/instalado" ]]; then
                 php artisan p:environment:database
                 ;;
             *)
-                echo "
-    
-⚙️  Executando: php artisan migrate --seed --force
-      
-"
+                printf "\n⚙️  Executando: php artisan migrate --seed --force\n"
                 ;;
             esac
         fi
         if [[ -f "../logs/database_migrate_instalado" ]]; then
-            echo "🟢  Migração do Database já concluído"
+            echo "🟢  Migração do Database Concluído"
         else
             php artisan migrate --seed --force
             touch ../logs/database_migrate_instalado
@@ -112,16 +85,12 @@ if [[ -f "./logs/instalado" ]]; then
                 php artisan migrate --seed --force
                 ;;
             *)
-                echo "
-    
-⚙️  Executando: php artisan p:user:make
-   
-"
+                printf "\n⚙️  Executando: php artisan p:user:make\n"
                 ;;
             esac
         fi
         if [[ -f "../logs/user_instalado" ]]; then
-            echo "🟢  usuário já criado"
+            echo "🟢  Usuário Criado"
         else
             php artisan p:user:make
             touch ../logs/user_instalado
@@ -147,13 +116,9 @@ if [[ -f "./logs/instalado" ]]; then
         cd ..
         fakeroot chown -R nginx:nginx /home/container/painel/*
         if [[ -f "./logs/painel_instalado" ]]; then
-            echo "🟢  verificação concluída"
+            echo "🟢  Verificação Concluída"
         else
-            echo "
-    
-⚙️  Instalação do painel concluída, reiniciando…
-   
-"
+            printf "\n⚙️  Instalação do painel concluída, reiniciando…\n"
             touch ./logs/painel_instalado
             exit
             exit
