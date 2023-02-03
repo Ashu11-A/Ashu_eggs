@@ -16,7 +16,7 @@ echo "🟢  Iniciando PHP-FPM..."
 echo "🟢  Iniciando Nginx..."
 nohup /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/ >/dev/null 2>&1 &
 echo "🟢  Iniciando worker do painel"
-nohup php /home/container/painel/artisan queue:work --queue=high,standard,low --daemon --sleep=3 --tries=3 >/dev/null 2>&1 &
+nohup php /home/container/painel/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3 >/dev/null 2>&1 &
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
     MGM="na porta ${SERVER_PORT}"
 else
