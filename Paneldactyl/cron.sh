@@ -5,7 +5,7 @@ do
   sleep 60
 done
 if [ "${PANEL}" = "Jexactyl" ] || [ "${PANEL}" = "Jexactyl Brasil" ]; then
-    HORA_CERTA='1200'
+    HORA_CERTA='0000'
 
     while :
     do
