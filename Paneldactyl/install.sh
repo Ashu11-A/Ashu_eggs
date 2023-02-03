@@ -44,13 +44,12 @@ if [[ -f "./logs/instalado" ]]; then
                 php artisan p:environment:setup
                 ;;
             *)
-                printf "\n \n⚙️  Executando: php artisan p:environment:database\n \n"
-                ;;
             esac
         fi
         if [[ -f "../logs/panel_database_instalado" ]]; then
             echo "| Database | 🟢  Configurado                  |"
         else
+            printf "\n \n⚙️  Executando: php artisan p:environment:database\n \n"
             php artisan p:environment:database
             touch ../logs/panel_database_instalado
             printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
@@ -76,13 +75,12 @@ if [[ -f "./logs/instalado" ]]; then
                 php artisan migrate --seed --force
                 ;;
             *)
-                printf "\n \n⚙️  Executando: php artisan p:user:make\n \n"
-                ;;
             esac
         fi
         if [[ -f "../logs/panel_user_instalado" ]]; then
             echo "| Usuário  | 🟢  Criado                       |"
         else
+            printf "\n \n⚙️  Executando: php artisan p:user:make\n \n"
             php artisan p:user:make
             touch ../logs/panel_user_instalado
             printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
@@ -92,16 +90,15 @@ if [[ -f "./logs/instalado" ]]; then
                 php artisan p:user:make
                 ;;
             *)
-                printf "\n \n⚙️  Executando: Atribuição de permissões\n \n"
-                ;;
             esac
         fi
-        cd ..
-        fakeroot chown -R nginx:nginx /home/container/painel/*
         if [[ -f "./logs/panel_instalado" ]]; then
             echo "+----------+---------------------------------+"
             printf "\n \n📑  Verificação Concluída...\n \n"
         else
+            printf "\n \n⚙️  Executando: Atribuição de permissões\n \n"
+            cd ..
+            fakeroot chown -R nginx:nginx /home/container/painel/*
             printf "\n \n⚙️  Instalação do painel concluída\n \n"
             touch ./logs/panel_instalado
         fi
