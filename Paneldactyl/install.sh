@@ -26,137 +26,137 @@ if [[ -f "./logs/instalado" ]]; then
 "
             composer install --no-interaction --no-dev --optimize-autoloader
             touch ../logs/composer_instalado
-            if [[ -f "../logs/key_generate_instalado" ]]; then
-                echo "
+        fi
+        if [[ -f "../logs/key_generate_instalado" ]]; then
+            echo "
     
 🔐  Key já foi gerada! pulando a geração de nova key... por que isso pode afetar a conexão do database
     
 "
-            else
-                echo "
+        else
+            echo "
         
 ⚙️  Executando: php artisan key:generate --force
        
 "
-                php artisan key:generate --force
-                touch ../logs/key_generate_instalado
-            fi
+            php artisan key:generate --force
+            touch ../logs/key_generate_instalado
+        fi
 
-            if [[ -f "../logs/environment_setup_instalado" ]]; then
-                echo "🟢  environment:setup configurado"
-            else
-                echo "
+        if [[ -f "../logs/environment_setup_instalado" ]]; then
+            echo "🟢  environment:setup configurado"
+        else
+            echo "
     
 ⚙️  Executando: php artisan p:environment:setup
       
 "
-                php artisan p:environment:setup
-                touch ../logs/environment_setup_instalado
-                echo "
+            php artisan p:environment:setup
+            touch ../logs/environment_setup_instalado
+            echo "
 
 📌  Executar o comando anterior novamente? [y/N]
 
 "
-                read -r response
-                case "$response" in
-                [yY][eE][sS] | [yY])
-                    php artisan p:environment:setup
-                    ;;
-                *)
-                    echo "
+            read -r response
+            case "$response" in
+            [yY][eE][sS] | [yY])
+                php artisan p:environment:setup
+                ;;
+            *)
+                echo "
     
 ⚙️  Executando: php artisan p:environment:database
       
 "
-                    ;;
-                esac
-            fi
-            if [[ -f "../logs/environment_database_instalado" ]]; then
-                echo "🟢  environment:database configurado"
-            else
-                php artisan p:environment:database
-                touch ../logs/environment_database_instalado
-                echo "
+                ;;
+            esac
+        fi
+        if [[ -f "../logs/environment_database_instalado" ]]; then
+            echo "🟢  environment:database configurado"
+        else
+            php artisan p:environment:database
+            touch ../logs/environment_database_instalado
+            echo "
     
 📌  Executar o comando anterior novamente? [y/N]
     
 "
-                read -r response
-                case "$response" in
-                [yY][eE][sS] | [yY])
-                    php artisan p:environment:database
-                    ;;
-                *)
-                    echo "
+            read -r response
+            case "$response" in
+            [yY][eE][sS] | [yY])
+                php artisan p:environment:database
+                ;;
+            *)
+                echo "
     
 ⚙️  Executando: php artisan migrate --seed --force
       
 "
-                    ;;
-                esac
-            fi
-            if [[ -f "../logs/database_migrate_instalado" ]]; then
-                echo "🟢  Migração do Database já concluído"
-            else
-                php artisan migrate --seed --force
-                touch ../logs/database_migrate_instalado
-                echo "
+                ;;
+            esac
+        fi
+        if [[ -f "../logs/database_migrate_instalado" ]]; then
+            echo "🟢  Migração do Database já concluído"
+        else
+            php artisan migrate --seed --force
+            touch ../logs/database_migrate_instalado
+            echo "
     
 📌  Executar o comando anterior novamente? [y/N]
     
 "
-                read -r response
-                case "$response" in
-                [yY][eE][sS] | [yY])
-                    php artisan migrate --seed --force
-                    ;;
-                *)
-                    echo "
+            read -r response
+            case "$response" in
+            [yY][eE][sS] | [yY])
+                php artisan migrate --seed --force
+                ;;
+            *)
+                echo "
     
 ⚙️  Executando: php artisan p:user:make
    
 "
-                    ;;
-                esac
-            fi
-            if [[ -f "../logs/user_instalado" ]]; then
-                echo "🟢  usuário já criado"
-            else
-                php artisan p:user:make
-                touch ../logs/user_instalado
-                echo "
+                ;;
+            esac
+        fi
+        if [[ -f "../logs/user_instalado" ]]; then
+            echo "🟢  usuário já criado"
+        else
+            php artisan p:user:make
+            touch ../logs/user_instalado
+            echo "
 
 📌  Executar o comando anterior novamente? [y/N]
     
 "
-                read -r response
-                case "$response" in
-                [yY][eE][sS] | [yY])
-                    php artisan p:user:make
-                    ;;
-                *)
-                    echo "
+            read -r response
+            case "$response" in
+            [yY][eE][sS] | [yY])
+                php artisan p:user:make
+                ;;
+            *)
+                echo "
     
 ⚙️  Executando: Atribuição de permissões
     
 "
-                    ;;
-                esac
-            fi
-            cd ..
-            fakeroot chown -R nginx:nginx /home/container/painel/*
-            if [[ -f "./logs/painel_instalado" ]]; then
-                echo "🟢  verificação concluída"
-            else
-                echo "
+                ;;
+            esac
+        fi
+        cd ..
+        fakeroot chown -R nginx:nginx /home/container/painel/*
+        if [[ -f "./logs/painel_instalado" ]]; then
+            echo "🟢  verificação concluída"
+        else
+            echo "
     
 ⚙️  Instalação do painel concluída, reiniciando…
    
 "
-                touch ./logs/painel_instalado
-                exit
-                exit
-            fi
+            touch ./logs/painel_instalado
+            exit
+            exit
         fi
     fi
     if [[ -f "./logs/painel_instalado" ]]; then
