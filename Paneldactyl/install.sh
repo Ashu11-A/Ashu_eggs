@@ -239,7 +239,7 @@ EOF
     echo "**** Limpando ****"
     rm -rf /tmp/*
     echo "**** configure php and nginx for panels ****" &&
-        echo "extension="smbclient.so"" >php-fpm/conf.d/00_smbclient.ini &&
+        echo "extension=\"smbclient.so\"" >php-fpm/conf.d/00_smbclient.ini &&
         echo 'apc.enable_cli=1' >>php-fpm/conf.d/apcu.ini &&
         sed -i \
             -e 's/;opcache.enable.*=.*/opcache.enable=1/g' \
