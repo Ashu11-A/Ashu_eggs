@@ -2,7 +2,7 @@
 if [[ -f "./Frps/frps" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Frp/start.sh)
 else
-
+    mkdir -p /mnt/server
     cd /mnt/server || exit
 
     GITHUB_PACKAGE=fatedier/frp
