@@ -95,14 +95,14 @@ if [[ -f "./logs/instalado" ]]; then
         fi
         cd ..
         fakeroot chown -R nginx:nginx /home/container/painel/*
-        if [[ -f "./logs/painel_instalado" ]]; then
+        if [[ -f "./logs/panel_instalado" ]]; then
             printf "\n \n📑  Verificação Concluída...\n \n"
         else
             printf "\n \n⚙️  Instalação do painel concluída\n \n"
-            touch ./logs/painel_instalado
+            touch ./logs/panel_instalado
         fi
     fi
-    if [[ -f "./logs/painel_instalado" ]]; then
+    if [[ -f "./logs/panel_instalado" ]]; then
         bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/launch.sh)
     fi
 else
