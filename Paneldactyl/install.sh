@@ -92,12 +92,12 @@ if [[ -f "./logs/instalado" ]]; then
             *)
             esac
         fi
+        cd ..
         if [[ -f "./logs/panel_instalado" ]]; then
             echo "+----------+---------------------------------+"
             printf "\n \n📑  Verificação Concluída...\n \n"
         else
             printf "\n \n⚙️  Executando: Atribuição de permissões\n \n"
-            cd ..
             fakeroot chown -R nginx:nginx /home/container/painel/*
             printf "\n \n⚙️  Instalação do painel concluída\n \n"
             touch ./logs/panel_instalado
