@@ -13,27 +13,27 @@ if [[ -f "./logs/instalado" ]]; then
             printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
             cp .env.example .env
         fi
-        if [[ -f "../logs/composer_instalado" ]]; then
+        if [[ -f "../logs/panel_composer_instalado" ]]; then
             echo "🟢  Composer Instalado"
         else
             printf "\n \n⚙️  Executando: composer install --no-interaction --no-dev --optimize-autoloader\n \n"
             composer install --no-interaction --no-dev --optimize-autoloader
-            touch ../logs/composer_instalado
+            touch ../logs/panel_composer_instalado
         fi
-        if [[ -f "../logs/key_generate_instalado" ]]; then
+        if [[ -f "../logs/panel_key_generate_instalado" ]]; then
             echo "🟢  Key Gerada"
         else
             printf "\n \n⚙️  Executando: php artisan key:generate --force\n \n"
             php artisan key:generate --force
-            touch ../logs/key_generate_instalado
+            touch ../logs/panel_key_generate_instalado
         fi
 
-        if [[ -f "../logs/environment_setup_instalado" ]]; then
-            echo "🟢  environment:setup Configurado"
+        if [[ -f "../logs/panel_setup_instalado" ]]; then
+            echo "🟢  Setup Configurado"
         else
             printf "\n \n⚙️  Executando: php artisan p:environment:setup\n \n"
             php artisan p:environment:setup
-            touch ../logs/environment_setup_instalado
+            touch ../logs/panel_setup_instalado
             printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
             read -r response
             case "$response" in
@@ -45,11 +45,11 @@ if [[ -f "./logs/instalado" ]]; then
                 ;;
             esac
         fi
-        if [[ -f "../logs/environment_database_instalado" ]]; then
-            echo "🟢  environment:database Configurado"
+        if [[ -f "../logs/panel_database_instalado" ]]; then
+            echo "🟢  Database Configurado"
         else
             php artisan p:environment:database
-            touch ../logs/environment_database_instalado
+            touch ../logs/panel_database_instalado
             printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
             read -r response
             case "$response" in
@@ -61,11 +61,11 @@ if [[ -f "./logs/instalado" ]]; then
                 ;;
             esac
         fi
-        if [[ -f "../logs/database_migrate_instalado" ]]; then
+        if [[ -f "../logs/panel_database_migrate_instalado" ]]; then
             echo "🟢  Migração do Database Feito"
         else
             php artisan migrate --seed --force
-            touch ../logs/database_migrate_instalado
+            touch ../logs/panel_database_migrate_instalado
             printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
             read -r response
             case "$response" in
@@ -77,11 +77,11 @@ if [[ -f "./logs/instalado" ]]; then
                 ;;
             esac
         fi
-        if [[ -f "../logs/user_instalado" ]]; then
+        if [[ -f "../logs/panel_user_instalado" ]]; then
             echo "🟢  Usuário Criado"
         else
             php artisan p:user:make
-            touch ../logs/user_instalado
+            touch ../logs/panel_user_instalado
             printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
             read -r response
             case "$response" in
@@ -96,11 +96,10 @@ if [[ -f "./logs/instalado" ]]; then
         cd ..
         fakeroot chown -R nginx:nginx /home/container/painel/*
         if [[ -f "./logs/painel_instalado" ]]; then
-            echo "📑  Verificação Concluída"
+            printf "\n \n📑  Verificação Concluída...\n \n"
         else
-            printf "\n \n⚙️  Instalação do painel concluída, reiniciando…\n \n"
+            printf "\n \n⚙️  Instalação do painel concluída\n \n"
             touch ./logs/painel_instalado
-            exit
         fi
     fi
     if [[ -f "./logs/painel_instalado" ]]; then
