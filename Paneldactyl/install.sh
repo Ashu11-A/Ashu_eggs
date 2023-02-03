@@ -147,9 +147,6 @@ else
         fi
     fi
 
-    echo "✓ Atualizando o script install.sh"
-    curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/install.sh -o install.sh
-
     git clone https://github.com/Ashu11-A/nginx ./temp
     cp -r ./temp/nginx /mnt/server/
     cp -r ./temp/php-fpm /mnt/server/
