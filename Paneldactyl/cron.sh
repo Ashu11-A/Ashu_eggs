@@ -14,4 +14,3 @@ if [ "${PANEL}" = "Jexactyl" ] || [ "${PANEL}" = "Jexactyl Brasil" ]; then
     sleep 60 # espera um minuto pra tentar verificar novamente
     done
 fi
- 
