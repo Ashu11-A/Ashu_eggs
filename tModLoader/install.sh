@@ -27,9 +27,9 @@ else
     apt install -y p7zip-full wget file curl
 
     mkdir -p /mnt/server
-    cd /mnt/server
+    cd /mnt/server || exit
     ## download release
-    if [ "-f tModLoaderServer" ]; then
+    if [ -f "tModLoaderServer" ]; then
         echo -e "Movendo arquivos antigos para tModLoader_OLD"
         mkdir tModLoader_OLD
         mv ./* tModLoader_OLD
@@ -38,11 +38,11 @@ else
     fi
     mkdir Mods
     echo -e "Executando 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
-    curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}
+    curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
     echo -e "Descompactando Arquivos"
-    unzip -o ${DOWNLOAD_LINK##*/}
+    unzip -o "${DOWNLOAD_LINK##*/}"
     echo -e "Limpando arquivos inúteis..."
-    rm -rf ${DOWNLOAD_LINK##*/}
+    rm -rf "${DOWNLOAD_LINK##*/}"
     echo "Removendo Steamworks.NET.dll antigo e com falhas"
     rm -rf Libraries/steamworks.net/20.1.0/lib/netstandard2.1/Steamworks.NET.dll
     #cd Libraries/steamworks.net/20.1.0/lib/netstandard2.1/
@@ -59,7 +59,7 @@ else
     echo -e "Limpando arquivos extras."
     rm -rf /mnt/server/.local/share/Terraria/ModLoader/Mods
     rm -rf terraria-server-*.zip
-    rm ${DOWNLOAD_LINK##*/}
+    rm "${DOWNLOAD_LINK##*/}"
     rm -rf DedicatedServerUtils LaunchUtils PlatformVariantLibs tModPorter RecentGitHubCommits.txt *.bat *.sh serverconfig.txt
     echo -e "Gerando arquivo de configuração"
     touch ./Mods/enabled.json
