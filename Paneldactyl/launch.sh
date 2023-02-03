@@ -1,6 +1,6 @@
 #!/bin/bash
 rm -rf /home/container/tmp/*
-printf "\n \n
+printf "
  ______                        _      _                             _ 
 (_____ \                      | |    | |               _           | |
  _____) )  ____  ____    ____ | |  _ | |  ____   ____ | |_   _   _ | |
@@ -8,7 +8,7 @@ printf "\n \n
 | |      ( ( | || | | |( (/ / | |( (_| |( ( | |( (___ | |__ | |_| || |
 |_|       \_||_||_| |_| \____)|_| \____| \_||_| \____) \___) \__  ||_|
                                                             (____/    
-\n \n"
+"
 echo "⚙️ Versão do Script: 1.1"
 echo "🛠 Iniciando PHP-FPM..."
 /usr/sbin/php-fpm81 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
