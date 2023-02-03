@@ -103,7 +103,7 @@ if [[ -f "./logs/instalado" ]]; then
         fi
     fi
     if [[ -f "./logs/painel_instalado" ]]; then
-        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/start.sh)
+        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/launch.sh)
     fi
 else
     cd /mnt/server/ || exit
