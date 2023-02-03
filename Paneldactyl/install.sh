@@ -5,6 +5,7 @@ if [[ -f "./logs/instalado" ]]; then
         php "${COMMANDO_OCC}"
         exit
     else
+        printf "\n \n📄  Verificando Instalação...\n \n"
         cd painel || exit
         if [[ -f ".env" ]]; then
             echo "🟢  .env Configurado"
@@ -61,7 +62,7 @@ if [[ -f "./logs/instalado" ]]; then
             esac
         fi
         if [[ -f "../logs/database_migrate_instalado" ]]; then
-            echo "🟢  Migração do Database Concluído"
+            echo "🟢  Migração do Database Feito"
         else
             php artisan migrate --seed --force
             touch ../logs/database_migrate_instalado
@@ -95,11 +96,10 @@ if [[ -f "./logs/instalado" ]]; then
         cd ..
         fakeroot chown -R nginx:nginx /home/container/painel/*
         if [[ -f "./logs/painel_instalado" ]]; then
-            echo "🟢  Verificação Concluída"
+            echo "📑  Verificação Concluída"
         else
             printf "\n \n⚙️  Instalação do painel concluída, reiniciando…\n \n"
             touch ./logs/painel_instalado
-            exit
             exit
         fi
     fi
