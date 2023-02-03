@@ -1,3 +1,4 @@
+#!/bin/bash
 ARCH=$([ "$(uname -m)" == "x86_64" ] && echo "amd64" || echo "arm64")
 
 if [ "${ARCH}" == "arm64" ];
