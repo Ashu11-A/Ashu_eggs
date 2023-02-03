@@ -5,15 +5,15 @@ else
 
     mkdir -p /mnt/server
     cd /mnt/server || exit
-    DOWNLOAD_LINK=$(https://repo.jellyfin.org/releases/server/portable/versions/stable/combined/${VERSION}/jellyfin_${VERSION}.tar.gz)
+    DOWNLOAD_LINK=$(echo https://repo.jellyfin.org/releases/server/portable/versions/stable/combined/${VERSION}/jellyfin_${VERSION}.tar.gz)
     cat <<EOF > .log.txt
 Versão: ${VERSION}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}
 EOF
     rm -rf ./*
-    curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
-    tar -vzxf "${DOWNLOAD_LINK##*/}"
+    curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}
+    tar -vzxf ${DOWNLOAD_LINK##*/}
     mkdir jellyfin
     mv jellyfin_${VERSION}/* ./jellyfin/
     mkdir .config
@@ -45,7 +45,7 @@ EOF
 <KnownProxies />
 </NetworkConfiguration>
 EOF
-    rm -rf "${DOWNLOAD_LINK##*/}"
-    rm -rf jellyfin_"${VERSION}"
+    rm -rf ${DOWNLOAD_LINK##*/}
+    rm -rf jellyfin_${VERSION}
     echo "user_allow_other" >> /etc/fuse.conf
 fi
