@@ -16,6 +16,6 @@ echo "🟢  Iniciando PHP-FPM..."
 echo "🟢  Iniciando Nginx..."
 touch ./nohup.out
 nohup /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/ &
-echo "🟢 Iniciando worker do painel"
+echo "🟢  Iniciando worker do painel"
 nohup php /home/container/painel/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3 &
-echo "🟢 Inicializado com sucesso"
+echo "🟢  Inicializado com sucesso"
