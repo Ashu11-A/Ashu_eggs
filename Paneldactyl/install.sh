@@ -154,7 +154,8 @@ if [[ -f "./logs/instalado" ]]; then
    
 "
                 touch ./logs/painel_instalado
-                exit 1
+                exit
+                exit
             fi
         fi
     fi
@@ -190,16 +191,16 @@ else
 
     if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
         echo -e "Baixando a versão mais recente por causa de um erro"
-        DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i $FILE)
+        DOWNLOAD_LINK=$(echo "$LATEST_JSON" | jq .assets | jq -r .[].browser_download_url | grep -i "$FILE")
     else
-        VERSION_CHECK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .tag_name')
+        VERSION_CHECK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .tag_name')
         if [ "$VERSION" == "$VERSION_CHECK" ]; then
             if [[ "$VERSION" == v* ]]; then
-                DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i $FILE)
+                DOWNLOAD_LINK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i "$FILE")
             fi
         else
             echo -e "Baixando a versão mais recente por causa de um erro"
-            DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i $FILE)
+            DOWNLOAD_LINK=$(echo "$LATEST_JSON" | jq .assets | jq -r .[].browser_download_url | grep -i "$FILE")
         fi
     fi
 
