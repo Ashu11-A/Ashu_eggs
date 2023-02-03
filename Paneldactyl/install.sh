@@ -7,23 +7,22 @@ if [[ -f "./logs/instalado" ]]; then
     else
         cd painel || exit
         if [[ -f ".env" ]]; then
-            printf "\n⚙️  Apenas um test\n"
             echo "🟢  .env Configurado"
         else
-            printf "\n⚙️  Executando: cp .env.example .env\n"
+            printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
             cp .env.example .env
         fi
         if [[ -f "../logs/composer_instalado" ]]; then
             echo "🟢  Composer Instalado"
         else
-            printf "\n⚙️  Executando: composer install --no-interaction --no-dev --optimize-autoloader\n"
+            printf "\n \n⚙️  Executando: composer install --no-interaction --no-dev --optimize-autoloader\n \n"
             composer install --no-interaction --no-dev --optimize-autoloader
             touch ../logs/composer_instalado
         fi
         if [[ -f "../logs/key_generate_instalado" ]]; then
             echo "🟢  Key Gerada"
         else
-            printf "\n⚙️  Executando: php artisan key:generate --force\n"
+            printf "\n \n⚙️  Executando: php artisan key:generate --force\n \n"
             php artisan key:generate --force
             touch ../logs/key_generate_instalado
         fi
@@ -31,21 +30,17 @@ if [[ -f "./logs/instalado" ]]; then
         if [[ -f "../logs/environment_setup_instalado" ]]; then
             echo "🟢  environment:setup Configurado"
         else
-            printf "\n⚙️  Executando: php artisan p:environment:setup\n"
+            printf "\n \n⚙️  Executando: php artisan p:environment:setup\n \n"
             php artisan p:environment:setup
             touch ../logs/environment_setup_instalado
-            echo "
-
-📌  Executar o comando anterior novamente? [y/N]
-
-"
+            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
             read -r response
             case "$response" in
             [yY][eE][sS] | [yY])
                 php artisan p:environment:setup
                 ;;
             *)
-                printf "\n⚙️  Executando: php artisan p:environment:database\n"
+                printf "\n \n⚙️  Executando: php artisan p:environment:database\n \n"
                 ;;
             esac
         fi
@@ -54,18 +49,14 @@ if [[ -f "./logs/instalado" ]]; then
         else
             php artisan p:environment:database
             touch ../logs/environment_database_instalado
-            echo "
-    
-📌  Executar o comando anterior novamente? [y/N]
-    
-"
+            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
             read -r response
             case "$response" in
             [yY][eE][sS] | [yY])
                 php artisan p:environment:database
                 ;;
             *)
-                printf "\n⚙️  Executando: php artisan migrate --seed --force\n"
+                printf "\n \n⚙️  Executando: php artisan migrate --seed --force\n \n"
                 ;;
             esac
         fi
@@ -74,18 +65,14 @@ if [[ -f "./logs/instalado" ]]; then
         else
             php artisan migrate --seed --force
             touch ../logs/database_migrate_instalado
-            echo "
-    
-📌  Executar o comando anterior novamente? [y/N]
-    
-"
+            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
             read -r response
             case "$response" in
             [yY][eE][sS] | [yY])
                 php artisan migrate --seed --force
                 ;;
             *)
-                printf "\n⚙️  Executando: php artisan p:user:make\n"
+                printf "\n \n⚙️  Executando: php artisan p:user:make\n \n"
                 ;;
             esac
         fi
@@ -94,22 +81,14 @@ if [[ -f "./logs/instalado" ]]; then
         else
             php artisan p:user:make
             touch ../logs/user_instalado
-            echo "
-
-📌  Executar o comando anterior novamente? [y/N]
-    
-"
+            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
             read -r response
             case "$response" in
             [yY][eE][sS] | [yY])
                 php artisan p:user:make
                 ;;
             *)
-                echo "
-    
-⚙️  Executando: Atribuição de permissões
-    
-"
+                printf "\n \n⚙️  Executando: Atribuição de permissões\n \n"
                 ;;
             esac
         fi
@@ -118,7 +97,7 @@ if [[ -f "./logs/instalado" ]]; then
         if [[ -f "./logs/painel_instalado" ]]; then
             echo "🟢  Verificação Concluída"
         else
-            printf "\n⚙️  Instalação do painel concluída, reiniciando…\n"
+            printf "\n \n⚙️  Instalação do painel concluída, reiniciando…\n \n"
             touch ./logs/painel_instalado
             exit
             exit
