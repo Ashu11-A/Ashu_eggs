@@ -8,20 +8,23 @@ if [[ -f "./logs/instalado" ]]; then
         printf "\n \n📄  Verificando Instalação...\n \n"
         cd painel || exit
         if [[ -f ".env" ]]; then
-            echo "🟢  .env Configurado"
+            echo "+----------+---------------------------------+"
+            echo "| Tarefa   | Status                          |"
+            echo "+----------+---------------------------------+"
+            echo "| Env      | 🟢  Configurado.                |"
         else
             printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
             cp .env.example .env
         fi
         if [[ -f "../logs/panel_composer_instalado" ]]; then
-            echo "🟢  Composer Instalado"
+            echo "| Composer | 🟢  Instalado.                  |"
         else
             printf "\n \n⚙️  Executando: composer install --no-interaction --no-dev --optimize-autoloader\n \n"
             composer install --no-interaction --no-dev --optimize-autoloader
             touch ../logs/panel_composer_instalado
         fi
         if [[ -f "../logs/panel_key_generate_instalado" ]]; then
-            echo "🟢  Key Gerada"
+            echo "| Key      | 🟢  Gerada.                     |"
         else
             printf "\n \n⚙️  Executando: php artisan key:generate --force\n \n"
             php artisan key:generate --force
@@ -29,7 +32,7 @@ if [[ -f "./logs/instalado" ]]; then
         fi
 
         if [[ -f "../logs/panel_setup_instalado" ]]; then
-            echo "🟢  Setup Configurado"
+            echo "| Setup    | 🟢  Configurado.                |"
         else
             printf "\n \n⚙️  Executando: php artisan p:environment:setup\n \n"
             php artisan p:environment:setup
@@ -46,7 +49,7 @@ if [[ -f "./logs/instalado" ]]; then
             esac
         fi
         if [[ -f "../logs/panel_database_instalado" ]]; then
-            echo "🟢  Database Configurado"
+            echo "| Database | 🟢  Configurado.                |"
         else
             php artisan p:environment:database
             touch ../logs/panel_database_instalado
@@ -62,7 +65,7 @@ if [[ -f "./logs/instalado" ]]; then
             esac
         fi
         if [[ -f "../logs/panel_database_migrate_instalado" ]]; then
-            echo "🟢  Migração do Database Feito"
+            echo "| Migração | 🟢  Concluído.                  |"
         else
             php artisan migrate --seed --force
             touch ../logs/panel_database_migrate_instalado
@@ -78,7 +81,7 @@ if [[ -f "./logs/instalado" ]]; then
             esac
         fi
         if [[ -f "../logs/panel_user_instalado" ]]; then
-            echo "🟢  Usuário Criado"
+            echo "| Usuário  | 🟢  Criado.                     |"
         else
             php artisan p:user:make
             touch ../logs/panel_user_instalado
@@ -96,6 +99,7 @@ if [[ -f "./logs/instalado" ]]; then
         cd ..
         fakeroot chown -R nginx:nginx /home/container/painel/*
         if [[ -f "./logs/panel_instalado" ]]; then
+            echo "+----------+---------------------------------+"
             printf "\n \n📑  Verificação Concluída...\n \n"
         else
             printf "\n \n⚙️  Instalação do painel concluída\n \n"
