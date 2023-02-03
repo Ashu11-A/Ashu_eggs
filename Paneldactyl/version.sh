@@ -3,12 +3,12 @@ version_egg="1.0"
 version_script="1.4"
 echo "⚙️  Versão do Script: ${version_script}"
 if [[ -f "./libraries/version" ]]; then
-    versions=" $(cat ./libraries/version) " 
-    comm1=$( printf '%s\n' "$versions" | tr -d '.' )
-    comm2=$( printf '%s\n' "${version_egg}" | tr -d '.' )
+    versions=" $(cat ./libraries/version) "
+    comm1=$(printf '%s\n' "$versions" | tr -d '.')
+    comm2=$(printf '%s\n' "${version_egg}" | tr -d '.')
     if [[ -f "./libraries/version_system" ]]; then
         if [ "${ATZ_SYSTEM}" = "1" ]; then
-            if [ "${comm1}" -ge "${comm2}"  ]; then
+            if [ "${comm1}" -ge "${comm2}" ]; then
                 echo "✅  Egg Atualizado."
             else
                 echo "
