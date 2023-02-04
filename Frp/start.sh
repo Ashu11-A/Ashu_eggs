@@ -6,13 +6,13 @@ else
 fi
 
 if [ "${FRP_MODE}" == "1" ]; then
-    echo "⚙️ Versão do Script: 1.8"
-    echo "👀 Saiba Mais: https://github.com/fatedier/frp"
-    echo "✅ Iniciando Frps"
+    echo "⚙️  Versão do Script: 1.9"
+    echo "👀  Saiba Mais: https://github.com/fatedier/frp"
+    echo "✅  Iniciando Frps"
     ./Frps/frps -c ./Frps/frps.ini
 else
-    echo "⚙️ Versão do Script: 1.8"
-    echo "👀 Saiba Mais: https://github.com/fatedier/frp"
-    echo "✅ Iniciando Frpc"
+    echo "⚙️  Versão do Script: 1.9"
+    echo "👀  Saiba Mais: https://github.com/fatedier/frp"
+    echo "✅  Iniciando Frpc"
     ./Frpc/frpc -c ./Frpc/frpc.ini
 fi
