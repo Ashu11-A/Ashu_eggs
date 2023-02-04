@@ -1,8 +1,6 @@
 #!/bin/bash
 if [ "${INSTALL_EX}" == "1" ]; then
     cp -f ./Frpc/frpc.ini ./Exemplo_Frpc_Windows64/frpc.ini
-else
-    echo""
 fi
 
 if [ "${FRP_MODE}" == "1" ]; then
