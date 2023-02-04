@@ -13,6 +13,7 @@ Some of them work on ARM and also ARM form Oracle Free Tier
 | VPS | [VPS-Egg.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/VPS-Egg.json) | ✅ | ❌ | ❌ | Root com Proot
 | ServerJars | [egg-ServerJars.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-ServerJars.json) | ✅ | ✅ | ✅ |
 | Stress | [Egg-Stress.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Egg-Stress.json) | ✅ | ✅ | ✅ |
+| MTA | [egg-m-t-a.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-m-t-a.json) | ✅ | ❌ | ❌ |
 
 
 *Right click and click save  
