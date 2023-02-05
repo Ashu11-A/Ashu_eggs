@@ -44,8 +44,7 @@ Git_file: ${FILE}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}
 EOF
-    printf "\n| Painel   | 🟡 Baixando Painel               |"
-    echo "**** Fazendo o download do painel ****"
+    printf "\n| Painel   | 🟡 Baixando Painel               |\n"
     echo -e "running 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
     curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
     mkdir painel
@@ -57,6 +56,17 @@ EOF
     fakeroot chmod -R 755 storage/* bootstrap/cache/
     fakeroot chown -R nginx:nginx /home/container/painel/*
     cd ..
+    if [ -f "logs/panel_database_instalado" ]; then
+        printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
+        printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
+        read -r response
+        case "$response" in
+        [yY][eE][sS] | [yY])
+            rm -rf logs/panel*
+            ;;
+        *)
+        esac
+    fi
 fi
 git clone --quiet https://github.com/Ashu11-A/nginx ./temp
 if [ -f "/home/container/nginx/nginx.conf" ]; then
