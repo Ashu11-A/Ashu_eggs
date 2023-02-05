@@ -107,8 +107,6 @@ else
     echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >>php-fpm/php-fpm.conf
 fi
 cp -r ./temp/logs ./
-rm -rf /tmp/*
-rm -rf ./temp
 if [ "${OCC}" == "1" ]; then
     cd painel || exit
     php "${COMMANDO_OCC}"
@@ -208,6 +206,24 @@ else
         touch ./logs/panel_instalado
     fi
 fi
+
+#Executando Limpeza
+if [ -d "tmp" ]; then
+    rm -rf tmp/*
+fi
+if [ -d "temp" ]; then
+    rm -rf temp
+fi
+if [ -d ".composer" ]; then
+    rm -rf .composer
+fi
+if [ -d ".yarn" ]; then
+    rm -rf .yarn
+fi
+if [ -d ".cache" ]; then
+    rm -rf .cache
+fi
+
 if [[ -f "./logs/panel_instalado" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/version.sh)
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/launch.sh)
