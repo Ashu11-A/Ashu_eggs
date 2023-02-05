@@ -66,7 +66,9 @@ else
     cp -r ./temp/nginx ./
     rm nginx/conf.d/default.conf
     curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/default.conf -o ./nginx/conf.d/default.conf
-    exit
+    sed -i \
+        -e "s/listen.*/listen ${SERVER_PORT};/g" \
+    nginx/conf.d/default.conf
 fi
 if [ -d "/home/container/php-fpm" ]; then
  printf "\n| PHP-FPM  | 🟢  Instalado                    |\n+----------+---------------------------------+\n"
