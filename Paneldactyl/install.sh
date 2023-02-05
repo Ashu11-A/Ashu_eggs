@@ -50,7 +50,6 @@ Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}
 EOF
     printf "\n| Painel   | 🟡 Baixando Painel               |\n"
-    echo -e "running 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
     curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
     mkdir painel
     mv "${DOWNLOAD_LINK##*/}" painel
@@ -227,6 +226,9 @@ if [ -d ".yarn" ]; then
 fi
 if [ -d ".cache" ]; then
     rm -rf .cache
+fi
+if [ -f ".yarnrc" ]; then
+    rm -rf .yarnrc
 fi
 
 if [[ -f "./logs/panel_instalado" ]]; then
