@@ -35,7 +35,7 @@ fi
 printf "\n \n📄  Verificando Instalação...\n \n"
 printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
 if [ -d "/home/container/painel" ]; then
-   printf "\n| Painel   | 🟢  Instalado                    |"
+    printf "\n| Painel   | 🟢  Instalado                    |"
 else
     cat <<EOF >./logs/log_install.txt
 Versão: ${VERSION}
@@ -60,7 +60,7 @@ EOF
 fi
 git clone --quiet https://github.com/Ashu11-A/nginx ./temp
 if [ -f "/home/container/nginx/nginx.conf" ]; then
- printf "\n| Nginx    | 🟢  Instalado                    |"
+    printf "\n| Nginx    | 🟢  Instalado                    |"
 else
     printf "\n| Nginx    | 🟡  Baixando Nginx...            |"
     cp -r ./temp/nginx ./
@@ -68,138 +68,137 @@ else
     curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/default.conf -o ./nginx/conf.d/default.conf
     sed -i \
         -e "s/listen.*/listen ${SERVER_PORT};/g" \
-    nginx/conf.d/default.conf
+        nginx/conf.d/default.conf
 fi
 if [ -d "/home/container/php-fpm" ]; then
- printf "\n| PHP-FPM  | 🟢  Instalado                    |\n+----------+---------------------------------+\n"
+    printf "\n| PHP-FPM  | 🟢  Instalado                    |\n+----------+---------------------------------+\n"
 else
     printf "\n| PHP-FPM  | 🟡  Baixando PHP-FPM...          |\n+----------+---------------------------------+\n"
     cp -r ./temp/php-fpm ./
-        echo "extension=\"smbclient.so\"" >php-fpm/conf.d/00_smbclient.ini
-        echo 'apc.enable_cli=1' >>php-fpm/conf.d/apcu.ini
-        sed -i \
-            -e 's/;opcache.enable.*=.*/opcache.enable=1/g' \
-            -e 's/;opcache.interned_strings_buffer.*=.*/opcache.interned_strings_buffer=16/g' \
-            -e 's/;opcache.max_accelerated_files.*=.*/opcache.max_accelerated_files=10000/g' \
-            -e 's/;opcache.memory_consumption.*=.*/opcache.memory_consumption=128/g' \
-            -e 's/;opcache.save_comments.*=.*/opcache.save_comments=1/g' \
-            -e 's/;opcache.revalidate_freq.*=.*/opcache.revalidate_freq=1/g' \
-            -e 's/;always_populate_raw_post_data.*=.*/always_populate_raw_post_data=-1/g' \
-            -e 's/memory_limit.*=.*128M/memory_limit=512M/g' \
-            -e 's/max_execution_time.*=.*30/max_execution_time=120/g' \
-            -e 's/upload_max_filesize.*=.*2M/upload_max_filesize=1024M/g' \
-            -e 's/post_max_size.*=.*8M/post_max_size=1024M/g' \
-            -e 's/output_buffering.*=.*/output_buffering=0/g' \
-            php-fpm/php.ini
-        sed -i \
-            '/opcache.enable=1/a opcache.enable_cli=1' \
-            php-fpm/php.ini
-        echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >>php-fpm/php-fpm.conf
+    echo "extension=\"smbclient.so\"" >php-fpm/conf.d/00_smbclient.ini
+    echo 'apc.enable_cli=1' >>php-fpm/conf.d/apcu.ini
+    sed -i \
+        -e 's/;opcache.enable.*=.*/opcache.enable=1/g' \
+        -e 's/;opcache.interned_strings_buffer.*=.*/opcache.interned_strings_buffer=16/g' \
+        -e 's/;opcache.max_accelerated_files.*=.*/opcache.max_accelerated_files=10000/g' \
+        -e 's/;opcache.memory_consumption.*=.*/opcache.memory_consumption=128/g' \
+        -e 's/;opcache.save_comments.*=.*/opcache.save_comments=1/g' \
+        -e 's/;opcache.revalidate_freq.*=.*/opcache.revalidate_freq=1/g' \
+        -e 's/;always_populate_raw_post_data.*=.*/always_populate_raw_post_data=-1/g' \
+        -e 's/memory_limit.*=.*128M/memory_limit=512M/g' \
+        -e 's/max_execution_time.*=.*30/max_execution_time=120/g' \
+        -e 's/upload_max_filesize.*=.*2M/upload_max_filesize=1024M/g' \
+        -e 's/post_max_size.*=.*8M/post_max_size=1024M/g' \
+        -e 's/output_buffering.*=.*/output_buffering=0/g' \
+        php-fpm/php.ini
+    sed -i \
+        '/opcache.enable=1/a opcache.enable_cli=1' \
+        php-fpm/php.ini
+    echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >>php-fpm/php-fpm.conf
 fi
 cp -r ./temp/logs ./
 rm -rf /tmp/*
 rm -rf ./temp
-    if [ "${OCC}" == "1" ]; then
-        cd painel || exit
-        php "${COMMANDO_OCC}"
-        exit
+if [ "${OCC}" == "1" ]; then
+    cd painel || exit
+    php "${COMMANDO_OCC}"
+    exit
+else
+    cd painel || exit
+    if [[ -f ".env" ]]; then
+        echo "| Env      | 🟢  Configurado                  |"
     else
-        cd painel || exit
-        if [[ -f ".env" ]]; then
-            echo "| Env      | 🟢  Configurado                  |"
-        else
-            printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
-            cp .env.example .env
-        fi
-        if [[ -f "../logs/panel_composer_instalado" ]]; then
-            echo "| Composer | 🟢  Instalado                    |"
-        else
-            printf "\n \n⚙️  Executando: composer install --no-interaction --no-dev --optimize-autoloader\n \n"
-            composer install --no-interaction --no-dev --optimize-autoloader
-            touch ../logs/panel_composer_instalado
-        fi
-        if [[ -f "../logs/panel_key_generate_instalado" ]]; then
-            echo "| Key      | 🟢  Gerada                       |"
-        else
-            printf "\n \n⚙️  Executando: php artisan key:generate --force\n \n"
-            php artisan key:generate --force
-            touch ../logs/panel_key_generate_instalado
-        fi
+        printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
+        cp .env.example .env
+    fi
+    if [[ -f "../logs/panel_composer_instalado" ]]; then
+        echo "| Composer | 🟢  Instalado                    |"
+    else
+        printf "\n \n⚙️  Executando: composer install --no-interaction --no-dev --optimize-autoloader\n \n"
+        composer install --no-interaction --no-dev --optimize-autoloader
+        touch ../logs/panel_composer_instalado
+    fi
+    if [[ -f "../logs/panel_key_generate_instalado" ]]; then
+        echo "| Key      | 🟢  Gerada                       |"
+    else
+        printf "\n \n⚙️  Executando: php artisan key:generate --force\n \n"
+        php artisan key:generate --force
+        touch ../logs/panel_key_generate_instalado
+    fi
 
-        if [[ -f "../logs/panel_setup_instalado" ]]; then
-            echo "| Setup    | 🟢  Configurado                  |"
-        else
-            printf "\n \n⚙️  Executando: php artisan p:environment:setup\n \n"
+    if [[ -f "../logs/panel_setup_instalado" ]]; then
+        echo "| Setup    | 🟢  Configurado                  |"
+    else
+        printf "\n \n⚙️  Executando: php artisan p:environment:setup\n \n"
+        php artisan p:environment:setup
+        touch ../logs/panel_setup_instalado
+        printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
+        read -r response
+        case "$response" in
+        [yY][eE][sS] | [yY])
             php artisan p:environment:setup
-            touch ../logs/panel_setup_instalado
-            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
-            read -r response
-            case "$response" in
-            [yY][eE][sS] | [yY])
-                php artisan p:environment:setup
-                ;;
-            *)
-            esac
-        fi
-        if [[ -f "../logs/panel_database_instalado" ]]; then
-            echo "| Database | 🟢  Configurado                  |"
-        else
-            printf "\n \n⚙️  Executando: php artisan p:environment:database\n \n"
+            ;;
+        *) ;;
+        esac
+    fi
+    if [[ -f "../logs/panel_database_instalado" ]]; then
+        echo "| Database | 🟢  Configurado                  |"
+    else
+        printf "\n \n⚙️  Executando: php artisan p:environment:database\n \n"
+        php artisan p:environment:database
+        touch ../logs/panel_database_instalado
+        printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
+        read -r response
+        case "$response" in
+        [yY][eE][sS] | [yY])
             php artisan p:environment:database
-            touch ../logs/panel_database_instalado
-            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
-            read -r response
-            case "$response" in
-            [yY][eE][sS] | [yY])
-                php artisan p:environment:database
-                ;;
-            *)
-                printf "\n \n⚙️  Executando: php artisan migrate --seed --force\n \n"
-                ;;
-            esac
-        fi
-        if [[ -f "../logs/panel_database_migrate_instalado" ]]; then
-            echo "| Migração | 🟢  Concluído                    |"
-        else
+            ;;
+        *)
+            printf "\n \n⚙️  Executando: php artisan migrate --seed --force\n \n"
+            ;;
+        esac
+    fi
+    if [[ -f "../logs/panel_database_migrate_instalado" ]]; then
+        echo "| Migração | 🟢  Concluído                    |"
+    else
+        php artisan migrate --seed --force
+        touch ../logs/panel_database_migrate_instalado
+        printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
+        read -r response
+        case "$response" in
+        [yY][eE][sS] | [yY])
             php artisan migrate --seed --force
-            touch ../logs/panel_database_migrate_instalado
-            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
-            read -r response
-            case "$response" in
-            [yY][eE][sS] | [yY])
-                php artisan migrate --seed --force
-                ;;
-            *)
-            esac
-        fi
-        if [[ -f "../logs/panel_user_instalado" ]]; then
-            echo "| Usuário  | 🟢  Criado                       |"
-        else
-            printf "\n \n⚙️  Executando: php artisan p:user:make\n \n"
+            ;;
+        *) ;;
+        esac
+    fi
+    if [[ -f "../logs/panel_user_instalado" ]]; then
+        echo "| Usuário  | 🟢  Criado                       |"
+    else
+        printf "\n \n⚙️  Executando: php artisan p:user:make\n \n"
+        php artisan p:user:make
+        touch ../logs/panel_user_instalado
+        printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
+        read -r response
+        case "$response" in
+        [yY][eE][sS] | [yY])
             php artisan p:user:make
-            touch ../logs/panel_user_instalado
-            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
-            read -r response
-            case "$response" in
-            [yY][eE][sS] | [yY])
-                php artisan p:user:make
-                ;;
-            *)
-            esac
-        fi
-        cd ..
-        if [[ -f "./logs/panel_instalado" ]]; then
-            echo "+----------+---------------------------------+"
-            printf "\n \n📑  Verificação do Painel Concluída...\n \n"
-        else
-            printf "\n \n⚙️  Executando: Atribuição de permissões\n \n"
-            fakeroot chown -R nginx:nginx /home/container/painel/*
-            printf "\n \n⚙️  Instalação do painel concluída\n \n"
-            touch ./logs/panel_instalado
-        fi
+            ;;
+        *) ;;
+        esac
     fi
+    cd ..
     if [[ -f "./logs/panel_instalado" ]]; then
-        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/version.sh)
-        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/launch.sh)
+        echo "+----------+---------------------------------+"
+        printf "\n \n📑  Verificação do Painel Concluída...\n \n"
+    else
+        printf "\n \n⚙️  Executando: Atribuição de permissões\n \n"
+        fakeroot chown -R nginx:nginx /home/container/painel/*
+        printf "\n \n⚙️  Instalação do painel concluída\n \n"
+        touch ./logs/panel_instalado
     fi
+fi
+if [[ -f "./logs/panel_instalado" ]]; then
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/version.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/launch.sh)
 fi
