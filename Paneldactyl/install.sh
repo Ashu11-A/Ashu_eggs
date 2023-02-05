@@ -1,9 +1,4 @@
 #!/bin/bash
-
-bold=$(echo -en "\e[1m")
-lightblue=$(echo -en "\e[94m")
-normal=$(echo -en "\e[0m")
-
 if [ -z "${PANEL}" ]; then
     GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
     FILE=panel.tar.gz
@@ -53,7 +48,7 @@ EOF
     curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
     mkdir painel
     mv "${DOWNLOAD_LINK##*/}" painel
-    cd painel
+    cd painel || exit
     echo -e "Unpacking server files"
     tar -xvzf "${DOWNLOAD_LINK##*/}"
     rm -rf "${DOWNLOAD_LINK##*/}"
