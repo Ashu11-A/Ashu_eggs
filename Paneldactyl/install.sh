@@ -1,17 +1,19 @@
 #!/bin/bash
-if [ -z "${PANEL}" ]; then
+if [ -z "${PANEL}" ]; then ## Caso a variavel ${PANEL} não existir por algum motivo desconhecido
     GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
     FILE=panel.tar.gz
 else
     if [ "${PANEL}" = "Pterodactyl" ]; then
         GITHUB_PACKAGE=pterodactyl/panel
         FILE=panel.tar.gz
-    fi
-    if [ "${PANEL}" = "Jexactyl" ]; then
+    elif [ "${PANEL}" = "Jexactyl" ]; then
         GITHUB_PACKAGE=Jexactyl/Jexactyl
         FILE=panel.tar.gz
-    fi
-    if [ "${PANEL}" = "Jexactyl Brasil" ]; then
+    elif [ "${PANEL}" = "Jexactyl Brasil" ]; then
+        GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
+        FILE=panel.tar.gz
+    elif [ "${PANEL}" != "Pterodactyl" ] && [ "${PANEL}" != "Jexactyl" ] && [ "${PANEL}" != "Jexactyl Brasil" ]; then ## Verifica se...
+        echo "Por algum motivo não foi possivel detectar o Painel que será instalado, instalando por padrão: Jexactyl Brasil"
         GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
         FILE=panel.tar.gz
     fi
@@ -63,11 +65,14 @@ EOF
         [yY][eE][sS] | [yY])
             rm -rf logs/panel*
             ;;
-        *)
+        *) ;;
         esac
     fi
 fi
-git clone --quiet https://github.com/Ashu11-A/nginx ./temp
+if [ -d "temp" ]; then ## Evita conflitos no painel pelo comando seguinte do git
+    rm -rf temp
+fi
+git clone --quiet https://github.com/Ashu11-A/nginx ./temp ## Sim, ele sempre irá clonar o repo idenpendente de tudo
 if [ -f "/home/container/nginx/nginx.conf" ]; then
     printf "\n| Nginx    | 🟢  Instalado                    |"
 else
