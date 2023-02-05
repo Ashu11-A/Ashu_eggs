@@ -68,41 +68,41 @@ while read -r line; do
     elif [[ "$line" == "${composer}" ]]; then
 
         Comando1="${composer_start}"
-        echo "Instalando pacotes do Composer: ${Comando1}"
+        echo "Instalando pacotes do Composer: ${bold}${lightblue}${Comando1}"
         eval "cd /home/container/painel && $Comando1 && cd .."
         printf "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == "${setup}" ]]; then
 
         Comando2="${setup_start}"
-        echo "Configurando ambiente do painel: ${Comando2}"
+        echo "Configurando ambiente do painel: ${bold}${lightblue}${Comando2}"
         eval "cd /home/container/painel && $Comando2 && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
     elif [[ "$line" == "${database}" ]]; then
 
         Comando3="${database_start}"
-        echo "Configurando ambiente do painel: ${Comando3}"
+        echo "Configurando ambiente do painel: ${bold}${lightblue}${Comando3}"
         eval "cd /home/container/painel && $Comando3 && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
     elif [[ "$line" == "${migrate}" ]]; then
 
         Comando4="${migrate_start}"
-        echo "Migrando banco de dados: ${Comando4}"
+        echo "Migrando banco de dados: ${bold}${lightblue}${Comando4}"
         eval "cd /home/container/painel && $Comando4 && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
     elif [[ "$line" == "${user_make}" ]]; then
 
         Comando5="${user_start}"
-        echo "Criando usuário: ${Comando5}"
+        echo "Criando usuário: ${bold}${lightblue}${Comando5}"
         eval "cd /home/container/painel && $Comando5 && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
     elif [[ "$line" == "${yarn}" ]]; then
 
         Comando6="${yarn_start}"
-        echo "Criando usuário: ${Comando6}"
+        echo "Buildando painel: ${bold}${lightblue}${Comando6}"
         eval "cd /home/container/painel && $Comando6 && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 

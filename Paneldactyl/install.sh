@@ -1,4 +1,9 @@
 #!/bin/bash
+
+bold=$(echo -en "\e[1m")
+lightblue=$(echo -en "\e[94m")
+normal=$(echo -en "\e[0m")
+
 if [ -z "${PANEL}" ]; then
     GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
     FILE=panel.tar.gz
