@@ -143,9 +143,7 @@ while read -r line; do
             ;;
         esac
 
-    elif
-        [[ "$line" == "${reinstall_p}" ]]
-    then
+    elif [[ "$line" == "${reinstall_p}" ]]; then
 
         echo "📌  Reinstalando o Painel..."
         printf "\n \n⚠️  Tem certeza que deseja Reinstalar? [y/N]\n \n"
