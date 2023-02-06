@@ -19,6 +19,20 @@ user_start="php artisan p:user:make"
 yarn="build"
 yarn_start="yarn && yarn build"
 
+reinstall="reinstall"
+
+reinstall_a="reinstall all"
+reinstall_a_start="rm -rf painel && rm -rf logs/panel* && rm -rf nginx && rm -rf php-fpm"
+
+reinstall_p="reinstall painel"
+reinstall_p_start="rm -rf painel && rm -rf logs/panel*"
+
+reinstall_n="reinstall nginx"
+reinstall_n_start="rm -rf nginx"
+
+reinstall_f="reinstall php-fpm"
+reinstall_f_start="rm -rf php-fpm"
+
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
@@ -48,7 +62,7 @@ nohup php /home/container/painel/artisan queue:work --queue=high,standard,low --
 echo "🟢  Iniciando cron..."
 nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/cron.sh) >/dev/null 2>&1 &
 
-echo "📃  Comandos Disponíveis: ${bold}${lightblue}composer${normal}, ${bold}${lightblue}setup${normal}, ${bold}${lightblue}database${normal}, ${bold}${lightblue}migrate${normal}, ${bold}${lightblue}user${normal}, ${bold}${lightblue}build${normal}. Use ${bold}${lightblue}help${normal} para saber mais..."
+echo "📃  Comandos Disponíveis: ${bold}${lightblue}composer${normal}, ${bold}${lightblue}setup${normal}, ${bold}${lightblue}database${normal}, ${bold}${lightblue}migrate${normal}, ${bold}${lightblue}user${normal}, ${bold}${lightblue}build${normal}, ${bold}${lightblue}reinstall${normal}. Use ${bold}${lightblue}help${normal} para saber mais..."
 
 while read -r line; do
     if [[ "$line" == "${help}" ]]; then
@@ -63,6 +77,7 @@ while read -r line; do
 | migrate   |  Migração de banco de dados           |
 | user      |  Criar usuário                        |
 | build     |  Builda o painel com Yarn             |
+| reinstall |  Reinstala algo ou tudo               |
 +-----------+---------------------------------------+
         "
     elif [[ "$line" == "${composer}" ]]; then
@@ -106,8 +121,80 @@ while read -r line; do
         eval "cd /home/container/painel && $Comando6 && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
+    elif [[ "$line" == "${reinstall}" ]]; then
+        printf "❗️  \e[1m\e[94mEsse Comando necessita de uma opção use:\n\n"
+        printf "reinstall all (reinstala o painel, nginx, php-fpm)\n\n"
+        printf "reinstall painel (reinstala somente o painel)\n\n"
+        printf "reinstall nginx (reinstala somente o nginx) \n\nreinstall php-fpm (reinstala somente o php-fpm)"
+
+    elif [[ "$line" == "${reinstall_a}" ]]; then
+
+        echo "📌  Reinstalando o painel, nginx e php-fpm..."
+        printf "\n \n⚠️  Tem certeza que deseja Reinstalar? [y/N]\n \n"
+        read -r response
+        case "$response" in
+        [yY][eE][sS] | [yY])
+            printf "%s${reinstall_a_start}"
+            printf "\n \n✅  Comando Executado\n \n"
+            exit
+            ;;
+        *)
+            printf "\n \n❌  Comando Não Executado\n \n"
+            ;;
+        esac
+
+    elif
+        [[ "$line" == "${reinstall_p}" ]]
+    then
+
+        echo "📌  Reinstalando o Painel..."
+        printf "\n \n⚠️  Tem certeza que deseja Reinstalar? [y/N]\n \n"
+        read -r response
+        case "$response" in
+        [yY][eE][sS] | [yY])
+            printf "%s${reinstall_p_start}"
+            printf "\n \n✅  Comando Executado\n \n"
+            exit
+            ;;
+        *)
+            printf "\n \n❌  Comando Não Executado\n \n"
+            ;;
+        esac
+
+    elif [[ "$line" == "${reinstall_n}" ]]; then
+
+        echo "📌  Reinstalando o Nginx..."
+        printf "\n \n⚠️  Tem certeza que deseja Reinstalar? [y/N]\n \n"
+        read -r response
+        case "$response" in
+        [yY][eE][sS] | [yY])
+            printf "%s${reinstall_n_start}"
+            printf "\n \n✅  Comando Executado\n \n"
+            exit
+            ;;
+        *)
+            printf "\n \n❌  Comando Não Executado\n \n"
+            ;;
+        esac
+
+    elif [[ "$line" == "${reinstall_f}" ]]; then
+
+        echo "📌  Reinstalando o PHP-FPM..."
+        printf "\n \n⚠️  Tem certeza que deseja Reinstalar? [y/N]\n \n"
+        read -r response
+        case "$response" in
+        [yY][eE][sS] | [yY])
+            printf "%s${reinstall_f_start}"
+            printf "\n \n✅  Comando Executado\n \n"
+            exit
+            ;;
+        *)
+            printf "\n \n❌  Comando Não Executado\n \n"
+            ;;
+        esac
+
     elif [ "$line" != "${composer}" ] || [ "$line" != "${setup}" ] || [ "$line" != "${database}" ] || [ "$line" != "${migrate}" ] || [ "$line" != "${user_make}" ] || [ "$line" != "${yarn}" ]; then
-        echo "Comando Invalido, oque vocẽ está tentando fazer? tente help"
+        printf "Comando Invalido, oque vocẽ está tentando fazer? tente help"
     else
         echo "Script Falhou."
     fi
