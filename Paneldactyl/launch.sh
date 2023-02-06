@@ -122,10 +122,7 @@ while read -r line; do
         printf "\n \n✅  Comando Executado\n \n"
 
     elif [[ "$line" == "${reinstall}" ]]; then
-        printf "❗️  \e[1m\e[94mEsse Comando necessita de uma opção use:\n\n"
-        printf "reinstall all (reinstala o painel, nginx, php-fpm)\n\n"
-        printf "reinstall painel (reinstala somente o painel)\n\n"
-        printf "reinstall nginx (reinstala somente o nginx) \n\nreinstall php-fpm (reinstala somente o php-fpm)"
+        echo -e "❗️  \e[1m\e[94mEsse Comando necessita de uma opção use:\n\nreinstall all (reinstala o painel, nginx, php-fpm)\n\nreinstall painel (reinstala somente o painel)\n\nreinstall nginx (reinstala somente o nginx) \n\nreinstall php-fpm (reinstala somente o php-fpm)"
 
     elif [[ "$line" == "${reinstall_a}" ]]; then
 
