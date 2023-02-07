@@ -131,7 +131,7 @@ while read -r line; do
         read -r response
         case "$response" in
         [yY][eE][sS] | [yY])
-            printf "%s${reinstall_a_start}"
+            ${reinstall_a_start}
             printf "\n \n✅  Comando Executado\n \n"
             exit
             ;;
@@ -147,7 +147,7 @@ while read -r line; do
         read -r response
         case "$response" in
         [yY][eE][sS] | [yY])
-            printf "%s${reinstall_p_start}"
+            ${reinstall_p_start}
             printf "\n \n✅  Comando Executado\n \n"
             exit
             ;;
@@ -163,7 +163,7 @@ while read -r line; do
         read -r response
         case "$response" in
         [yY][eE][sS] | [yY])
-            printf "%s${reinstall_n_start}"
+            ${reinstall_n_start}
             printf "\n \n✅  Comando Executado\n \n"
             exit
             ;;
@@ -179,7 +179,7 @@ while read -r line; do
         read -r response
         case "$response" in
         [yY][eE][sS] | [yY])
-            printf "%s${reinstall_f_start}"
+            ${reinstall_f_start}
             printf "\n \n✅  Comando Executado\n \n"
             exit
             ;;
