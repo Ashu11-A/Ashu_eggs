@@ -122,7 +122,7 @@ while read -r line; do
         printf "\n \n✅  Comando Executado\n \n"
 
     elif [[ "$line" == "${reinstall}" ]]; then
-        echo -e "❗️  \e[1m\e[94mEsse Comando necessita de uma opção use:\n\nreinstall all (reinstala o painel, nginx, php-fpm)\n\nreinstall painel (reinstala somente o painel)\n\nreinstall nginx (reinstala somente o nginx) \n\nreinstall php-fpm (reinstala somente o php-fpm)"
+        echo -e "❗️  \e[1m\e[94mEsse Comando necessita de uma opção use:\n \n${bold}${lightblue}reinstall all ${normal}(reinstala o painel, nginx, php-fpm)\n \n${bold}${lightblue}reinstall painel ${normal}(reinstala somente o painel)\n \n${bold}${lightblue}reinstall nginx ${normal}(reinstala somente o nginx) \n \n${bold}${lightblue}reinstall php-fpm ${normal}(reinstala somente o php-fpm)"
 
     elif [[ "$line" == "${reinstall_a}" ]]; then
 
@@ -189,7 +189,7 @@ while read -r line; do
         esac
 
     elif [ "$line" != "${composer}" ] || [ "$line" != "${setup}" ] || [ "$line" != "${database}" ] || [ "$line" != "${migrate}" ] || [ "$line" != "${user_make}" ] || [ "$line" != "${yarn}" ]; then
-        echo "Comando Invalido, oque vocẽ está tentando fazer? tente help"
+        echo "Comando Invalido, oque vocẽ está tentando fazer? tente ${bold}${lightblue}help"
     else
         echo "Script Falhou."
     fi
