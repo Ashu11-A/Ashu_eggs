@@ -189,7 +189,7 @@ while read -r line; do
         esac
 
     elif [ "$line" != "${composer}" ] || [ "$line" != "${setup}" ] || [ "$line" != "${database}" ] || [ "$line" != "${migrate}" ] || [ "$line" != "${user_make}" ] || [ "$line" != "${yarn}" ]; then
-        printf "Comando Invalido, oque vocẽ está tentando fazer? tente help"
+        echo "Comando Invalido, oque vocẽ está tentando fazer? tente help"
     else
         echo "Script Falhou."
     fi
