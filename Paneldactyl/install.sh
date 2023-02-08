@@ -237,13 +237,13 @@ if [ "${DEVELOPER}" = "1" ]; then
     echo -e "🪄  Modo Desenvolvedor Ativo"
     (
         cd "painel" || exit
-        echo -e "🔒  Executando Permições das pastas storage e bootstrap/cache/"
+        echo -e "\n \n🔒  Executando Permições das pastas storage e bootstrap/cache/\n \n"
         fakeroot chmod -R 755 storage/* bootstrap/cache/
-        echo -e "🎼  Executando Composer"
+        echo -e "\n \n🎼  Executando Composer\n \n"
         composer install --no-dev --optimize-autoloader
-        echo -e "📂  Executando Migração do Banco de Dados"
+        echo -e "\n \n📂  Executando Migração do Banco de Dados\n \n"
         php artisan migrate --seed --force
-        echo -e "🔒  Executando Permições da pasta home painel"
+        echo -e "\n \n🔒  Executando Permições da pasta home painel\n \n"
         fakeroot chown -R nginx:nginx /home/container/painel/*
     )
 fi
