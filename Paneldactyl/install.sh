@@ -231,6 +231,21 @@ if [ -f ".yarnrc" ]; then
     rm -rf .yarnrc
 fi
 
+if [ "${DEVELOPER}" = "1" ]; then
+    echo -e "🪄  Modo Desenvolvedor Ativo"
+    (
+        cd "painel" || exit
+        echo -e "🔒  Executando Permições das pastas storage e bootstrap/cache/"
+        fakeroot chmod -R 755 storage/* bootstrap/cache/
+        echo -e "🎼  Executando Composer"
+        composer install --no-dev --optimize-autoloader
+        echo -e "📂  Executando Migração do Banco de Dados"
+        php artisan migrate --seed --force
+        echo -e "🔒  Executando Permições da pasta home painel"
+        fakeroot chown -R nginx:nginx /home/container/painel/*
+    )
+fi
+
 if [[ -f "./logs/panel_instalado" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/version.sh)
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/launch.sh)
