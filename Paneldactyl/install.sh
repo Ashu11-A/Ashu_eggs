@@ -254,3 +254,42 @@ if [[ -f "./logs/panel_instalado" ]]; then
 else
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/install.sh)
 fi
+: <<'LIMBO'
+
+if [[ ${GIT_ADDRESS} != *.git ]]; then
+    GIT_ADDRESS=${GIT_ADDRESS}.git
+fi
+if [ -z "${USERNAME}" ] && [ -z "${ACCESS_TOKEN}" ]; then
+    echo -e "using anon api call"
+else
+    GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
+fi
+## pull git js bot repo
+if [ "$(ls -A /mnt/server/painel)" ]; then
+    echo -e "/mnt/server/painel não está vazio."
+    if [ -d .git ]; then
+        echo -e ".git existe"
+        if [ -f .git/config ]; then
+            echo -e "informações de carregamento do git config"
+            ORIGIN=$(git config --get remote.origin.url)
+        else
+            echo -e "arquivos encontrados sem configuração de git"
+            echo -e "encerrar sem tocar nas coisas para não quebrar nada"
+            exit 10
+        fi
+    fi
+    if [ "${ORIGIN}" == "${GIT_ADDRESS}" ]; then
+        echo "Puxando o mais recente do github"
+        git pull
+    fi
+else
+    echo -e "/mnt/server está vazio.\nclonando arquivos do repo"
+    if [ -z "${BRANCH}" ]; then
+        echo -e "Clonando ramo padrão"
+        git clone "${GIT_ADDRESS}" .
+    else
+        echo -e "Clonando ${BRANCH}'"
+        git clone --single-branch --branch "${BRANCH}" "${GIT_ADDRESS}" .
+    fi
+fi
+LIMBO
