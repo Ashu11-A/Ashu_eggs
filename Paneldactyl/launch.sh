@@ -118,6 +118,7 @@ while read -r line; do
 
         Comando6="${yarn_start}"
         echo "Buildando painel: ${bold}${lightblue}${Comando6}"
+        echo "⚠️  São necessários no mínimo 2 GB de memória RAM"
         eval "cd /home/container/painel && $Comando6 && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
