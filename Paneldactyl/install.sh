@@ -50,13 +50,14 @@ EOF
     curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
     mkdir painel
     mv "${DOWNLOAD_LINK##*/}" painel
-    cd painel || exit
-    echo -e "Unpacking server files"
-    tar -xvzf "${DOWNLOAD_LINK##*/}"
-    rm -rf "${DOWNLOAD_LINK##*/}"
-    fakeroot chmod -R 755 storage/* bootstrap/cache/
-    fakeroot chown -R nginx:nginx /home/container/painel/*
-    cd ..
+    (
+        cd painel || exit
+        echo -e "Unpacking server files"
+        tar -xvzf "${DOWNLOAD_LINK##*/}"
+        rm -rf "${DOWNLOAD_LINK##*/}"
+        fakeroot chmod -R 755 storage/* bootstrap/cache/
+        fakeroot chown -R nginx:nginx /home/container/painel/*
+    )
     if [ -f "logs/panel_database_instalado" ]; then
         printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
         printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
@@ -116,90 +117,91 @@ if [ "${OCC}" == "1" ]; then
     php "${COMMANDO_OCC}"
     exit
 else
-    cd painel || exit
-    if [[ -f ".env" ]]; then
-        echo "| Env      | 🟢  Configurado                  |"
-    else
-        printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
-        cp .env.example .env
-    fi
-    if [[ -f "../logs/panel_composer_instalado" ]]; then
-        echo "| Composer | 🟢  Instalado                    |"
-    else
-        printf "\n \n⚙️  Executando: composer install --no-interaction --no-dev --optimize-autoloader\n \n"
-        composer install --no-interaction --no-dev --optimize-autoloader
-        touch ../logs/panel_composer_instalado
-    fi
-    if [[ -f "../logs/panel_key_generate_instalado" ]]; then
-        echo "| Key      | 🟢  Gerada                       |"
-    else
-        printf "\n \n⚙️  Executando: php artisan key:generate --force\n \n"
-        php artisan key:generate --force
-        touch ../logs/panel_key_generate_instalado
-    fi
+    (
+        cd painel || exit
+        if [[ -f ".env" ]]; then
+            echo "| Env      | 🟢  Configurado                  |"
+        else
+            printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
+            cp .env.example .env
+        fi
+        if [[ -f "../logs/panel_composer_instalado" ]]; then
+            echo "| Composer | 🟢  Instalado                    |"
+        else
+            printf "\n \n⚙️  Executando: composer install --no-interaction --no-dev --optimize-autoloader\n \n"
+            composer install --no-interaction --no-dev --optimize-autoloader
+            touch ../logs/panel_composer_instalado
+        fi
+        if [[ -f "../logs/panel_key_generate_instalado" ]]; then
+            echo "| Key      | 🟢  Gerada                       |"
+        else
+            printf "\n \n⚙️  Executando: php artisan key:generate --force\n \n"
+            php artisan key:generate --force
+            touch ../logs/panel_key_generate_instalado
+        fi
 
-    if [[ -f "../logs/panel_setup_instalado" ]]; then
-        echo "| Setup    | 🟢  Configurado                  |"
-    else
-        printf "\n \n⚙️  Executando: php artisan p:environment:setup\n \n"
-        php artisan p:environment:setup
-        touch ../logs/panel_setup_instalado
-        printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
-        read -r response
-        case "$response" in
-        [yY][eE][sS] | [yY])
+        if [[ -f "../logs/panel_setup_instalado" ]]; then
+            echo "| Setup    | 🟢  Configurado                  |"
+        else
+            printf "\n \n⚙️  Executando: php artisan p:environment:setup\n \n"
             php artisan p:environment:setup
-            ;;
-        *) ;;
-        esac
-    fi
-    if [[ -f "../logs/panel_database_instalado" ]]; then
-        echo "| Database | 🟢  Configurado                  |"
-    else
-        printf "\n \n⚙️  Executando: php artisan p:environment:database\n \n"
-        php artisan p:environment:database
-        touch ../logs/panel_database_instalado
-        printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
-        read -r response
-        case "$response" in
-        [yY][eE][sS] | [yY])
+            touch ../logs/panel_setup_instalado
+            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
+            read -r response
+            case "$response" in
+            [yY][eE][sS] | [yY])
+                php artisan p:environment:setup
+                ;;
+            *) ;;
+            esac
+        fi
+        if [[ -f "../logs/panel_database_instalado" ]]; then
+            echo "| Database | 🟢  Configurado                  |"
+        else
+            printf "\n \n⚙️  Executando: php artisan p:environment:database\n \n"
             php artisan p:environment:database
-            ;;
-        *)
-            printf "\n \n⚙️  Executando: php artisan migrate --seed --force\n \n"
-            ;;
-        esac
-    fi
-    if [[ -f "../logs/panel_database_migrate_instalado" ]]; then
-        echo "| Migração | 🟢  Concluído                    |"
-    else
-        php artisan migrate --seed --force
-        touch ../logs/panel_database_migrate_instalado
-        printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
-        read -r response
-        case "$response" in
-        [yY][eE][sS] | [yY])
+            touch ../logs/panel_database_instalado
+            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
+            read -r response
+            case "$response" in
+            [yY][eE][sS] | [yY])
+                php artisan p:environment:database
+                ;;
+            *)
+                printf "\n \n⚙️  Executando: php artisan migrate --seed --force\n \n"
+                ;;
+            esac
+        fi
+        if [[ -f "../logs/panel_database_migrate_instalado" ]]; then
+            echo "| Migração | 🟢  Concluído                    |"
+        else
             php artisan migrate --seed --force
-            ;;
-        *) ;;
-        esac
-    fi
-    if [[ -f "../logs/panel_user_instalado" ]]; then
-        echo "| Usuário  | 🟢  Criado                       |"
-    else
-        printf "\n \n⚙️  Executando: php artisan p:user:make\n \n"
-        php artisan p:user:make
-        touch ../logs/panel_user_instalado
-        printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
-        read -r response
-        case "$response" in
-        [yY][eE][sS] | [yY])
+            touch ../logs/panel_database_migrate_instalado
+            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
+            read -r response
+            case "$response" in
+            [yY][eE][sS] | [yY])
+                php artisan migrate --seed --force
+                ;;
+            *) ;;
+            esac
+        fi
+        if [[ -f "../logs/panel_user_instalado" ]]; then
+            echo "| Usuário  | 🟢  Criado                       |"
+        else
+            printf "\n \n⚙️  Executando: php artisan p:user:make\n \n"
             php artisan p:user:make
-            ;;
-        *) ;;
-        esac
-    fi
-    cd ..
+            touch ../logs/panel_user_instalado
+            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
+            read -r response
+            case "$response" in
+            [yY][eE][sS] | [yY])
+                php artisan p:user:make
+                ;;
+            *) ;;
+            esac
+        fi
+    )
     if [[ -f "./logs/panel_instalado" ]]; then
         echo "+----------+---------------------------------+"
         printf "\n \n📑  Verificação do Painel Concluída...\n \n"
