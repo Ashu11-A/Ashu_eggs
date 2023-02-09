@@ -1,4 +1,9 @@
 #!/bin/bash
+
+bold=$(echo -en "\e[1m")
+lightblue=$(echo -en "\e[94m")
+normal=$(echo -en "\e[0m")
+
 if [ -z "${PANEL}" ]; then ## Caso a variavel ${PANEL} não existir por algum motivo desconhecido
     GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
     FILE=panel.tar.gz
@@ -34,41 +39,91 @@ else
         DOWNLOAD_LINK=$(echo "$LATEST_JSON" | jq .assets | jq -r .[].browser_download_url | grep -i "$FILE")
     fi
 fi
-printf "\n \n📄  Verificando Instalação...\n \n"
-printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
-if [ -d "/home/container/painel" ]; then
-    printf "\n| Painel   | 🟢  Instalado                    |"
-else
-    cat <<EOF >./logs/log_install.txt
+if [ -z "${GIT_ADDRESS}" ]; then
+    if [ -d "/home/container/painel" ]; then
+        printf "\n \n📄  Verificando Instalação...\n \n"
+        printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
+        printf "\n| Painel   | 🟢  Instalado                    |"
+    else
+        cat <<EOF >./logs/log_install.txt
 Versão: ${VERSION}
 Git: ${GITHUB_PACKAGE}
 Git_file: ${FILE}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}
 EOF
-    printf "\n| Painel   | 🟡 Baixando Painel               |\n"
-    curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
-    mkdir painel
-    mv "${DOWNLOAD_LINK##*/}" painel
-    (
-        cd painel || exit
-        echo -e "Unpacking server files"
-        tar -xvzf "${DOWNLOAD_LINK##*/}"
-        rm -rf "${DOWNLOAD_LINK##*/}"
-        fakeroot chmod -R 755 storage/* bootstrap/cache/
-        fakeroot chown -R nginx:nginx /home/container/painel/*
-    )
-    if [ -f "logs/panel_database_instalado" ]; then
-        printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
-        printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
-        read -r response
-        case "$response" in
-        [yY][eE][sS] | [yY])
-            rm -rf logs/panel*
-            ;;
-        *) ;;
-        esac
+        printf "\n \n📄  Verificando Instalação...\n \n"
+        printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
+        printf "\n| Painel   | 🟡  Baixando Painel               |\n"
+        curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
+        mkdir painel
+        mv "${DOWNLOAD_LINK##*/}" painel
+        (
+            cd painel || exit
+            echo -e "Unpacking server files"
+            tar -xvzf "${DOWNLOAD_LINK##*/}"
+            rm -rf "${DOWNLOAD_LINK##*/}"
+            fakeroot chmod -R 755 storage/* bootstrap/cache/
+            fakeroot chown -R nginx:nginx /home/container/painel/*
+        )
+        if [ -f "logs/panel_database_instalado" ]; then
+            printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
+            printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
+            read -r response
+            case "$response" in
+            [yY][eE][sS] | [yY])
+                rm -rf logs/panel*
+                ;;
+            *) ;;
+            esac
+        fi
     fi
+else
+    echo -e "\n \n📌  Usando repo do GitHub"
+    if [[ ${GIT_ADDRESS} != *.git ]]; then
+        GIT_ADDRESS=${GIT_ADDRESS}.git
+    fi
+    if [ -z "${USERNAME}" ] && [ -z "${ACCESS_TOKEN}" ]; then
+        echo -e "🤫  Usando chamada de API anonimo."
+    else
+        GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
+    fi
+    ## pull git js bot repo
+    if [ -d "/home/container/painel" ]; then
+        (
+            cd painel || exit
+            if [ -d ".git" ]; then
+                if [ -f ".git/config" ]; then
+                    ORIGIN=$(git config --get remote.origin.url)
+                else
+                    echo -e "arquivos encontrados sem configuração de git"
+                    echo -e "encerrar sem tocar nas coisas para não quebrar nada"
+                    exit 10
+                fi
+            fi
+            if [ "${ORIGIN}" == "${GIT_ADDRESS}" ]; then
+                echo "📁  Puxando o mais recente do GitHub"
+                git pull --quiet
+                fakeroot chmod -R 755 storage/* bootstrap/cache/
+                fakeroot chown -R nginx:nginx /home/container/painel/*
+            fi
+        )
+    else
+        if [ -z "${BRANCH}" ]; then
+            echo -e "📋  Clonando ramo padrão"
+            git clone --quiet "${GIT_ADDRESS}" ./painel
+        else
+            echo -e "📋  Clonando ${BRANCH}'"
+            git clone --quiet --single-branch --branch "${BRANCH}" "${GIT_ADDRESS}" ./painel
+        fi
+        fakeroot chmod -R 755 /home/container/painel/storage/* /home/container/painel/bootstrap/cache/
+        fakeroot chown -R nginx:nginx /home/container/painel/*
+        rm -rf logs/panel*
+        touch ./logs/panel_github_instalado
+    fi
+    printf "\n \n📄  Verificando Instalação...\n \n"
+    printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
+    printf "\n| Painel   | 🟡  Puxando arquivos             |"
 fi
 if [ -d "temp" ]; then ## Evita conflitos no painel pelo comando seguinte do git
     rm -rf temp
@@ -248,48 +303,16 @@ if [ "${DEVELOPER}" = "1" ]; then
     )
 fi
 
+if [ -f "./logs/panel_github_instalado" ]; then
+    echo -e "❗️  Você está usando um painel puxado do GitHub, será necessário executar o comando ${bold}${lightblue}build${normal}, pois o servidor irá retornar erro 500.\n \n"
+fi
+
 if [[ -f "./logs/panel_instalado" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/version.sh)
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/launch.sh)
 else
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paneldactyl/install.sh)
 fi
-: <<'LIMBO'
 
-if [[ ${GIT_ADDRESS} != *.git ]]; then
-    GIT_ADDRESS=${GIT_ADDRESS}.git
-fi
-if [ -z "${USERNAME}" ] && [ -z "${ACCESS_TOKEN}" ]; then
-    echo -e "using anon api call"
-else
-    GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
-fi
-## pull git js bot repo
-if [ "$(ls -A /mnt/server/painel)" ]; then
-    echo -e "/mnt/server/painel não está vazio."
-    if [ -d .git ]; then
-        echo -e ".git existe"
-        if [ -f .git/config ]; then
-            echo -e "informações de carregamento do git config"
-            ORIGIN=$(git config --get remote.origin.url)
-        else
-            echo -e "arquivos encontrados sem configuração de git"
-            echo -e "encerrar sem tocar nas coisas para não quebrar nada"
-            exit 10
-        fi
-    fi
-    if [ "${ORIGIN}" == "${GIT_ADDRESS}" ]; then
-        echo "Puxando o mais recente do github"
-        git pull
-    fi
-else
-    echo -e "/mnt/server está vazio.\nclonando arquivos do repo"
-    if [ -z "${BRANCH}" ]; then
-        echo -e "Clonando ramo padrão"
-        git clone "${GIT_ADDRESS}" .
-    else
-        echo -e "Clonando ${BRANCH}'"
-        git clone --single-branch --branch "${BRANCH}" "${GIT_ADDRESS}" .
-    fi
-fi
+: <<'LIMBO'
 LIMBO
