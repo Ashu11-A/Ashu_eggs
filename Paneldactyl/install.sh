@@ -86,7 +86,7 @@ else
     if [ -z "${USERNAME}" ] && [ -z "${ACCESS_TOKEN}" ]; then
         echo -e "🤫  Usando chamada de API anonimo."
     else
-        GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
+        GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e "${GIT_ADDRESS}" | cut -d/ -f3-)"
     fi
     ## pull git js bot repo
     if [ -d "/home/container/painel" ]; then
@@ -119,7 +119,7 @@ else
         fakeroot chmod -R 755 /home/container/painel/storage/* /home/container/painel/bootstrap/cache/
         fakeroot chown -R nginx:nginx /home/container/painel/*
         rm -rf logs/panel*
-        touch ./logs/panel_github_instalado
+        touch ./painel/panel_github_instalado
     fi
     printf "\n \n📄  Verificando Instalação...\n \n"
     printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
@@ -303,7 +303,7 @@ if [ "${DEVELOPER}" = "1" ]; then
     )
 fi
 
-if [ -f "./logs/panel_github_instalado" ]; then
+if [ -f "./painel/panel_github_instalado" ]; then
     echo -e "❗️  Você está usando um painel puxado do GitHub, será necessário executar o comando ${bold}${lightblue}build${normal}, pois o servidor irá retornar erro 500.\n \n"
 fi
 
