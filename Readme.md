@@ -14,6 +14,7 @@ Some of them work on ARM and also ARM form Oracle Free Tier
 | Stress | [Egg-Stress.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Egg-Stress.json) | ✅ | ✅ | ✅ |
 | VPS | [VPS-Egg.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/VPS-Egg.json) | ✅ | ❌ | ❌ | Root com Proot
 | MTA | [egg-m-t-a.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-m-t-a.json) | ✅ | ❌ | ❌ |
+| Paneldactyl | [egg-paneldactyl.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-paneldactyl.json) | ✅ | ✅ | ✅ |
 
 
 *Right click and click save  
