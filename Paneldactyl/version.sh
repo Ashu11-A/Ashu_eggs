@@ -1,5 +1,5 @@
 #!/bin/bash
-version_egg="1.0"
+version_egg="1.1"
 version_script="1.8"
 echo "⚙️  Versão do Script: ${version_script}"
 if [[ -f "./logs/egg_version" ]]; then
