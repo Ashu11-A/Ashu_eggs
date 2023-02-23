@@ -67,15 +67,29 @@ EOF
             fakeroot chown -R nginx:nginx /home/container/painel/*
         )
         if [ -f "logs/panel_database_instalado" ]; then
-            printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
-            printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
-            read -r response
-            case "$response" in
-            [yY][eE][sS] | [yY])
-                rm -rf logs/panel*
-                ;;
-            *) ;;
-            esac
+            if [ ! -f "painel/.env" ]; then
+                if [ -f "backups/executado" ]; then
+                    (
+                        cd painel || exit
+                        composer install --no-interaction --no-dev --optimize-autoloader
+                    )
+                    echo "🔴  Uma irregularidade foi encontrada, restaurando .env..."
+                    (
+                        cd backups || exit
+                        cp `ls .env* -t |head -1` ../painel/.env
+                    )
+                else
+                    printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
+                    printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
+                    read -r response
+                    case "$response" in
+                    [yY][eE][sS] | [yY])
+                        rm -rf logs/panel*
+                        ;;
+                    *) ;;
+                    esac
+                fi
+            fi
         fi
     fi
 else
@@ -118,8 +132,32 @@ else
         fi
         fakeroot chmod -R 755 /home/container/painel/storage/* /home/container/painel/bootstrap/cache/
         fakeroot chown -R nginx:nginx /home/container/painel/*
-        rm -rf logs/panel*
         touch ./painel/panel_github_instalado
+            if [ -f "logs/panel_database_instalado" ]; then
+        if [ ! -f "painel/.env" ]; then
+            if [ -f "backups/executado" ]; then
+                (
+                    cd painel || exit
+                    composer install --no-interaction --no-dev --optimize-autoloader
+                )
+                echo "🔴  Uma irregularidade foi encontrada, restaurando .env..."
+                (
+                    cd backups || exit
+                    cp `ls .env* -t |head -1` ../painel/.env
+                )
+            else
+                printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
+                printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
+                read -r response
+                case "$response" in
+                [yY][eE][sS] | [yY])
+                    rm -rf logs/panel*
+                    ;;
+                *) ;;
+                esac
+            fi
+        fi
+    fi
     fi
     printf "\n \n📄  Verificando Instalação...\n \n"
     printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
@@ -172,14 +210,29 @@ if [ "${OCC}" == "1" ]; then
     php "${COMMANDO_OCC}"
     exit
 else
+    if [ -f "logs/panel_database_instalado" ]; then
+        if [ ! -f "painel/.env" ]; then
+            if [ -f "backups/executado" ]; then
+                echo "| Env      | 🔴  Restaurando .env...          |"
+                (
+                    cd backups || exit
+                    cp `ls .env* -t |head -1` ../painel/.env
+                )
+            fi
+        else
+            (
+                cd painel || exit
+                if [[ -f ".env" ]]; then
+                    echo "| Env      | 🟢  Configurado                  |"
+                else
+                    printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
+                    cp .env.example .env
+                fi 
+            ) 
+        fi
+    fi
     (
         cd painel || exit
-        if [[ -f ".env" ]]; then
-            echo "| Env      | 🟢  Configurado                  |"
-        else
-            printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
-            cp .env.example .env
-        fi
         if [[ -f "../logs/panel_composer_instalado" ]]; then
             echo "| Composer | 🟢  Instalado                    |"
         else
@@ -305,6 +358,26 @@ fi
 
 if [ -f "./painel/panel_github_instalado" ]; then
     echo -e "❗️  Você está usando um painel puxado do GitHub, será necessário executar o comando ${bold}${lightblue}build${normal}, pois o servidor irá retornar erro 500.\n \n"
+fi
+
+if [ -z "$BACKUP" ] || [ "$BACKUP" == "1" ]; then
+    if [[ -f "./logs/panel_database_instalado" ]]; then
+        if [ ! -d "backups" ]; then
+            mkdir backups
+        fi
+        if [ ! -f "backups/executado" ]; then
+            touch backups/executado
+            sleep 5
+        fi
+        cp painel/.env backups/.env-$(date +%F-%Hh%Mm)
+        echo "🟢  Backup do .env realizado!"
+        echo "⚠️  Backups com mais de 1 semana serão deletados automaticamente!"
+        find ./backups -depth -type d -mtime 7 -exec rm -fr {} \;
+    else
+    echo "Database não instalado, pulando backup do .env"
+    fi
+else
+    echo "🟠  Sistema de backups está desativado, caso perca seu .env, você não terá mais acesso ao seu Database!"
 fi
 
 if [[ -f "./logs/panel_instalado" ]]; then
