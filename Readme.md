@@ -1,5 +1,5 @@
 # Ashu_eggs
-My Custom eggs. 
+Meus Eggs personalizados.
 Some of them work on ARM and also ARM form Oracle Free Tier
 
 | Service | file* | AMD64 | ARM64 | ARM Oracle | More info |
