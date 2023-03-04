@@ -372,7 +372,7 @@ if [ -z "$BACKUP" ] || [ "$BACKUP" == "1" ]; then
         cp painel/.env backups/.env-$(date +%F-%Hh%Mm)
         echo "🟢  Backup do .env realizado!"
         echo "⚠️  Backups com mais de 1 semana serão deletados automaticamente!"
-        find ./backups -depth -type d -mtime 7 -exec rm -fr {} \;
+        find ./backups/ -mindepth 1 -not -name "executado" -mtime +7 -delete
     else
     echo "Database não instalado, pulando backup do .env"
     fi
