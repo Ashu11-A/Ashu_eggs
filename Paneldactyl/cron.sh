@@ -3,17 +3,19 @@
 while true
 do
 
+  HORA_CERTA='0000'
+  HORA="0000" # captura a hora
+
   if [ "${PANEL}" = "Jexactyl" ] || [ "${PANEL}" = "Jexactyl Brasil" ]; then
-    HORA_CERTA='0000'
-    HORA=$(date +%H%M) # captura a hora
-    [ "$HORA" == "$HORA_CERTA" ] && php /home/container/painel/artisan p:schedule:renewal >> /dev/null 2>&1
+     if [ "$HORA" == "$HORA_CERTA" ]; then
+       php /home/container/painel/artisan p:schedule:renewal >> /dev/null 2>&1
+     fi
   fi
 
-  if [ "${PANEL}" = "Jexactyl" ] || [ "${PANEL}" = "Jexactyl Brasil" ] || [ "${PANEL}" = "Pterodactyl" ]; then
-    HORA_CERTA='0000'
-    HORA=$(date +%H%M) # captura a hora
-    [ "$HORA" == "$HORA_CERTA" ] && find ./backups/ -mindepth 1 -not -name "executado" -mtime +7 -delete # executa o script desejado
-  fi
+    if [ "$HORA" == "$HORA_CERTA" ]; then
+      cp painel/.env backups/.env-$(date +%F-%Hh%Mm)
+      find ./backups/ -mindepth 1 -not -name "executado" -mtime +7 -delete # executa o script desejado
+    fi
 
   php /home/container/painel/artisan schedule:run >> /dev/null 2>&1 && /bin/bash /crontab_test.sh
 
