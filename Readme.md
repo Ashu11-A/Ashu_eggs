@@ -1,6 +1,20 @@
+<div align="center">
+
 # Ashu_eggs
-Meus Eggs personalizados.   
-Alguns deles funcionam no ARM64 e também no AMD64
+
+![license-info](https://img.shields.io/github/license/Ashu11-A/Ashu_eggs?logo=gnu&style=for-the-badge&colorA=302D41&colorB=f9e2af&logoColor=f9e2af)
+![stars-info](https://img.shields.io/github/stars/Ashu11-A/Ashu_eggs?colorA=302D41&colorB=f9e2af&style=for-the-badge)
+
+![Last-Comitt](https://img.shields.io/github/last-commit/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=b4befe)
+![Comitts Year](https://img.shields.io/github/commit-activity/y/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=f9e2af&logoColor=f9e2af)
+![reposize-info](https://img.shields.io/github/repo-size/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=89dceb)
+
+</div>
+
+## Descrição
+
+Neste repositório você encontra alguns Eggs que eu [@Ashu](https://github.com/Ashu11-A) desenvolvi.
+Os Eggs deste repo não tem conexão alguma com [parkervcp/eggs](https://github.com/parkervcp/eggs).
 
 | Service | file* | AMD64 | ARM64 | More info |
 |--|--|--|--|--|
