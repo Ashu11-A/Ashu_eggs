@@ -36,14 +36,14 @@ Os Eggs deste repo não tem conexão alguma com [parkervcp/eggs](https://github.
 | Paneldactyl | [egg-paneldactyl.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-paneldactyl.json) | ✅ | ✅ |
 
 *Clique com o **botão direito** e em **Salvar link como**...   
-✅ - Funcionando (o ARM64 foi testado com Oracle Cloud)   
-❔- Ainda não testado, mas deve funcionar   
-❌ - Não funciona   
+✅ • Funcionando (o ARM64 foi testado com Oracle Cloud)   
+❔ • Ainda não testado, mas deve funcionar   
+❌ • Não funciona   
 
 *Right click and click save  
-✅ - Working (Normal ARM was tested on Oracle Cloud)  
-❔- Not tested yet but should work  
-❌ - Don't work 
+✅ • Working (Normal ARM was tested on Oracle Cloud)  
+❔ • Not tested yet but should work  
+❌ • Don't work 
 
 ## 📁 | Contato
 
