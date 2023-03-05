@@ -12,14 +12,14 @@
 </div>
 <div align="left">
 
-## Descrição
+## 📃 | Descrição
 
 Neste repositório você encontra alguns Eggs que eu [@Ashu](https://github.com/Ashu11-A) desenvolvi.
 Os Eggs deste repo não tem conexão alguma com [parkervcp/eggs](https://github.com/parkervcp/eggs).
 
 </div>
 
-## Eggs
+## 🥚 | Eggs
 
 | Service | file* | AMD64 | ARM64 | More info |
 |--|--|--|--|--|
@@ -44,3 +44,7 @@ Os Eggs deste repo não tem conexão alguma com [parkervcp/eggs](https://github.
 ✅ - Working (Normal ARM was tested on Oracle Cloud)  
 ❔- Not tested yet but should work  
 ❌ - Don't work 
+
+## 📁 | Contato
+
+```Discord: "꧁Ashû꧂"#4660```
