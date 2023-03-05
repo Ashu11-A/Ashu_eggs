@@ -3,8 +3,10 @@
 while true
 do
 
+#TROQUE
+#TROQUE
   HORA_CERTA='0000'
-  HORA="0000" # captura a hora
+  HORA=$(date +%H%M) # captura a hora
 
   if [ "${PANEL}" = "Jexactyl" ] || [ "${PANEL}" = "Jexactyl Brasil" ]; then
      if [ "$HORA" == "$HORA_CERTA" ]; then
