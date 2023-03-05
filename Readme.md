@@ -17,6 +17,8 @@
 Neste repositório você encontra alguns Eggs que eu [@Ashu](https://github.com/Ashu11-A) desenvolvi.
 Os Eggs deste repo não tem conexão alguma com [parkervcp/eggs](https://github.com/parkervcp/eggs).
 
+Gostou dos Eggs? Então de uma 🌟 ao repositório!
+
 </div>
 <div align="center">
 
