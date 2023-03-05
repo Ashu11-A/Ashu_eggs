@@ -10,11 +10,16 @@
 ![reposize-info](https://img.shields.io/github/repo-size/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=89dceb)
 
 </div>
+<div align="left">
 
 ## Descrição
 
 Neste repositório você encontra alguns Eggs que eu [@Ashu](https://github.com/Ashu11-A) desenvolvi.
 Os Eggs deste repo não tem conexão alguma com [parkervcp/eggs](https://github.com/parkervcp/eggs).
+
+</div>
+
+## Eggs
 
 | Service | file* | AMD64 | ARM64 | More info |
 |--|--|--|--|--|
