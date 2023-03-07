@@ -26,14 +26,6 @@ Gostou dos Eggs? Então de uma 🌟 ao repositório!
 
 </div>
 
-## 🎮 | Games
-| Game | file* | AMD64 | ARM64 | More info |
-|--|--|--|--|--|
-| tModLoader | [egg-tModloader.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-tModloader.json) | ✅ | ✅ |Rodando nativamente
-| SA-MP | [egg-SA-MP-ARM64.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-SA-MP-ARM64.json) | ✅ | ✅ |Emulado no ARM com Box86
-| ServerJars | [egg-ServerJars.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-ServerJars.json) | ✅ | ✅ |
-| MTA | [egg-m-t-a.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-m-t-a.json) | ✅ | ❌ |
-
 ## 🖥 | Software
 | Service | file* | AMD64 | ARM64 | More info |
 |--|--|--|--|--|
@@ -44,6 +36,14 @@ Gostou dos Eggs? Então de uma 🌟 ao repositório!
 | Nextcloud | [egg-nextcloud.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-nextcloud.json) | ✅ | ✅ |
 | Stress | [Egg-Stress.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Egg-Stress.json) | ✅ | ✅ |
 | VPS | [VPS-Egg.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/VPS-Egg.json) | ✅ | ❌ | Root com Proot
+
+## 🎮 | Games
+| Game | file* | AMD64 | ARM64 | More info |
+|--|--|--|--|--|
+| tModLoader | [egg-tModloader.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-tModloader.json) | ✅ | ✅ |Rodando nativamente
+| SA-MP | [egg-SA-MP-ARM64.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-SA-MP-ARM64.json) | ✅ | ✅ |Emulado no ARM com Box86
+| ServerJars | [egg-ServerJars.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-ServerJars.json) | ✅ | ✅ |
+| MTA | [egg-m-t-a.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-m-t-a.json) | ✅ | ❌ |
 
 *Clique com o **botão direito** e em **Salvar link como**...   
 ✅ • Funcionando (o ARM64 foi testado com Oracle Cloud)   
