@@ -127,7 +127,7 @@ EOF
             fi
         fi
 
-        cat <<EOF >../Logs/log_install_win.txt
+        cat <<EOF >./Logs/log_install_win.txt
 Versão: ${VERSION}
 Link Windows: ${DOWNLOAD_LINK_W}
 Arquivo Windows: ${DOWNLOAD_LINK_W##*/}
