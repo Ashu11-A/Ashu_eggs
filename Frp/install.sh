@@ -47,9 +47,9 @@ else
     fi
 
     if [ "${SERVER_IP}" = "0.0.0.0" ]; then
-        IP="${SERVER_IP}"
-    else
         IP="toque-me.com.br"
+    else
+        IP="${SERVER_IP}"
     fi
 
     mkdir Logs
