@@ -154,7 +154,7 @@ EOF
             echo -e "running 'curl -sSL ${DOWNLOAD_LINK_L} -o ${DOWNLOAD_LINK_L##*/}'"
             curl -sSL ${DOWNLOAD_LINK_L} -o ${DOWNLOAD_LINK_L##*/}
             echo -e "Unpacking server files"
-            unzip ${DOWNLOAD_LINK_L##*/}
+            tar -xvzf ${DOWNLOAD_LINK_L##*/}
             cp -R frp*/* ./
             rm -rf frp*linux*
             rm -rf ${DOWNLOAD_LINK_L##*/}
