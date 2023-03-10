@@ -1,5 +1,7 @@
 #!/bin/bash
 if [[ -f "./Frps/frps" ]]; then
+    cp -f ./Frpc/frpc.ini ./Exemplo_Frpc_Windows64/frpc.ini
+    cp -f ./Frpc/frpc.ini ./Exemplo_Frpc_Linux64/frpc.ini
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Frp/start.sh)
 else
     mkdir -p /mnt/server
@@ -44,6 +46,12 @@ else
         echo "Instalação Limpa"
     fi
 
+    if [ "${SERVER_IP}" = "0.0.0.0" ]; then
+        IP="${SERVER_IP}"
+    else
+        IP="toque-me.com.br"
+    fi
+
     mkdir Logs
 
     cat <<EOF >./Logs/log_install.txt
@@ -63,7 +71,7 @@ EOF
     cat <<EOF >frpc.ini
 [common]
 #Aqui conecta no servidor externo (pode ser ip tambem)
-server_addr = ${SERVER_IP}
+server_addr = $IP
 server_port = $bind_port
 bind_udp_port = $bind_udp_port
 #Aqui ira criar um http localmente para voce acessar
@@ -127,7 +135,7 @@ EOF
             fi
         fi
 
-        cat <<EOF >./Logs/log_install_win.txt
+        cat <<EOF >./Logs/log_install_Ex.txt
 Versão: ${VERSION}
 Link Windows: ${DOWNLOAD_LINK_W}
 Arquivo Windows: ${DOWNLOAD_LINK_W##*/}
