@@ -3,7 +3,7 @@ if [ "${INSTALL_EX}" == "1" ]; then
     cp -f ./Frpc/frpc.ini ./Exemplo_Frpc_Windows64/frpc.ini
 fi
 
-echo "⚙️  Versão do Script: 2.0"
+echo "⚙️  Versão do Script: 2.1"
 
 if [ "${FRP_MODE}" == "1" ]; then
     echo "👀  Saiba Mais: https://github.com/fatedier/frp"

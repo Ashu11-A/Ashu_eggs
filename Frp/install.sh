@@ -160,8 +160,8 @@ EOF
             rm -rf ${DOWNLOAD_LINK_L##*/}
             rm frps*
             rm LICENSE
-            cat <<EOF >start.bat
-frpc.exe -c frpc.ini
+            cat <<EOF >start.sh
+./frpc -c frpc.ini
 EOF
         )
     else
