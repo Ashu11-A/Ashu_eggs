@@ -2,7 +2,7 @@
 mkdir -p /mnt/server
 cd /mnt/server || exit
 
-GITHUB_PACKAGE=pterodactyl/wings
+GITHUB_PACKAGE=Ashu11-A/egg-wings
 LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
 RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq '.[]')
 ARCH=$([ "$(uname -m)" == "x86_64" ] && echo "amd64" || echo "arm64")
