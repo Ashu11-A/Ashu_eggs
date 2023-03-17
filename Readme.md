@@ -29,12 +29,12 @@ Gostou dos Eggs? Então de uma 🌟 ao repositório!
 ## 🖥 | Software
 | Service | file* | AMD64 | ARM64 | More info |
 |--|--|--|--|--|
-| Paneldactyl | [egg-paneldactyl.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-paneldactyl.json) | ✅ | ✅ |
-| Frp | [egg-frp.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-frp.json) | ✅ | ✅ |
-| Jellyfin | [egg-jellyfin.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-jellyfin.json) | ✅ | ✅ |
-| Emby | [egg-emby.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-emby.json) | ✅ | ✅ |
-| Nextcloud | [egg-nextcloud.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-nextcloud.json) | ✅ | ✅ |
-| Stress | [Egg-Stress.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Egg-Stress.json) | ✅ | ✅ |
+| Paneldactyl | [egg-paneldactyl.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-paneldactyl.json) | ✅ | ✅ | Instalador de painéis (Pterodactyl, Jexactyl...)
+| Frp | [egg-frp.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-frp.json) | ✅ | ✅ | Cria um túnel que atravessa NAT (precisa de um servidor com porta aberta)
+| Jellyfin | [egg-jellyfin.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-jellyfin.json) | ✅ | ✅ | Reprodutor de mídia
+| Emby | [egg-emby.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-emby.json) | ✅ | ✅ | Reprodutor de mídia
+| Nextcloud | [egg-nextcloud.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-nextcloud.json) | ✅ | ✅ | Um lugar para você guardar seus arquivos, tipo Dropbox
+| Stress-ng | [Egg-Stress.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Egg-Stress.json) | ✅ | ✅ | Isso irá estressar a sua máquina
 | VPS | [VPS-Egg.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/VPS-Egg.json) | ✅ | ❌ | Root com Proot
 
 ## 🎮 | Games
