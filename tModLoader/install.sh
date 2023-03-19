@@ -55,7 +55,7 @@ else
     rm -rf /mnt/server/.local/share/Terraria/ModLoader/Mods
     rm -rf terraria-server-*.zip
     rm "${DOWNLOAD_LINK##*/}"
-    rm -rf DedicatedServerUtils LaunchUtils PlatformVariantLibs tModPorter RecentGitHubCommits.txt *.bat *.sh serverconfig.txt
+    rm -rf DedicatedServerUtils LaunchUtils PlatformVariantLibs tModPorter RecentGitHubCommits.txt *.bat serverconfig.txt
     echo -e "Gerando arquivo de configuração"
     touch ./Mods/enabled.json
     touch ./banlist.txt
