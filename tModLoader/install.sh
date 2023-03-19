@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/ash
 if [[ -f "./tModLoader.dll" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/tModLoader/start.sh)
 else
@@ -23,8 +23,6 @@ else
             DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i tmodloader.zip)
         fi
     fi
-    apk update
-    apk add --no-cache --upgrade p7zip wget file curl
 
     mkdir -p /mnt/server
     cd /mnt/server || exit
