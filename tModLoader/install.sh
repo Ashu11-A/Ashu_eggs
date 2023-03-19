@@ -23,8 +23,8 @@ else
             DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i tmodloader.zip)
         fi
     fi
-    apt update
-    apt install -y p7zip-full wget file curl
+    apk update
+    apk add --no-cache --upgrade p7zip wget file curl
 
     mkdir -p /mnt/server
     cd /mnt/server || exit
