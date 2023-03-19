@@ -24,13 +24,13 @@ else
         fi
     fi
 
-    if [ -f "tModLoaderServer" ]; then
-        echo -e "Movendo arquivos antigos para tModLoader_OLD"
-        mkdir tModLoader_OLD
-        mv ./* tModLoader_OLD
-    else
-        echo -e "Primeira instalação"
-    fi
+    #if [ -f "tModLoaderServer" ]; then
+        #echo -e "Movendo arquivos antigos para tModLoader_OLD"
+        #mkdir tModLoader_OLD
+        #mv ./* tModLoader_OLD
+    #else
+        #echo -e "Primeira instalação"
+    #fi
     mkdir Mods
     echo -e "Executando 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
     curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
