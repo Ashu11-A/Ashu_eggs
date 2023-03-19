@@ -24,9 +24,6 @@ else
         fi
     fi
 
-    mkdir -p /mnt/server
-    cd /mnt/server || exit
-    ## download release
     if [ -f "tModLoaderServer" ]; then
         echo -e "Movendo arquivos antigos para tModLoader_OLD"
         mkdir tModLoader_OLD
