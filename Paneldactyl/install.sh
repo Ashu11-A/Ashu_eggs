@@ -76,7 +76,7 @@ EOF
                     echo "🔴  Uma irregularidade foi encontrada, restaurando .env..."
                     (
                         cd backups || exit
-                        cp `ls .env* -t |head -1` ../painel/.env
+                        cp $(ls .env* -t | head -1) ../painel/.env
                     )
                 else
                     printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
@@ -89,11 +89,6 @@ EOF
                     *) ;;
                     esac
                 fi
-            else
-                (
-                    cd painel || exit
-                    cp .env.example .env
-                )
             fi
         fi
     fi
@@ -138,31 +133,31 @@ else
         fakeroot chmod -R 755 /home/container/painel/storage/* /home/container/painel/bootstrap/cache/
         fakeroot chown -R nginx:nginx /home/container/painel/*
         touch ./painel/panel_github_instalado
-            if [ -f "logs/panel_database_instalado" ]; then
-        if [ ! -f "painel/.env" ]; then
-            if [ -f "backups/executado" ]; then
-                (
-                    cd painel || exit
-                    composer install --no-interaction --no-dev --optimize-autoloader
-                )
-                echo "🔴  Uma irregularidade foi encontrada, restaurando .env..."
-                (
-                    cd backups || exit
-                    cp `ls .env* -t |head -1` ../painel/.env
-                )
-            else
-                printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
-                printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
-                read -r response
-                case "$response" in
-                [yY][eE][sS] | [yY])
-                    rm -rf logs/panel*
-                    ;;
-                *) ;;
-                esac
+        if [ -f "logs/panel_database_instalado" ]; then
+            if [ ! -f "painel/.env" ]; then
+                if [ -f "backups/executado" ]; then
+                    (
+                        cd painel || exit
+                        composer install --no-interaction --no-dev --optimize-autoloader
+                    )
+                    echo "🔴  Uma irregularidade foi encontrada, restaurando .env..."
+                    (
+                        cd backups || exit
+                        cp $(ls .env* -t | head -1) ../painel/.env
+                    )
+                else
+                    printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
+                    printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
+                    read -r response
+                    case "$response" in
+                    [yY][eE][sS] | [yY])
+                        rm -rf logs/panel*
+                        ;;
+                    *) ;;
+                    esac
+                fi
             fi
         fi
-    fi
     fi
     printf "\n \n📄  Verificando Instalação...\n \n"
     printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
@@ -221,10 +216,9 @@ else
                 echo "| Env      | 🔴  Restaurando .env...          |"
                 (
                     cd backups || exit
-                    cp `ls .env* -t |head -1` ../painel/.env
+                    cp $(ls .env* -t | head -1) ../painel/.env
                 )
             fi
-        else
             (
                 cd painel || exit
                 if [[ -f ".env" ]]; then
@@ -232,8 +226,8 @@ else
                 else
                     printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
                     cp .env.example .env
-                fi 
-            ) 
+                fi
+            )
         fi
     fi
     (
@@ -379,7 +373,7 @@ if [ -z "$BACKUP" ] || [ "$BACKUP" == "1" ]; then
         echo "⚠️  Backups com mais de 1 semana serão deletados automaticamente!"
         find ./backups/ -mindepth 1 -not -name "executado" -mtime +7 -delete
     else
-    echo "Database não instalado, pulando backup do .env"
+        echo "Database não instalado, pulando backup do .env"
     fi
 else
     echo "🟠  Sistema de backups está desativado, caso perca seu .env, você não terá mais acesso ao seu Database!"
