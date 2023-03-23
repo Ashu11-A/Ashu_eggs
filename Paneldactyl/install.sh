@@ -211,6 +211,8 @@ if [ "${OCC}" == "1" ]; then
     exit
 else
     if [ -f "logs/panel_database_instalado" ]; then
+        echo "| Env      | 🟢  Configurado                  |"
+    else
         if [ ! -f "painel/.env" ]; then
             if [ -f "backups/executado" ]; then
                 echo "| Env      | 🔴  Restaurando .env...          |"
@@ -221,12 +223,8 @@ else
             fi
             (
                 cd painel || exit
-                if [[ -f ".env" ]]; then
-                    echo "| Env      | 🟢  Configurado                  |"
-                else
-                    printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
-                    cp .env.example .env
-                fi
+                printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
+                cp .env.example .env
             )
         fi
     fi
