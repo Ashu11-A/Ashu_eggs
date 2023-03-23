@@ -78,6 +78,12 @@ EOF
                         cd backups || exit
                         cp `ls .env* -t |head -1` ../painel/.env
                     )
+                if [ ! -f "painel/.env" ]; then
+                    (
+                        cd painel || exit
+                        cp .env.example .env
+                    )
+                fi
                 else
                     printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
                     printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
