@@ -17,7 +17,7 @@ user_make="user"
 user_start="php artisan p:user:make"
 
 yarn="build"
-yarn_start="yarn && yarn build"
+yarn_start="yarn && yarn lint --fix && yarn build"
 
 reinstall="reinstall"
 
