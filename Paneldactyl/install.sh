@@ -19,7 +19,7 @@ else
         FILE=panel.tar.gz
     elif [ "${PANEL}" != "Pterodactyl" ] && [ "${PANEL}" != "Jexactyl" ] && [ "${PANEL}" != "Jexactyl Brasil" ]; then ## Verifica se...
         echo "Por algum motivo não foi possivel detectar o Painel que será instalado, instalando por padrão: Jexactyl Brasil"
-        GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
+        GITHUB_PACKAGE=Next-Panel/Jexactyl-BR
         FILE=panel.tar.gz
     fi
 fi
