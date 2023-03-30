@@ -67,6 +67,8 @@ EOF
     rm Mono*
     rm mscorlib.dll
     rm serverconfig.txt
+    rm ${DOWNLOAD_LINK##*/}
+    rm -r ${CLEAN_VERSION}
     printf "Generating config file"
     cat <<EOF >serverconfig.txt
 ||----------------------------------------------------------------||
