@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/bash
 # shellcheck shell=dash
 
 if [ -f "./TerrariaServer.exe" ]; then
