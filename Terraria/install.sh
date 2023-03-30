@@ -86,6 +86,7 @@ maxplayers=
 difficulty=
 autocreate=
 slowliquids=
+npcstream=
 seed=
 motd=
 ||----------------------------------------------------------------||
