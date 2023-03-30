@@ -95,6 +95,6 @@ secure=
 language=
 EOF
 
-    printf "Install complete"
+    printf "Install complete."
 
 fi
