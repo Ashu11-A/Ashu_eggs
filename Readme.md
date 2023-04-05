@@ -7,7 +7,7 @@
 
 ![Last-Comitt](https://img.shields.io/github/last-commit/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=b4befe)
 ![Comitts Year](https://img.shields.io/github/commit-activity/y/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=f9e2af&logoColor=f9e2af)
-![reposize-info](https://img.shields.io/github/repo-size/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=89dceb)
+![reposize-info](https://img.shields.io/github/repo-size/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=90dceb)
 
 </div>
 <div align="left">
