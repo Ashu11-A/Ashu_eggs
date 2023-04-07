@@ -13,7 +13,9 @@ Arquivo: ${DOWNLOAD_LINK##*/}
 EOF
     curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}
     unzip ${DOWNLOAD_LINK##*/}
-    #rm -rf ${DOWNLOAD_LINK##*/}
+    rm -rf ${DOWNLOAD_LINK##*/}
+    chmod a+x Tdarr_Updater
+    ./Tdarr_Updater
     mkdir -p Fonts
     git clone https://github.com/xero/figlet-fonts.git ./Fonts
 fi
