@@ -9,6 +9,8 @@ figlet -c -f ./Fonts/3d.flf "Tdarr" > "$temp_file"
 
 # Executa o comando lolcat usando o arquivo temporário como entrada
 cat "$temp_file"
+echo "🟢  Iniciando Tdarr_Updater..."
+./Tdarr_Updater
 
 echo "🟢  Iniciando Tdarr_Server..."
 nohup ./Tdarr_Server/Tdarr_Server >/dev/null 2>&1 &
