@@ -14,4 +14,6 @@ EOF
     curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}
     unzip ${DOWNLOAD_LINK##*/}
     #rm -rf ${DOWNLOAD_LINK##*/}
+    mkdir -p Fonts
+    git clone https://github.com/xero/figlet-fonts.git ./Fonts
 fi
