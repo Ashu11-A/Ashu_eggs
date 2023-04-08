@@ -6,7 +6,8 @@ else
     git clone https://github.com/alfg/ffmpeg-commander
     mv ffmpeg-commander/* ./
     rm -rf ffmpeg-commander
+    rm package-lock.json
     fakeroot chmod 775 *
-    npm audit fix
     npm install
+    npm audit fix
 fi
