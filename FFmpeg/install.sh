@@ -38,7 +38,7 @@ if [ ! -d Media ]; then
 fi
 
 if [ ! -d "FFmpeg-Commander" ]; then
-    git clone https://github.com/Ashu11-A/ffmpeg-commander-Egg FFmpeg-Commander
+    git clone --quiet https://github.com/Ashu11-A/ffmpeg-commander-Egg FFmpeg-Commander
 fi
 fakeroot chmod 775 ./*
 (
