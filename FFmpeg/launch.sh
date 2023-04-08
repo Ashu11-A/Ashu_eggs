@@ -21,7 +21,7 @@ echo "🟢  Iniciando FFmpegd..."
 (
     cd FFmpegd || exit
     touch nohup.out
-    ./ffmpegd
+    ./ffmpegd "${FFMPEGD_PORT}"
 )
 
 while read -r line; do
