@@ -3,7 +3,10 @@ bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 
 echo "🟢  Iniciando servidor..."
-nohup npm run serve 2>&1 &
+(
+    cd ffmpeg-commander || exit
+    nohup npm run serve 2>&1 &
+)
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
     MGM="na porta ${SERVER_PORT}"
