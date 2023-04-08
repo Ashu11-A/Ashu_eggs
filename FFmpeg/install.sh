@@ -7,5 +7,6 @@ else
     mv ffmpeg-commander/* ./
     rm -rf ffmpeg-commander
     fakeroot chmod 775 *
+    npm audit fix
     npm install
 fi
