@@ -2,11 +2,18 @@
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 
-echo "🟢  Iniciando servidor..."
+echo "🟢  Iniciando FFmpeg-Commander..."
 (
-    cd ffmpeg-commander || exit
+    cd FFmpeg-Commander || exit
     touch nohup.out
     nohup npm run serve 2>&1 &
+)
+
+echo "🟢  Iniciando FFmpegd..."
+(
+    cd FFmpegd || exit
+    touch nohup.out
+    nohup ./ffmpegd 2>&1 &
 )
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
