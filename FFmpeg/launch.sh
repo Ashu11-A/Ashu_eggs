@@ -1,3 +1,5 @@
 #!/bin/bash
 echo "🟢  Iniciando servidor..."
-npm run serve --port ${SERVER_PORT}
+npm ci 
+npm test
+npm run build
