@@ -42,7 +42,7 @@ if [ ! -d "FFmpeg-Commander" ]; then
 fi
 fakeroot chmod 775 ./*
 (
-    cd FFmpeg-Commanderr || exit
+    cd FFmpeg-Commander || exit
     npm install
     npm audit fix
 )
