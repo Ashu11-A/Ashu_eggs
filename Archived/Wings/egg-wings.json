@@ -1,0 +1,52 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-04-08T15:01:53-03:00",
+    "name": "Wings",
+    "author": "Matheusn.biolowons@gmail.com",
+    "description": "\ud83d\udc8e Egg: Wings\r\n\u2699\ufe0f Vers\u00e3o: 1.0\r\n\u2753 Oque \u00e9:\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n \u2022 (1.0) Lan\u00e7amento.\r\n \u2022 (1.0) \r\n    \ud83d\udcdd Vari\u00e1veis: \r\n        \u2022 (1.0) \r\n    \ud83d\udce6 Docker: \r\n         \u2022 Compatibilidade com ARM64, 64x.\r\n\u26a0\ufe0f Aten\u00e7\u00e3o:\r\n   \u2757\ufe0f\r\n   \u2755\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "features": null,
+    "docker_images": {
+        "ARM64, 64x ": "  ashu11a\/paneldactyl:latest"
+    },
+    "file_denylist": [],
+    "startup": ".\/start.sh",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Iniciando cron\",\r\n    \"userInteraction\": []\r\n}",
+        "logs": "{\r\n    \"custom\": true,\r\n    \"location\": \"logs\/latest.log\"\r\n}",
+        "stop": "^^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/ash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\n#curl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Wings\/start.sh -o start.sh\r\n#chmod a+x .\/start.sh\r\n#.\/start.sh\r\nif [ -d \".\/logs\" ]; then\r\necho \"1.0\" > logs\/egg_version\r\nelse\r\nmkdir logs\r\necho \"1.0\" > logs\/egg_version\r\nfi",
+            "container": "ashu11a\/paneldactyl:installer",
+            "entrypoint": "ash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Vers\u00e3o",
+            "description": "Vers\u00e3o do Painel, latest instalar\u00e1 a vers\u00e3o mais recente.",
+            "env_variable": "VERSION",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:12",
+            "field_type": "text"
+        },
+        {
+            "name": "Avisos de Atualiza\u00e7\u00e3o",
+            "description": "Ative\/Desative as notifica\u00e7\u00f5es de Atualiza\u00e7\u00e3o do Egg no terminal",
+            "env_variable": "ATZ_SYSTEM",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        }
+    ]
+}
