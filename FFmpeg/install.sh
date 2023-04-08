@@ -1,5 +1,5 @@
 #!/bin/bash
-if [[ -d "./public" ]]; then
+if [[ -d "./ffmpeg-commander/public" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/FFmpeg/version.sh)
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/FFmpeg/launch.sh)
 else
