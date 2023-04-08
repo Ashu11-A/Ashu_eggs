@@ -5,6 +5,7 @@ lightblue=$(echo -en "\e[94m")
 echo "🟢  Iniciando servidor..."
 (
     cd ffmpeg-commander || exit
+    touch nohup.out
     nohup npm run serve 2>&1 &
 )
 
@@ -14,6 +15,7 @@ else
     MGM="em ${SERVER_IP}:${SERVER_PORT}"
 fi
 echo "🟢  Interface auxiliar iniciando ${MGM}..."
+echo "🔎  A interface é apenas para você copiar o comando que ele ira gerar a partir das suas configurações, coloque seus arquivos de video na pasta Media, e após isso cole o comando aqui de um simples [ENTER]."
 
 while read -r line; do
     if [[ "$line" == *"ffmpeg"* ]]; then
