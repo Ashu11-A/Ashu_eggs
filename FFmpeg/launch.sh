@@ -18,7 +18,7 @@ echo "🟢  Interface auxiliar iniciando ${MGM}..."
 while read -r line; do
     if [[ "$line" == *"ffmpeg"* ]]; then
         echo "Executando: ${bold}${lightblue}${line}"
-        eval "$line"
+        eval "cd Media && $line"
         printf "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" != *"ffmpeg"* ]]; then
         echo "Comando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}ffmpeg."
