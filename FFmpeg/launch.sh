@@ -9,13 +9,6 @@ echo "🟢  Iniciando FFmpeg-Commander..."
     nohup npm run serve 2>&1 &
 )
 
-echo "🟢  Iniciando FFmpegd..."
-(
-    cd FFmpegd || exit
-    touch nohup.out
-    nohup ./ffmpegd 2>&1 &
-)
-
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
     MGM="na porta ${SERVER_PORT}"
 else
@@ -23,6 +16,13 @@ else
 fi
 echo "🟢  Interface auxiliar iniciando ${MGM}..."
 printf "\n \n🔎  A interface é apenas para você copiar o comando que ele ira gerar a partir das suas configurações,\n coloque seus arquivos de video na pasta Media, e após isso cole o comando aqui de um simples [ENTER].\n \n"
+
+echo "🟢  Iniciando FFmpegd..."
+(
+    cd FFmpegd || exit
+    touch nohup.out
+    ./ffmpegd
+)
 
 while read -r line; do
     if [[ "$line" == *"ffmpeg"* ]]; then
