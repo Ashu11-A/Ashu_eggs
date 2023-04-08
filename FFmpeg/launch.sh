@@ -13,7 +13,7 @@ if [ "${SERVER_IP}" = "0.0.0.0" ]; then
 else
     MGM="em ${SERVER_IP}:${SERVER_PORT}"
 fi
-echo "🟢  Interface auxiliar inicializada com sucesso ${MGM}..."
+echo "🟢  Interface auxiliar iniciando ${MGM}..."
 
 while read -r line; do
     if [[ "$line" == *"ffmpeg"* ]]; then
