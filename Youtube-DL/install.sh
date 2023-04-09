@@ -17,10 +17,6 @@ else
 
     ## Instalando youtube-dl-web
     git clone https://github.com/xxcodianxx/youtube-dl-web
-    mv ./youtube-dl-web/* ./
-    rm docker-compose.yml
-    rm .gitignore
-    rm -r .github
     ##################
 
     if [ -d logs ]; then
