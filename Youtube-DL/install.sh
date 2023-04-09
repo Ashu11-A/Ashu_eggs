@@ -3,7 +3,7 @@ if [[ -f "./logs/instalado" ]]; then
     echo "✓ Atualizando o script start.sh"
     curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/start.sh -o start.sh
     chmod a+x ./start.sh
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/launch.sh) | tee logs/terminal.log
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/launch.sh)
 else
     cd /mnt/server/ || exit
     mkdir php-fpm
