@@ -16,14 +16,18 @@ else
 fi
 echo "🟢  Interface auxiliar iniciando ${MGM}..."
 printf "\n \n🔎  A interface é apenas para você copiar o comando que ele ira gerar a partir das suas configurações,\n coloque seus arquivos de video na pasta Media, e após isso cole o comando aqui de um simples [ENTER].\n \n"
-sleep 10
-echo "🟢  Iniciando FFmpegd..."
-(
-    cd FFmpegd || exit
-    touch nohup.out
-    ./ffmpegd "${FFMPEGD_PORT}"
-)
 
+if [ ${FFMPEGD_STATUS} == "1" ]; then
+    echo "🟢  Iniciando FFmpegd em 10 segundos..."
+    sleep 15
+    (
+        cd FFmpegd || exit
+        touch nohup.out
+        ./ffmpegd "${FFMPEGD_PORT}"
+    )
+else
+    echo "🙂  FFmpegd está desativado, e que continue assim!"
+fi
 while read -r line; do
     if [[ "$line" == *"ffmpeg"* ]]; then
         echo "Executando: ${bold}${lightblue}${line}"
