@@ -23,7 +23,8 @@ cd nginx/conf.d/ || exit
 wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/default.conf
 
 echo "**** Fazendo o download do Youtube-DL ****"
-git clone https://github.com/xxcodianxx/youtube-dl-web .
+git clone https://github.com/xxcodianxx/youtube-dl-web
+mv youtube-dl-web/* ./
 rm docker-compose.yml
 rm .gitignore
 rm -r .github
