@@ -56,8 +56,8 @@ touch ./logs/instalado
 mkdir tmp
 
 if [[ -d "./server" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/FFmpeg/version.sh)
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/FFmpeg/launch.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/version.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/launch.sh)
 else
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/FFmpeg/install.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/install.sh)
 fi
