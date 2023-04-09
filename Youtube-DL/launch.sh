@@ -9,6 +9,7 @@ echo "🛠 Instalando frontend..."
         yarn build
     fi
 )
+echo "🛠 Instalando server..."
 (
     cd youtube-dl-web/server || exit
     pip3  --disable-pip-version-check --no-cache-dir install -r requirements.txt
