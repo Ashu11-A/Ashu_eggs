@@ -29,6 +29,7 @@ EOF
         curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}
         echo -e "Descompactando arquivos..."
         tar -xvzf ${DOWNLOAD_LINK##*/}
+        rm ${DOWNLOAD_LINK##*/}
     )
 
 fi
