@@ -1,5 +1,13 @@
 #!/bin/bash
 if [[ -f "./logs/instalado" ]]; then
+    #Executando Limpeza
+    rm -rf tmp/*
+    rm -rf temp
+    rm -rf .composer
+    rm -rf .yarn
+    rm -rf .cache
+    rm -rf .yarnrc
+
     echo "✓ Atualizando o script start.sh"
     curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/start.sh -o start.sh
     chmod a+x ./start.sh
@@ -7,17 +15,29 @@ if [[ -f "./logs/instalado" ]]; then
 else
     cd /mnt/server/ || exit
     mkdir php-fpm
+
     ## Instalando Nginx
     git clone https://github.com/finnie2006/ptero-nginx ./temp
     cp -r ./temp/nginx /mnt/server/
     cp -r ./temp/php-fpm /mnt/server/
     rm -rf ./temp
     rm -rf /mnt/server/webroot/*
-    ##################
 
     ## Instalando youtube-dl-web
     git clone https://github.com/xxcodianxx/youtube-dl-web
-    ##################
+    if [ -d "youtube-dl-web" ]; then
+        (
+            cd youtube-dl-web || exit
+            rm -rf .git
+            rm -rf .github
+            rm -rf images
+            rm -rf nginx
+            rm -rf .gitignore
+            rm -rf docker-compose.yml
+            rm -rf LICENSE
+            rm -rf README.md
+        )
+    fi
 
     if [ -d logs ]; then
         echo "Pasta logs já existe, pulando..."
@@ -30,7 +50,6 @@ else
         rm default.conf
         wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/default.conf
     )
-    #####################
 
     chown -R nginx:nginx youtube-dl-web && chmod -R 755 youtube-dl-web
     echo "**** Limpando ****"
