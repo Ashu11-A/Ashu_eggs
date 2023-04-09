@@ -1,4 +1,6 @@
 #!/bin/bash
+export PATH=$PATH:/home/container/.local/bin
+
 rm -rf /home/container/tmp/*
 echo "⚙️ Versão do Script: 1.0"
 echo "🛠 Instalando frontend..."
