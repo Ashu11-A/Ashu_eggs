@@ -1,11 +1,10 @@
 #!/bin/bash
-mkdir php-fpm
 echo "✓ Atualizando o script start.sh"
 curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/start.sh -o start.sh
 mkdir temp
 git clone https://github.com/finnie2006/ptero-nginx ./temp
-mv -r ./temp/nginx ./
-mv -r ./temp/php-fpm ./
+mv ./temp/nginx ./
+mv ./temp/php-fpm ./
 rm -rf ./temp
 rm -rf ./webroot/*
 if [ -d logs ]; then
