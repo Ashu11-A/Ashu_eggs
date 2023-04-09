@@ -14,11 +14,11 @@ echo "🛠 Instalando frontend..."
 echo "🛠 Instalando server..."
 (
     cd youtube-dl-web/server || exit
-    pip3  --disable-pip-version-check --no-cache-dir install -r requirements.txt
-    pip3 install -U yt-dlp
+    pip3  --disable-pip-version-check --no-cache-dir install -r requirements.txt >/dev/null
+    pip3 install -U yt-dlp >/dev/null
     (
         cd src || exit
-        nohup python -m uvicorn server:app --host 0.0.0.0 --port 4000 --no-server-header --workers 8 2>&1 &
+        nohup python -m uvicorn server:app --host 0.0.0.0 --port 4000 --no-server-header --workers 8 >/dev/null 2>&1 &
     )
 )
 echo "🛠 Iniciando PHP-FPM..."
