@@ -18,7 +18,7 @@ echo "🟢  Interface auxiliar iniciando ${MGM}..."
 printf "\n \n🔎  A interface é apenas para você copiar o comando que ele ira gerar a partir das suas configurações,\n coloque seus arquivos de video na pasta Media, e após isso cole o comando aqui de um simples [ENTER].\n \n"
 
 if [ ${FFMPEGD_STATUS} == "1" ]; then
-    echo "🟢  Iniciando FFmpegd em 10 segundos..."
+    echo "🟢  Iniciando FFmpegd em 15 segundos..."
     sleep 15
     (
         cd FFmpegd || exit
