@@ -16,10 +16,6 @@ else
 fi
 echo "🟢  Interface auxiliar iniciando ${MGM}..."
 
-if [ ${FFMPEGD_STATUS} == "0" ]; then
-    printf "\n \n🔎  A interface é apenas para você copiar o comando que ele ira gerar a partir das suas configurações,\n coloque seus arquivos de video na pasta Media, e após isso cole o comando aqui de um simples [ENTER].\n \n"
-fi
-
 if [ ${FFMPEGD_STATUS} == "1" ]; then
     echo "🟢  Iniciando FFmpegd em 15 segundos..."
     sleep 15
@@ -31,6 +27,11 @@ if [ ${FFMPEGD_STATUS} == "1" ]; then
 else
     echo "🙂  FFmpegd está desativado, e que continue assim!"
 fi
+
+if [ ${FFMPEGD_STATUS} == "0" ]; then
+    printf "\n \n🔎  A interface é apenas para você copiar o comando que ele ira gerar a partir das suas configurações,\n coloque seus arquivos de video na pasta Media, e após isso cole o comando aqui de um simples [ENTER].\n \n"
+fi
+
 while read -r line; do
     if [[ "$line" == *"ffmpeg"* ]]; then
         echo "Executando: ${bold}${lightblue}${line}"
