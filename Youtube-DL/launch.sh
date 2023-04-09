@@ -1,5 +1,4 @@
-#!/bin/ash
-# shellcheck shell=dash
+#!/bin/bash
 rm -rf /home/container/tmp/*
 echo "⚙️ Versão do Script: 1.8"
 echo "🛠 Iniciando PHP-FPM..."

@@ -1,21 +1,13 @@
-#!/bin/ash
-# shellcheck shell=dash
-cd /mnt/server/ || exit
+#!/bin/bash
 mkdir php-fpm
-echo "**** Fazendo o download do Youtube-DL ****"
-git clone https://github.com/xxcodianxx/youtube-dl-web .
-rm docker-compose.yml
-rm .gitignore
-rm -r .github
-
 echo "✓ Atualizando o script start.sh"
 curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/start.sh -o start.sh
-
+mkdir temp
 git clone https://github.com/finnie2006/ptero-nginx ./temp
-cp -r ./temp/nginx /mnt/server/
-cp -r ./temp/php-fpm /mnt/server/
+mv -r ./temp/nginx ./
+mv -r ./temp/php-fpm ./
 rm -rf ./temp
-rm -rf /mnt/server/webroot/*
+rm -rf ./webroot/*
 if [ -d logs ]; then
     echo "Pasta Logs já existe, pulando..."
 else
@@ -24,7 +16,12 @@ fi
 rm nginx/conf.d/default.conf
 cd nginx/conf.d/ || exit
 wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/default.conf
-cd /mnt/server || exit
+
+echo "**** Fazendo o download do Youtube-DL ****"
+git clone https://github.com/xxcodianxx/youtube-dl-web .
+rm docker-compose.yml
+rm .gitignore
+rm -r .github
 
 (
     cd frontend || exit
@@ -34,7 +31,7 @@ cd /mnt/server || exit
 
 chown -R nginx:nginx ./* && chmod -R 755 ./*
 echo "**** Limpando ****"
-rm -rf /tmp/*
+rm -rf tmp/*
 echo "**** configure php and nginx for nextcloud ****" &&
     echo "extension="smbclient.so"" >php-fpm/conf.d/00_smbclient.ini &&
     echo 'apc.enable_cli=1' >>php-fpm/conf.d/apcu.ini &&
