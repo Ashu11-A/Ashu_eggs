@@ -32,10 +32,10 @@ else
     )
     #####################
 
-    chown -R nginx:nginx nextcloud && chmod -R 755 nextcloud
+    chown -R nginx:nginx youtube-dl-web && chmod -R 755 youtube-dl-web
     echo "**** Limpando ****"
     rm -rf /tmp/*
-    echo "**** configure php and nginx for nextcloud ****" &&
+    echo "**** configure php and nginx for youtube-dl-web ****" &&
         echo "extension="smbclient.so"" >php-fpm/conf.d/00_smbclient.ini &&
         echo 'apc.enable_cli=1' >>php-fpm/conf.d/apcu.ini &&
         sed -i \
