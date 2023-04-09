@@ -1,12 +1,9 @@
-#!/bin/ash
+#!/bin/bash
 if [[ -f "./logs/instalado" ]]; then
     if [ "${OCC}" == "1" ]; then 
         php ./nextcloud/occ ${COMMANDO_OCC}
         exit
     else
-        echo "✓ Atualizando o script install.sh"
-        curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/install.sh -o install.sh;
-        chmod a+x ./install.sh
         echo "✓ Atualizando o script start.sh"
         curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/start.sh -o start.sh;
         chmod a+x ./start.sh;
@@ -17,23 +14,26 @@ else
     mkdir php-fpm
 fi
 
-echo "✓ Atualizando o script install.sh"
-curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/install.sh -o install.sh
-
+## Instalando Nginx
 git clone https://github.com/finnie2006/ptero-nginx ./temp
 cp -r ./temp/nginx /mnt/server/
 cp -r ./temp/php-fpm /mnt/server/
 rm -rf ./temp
 rm -rf /mnt/server/webroot/*
+##################
+
 if [ -d logs ]; then
-    echo "Pasta Logs já existe, pulando..."
+    echo "Pasta logs já existe, pulando..."
 else
     mkdir logs
 fi
-rm nginx/conf.d/default.conf
-cd nginx/conf.d/
-wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/default.conf
-cd /mnt/server
+## configurando Nginx
+(
+    cd nginx/conf.d/ || exit
+    rm default.conf
+    wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/default.conf
+)
+#####################
 
 chown -R nginx:nginx nextcloud && chmod -R 755 nextcloud
 echo "**** Limpando ****"
