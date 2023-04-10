@@ -35,6 +35,7 @@ else
         DOWNLOAD_URL=https://api.papermc.io/v2/projects/${PROJECT}/versions/${MINECRAFT_VERSION}/builds/${BUILD_NUMBER}/downloads/${JAR_NAME}
     fi
     cd /mnt/server || exit
+    mkdir logs
     echo "Running curl -o ${SERVER_JARFILE} ${DOWNLOAD_URL}"
     if [ -f "${SERVER_JARFILE}" ]; then
         mv "${SERVER_JARFILE}" "${SERVER_JARFILE}.old"
