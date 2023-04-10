@@ -37,7 +37,7 @@ Gostou dos Eggs? Então de uma 🌟 ao repositório!
 | Nextcloud | [egg-nextcloud.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-nextcloud.json) | ✅ | ✅ | Um lugar para você guardar seus arquivos, tipo Dropbox
 | Stress-ng | [Egg-Stress.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Egg-Stress.json) | ✅ | ✅ | Isso irá estressar a sua máquina
 | VPS | [VPS-Egg.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/VPS-Egg.json) | ✅ | ❌ | Root com Proot
-| Youtube-DL Web | [egg-youtube-dl-web.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-youtube-dl-web.json) | ✅ | ✅ | Interface web para fazer download de vídeo do YouTube diretamente para o usuário.
+| Youtube-DL Web | [egg-youtube-dl-web.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-youtube-dl-web.json) | ✅ | ✅ | Interface web para fazer downloads de vídeos do YouTube diretamente ao usuário.
 
 ## 🎮 | Games
 | Game | file* | AMD64 | ARM64 | More info |
