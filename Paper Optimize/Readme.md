@@ -23,8 +23,8 @@ Aqui se encontra a explicação sobre as otimizações que este egg contém...
 
 ###  📄 | spigot.yml
 
-###  📄 | spigot.yml
+###  📄 | server.properties
 
 ## ⚙️ | Inicialização
 
-
+## 🐳 | Docker
