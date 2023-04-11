@@ -8,5 +8,23 @@
 ##  📃 | Descrição
 Aqui se encontra a explicação sobre as otimizações que este egg contém...
 
-## 🪄 | Otimizações
-Yeye
+</div>
+<div align="center">
+
+##  Otimizações
+
+</div>
+
+## 🗂 | Arquivos
+
+###  📄 | bukkit.yml
+
+###  📄 | paper-world-defaults.yml
+
+###  📄 | spigot.yml
+
+###  📄 | spigot.yml
+
+## ⚙️ | Inicialização
+
+
