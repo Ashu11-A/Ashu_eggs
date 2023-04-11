@@ -6,8 +6,9 @@
 </div>
 
 ##  📃 | Descrição
-Aqui se encontra a explicação sobre as otimizações que este egg contém...
-Lembre-se, otimizadk não quer dizer menos uso de Ram, pelo o contrário, ele irá usar o máximo para fazer o coletor de lixo funcionar adequadamente.
+Aqui se encontra a explicação sobre as otimizações que este Egg contém...
+
+Lembre-se, otimizado não quer dizer menos uso de RAM, pelo contrário, ele irá usar o máximo para fazer o coletor de lixo funcionar adequadamente.
 </div>
 <div align="center">
 
