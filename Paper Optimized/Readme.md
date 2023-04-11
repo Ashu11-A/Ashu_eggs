@@ -48,7 +48,7 @@ https://www.spigotmc.org/threads/guide-server-optimization%E2%9A%A1.283181/
 | allow-non-player-entities-on-scoreboards | true | false | Diminuir ligeiramente a quantidade de tempo que o servidor gasta calculando colisões de entidades. |
 | keep-spawn-loaded-range | 10 | 8 | O valor dos pedaços ao redor do spawn para manter carregado. |
 | container-update | 1 | 2 | A taxa na qual o servidor atualiza contêineres(baus, fornos...) e inventários. |
-| grass-spread | 1 | 2 | Define o atras no qual o servidor tenta espalhar a grama. |
+| grass-spread | 1 | 2 | Define o atraso no qual o servidor tenta espalhar a grama. |
 | mob-spawner | 1 | 2 | Define a frequência do cálculo de spawn de entidades pelos geradores de mobs no mundo |
 
 ###  📄 | spigot.yml
