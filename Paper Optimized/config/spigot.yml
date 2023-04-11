@@ -10,16 +10,26 @@
 # Discord: https://www.spigotmc.org/go/discord
 # Forums: http://www.spigotmc.org/
 
+messages:
+  whitelist: You are not whitelisted on this server!
+  unknown-command: Unknown command. Type "/help" for help.
+  server-full: The server is full!
+  outdated-client: Outdated client! Please use {0}
+  outdated-server: Outdated server! I'm still on {0}
+  restart: Server is restarting
+advancements:
+  disable-saving: false
+  disabled:
+  - minecraft:story/disabled
 settings:
-  debug: false
-  sample-count: 12
+  player-shuffle: 0
   timeout-time: 60
   restart-on-crash: true
   restart-script: ./start.sh
   bungeecord: false
-  player-shuffle: 0
-  user-cache-size: 1000
   save-user-cache-on-stop-only: false
+  sample-count: 12
+  user-cache-size: 1000
   moved-wrongly-threshold: 0.0625
   moved-too-quickly-multiplier: 10.0
   netty-threads: 4
@@ -32,50 +42,26 @@ settings:
       max: 2048.0
   log-villager-deaths: true
   log-named-deaths: true
-messages:
-  whitelist: You are not whitelisted on this server!
-  unknown-command: Unknown command. Type "/help" for help.
-  server-full: The server is full!
-  outdated-client: Outdated client! Please use {0}
-  outdated-server: Outdated server! I'm still on {0}
-  restart: Server is restarting
-advancements:
-  disable-saving: false
-  disabled:
-  - minecraft:story/disabled
-commands:
-  spam-exclusions:
-  - /skill
-  silent-commandblock-console: false
-  replace-commands:
-  - setblock
-  - summon
-  - testforblock
-  - tellraw
-  log: true
-  tab-complete: 0
-  send-namespaced: true
-players:
-  disable-saving: false
+  debug: false
 world-settings:
   default:
     below-zero-generation-in-existing-chunks: true
     merge-radius:
       item: 4.0
       exp: 6.0
-    item-despawn-rate: 6000
     view-distance: default
     simulation-distance: default
-    thunder-chance: 100000
-    enable-zombie-pigmen-portal-spawns: true
-    wither-spawn-sound-radius: 0
-    hanging-tick-frequency: 100
+    mob-spawn-range: 6
+    item-despawn-rate: 6000
     arrow-despawn-rate: 300
     trident-despawn-rate: 1200
     zombie-aggressive-towards-villager: true
     nerf-spawner-mobs: true
-    mob-spawn-range: 6
+    enable-zombie-pigmen-portal-spawns: true
+    wither-spawn-sound-radius: 0
     end-portal-sound-radius: 0
+    hanging-tick-frequency: 100
+    thunder-chance: 100000
     growth:
       cactus-modifier: 100
       cane-modifier: 100
@@ -150,6 +136,9 @@ world-settings:
     seed-mansion: 10387319
     seed-fossil: 14357921
     seed-portal: 34222645
+    seed-ancientcity: 20083232
+    seed-buriedtreasure: 10387320
+    seed-mineshaft: default
     seed-stronghold: default
     hunger:
       jump-walk-exhaustion: 0.05
@@ -164,6 +153,20 @@ world-settings:
       tile: 1000
       entity: 1000
     verbose: false
+commands:
+  spam-exclusions:
+  - /skill
+  silent-commandblock-console: false
+  replace-commands:
+  - setblock
+  - summon
+  - testforblock
+  - tellraw
+  log: true
+  tab-complete: 0
+  send-namespaced: true
+players:
+  disable-saving: false
 config-version: 12
 stats:
   disable-saving: false
