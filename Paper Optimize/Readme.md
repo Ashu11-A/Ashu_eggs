@@ -19,12 +19,32 @@ Aqui se encontra a explicação sobre as otimizações que este egg contém...
 
 ###  📄 | bukkit.yml
 
+| Variável | Original | Modificado | Saiba mais |
+|--|--|--|--|
+|  |  |  |  |
+
 ###  📄 | paper-world-defaults.yml
+
+| Variável | Original | Modificado | Saiba mais |
+|--|--|--|--|
+|  |  |  |  |
 
 ###  📄 | spigot.yml
 
+| Variável | Original | Modificado | Saiba mais |
+|--|--|--|--|
+|  |  |  |  |
+
 ###  📄 | server.properties
 
+| Variável | Original | Modificado | Saiba mais |
+|--|--|--|--|
+|  |  |  |  |
+
 ## ⚙️ | Inicialização
+
+| Otimização | Variável |
+|--|--|
+|  |  |
 
 ## 🐳 | Docker
