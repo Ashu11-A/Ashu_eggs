@@ -50,7 +50,16 @@ Lembre-se, otimizado não quer dizer menos uso de RAM, pelo contrário, ele irá
 
 | Variável | Original | Modificado | Saiba mais |
 |--|--|--|--|
-|  |  |  |  |
+| item | 2.5 | 4.0 |  |
+| exp | 3.0 | 6.0 |  |
+| mob-spawn-range | 8 | 6 |  |
+| arrow-despawn-rate | 1200 | 300 |  |
+| nerf-spawner-mobs | false | true |  |
+| animals | 32 | 16 |  |
+| monsters | 32 | 24 |  |
+| misc | 16 | 8 |  |
+| tile | 50 | 1000 |  |
+| entity | 50 | 1000 |  |
 
 ###  📄 | server.properties
 
