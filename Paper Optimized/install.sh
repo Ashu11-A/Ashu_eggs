@@ -47,7 +47,9 @@ else
         curl -o spigot.yml https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paper%20Optimized/config/spigot.yml
         curl -o bukkit.yml https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paper%20Optimized/config/bukkit.yml
         mkdir config
-        cd config || exit
-        curl -o paper-world-defaults.yml https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paper%20Optimized/config/paper-world-defaults.yml
+        (
+            cd config || exit
+            curl -o paper-world-defaults.yml https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Paper%20Optimized/config/paper-world-defaults.yml
+        )
     fi
 fi
