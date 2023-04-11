@@ -33,7 +33,18 @@ Lembre-se, otimizado não quer dizer menos uso de RAM, pelo contrário, ele irá
 
 | Variável | Original | Modificado | Saiba mais |
 |--|--|--|--|
-|  |  |  |  |
+| max-auto-save-chunks-per-tick | 24 | 8 |  |
+| prevent-moving-into-unloaded-chunks | false | true |  |
+| max-entity-collisions | 8 | 2 |  |
+| disable-chest-cat-detection | false | true |  |
+| creative-arrow-despawn-rate | default | 180 |  |
+| non-player-arrow-despawn-rate | default | 180 |  |
+| disable-move-event | false | true |  |
+| allow-non-player-entities-on-scoreboards | true | false |  |
+| keep-spawn-loaded-range | 10 | 8 |  |
+| container-update | 1 | 2 |  |
+| grass-spread | 1 | 2 |  |
+| mob-spawner | 1 | 2 |  |
 
 ###  📄 | spigot.yml
 
