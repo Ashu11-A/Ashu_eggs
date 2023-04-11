@@ -22,7 +22,12 @@ Lembre-se, otimizado não quer dizer menos uso de RAM, pelo contrário, ele irá
 
 | Variável | Original | Modificado | Saiba mais |
 |--|--|--|--|
-|  |  |  |  |
+| monsters | 70 | 50 | limite de monstros |
+| animals | 10 | 8 | limite de animais |
+| water-animals | 5 | 3 |  limite de animais aquáticos |
+| ambient | 15 | 1 |  limite de criaturas de ambiente (como morcegos)  |
+| period-in-ticks | 600 |400  | frequência com que o sistema de coleta de lixo limpa as partes não utilizadas |
+| monster-spawns | 1| 2| determina o tempo de espera entre o aparecimento de monstros |
 
 ###  📄 | paper-world-defaults.yml
 
