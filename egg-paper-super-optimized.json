@@ -1,0 +1,89 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-04-11T19:38:48-03:00",
+    "name": "Paper (Super-Optimized)",
+    "author": "parker@pterodactyl.io",
+    "description": "\ud83d\udc8e Egg: Paper (Super-Optimized)\r\n\u2699\ufe0f Vers\u00e3o: 1.0\r\n\u2753 Oque \u00e9: Uma ramifica\u00e7\u00e3o do Spigot de alto desempenho que visa consertar a jogabilidade e as inconsist\u00eancias mec\u00e2nicas, mas agora com um super path de otimiza\u00e7\u00e3o por Ashu.\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n   \u2022 (1.0) Lan\u00e7amento.\r\n   \u2022 (1.0) Tudo \u00e9 feito por scripts, melhor manuten\u00e7\u00e3o e atualiza\u00e7\u00e3o.\r\n\ud83e\ude84 Oque h\u00e1 de diferente?\r\n   \u2022 Lista de optimiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs\/blob\/main\/Paper%20Optimized\r\n   \u2022 Este Egg tem v\u00e1rias Otimiza\u00e7\u00f5es nos arquivos padr\u00f5es.\r\n   \u2022 H\u00e1 uma vari\u00e1vel chamada Otimiza\u00e7\u00e3o que muda o argumento de inicializa\u00e7\u00e3o que melhorar significativamente o desempenho.\r\n    \ud83d\udce6 Docker: \r\n         \u2022 Compatibilidade com ARM64, 64x\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "features": [
+        "eula",
+        "java_version",
+        "pid_limit"
+    ],
+    "docker_images": {
+        "Java 8 Zulu": "ghcr.io\/software-noob\/pterodactyl-images:java_8_zulu",
+        "Java 11 Zulu": "ghcr.io\/software-noob\/pterodactyl-images:java_11_zulu",
+        "Java 16 Zulu": "ghcr.io\/software-noob\/pterodactyl-images:java_16_zulu",
+        "Java 17 Zulu": "ghcr.io\/software-noob\/pterodactyl-images:java_17_zulu"
+    },
+    "file_denylist": [],
+    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Paper%20Optimized\/install.sh)",
+    "config": {
+        "files": "{\r\n    \"server.properties\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"server-ip\": \"0.0.0.0\",\r\n            \"network-compression-threshold\": \"512\",\r\n            \"server-port\": \"{{server.build.default.port}}\",\r\n            \"query.port\": \"{{server.build.default.port}}\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \")! For help, type \"\r\n}",
+        "logs": "{}",
+        "stop": "stop"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\ncd \/mnt\/server\r\napk --update add git curl file unzip tar autoconf automake git wget jq\r\ncurl -o install.sh.sh https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Paper%20Optimized\/install.sh\r\nchmod a+x .\/install.sh\r\n.\/install.sh\r\nrm .\/install.sh",
+            "container": "ghcr.io\/ashu11-a\/installers:alpine",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Vers\u00e3o do Minecraft",
+            "description": "A vers\u00e3o de minecraft para download. \r\n\r\nDeixe o em \"latest\" para obter sempre a vers\u00e3o mais recente. Vers\u00f5es inv\u00e1lidas ter\u00e3o como padr\u00e3o a vers\u00e3o mais recente.",
+            "env_variable": "MINECRAFT_VERSION",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Jar File",
+            "description": "O nome do jarfile para executar o servidor.",
+            "env_variable": "SERVER_JARFILE",
+            "default_value": "server.jar",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:\/^([\\w\\d._-]+)(\\.jar)$\/",
+            "field_type": "text"
+        },
+        {
+            "name": "Download Path",
+            "description": "Um URL a ser usado para baixar um server.jar ao inv\u00e9s dos que est\u00e3o no script de instala\u00e7\u00e3o. Isto n\u00e3o pode ser visualizado pelo usu\u00e1rio.",
+            "env_variable": "DL_PATH",
+            "default_value": "",
+            "user_viewable": false,
+            "user_editable": false,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Build Number",
+            "description": "O n\u00famero de build para a vers\u00e3o paper.\r\n\r\nDeixe o em \"latest\" para obter sempre a vers\u00e3o mais recente. Vers\u00f5es inv\u00e1lidas ter\u00e3o como padr\u00e3o a vers\u00e3o mais recente.",
+            "env_variable": "BUILD_NUMBER",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Otimiza\u00e7\u00e3o",
+            "description": "Escolha qual tipo de otimiza\u00e7\u00e3o \u00e9 a mais pr\u00f3pria para voc\u00ea.",
+            "env_variable": "OPTIMIZE",
+            "default_value": "(0) Geral",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:(0) Geral,(1) 1GB RAM,(2) 2GB RAM,(3) 3GB RAM,(4) 4+GB RAM,(5) 4GB RAM \/ 4threads \/ 4cores,(6) 8+GB RAM \/ 8threads \/ 4cores,(7) 12+GB RAM",
+            "field_type": "text"
+        }
+    ]
+}
