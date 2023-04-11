@@ -42,6 +42,7 @@ Gostou dos Eggs? Então de uma 🌟 ao repositório!
 ## 🎮 | Games
 | Game | file* | AMD64 | ARM64 | More info |
 |--|--|--|--|--|
+| Paper (Super-Optimized) | [egg-paper-super-optimized.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-paper-super-optimized.json) | ✅ | ✅ | Minecraft, mas super otimizado
 | tModLoader | [egg-tModloader.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-tModloader.json) | ✅ | ✅ |Rodando nativamente
 | Terraria Vanilla | [egg-terraria-vanilla.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-terraria-vanilla.json) | ✅ | ✅ |
 | SA-MP | [egg-SA-MP-ARM64.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-SA-MP-ARM64.json) | ✅ | ✅ |Emulado no ARM com Box86
