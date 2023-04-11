@@ -9,6 +9,11 @@
 Aqui se encontra a explicação sobre as otimizações que este Egg contém...
 
 Lembre-se, otimizado não quer dizer menos uso de RAM, pelo contrário, ele irá usar o máximo para fazer o coletor de lixo funcionar adequadamente.
+
+Esta é a fonte que foi usada para fazer este Egg:
+
+https://www.spigotmc.org/threads/guide-server-optimization%E2%9A%A1.283181/
+
 </div>
 <div align="center">
 
@@ -65,7 +70,7 @@ Lembre-se, otimizado não quer dizer menos uso de RAM, pelo contrário, ele irá
 
 | Variável | Original | Modificado | Saiba mais |
 |--|--|--|--|
-|  |  |  |  |
+| network-compression-threshold | 256 | 512 |  |
 
 ## ⚙️ | Inicialização
 
