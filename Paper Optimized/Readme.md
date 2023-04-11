@@ -38,18 +38,18 @@ https://www.spigotmc.org/threads/guide-server-optimization%E2%9A%A1.283181/
 
 | Variável | Original | Modificado | Saiba mais |
 |--|--|--|--|
-| max-auto-save-chunks-per-tick | 24 | 8 |  |
-| prevent-moving-into-unloaded-chunks | false | true |  |
-| max-entity-collisions | 8 | 2 |  |
-| disable-chest-cat-detection | false | true |  |
-| creative-arrow-despawn-rate | default | 180 |  |
-| non-player-arrow-despawn-rate | default | 180 |  |
-| disable-move-event | false | true |  |
-| allow-non-player-entities-on-scoreboards | true | false |  |
-| keep-spawn-loaded-range | 10 | 8 |  |
-| container-update | 1 | 2 |  |
-| grass-spread | 1 | 2 |  |
-| mob-spawner | 1 | 2 |  |
+| max-auto-save-chunks-per-tick | 24 | 8 | Número máximo de chunks salvos por tick |
+| prevent-moving-into-unloaded-chunks | false | true |  Jogadores podem se mover sobre blocos não carregados |
+| max-entity-collisions | 8 | 2 | Interrompe o processamento de colisões depois que esse valor é atingido |
+| disable-chest-cat-detection | false | true | Abrir baús mesmo que tenham um gato sentado em cima deles |
+| creative-arrow-despawn-rate | default | 180 | A taxa na qual as flechas disparadas por jogadores no modo criativo são geradas |
+| non-player-arrow-despawn-rate | default | 180 | A taxa na qual as flechas disparadas de entidades não-jogadores são lançadas. |
+| disable-move-event | false | true | Desativa ```InventoryMoveItemEvent```. Melhora drasticamente o desempenho do funil, mas pode quebrar alguns plug-ins. |
+| allow-non-player-entities-on-scoreboards | true | false | Diminuir ligeiramente a quantidade de tempo que o servidor gasta calculando colisões de entidades. |
+| keep-spawn-loaded-range | 10 | 8 | O valor dos pedaços ao redor do spawn para manter carregado. |
+| container-update | 1 | 2 | A taxa na qual o servidor atualiza contêineres(baus, fornos...) e inventários. |
+| grass-spread | 1 | 2 | Define o atras no qual o servidor tenta espalhar a grama. |
+| mob-spawner | 1 | 2 | Define a frequência do cálculo de spawn de entidades pelos geradores de mobs no mundo |
 
 ###  📄 | spigot.yml
 
