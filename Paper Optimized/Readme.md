@@ -8,7 +8,7 @@
 ##  📃 | Descrição
 Aqui se encontra a explicação sobre as otimizações que este Egg contém...
 
-Lembre-se, otimizado não quer dizer menos uso de RAM, pelo contrário, ele irá usar o máximo para fazer o coletor de lixo funcionar adequadamente.
+Lembre-se, otimizado não quer dizer menos uso de RAM, pelo contrário, a partir do 4GB de Ram, ele irá usar o máximo para fazer o coletor de lixo funcionar adequadamente.
 
 Esta é a fonte que foi usada para fazer este Egg:
 
