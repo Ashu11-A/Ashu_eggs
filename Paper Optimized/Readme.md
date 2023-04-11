@@ -44,7 +44,7 @@ https://www.spigotmc.org/threads/guide-server-optimization%E2%9A%A1.283181/
 | disable-chest-cat-detection | false | true | Abrir baús mesmo que tenham um gato sentado em cima deles |
 | creative-arrow-despawn-rate | default | 180 | A taxa na qual as flechas disparadas por jogadores no modo criativo são geradas |
 | non-player-arrow-despawn-rate | default | 180 | A taxa na qual as flechas disparadas de entidades não-jogadores são lançadas. |
-| disable-move-event | false | true | Desativa ```InventoryMoveItemEvent```. Melhora drasticamente o desempenho do funil, mas pode quebrar alguns plug-ins. |
+| disable-move-event | false | true | Desativa ```InventoryMoveItemEvent```. Melhora drasticamente o desempenho do funil, mas pode quebrar alguns plug-ins que usam essa variavel. |
 | allow-non-player-entities-on-scoreboards | true | false | Diminuir ligeiramente a quantidade de tempo que o servidor gasta calculando colisões de entidades. |
 | keep-spawn-loaded-range | 10 | 8 | O valor dos pedaços ao redor do spawn para manter carregado. |
 | container-update | 1 | 2 | A taxa na qual o servidor atualiza contêineres(baus, fornos...) e inventários. |
