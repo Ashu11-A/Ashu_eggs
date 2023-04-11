@@ -1,10 +1,10 @@
 </div>
 <div align="center">
 
-# Eggs
+# Paper (Super-Optimized)
 
 </div>
-## 📃 | Descrição
+##  📃 | Descrição
 Aqui se encontra a explicação sobre as otimizações que este egg contém...
 
 ## 🪄 | Otimizações
