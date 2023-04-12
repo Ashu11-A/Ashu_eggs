@@ -13,6 +13,7 @@ Lembre-se, otimizado não quer dizer menos uso de RAM, pelo contrário, a partir
 Esta é a fonte que foi usada para fazer este Egg:
 
 https://www.spigotmc.org/threads/guide-server-optimization%E2%9A%A1.283181/
+https://shockbyte.com/billing/knowledgebase/153/Optimizing-spigotyml-to-Reduce-Lag.html
 
 </div>
 <div align="center">
@@ -46,7 +47,7 @@ https://www.spigotmc.org/threads/guide-server-optimization%E2%9A%A1.283181/
 | non-player-arrow-despawn-rate | default | 180 | A taxa na qual as flechas disparadas de entidades não-jogadores são lançadas. |
 | disable-move-event | false | true | Desativa ```InventoryMoveItemEvent```. Melhora drasticamente o desempenho do funil, mas pode quebrar alguns plug-ins que usam essa variavel. |
 | allow-non-player-entities-on-scoreboards | true | false | Diminuir ligeiramente a quantidade de tempo que o servidor gasta calculando colisões de entidades. |
-| keep-spawn-loaded-range | 10 | 8 | O valor dos pedaços ao redor do spawn para manter carregado. |
+| keep-spawn-loaded-range | 10 | 8 | O valor dos chunks ao redor do spawn para manter carregado. |
 | container-update | 1 | 2 | A taxa na qual o servidor atualiza contêineres(baus, fornos...) e inventários. |
 | grass-spread | 1 | 2 | Define o atraso no qual o servidor tenta espalhar a grama. |
 | mob-spawner | 1 | 2 | Define a frequência do cálculo de spawn de entidades pelos geradores de mobs no mundo |
@@ -57,20 +58,20 @@ https://www.spigotmc.org/threads/guide-server-optimization%E2%9A%A1.283181/
 |--|--|--|--|
 | item | 2.5 | 4.0 |  |
 | exp | 3.0 | 6.0 |  |
-| mob-spawn-range | 8 | 6 |  |
-| arrow-despawn-rate | 1200 | 300 |  |
-| nerf-spawner-mobs | false | true |  |
-| animals | 32 | 16 |  |
-| monsters | 32 | 24 |  |
-| misc | 16 | 8 |  |
-| tile | 50 | 1000 |  |
-| entity | 50 | 1000 |  |
+| mob-spawn-range | 8 | 6 | A distância em chunks do jogador para que os mobs sejam gerados |
+| arrow-despawn-rate | 1200 | 300 | Flechas disparadas por jogadores no modo de sobrevivência desaparecerão mais rapidamente por ticks (300 = 15s) |
+| nerf-spawner-mobs | false | true | Mobs gerados por geradores não terão IA. |
+| animals | 32 | 16 | O quão perto do mob se deve estar para ativar sua IA. |
+| monsters | 32 | 24 | O quão perto do mob se deve estar para ativar sua IA. |
+| misc | 16 | 8 | O quão perto do mob se deve estar para ativar sua IA. |
+| tile | 50 | 1000 | Por causa do risco envolvido com a habilitação desse recurso, defina isso como 1000, o que efetivamente desativa o recurso. |
+| entity | 50 | 1000 | Por causa do risco envolvido com a habilitação desse recurso, defina isso como 1000, o que efetivamente desativa o recurso. |
 
 ###  📄 | server.properties
 
 | Variável | Original | Modificado | Saiba mais |
 |--|--|--|--|
-| network-compression-threshold | 256 | 512 |  |
+| network-compression-threshold | 256 | 512 | Limita o tamanho de um pacote antes de compactá-lo. Defini-lo mais alto pode economizar alguns recursos ao custo da largura de banda |
 
 ## ⚙️ | Inicialização
 
