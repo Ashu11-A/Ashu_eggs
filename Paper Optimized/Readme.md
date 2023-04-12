@@ -56,8 +56,8 @@ https://shockbyte.com/billing/knowledgebase/153/Optimizing-spigotyml-to-Reduce-L
 
 | Variável | Original | Modificado | Saiba mais |
 |--|--|--|--|
-| item | 2.5 | 4.0 |  |
-| exp | 3.0 | 6.0 |  |
+| item | 2.5 | 4.0 | Os itens se agruparão com mais frequência, reduzindo o número de itens no chão. |
+| exp | 3.0 | 6.0 | A experiência se agruparão com mais frequência, reduzindo o número de itens no chão. |
 | mob-spawn-range | 8 | 6 | A distância em chunks do jogador para que os mobs sejam gerados |
 | arrow-despawn-rate | 1200 | 300 | Flechas disparadas por jogadores no modo de sobrevivência desaparecerão mais rapidamente por ticks (300 = 15s) |
 | nerf-spawner-mobs | false | true | Mobs gerados por geradores não terão IA. |
