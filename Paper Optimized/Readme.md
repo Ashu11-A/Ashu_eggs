@@ -16,6 +16,8 @@ https://www.spigotmc.org/threads/guide-server-optimization%E2%9A%A1.283181/
 https://shockbyte.com/billing/knowledgebase/153/Optimizing-spigotyml-to-Reduce-Lag.html
 https://shockbyte.com/billing/knowledgebase/154/Optimizing-bukkityml-to-Reduce-Lag.html
 https://shockbyte.com/billing/knowledgebase/155/Optimize-paperyml-to-Reduce-Lag.html
+https://cassiofernando.netlify.app/blog/minecraft-argumentos-java
+https://docs.papermc.io/paper/aikars-flags
 
 </div>
 <div align="center">
