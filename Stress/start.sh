@@ -6,6 +6,10 @@ CPU_RAM=$([ "${CPU_MEMORY}" == "1" ] && echo "--vm ${CPU_CORES} --vm-bytes ${MEM
 TIME=$([ "${TIMEOUT}" == "0" ] && echo "" || echo "--timeout ${TIMEOUT}s")
 
 echo "⚙️  Versão do Script: 1.2"
+
+echo "✓ Atualizando o script..."
+curl -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Stress/start.sh
+
 if [ "${CONSOLE}" == "1" ]; then
     echo "Executando: stress-ng ${CONSOLE_OCC}"
     stress-ng ${CONSOLE_OCC}
