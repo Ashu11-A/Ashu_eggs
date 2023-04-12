@@ -35,7 +35,7 @@ Gostou dos Eggs? Então de uma 🌟 ao repositório!
 | Jellyfin | [egg-jellyfin.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-jellyfin.json) | ✅ | ✅ | Reprodutor de mídia
 | Emby | [egg-emby.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-emby.json) | ✅ | ✅ | Reprodutor de mídia
 | Nextcloud | [egg-nextcloud.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-nextcloud.json) | ✅ | ✅ | Um lugar para você guardar seus arquivos, tipo Dropbox
-| Stress-ng | [Egg-Stress.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Egg-Stress.json) | ✅ | ✅ | Isso irá estressar a sua máquina
+| Stress-ng | [egg-stress.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-stress.json) | ✅ | ✅ | Isso irá estressar a sua máquina
 | VPS | [egg-vps.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-vps.json) | ✅ | ❌ | Root com Proot
 | Youtube-DL Web | [egg-youtube-dl-web.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-youtube-dl-web.json) | ✅ | ✅ | Interface web para fazer downloads de vídeos do YouTube diretamente ao usuário.
 
