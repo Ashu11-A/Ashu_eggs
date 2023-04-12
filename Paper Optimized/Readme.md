@@ -10,7 +10,7 @@ Aqui se encontra a explicação sobre as otimizações que este Egg contém...
 
 Lembre-se, otimizado não quer dizer menos uso de RAM, pelo contrário, a partir do 4GB de Ram, ele irá usar o máximo para fazer o coletor de lixo funcionar adequadamente.
 
-As fontes que usei para fazer este Egg:
+As fontes que usei para fazer este Egg:   
 https://www.spigotmc.org/threads/guide-server-optimization%E2%9A%A1.283181/   
 https://shockbyte.com/billing/knowledgebase/153/Optimizing-spigotyml-to-Reduce-Lag.html   
 https://shockbyte.com/billing/knowledgebase/154/Optimizing-bukkityml-to-Reduce-Lag.html   
