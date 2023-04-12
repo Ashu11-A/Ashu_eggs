@@ -19,6 +19,10 @@ https://shockbyte.com/billing/knowledgebase/155/Optimize-paperyml-to-Reduce-Lag.
 https://cassiofernando.netlify.app/blog/minecraft-argumentos-java   
 https://docs.papermc.io/paper/aikars-flags   
 
+Azul Zulu:   
+https://docs.azul.com/prime/what-to-expect   
+https://github.com/Software-Noob/pterodactyl-images   
+
 </div>
 <div align="center">
 
