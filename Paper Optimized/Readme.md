@@ -36,29 +36,29 @@ https://github.com/Software-Noob/pterodactyl-images
 
 | Variável | Original | Modificado | Saiba mais |
 |--|--|--|--|
-| monsters | 70 | 50 | limite de monstros |
-| animals | 10 | 8 | limite de animais |
-| water-animals | 5 | 3 |  limite de animais aquáticos |
-| ambient | 15 | 1 |  limite de criaturas de ambiente (como morcegos)  |
-| period-in-ticks | 600 |400  | frequência com que o sistema de coleta de lixo limpa as partes não utilizadas |
-| monster-spawns | 1| 2| determina o tempo de espera entre o aparecimento de monstros |
+| monsters | 70 | 50 | Limite de monstros. |
+| animals | 10 | 8 | Limite de animais. |
+| water-animals | 5 | 3 |  Limite de animais aquáticos. |
+| ambient | 15 | 1 |  Limite de criaturas de ambiente (como morcegos).  |
+| period-in-ticks | 600 |400  | Frequência com que o sistema de coleta de lixo limpa as partes não utilizadas. |
+| monster-spawns | 1| 2| Determina o tempo de espera entre o aparecimento de monstros. |
 
 ###  📄 | paper-world-defaults.yml
 
 | Variável | Original | Modificado | Saiba mais |
 |--|--|--|--|
-| max-auto-save-chunks-per-tick | 24 | 8 | Número máximo de chunks salvos por tick |
-| prevent-moving-into-unloaded-chunks | false | true |  Jogadores podem se mover sobre blocos não carregados |
-| max-entity-collisions | 8 | 2 | Interrompe o processamento de colisões depois que esse valor é atingido |
-| disable-chest-cat-detection | false | true | Abrir baús mesmo que tenham um gato sentado em cima deles |
-| creative-arrow-despawn-rate | default | 180 | A taxa na qual as flechas disparadas por jogadores no modo criativo são geradas |
+| max-auto-save-chunks-per-tick | 24 | 8 | Número máximo de chunks salvos por tick. |
+| prevent-moving-into-unloaded-chunks | false | true |  Jogadores podem se mover sobre blocos não carregados. |
+| max-entity-collisions | 8 | 2 | Interrompe o processamento de colisões depois que esse valor é atingido. |
+| disable-chest-cat-detection | false | true | Abrir baús mesmo que tenham um gato sentado em cima deles. |
+| creative-arrow-despawn-rate | default | 180 | A taxa na qual as flechas disparadas por jogadores no modo criativo são geradas. |
 | non-player-arrow-despawn-rate | default | 180 | A taxa na qual as flechas disparadas de entidades não-jogadores são lançadas. |
 | disable-move-event | false | true | Desativa ```InventoryMoveItemEvent```. Melhora drasticamente o desempenho do funil, mas pode quebrar alguns plug-ins que usam essa variavel. |
 | allow-non-player-entities-on-scoreboards | true | false | Diminuir ligeiramente a quantidade de tempo que o servidor gasta calculando colisões de entidades. |
 | keep-spawn-loaded-range | 10 | 8 | O valor dos chunks ao redor do spawn para manter carregado. |
 | container-update | 1 | 2 | A taxa na qual o servidor atualiza contêineres(baus, fornos...) e inventários. |
 | grass-spread | 1 | 2 | Define o atraso no qual o servidor tenta espalhar a grama. |
-| mob-spawner | 1 | 2 | Define a frequência do cálculo de spawn de entidades pelos geradores de mobs no mundo |
+| mob-spawner | 1 | 2 | Define a frequência do cálculo de spawn de entidades pelos geradores de mobs no mundo. |
 
 ###  📄 | spigot.yml
 
@@ -66,8 +66,8 @@ https://github.com/Software-Noob/pterodactyl-images
 |--|--|--|--|
 | item | 2.5 | 4.0 | Os itens se agruparão com mais frequência, reduzindo o número de itens no chão. |
 | exp | 3.0 | 6.0 | A experiência se agruparão com mais frequência, reduzindo o número de itens no chão. |
-| mob-spawn-range | 8 | 6 | A distância em chunks do jogador para que os mobs sejam gerados |
-| arrow-despawn-rate | 1200 | 300 | Flechas disparadas por jogadores no modo de sobrevivência desaparecerão mais rapidamente por ticks (300 = 15s) |
+| mob-spawn-range | 8 | 6 | A distância em chunks do jogador para que os mobs sejam gerados. |
+| arrow-despawn-rate | 1200 | 300 | Flechas disparadas por jogadores no modo de sobrevivência desaparecerão mais rapidamente por ticks (300 = 15s). |
 | nerf-spawner-mobs | false | true | Mobs gerados por geradores não terão IA. |
 | animals | 32 | 16 | O quão perto do mob se deve estar para ativar sua IA. |
 | monsters | 32 | 24 | O quão perto do mob se deve estar para ativar sua IA. |
@@ -79,7 +79,7 @@ https://github.com/Software-Noob/pterodactyl-images
 
 | Variável | Original | Modificado | Saiba mais |
 |--|--|--|--|
-| network-compression-threshold | 256 | 512 | Limita o tamanho de um pacote antes de compactá-lo. Defini-lo mais alto pode economizar alguns recursos ao custo da largura de banda |
+| network-compression-threshold | 256 | 512 | Limita o tamanho de um pacote antes de compactá-lo. Defini-lo mais alto pode economizar alguns recursos ao custo da largura de banda. |
 
 ## ⚙️ | Inicialização
 
