@@ -14,6 +14,8 @@ As fontes que usei para fazer este Egg:
 
 https://www.spigotmc.org/threads/guide-server-optimization%E2%9A%A1.283181/
 https://shockbyte.com/billing/knowledgebase/153/Optimizing-spigotyml-to-Reduce-Lag.html
+https://shockbyte.com/billing/knowledgebase/154/Optimizing-bukkityml-to-Reduce-Lag.html
+https://shockbyte.com/billing/knowledgebase/155/Optimize-paperyml-to-Reduce-Lag.html
 
 </div>
 <div align="center">
