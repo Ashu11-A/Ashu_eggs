@@ -15,28 +15,28 @@ else
     else
         echo "Instalação Limpa"
     fi
-    cd /tmp || exit
+
     curl -Lo multitheftauto_linux.tar.gz $ARCH
     curl -Lo mta-baseconfig.tar.gz https://linux.mtasa.com/dl/baseconfig.tar.gz
     curl -Lo mtasa-resources-latest.zip http://mirror.mtasa.com/mtasa/resources/mtasa-resources-latest.zip
 
     tar -xvf multitheftauto_linux.tar.gz
-    cp -rf multitheftauto_linux/* /mnt/server
+    cp -rf multitheftauto_linux/* ./
 
     if [ ! -f /mnt/server/x64/libmysqlclient.so.16 ]; then
-        curl -L http://nightly.mtasa.com/files/libmysqlclient.so.16 -o /mnt/server/x64/libmysqlclient.so.16
+        curl -L http://nightly.mtasa.com/files/libmysqlclient.so.16 -o x64/libmysqlclient.so.16
     fi
 
     if [ ! -f /mnt/server/arm64/libmysqlclient.so.16 ]; then
-        curl -L http://nightly.mtasa.com/files/libmysqlclient.so.16 -o /mnt/server/arm64/libmysqlclient.so.16
+        curl -L http://nightly.mtasa.com/files/libmysqlclient.so.16 -o arm64/libmysqlclient.so.16
     fi
 
-    mkdir -p /mnt/server/mods/deathmatch/resources
-    unzip -o -d /mnt/server/mods/deathmatch/resources mtasa-resources-latest.zip
+    mkdir -p mods/deathmatch/resources
+    unzip -o -d mods/deathmatch/resources mtasa-resources-latest.zip
 
     mkdir -p /mnt/server-conf
     tar -xvf mta-baseconfig.tar.gz
-    cp -rf baseconfig/* /mnt/server/mods/deathmatch
+    cp -rf baseconfig/* mods/deathmatch
 
     echo "instalação do script concluído"
 fi
