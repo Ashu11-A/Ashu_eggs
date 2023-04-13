@@ -6,9 +6,6 @@ if [ -f "./mta-server64" ] || [ -f "./mta-server-arm64" ]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/MTA/start.sh)
 else
 
-    mkdir -p /mnt/server
-    cd /mnt/server || exit
-
     if [[ -f "./mta-server64" ]]; then
         mkdir MTA_OLD
         mv ./* MTA_OLD
