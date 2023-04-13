@@ -1,7 +1,7 @@
 #!/bin/bash
 ARCH=$([ "$(uname -m)" == "x86_64" ] && echo "amd64" || echo "arm64")
 
-echo "⚙️  Versão do Script: 1.8"
+echo "⚙️  Script Version: 1.8"
 
 if [ "${ARCH}" == "amd64" ];
 then
