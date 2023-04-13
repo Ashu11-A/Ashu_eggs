@@ -13,7 +13,7 @@ else
         echo "Instalação Limpa"
     fi
 
-    curl -Lo multitheftauto_linux.tar.gz $ARCH
+    curl -Lo multitheftauto_linux.tar.gz "$ARCH"
     curl -Lo mta-baseconfig.tar.gz https://linux.mtasa.com/dl/baseconfig.tar.gz
     curl -Lo mtasa-resources-latest.zip http://mirror.mtasa.com/mtasa/resources/mtasa-resources-latest.zip
 
