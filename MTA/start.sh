@@ -1,4 +1,6 @@
 #!/bin/bash
+export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
 echo "⚙️  Script Version: 1.9"
 
 if [ "${ARCH}" == "x86_64" ];
