@@ -27,8 +27,8 @@ else
             chmod +x x64/libmysqlclient.so.16
         fi
         mkdir x64/modules
-        curl -L https://nightly.mtasa.com/files/modules/64/mta_mysql.so -o x64/modules
-        curl -L https://nightly.mtasa.com/files/modules/64/ml_sockets.so -o x64/modules
+        curl -L https://nightly.mtasa.com/files/modules/64/mta_mysql.so -o x64/modules/mta_mysql.so
+        curl -L https://nightly.mtasa.com/files/modules/64/ml_sockets.so -o x64/modules/ml_sockets.so
     fi
 
     if [ -d arm64 ]; then
@@ -37,8 +37,8 @@ else
             chmod +x arm64/libmysqlclient.so.16
         fi
         mkdir arm64/modules
-        curl -L https://nightly.mtasa.com/files/modules/64/mta_mysql.so -o arm64/modules
-        curl -L https://nightly.mtasa.com/files/modules/64/ml_sockets.so -o arm64/modules
+        curl -L https://nightly.mtasa.com/files/modules/64/mta_mysql.so -o arm64/modules/mta_mysql.so
+        curl -L https://nightly.mtasa.com/files/modules/64/ml_sockets.so -o arm64/modules/ml_sockets.so
     fi
 
     mkdir -p mods/deathmatch/resources
