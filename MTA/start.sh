@@ -1,9 +1,9 @@
 #!/bin/bash
-ARCH=$([ "$(uname -m)" == "x86_64" ] && echo "amd64" || echo "arm64")
+FILE=$([ "${ARCH}" == "x86_64" ] && echo "amd64" || echo "arm64")
 
 echo "⚙️  Script Version: 1.9"
 
-if [ "${ARCH}" == "amd64" ];
+if [ "${FILE}" == "amd64" ];
 then
     echo "🔎  Identified Architecture: 64x"
     if [[ -f "./mta-server64" ]]; then

@@ -1,7 +1,7 @@
 #!/bin/bash
 AMD64="https://linux.mtasa.com/dl/multitheftauto_linux_x64.tar.gz"
 ARM64="https://nightly.mtasa.com/multitheftauto_linux_arm64-1.5.9.tar.gz"
-FILE=$([ "$ARCH" == "amd64" ] && echo "$AMD64" || echo "$ARM64")
+FILE=$([ "${ARCH}" == "x86_64" ] && echo "$AMD64" || echo "$ARM64")
 if [ -f "./mta-server64" ] || [ -f "./mta-server-arm64" ]; then
     chmod -R 755 ./*
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/MTA/start.sh)
