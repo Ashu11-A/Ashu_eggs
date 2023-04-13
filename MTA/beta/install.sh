@@ -35,5 +35,10 @@ else
     tar -xvf mta-baseconfig.tar.gz
     cp -rf baseconfig/* mods/deathmatch
 
+    echo "Limpando..."
+
+    rm -rf multitheftauto_linux.tar.gz mta-baseconfig.tar.gz mtasa-resources-latest.zip
+    rm -rf multitheftauto_linux*/
+
     echo "instalação do script concluído"
 fi
