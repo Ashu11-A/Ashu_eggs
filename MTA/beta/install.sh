@@ -20,12 +20,16 @@ else
     tar -xvf multitheftauto_linux.tar.gz
     cp -rf multitheftauto_linux*/* ./
 
-    if [ ! -f x64/libmysqlclient.so.16 ]; then
-        curl -L http://nightly.mtasa.com/files/libmysqlclient.so.16 -o x64/libmysqlclient.so.16
+    if [ -d x64 ]; then
+        if [ ! -f x64/libmysqlclient.so.16 ]; then
+            curl -L http://nightly.mtasa.com/files/libmysqlclient.so.16 -o x64/libmysqlclient.so.16
+        fi
     fi
 
-    if [ ! -f arm64/libmysqlclient.so.16 ]; then
-        curl -L http://nightly.mtasa.com/files/libmysqlclient.so.16 -o arm64/libmysqlclient.so.16
+    if [ -d arm64 ]; then
+        if [ ! -f arm64/libmysqlclient.so.16 ]; then
+            curl -L http://nightly.mtasa.com/files/libmysqlclient.so.16 -o arm64/libmysqlclient.so.16
+        fi
     fi
 
     mkdir -p mods/deathmatch/resources

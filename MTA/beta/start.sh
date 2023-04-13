@@ -5,19 +5,21 @@ echo "⚙️  Versão do Script: 1.8"
 
 if [ "${ARCH}" == "amd64" ];
 then
-    echo "🔎 Arquitetura Identificada: 64x"
+    echo "🔎  Identified Architecture: 64x"
     if [[ -f "./mta-server64" ]]; then
-        echo "✅ Iniciando MTA"
+        echo "✅  Starting MTA"
         ./mta-server64 --maxplayers ${MAX_PLAYERS} --port ${SERVER_PORT} --httpport ${SERVER_WEBPORT} -n
     else
-        echo "MTA Não Instalado, isso é realmente muito estranho, essa é uma segunda verificação."
+        echo "pt-BR: MTA Não Instalado, isso é realmente muito estranho, essa é uma segunda verificação."
+        echo "en: MTA Not Installed, this is really very strange, this is a second check."
     fi
 else
-    echo "🔎 Arquitetura Identificada: ARM64"
+    echo "🔎  Identified Architecture: ARM64"
     if [[ -f "./mta-server-arm64" ]]; then
-        echo "✅ Iniciando MTA"
+        echo "✅  Starting MTA"
         ./mta-server-arm64 --maxplayers ${MAX_PLAYERS} --port ${SERVER_PORT} --httpport ${SERVER_WEBPORT} -n
     else
-        echo "MTA Não Instalado, isso é realmente muito estranho, essa é uma segunda verificação."
+        echo "pt-BR: MTA Não Instalado, isso é realmente muito estranho, essa é uma segunda verificação."
+        echo "en: MTA Not Installed, this is really very strange, this is a second check."
     fi
 fi
