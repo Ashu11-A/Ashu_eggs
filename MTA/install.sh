@@ -1,7 +1,7 @@
 #!/bin/bash
 AMD64="https://linux.mtasa.com/dl/multitheftauto_linux_x64.tar.gz"
 ARM64="https://nightly.mtasa.com/multitheftauto_linux_arm64-1.5.9.tar.gz"
-ARCH=$([ "$(uname -m)" == "x86_64" ] && echo "$AMD64" || echo "$ARM64")
+FILE=$([ "$ARCH" == "amd64" ] && echo "$AMD64" || echo "$ARM64")
 if [ -f "./mta-server64" ] || [ -f "./mta-server-arm64" ]; then
     chmod -R 755 ./*
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/MTA/start.sh)
@@ -14,7 +14,7 @@ else
         echo "Instalação Limpa"
     fi
 
-    curl -Lo multitheftauto_linux.tar.gz "$ARCH"
+    curl -Lo multitheftauto_linux.tar.gz "$FILE"
     curl -Lo mta-baseconfig.tar.gz https://linux.mtasa.com/dl/baseconfig.tar.gz
     curl -Lo mtasa-resources-latest.zip http://mirror.mtasa.com/mtasa/resources/mtasa-resources-latest.zip
 
