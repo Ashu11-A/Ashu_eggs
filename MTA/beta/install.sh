@@ -21,13 +21,13 @@ else
     curl -Lo mtasa-resources-latest.zip http://mirror.mtasa.com/mtasa/resources/mtasa-resources-latest.zip
 
     tar -xvf multitheftauto_linux.tar.gz
-    cp -rf multitheftauto_linux/* ./
+    cp -rf multitheftauto_linux*/* ./
 
-    if [ ! -f /mnt/server/x64/libmysqlclient.so.16 ]; then
+    if [ ! -f x64/libmysqlclient.so.16 ]; then
         curl -L http://nightly.mtasa.com/files/libmysqlclient.so.16 -o x64/libmysqlclient.so.16
     fi
 
-    if [ ! -f /mnt/server/arm64/libmysqlclient.so.16 ]; then
+    if [ ! -f arm64/libmysqlclient.so.16 ]; then
         curl -L http://nightly.mtasa.com/files/libmysqlclient.so.16 -o arm64/libmysqlclient.so.16
     fi
 
