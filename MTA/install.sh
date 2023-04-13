@@ -7,13 +7,6 @@ if [ -f "./mta-server64" ] || [ -f "./mta-server-arm64" ]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/MTA/start.sh)
 else
 
-    if [[ -f "./mta-server64" ]]; then
-        mkdir MTA_OLD
-        mv ./* MTA_OLD
-    else
-        echo "Instalação Limpa"
-    fi
-
     curl -Lo multitheftauto_linux.tar.gz "$ARCH"
     curl -Lo mta-baseconfig.tar.gz https://linux.mtasa.com/dl/baseconfig.tar.gz
     curl -Lo mtasa-resources-latest.zip http://mirror.mtasa.com/mtasa/resources/mtasa-resources-latest.zip
