@@ -1,4 +1,6 @@
 #!/bin/bash
+# troque
+# troque
 AMD64="https://linux.mtasa.com/dl/multitheftauto_linux_x64.tar.gz"
 ARM64="https://nightly.mtasa.com/multitheftauto_linux_arm64-1.5.9.tar.gz"
 ARCH=$([ "$(uname -m)" == "x86_64" ] && echo "$AMD64" || echo "$ARM64")
