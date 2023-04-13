@@ -14,7 +14,6 @@ then
     fi
 else
     echo "🔎 Arquitetura Identificada: ARM64"
-    echo "⚠️ Atenção: Este Egg ainda não funciona no ARM64"
     if [[ -f "./mta-server-arm64" ]]; then
         echo "✅ Iniciando MTA"
         ./mta-server-arm64 --maxplayers ${MAX_PLAYERS} --port ${SERVER_PORT} --httpport ${SERVER_WEBPORT} -n
