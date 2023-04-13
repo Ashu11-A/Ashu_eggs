@@ -1,6 +1,6 @@
 #!/bin/bash
-AMD64="https://nightly.mtasa.com/multitheftauto_linux_x64-1.5.9-rc-21630.tar.gz"
-ARM64="https://nightly.mtasa.com/multitheftauto_linux_arm64-1.5.9-rc-21630.tar.gz"
+AMD64="https://linux.mtasa.com/dl/multitheftauto_linux_x64.tar.gz"
+ARM64="https://nightly.mtasa.com/multitheftauto_linux_arm64-1.5.9.tar.gz"
 ARCH=$([ "$(uname -m)" == "x86_64" ] && echo "$AMD64" || echo "$ARM64")
 if [ -f "./mta-server64" ] || [ -f "./mta-server-arm64" ]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/MTA/beta/start.sh)
