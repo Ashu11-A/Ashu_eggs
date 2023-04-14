@@ -47,7 +47,7 @@ Gostou dos Eggs? Então de uma 🌟 ao repositório!
 | Terraria Vanilla | [egg-terraria-vanilla.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-terraria-vanilla.json) | ✅ | ✅ |
 | SA-MP | [egg-samp.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-samp.json) | ✅ | ✅ |Emulado no ARM com Box86
 | ServerJars | [egg-ServerJars.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-ServerJars.json) | ✅ | ✅ |
-| MTA | [egg-mta.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-mta.json) | ✅ | ❌ |
+| MTA | [egg-mta.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/egg-mta.json) | ✅ | ✅ |
 
 *Clique com o **botão direito** e em **Salvar link como**...   
 ✅ • Funcionando (o ARM64 foi testado com Oracle Cloud)   
