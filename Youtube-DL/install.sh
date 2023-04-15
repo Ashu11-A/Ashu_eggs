@@ -1,12 +1,7 @@
 #!/bin/bash
 if [[ -f "./logs/instalado" ]]; then
     #Executando Limpeza
-    rm -rf tmp/*
-    rm -rf temp
-    rm -rf .composer
-    rm -rf .yarn
-    rm -rf .cache
-    rm -rf .yarnrc
+    rm -rf tmp/* temp .composer .yarn .cache .yarnrc
 
     echo "✓ Atualizando o script start.sh"
     curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/start.sh -o start.sh
@@ -28,14 +23,7 @@ else
     if [ -d "youtube-dl-web" ]; then
         (
             cd youtube-dl-web || exit
-            rm -rf .git
-            rm -rf .github
-            rm -rf images
-            rm -rf nginx
-            rm -rf .gitignore
-            rm -rf docker-compose.yml
-            rm -rf LICENSE
-            rm -rf README.md
+            rm -rf .git .github images nginx .gitignore docker-compose.yml LICENSE README.md
         )
     fi
 
