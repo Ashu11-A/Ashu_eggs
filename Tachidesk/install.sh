@@ -1,5 +1,5 @@
 #!/bin/bash
-if [[ -f "./Tachidesk-Server.jar" ]]; then
+if [[ ! -f "./Tachidesk-Server.jar" ]]; then
 
     GITHUB_PACKAGE=Suwayomi/Tachidesk-Server
     LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
