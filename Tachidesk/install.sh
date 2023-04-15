@@ -1,10 +1,9 @@
 #!/bin/bash
-
-GITHUB_PACKAGE=Suwayomi/Tachidesk-Server
-LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
-RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq '.[]')
-
 if [[ -f "./Tachidesk-Server.jar" ]]; then
+
+    GITHUB_PACKAGE=Suwayomi/Tachidesk-Server
+    LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
+    RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq '.[]')
     if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
         echo -e "defaulting to latest release"
         DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i Tachidesk | grep -i jar)
@@ -17,21 +16,19 @@ if [[ -f "./Tachidesk-Server.jar" ]]; then
             DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i Tachidesk | grep -i jar)
         fi
     fi
-fi
 
-if [ ! -d "./Logs" ]; then
-    mkdir Logs
-fi
+    if [ ! -d "./Logs" ]; then
+        mkdir Logs
+    fi
 
-if [ ! -f "./Logs/log_install.txt" ]; then
-    cat <<EOF >./Logs/log_install.txt
+    if [ ! -f "./Logs/log_install.txt" ]; then
+        cat <<EOF >./Logs/log_install.txt
 Versão: ${VERSION}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}
 EOF
-fi
+    fi
 
-if [ ! -f "./Tachidesk-Server.jar"]; then
     echo -e "running 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
     curl -sSL ${DOWNLOAD_LINK} -o Tachidesk-Server.jar
 fi
@@ -42,7 +39,7 @@ fi
 
 if [ ! -f "./Config/server.conf" ]; then
     (
-        cd Config
+        cd Config || exit
         curl -sSL https://raw.githubusercontent.com/Suwayomi/Tachidesk-Server/master/server/src/main/resources/server-reference.conf -o server.conf
 
     )
