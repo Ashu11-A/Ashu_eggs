@@ -4,7 +4,7 @@ if [[ ! -f "./Tachidesk-Server.jar" ]]; then
     GITHUB_PACKAGE=Suwayomi/Tachidesk-Server
     LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases")
     if echo "$LATEST_JSON" | jq empty >/dev/null; then
-        echo "Erro: resposta inválida da API do GitHub."
+        echo "Erro: resposta inválida da API do GitHub. $LATEST_JSON"
         exit 1
     fi
 
