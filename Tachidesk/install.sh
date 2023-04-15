@@ -48,5 +48,5 @@ fi
 if [[ -f "./Tachidesk-Server.jar" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Tachidesk/start.sh)
 else
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Tachidesk/install.sh)
+    echo "Tachidesk-Server.jar não encontrado. Reinstale o servidor."
 fi
