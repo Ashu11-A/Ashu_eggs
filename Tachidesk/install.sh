@@ -4,16 +4,18 @@ GITHUB_PACKAGE=Suwayomi/Tachidesk-Server
 LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
 RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq '.[]')
 
-if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
-    echo -e "defaulting to latest release"
-    DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i Tachidesk | grep -i jar)
-else
-    VERSION_CHECK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .tag_name')
-    if [ "$VERSION" == "$VERSION_CHECK" ]; then
-        DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i Tachidesk | grep -i jar)
-    else
+if [[ -f "./Tachidesk-Server.jar" ]]; then
+    if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
         echo -e "defaulting to latest release"
         DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i Tachidesk | grep -i jar)
+    else
+        VERSION_CHECK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .tag_name')
+        if [ "$VERSION" == "$VERSION_CHECK" ]; then
+            DOWNLOAD_LINK=$(echo $RELEASES | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i Tachidesk | grep -i jar)
+        else
+            echo -e "defaulting to latest release"
+            DOWNLOAD_LINK=$(echo $LATEST_JSON | jq .assets | jq -r .[].browser_download_url | grep -i Tachidesk | grep -i jar)
+        fi
     fi
 fi
 
