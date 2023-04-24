@@ -44,8 +44,8 @@ fi
 fakeroot chmod 775 ./*
 (
     cd Zipline || exit
-    npm install
-    npm audit fix
+    yarn install
+    yarn build
 )
 
 if [[ -d "./Zipline/public" ]]; then
