@@ -46,6 +46,7 @@ fakeroot chmod 775 ./*
     cd Zipline || exit
     yarn install
     yarn build
+    mv .env.local.example .env.local
 )
 
 if [[ -d "./Zipline/public" ]]; then
