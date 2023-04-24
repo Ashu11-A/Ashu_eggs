@@ -35,25 +35,28 @@ EOF
     fi
 fi
 
-
 #if [ ! -d "Zipline" ]; then
 #    git clone --quiet https://github.com/diced/zipline Zipline
 #fi
 
 fakeroot chmod 775 ./*
 if [ ! -f "./Logs/instalado" ]; then
-(
-    cd Zipline || exit
-    yarn install
-    yarn build
-    mv .env.local.example .env.local
-    touch ./Logs/instalado
-)
+    (
+        cd Zipline || exit
+        yarn install
+        yarn build
+        mv .env.local.example .env.local
+        touch ./Logs/instalado
+    )
 fi
 
-if [[ -d "./Zipline/public" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/version.sh)
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/launch.sh)
-else
-    echo "Algo muito errado aconteceu."
-fi
+sed -i \
+    -e 's/;CORE_PORT.*=.*/CORE_PORT={{server.build.default.port}}/g' \
+    Zipline/.env.local
+
+    if [[ -d "./Zipline/public" ]]; then
+        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/version.sh)
+        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/launch.sh)
+    else
+        echo "Algo muito errado aconteceu."
+    fi
