@@ -50,8 +50,8 @@ fakeroot chmod 775 ./*
 )
 
 if [[ -d "./Zipline/public" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/FFmpeg/version.sh)
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/FFmpeg/launch.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/version.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/launch.sh)
 else
     echo "Algo muito errado aconteceu."
 fi
