@@ -11,6 +11,22 @@ else
     if [ "$VERSION" == "$VERSION_CHECK" ]; then
         if [[ "$VERSION" == v* ]]; then
             DOWNLOAD_LINK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i "$VERSION" | grep -i .zip)
+
+            mkdir Zipline
+            mkdir Logs
+            cat <<EOF >./Logs/log_install.txt
+Versão: ${VERSION}
+Link: ${DOWNLOAD_LINK}
+Arquivo: ${DOWNLOAD_LINK##*/}
+EOF
+            (
+                cd Zipline || exit
+                echo -e "Executando 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
+                curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}
+                echo -e "Descompactando arquivos..."
+                unzip ${DOWNLOAD_LINK##*/}
+                rm ${DOWNLOAD_LINK##*/}
+            )
         fi
     else
         if [ ! -d "Zipline" ]; then
@@ -19,28 +35,11 @@ else
     fi
 fi
 
-if [ "$VERSION" == "$VERSION_CHECK" ]; then
-    mkdir Zipline
-    mkdir Logs
-    cat <<EOF >./Logs/log_install.txt
-Versão: ${VERSION}
-Link: ${DOWNLOAD_LINK}
-Arquivo: ${DOWNLOAD_LINK##*/}
-EOF
-    (
-        cd Zipline || exit
-        echo -e "Executando 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
-        curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}
-        echo -e "Descompactando arquivos..."
-        unzip ${DOWNLOAD_LINK##*/}
-        rm ${DOWNLOAD_LINK##*/}
-    )
 
-fi
+#if [ ! -d "Zipline" ]; then
+#    git clone --quiet https://github.com/diced/zipline Zipline
+#fi
 
-if [ ! -d "Zipline" ]; then
-    git clone --quiet https://github.com/diced/zipline Zipline
-fi
 fakeroot chmod 775 ./*
 (
     cd Zipline || exit
