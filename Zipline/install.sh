@@ -38,8 +38,18 @@ fi
 #if [ ! -d "Zipline" ]; then
 #    git clone --quiet https://github.com/diced/zipline Zipline
 #fi
-codigo=$(echo $(shuf -i 100000000000-999999999999 -n 1) | cut -c1-12)
-echo 
+codigo=""
+
+# Loop 12 vezes para gerar cada dígito do código
+for i in {1..12}; do
+    # Gera um número aleatório entre 0 e 9
+    digito=$(( $RANDOM % 10 ))
+    # Adiciona o dígito gerado à variável de código
+    codigo="${codigo}${digito}"
+done
+
+# Imprime o código gerado
+echo $codigo
 
 fakeroot chmod 775 ./*
 if [ ! -f "./Logs/instalado" ]; then
