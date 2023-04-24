@@ -41,12 +41,15 @@ fi
 #fi
 
 fakeroot chmod 775 ./*
+if [ ! -f "./Logs/instalado" ]; then
 (
     cd Zipline || exit
     yarn install
     yarn build
     mv .env.local.example .env.local
+    touch ./Logs/instalado
 )
+fi
 
 if [[ -d "./Zipline/public" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/version.sh)

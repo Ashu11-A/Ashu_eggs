@@ -22,15 +22,15 @@ fi
 echo "🟢  Interface iniciando ${MGM}..."
 
 while read -r line; do
-    if [[ "$line" == *"ffmpeg"* ]]; then
+    if [[ "$line" == "build" ]]; then
         echo "Executando: ${bold}${lightblue}${line}"
         (
-            cd Media || exit
-            eval "$line"
+            cd Zipline || exit
+            eval "yarn build"
         )
         printf "\n \n✅  Comando Executado\n \n"
-    elif [[ "$line" != *"ffmpeg"* ]]; then
-        echo "Comando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}ffmpeg."
+    elif [[ "$line" != "build" ]]; then
+        echo "Comando Inválido. O que você está tentando fazer? Tente ${bold}${lightblue}build."
     else
         echo "Script Falhou."
     fi
