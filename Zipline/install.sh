@@ -58,16 +58,12 @@ if [ ! -f "./Logs/instalado" ]; then
         yarn install
         yarn build
         mv .env.local.example .env.local
-        sed -i \
-            -e "s/;CORE_SECRET.*=.*/CORE_SECRET=$codigo/g" \
-            Zipline/.env.local
+        sed -i "s/CORE_HTTPS=.*/CORE_HTTPS=false/g" .env.local
+        sed -i "s/CORE_SECRET=.*/CORE_SECRET=$codigo/g" .env.local
+        sed -i "s/CORE_PORT=.*/CORE_PORT={{server.build.default.port}}/g" .env.local
         touch ../Logs/instalado
     )
 fi
-
-sed -i \
-    -e "s/;CORE_PORT.*=.*/CORE_PORT={{server.build.default.port}}/g" \
-    Zipline/.env.local
 
 if [[ -d "./Zipline/public" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/version.sh)
