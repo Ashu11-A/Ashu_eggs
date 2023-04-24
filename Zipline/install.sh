@@ -46,7 +46,7 @@ if [ ! -f "./Logs/instalado" ]; then
         yarn install
         yarn build
         mv .env.local.example .env.local
-        touch ./Logs/instalado
+        touch ../Logs/instalado
     )
 fi
 
