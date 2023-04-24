@@ -38,6 +38,7 @@ fi
 #if [ ! -d "Zipline" ]; then
 #    git clone --quiet https://github.com/diced/zipline Zipline
 #fi
+
 codigo=""
 
 # Loop 12 vezes para gerar cada dígito do código
@@ -48,9 +49,6 @@ for i in {1..12}; do
     codigo="${codigo}${digito}"
 done
 
-# Imprime o código gerado
-echo $codigo
-
 fakeroot chmod 775 ./*
 if [ ! -f "./Logs/instalado" ]; then
     (
@@ -60,10 +58,11 @@ if [ ! -f "./Logs/instalado" ]; then
         mv .env.local.example .env.local
         sed -i "s/CORE_HTTPS=.*/CORE_HTTPS=false/g" .env.local
         sed -i "s/CORE_SECRET=.*/CORE_SECRET=$codigo/g" .env.local
-        sed -i "s/CORE_PORT=.*/CORE_PORT={{server.build.default.port}}/g" .env.local
         touch ../Logs/instalado
     )
 fi
+
+sed -i "s/CORE_PORT=.*/CORE_PORT=${server.build.default.port}/g" .env.local
 
 if [[ -d "./Zipline/public" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/version.sh)
