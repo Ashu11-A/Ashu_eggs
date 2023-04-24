@@ -50,6 +50,7 @@ for i in {1..12}; do
 done
 
 fakeroot chmod 775 ./*
+
 if [ ! -f "./Logs/instalado" ]; then
     (
         cd Zipline || exit
