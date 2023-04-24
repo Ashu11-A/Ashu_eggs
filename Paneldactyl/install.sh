@@ -5,7 +5,7 @@ lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
 
 if [ -z "${PANEL}" ]; then ## Caso a variavel ${PANEL} não existir por algum motivo desconhecido
-    GITHUB_PACKAGE=Jexactyl-Brasil/Jexactyl-Brasil
+    GITHUB_PACKAGE=Next-Panel/Jexactyl-BR
     FILE=panel.tar.gz
 else
     if [ "${PANEL}" = "Pterodactyl" ]; then
