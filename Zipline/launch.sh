@@ -6,10 +6,6 @@ echo "🟢  Iniciando Zipline..."
 (
     cd Zipline || exit
     touch nohup.out
-    # npm install
-    nohup yarn install 2>&1 &
-    # npm run build
-    nohup yarn build 2>&1 &
     # npm start
     nohup yarn start 2>&1 &
 )
