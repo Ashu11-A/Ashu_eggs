@@ -38,6 +38,8 @@ fi
 #if [ ! -d "Zipline" ]; then
 #    git clone --quiet https://github.com/diced/zipline Zipline
 #fi
+codigo=$(echo $(shuf -i 100000000000-999999999999 -n 1) | cut -c1-12)
+echo 
 
 fakeroot chmod 775 ./*
 if [ ! -f "./Logs/instalado" ]; then
@@ -46,17 +48,20 @@ if [ ! -f "./Logs/instalado" ]; then
         yarn install
         yarn build
         mv .env.local.example .env.local
+        sed -i \
+            -e "s/;CORE_SECRET.*=.*/CORE_SECRET=$codigo/g" \
+            Zipline/.env.local
         touch ../Logs/instalado
     )
 fi
 
 sed -i \
-    -e 's/;CORE_PORT.*=.*/CORE_PORT={{server.build.default.port}}/g' \
+    -e "s/;CORE_PORT.*=.*/CORE_PORT={{server.build.default.port}}/g" \
     Zipline/.env.local
 
-    if [[ -d "./Zipline/public" ]]; then
-        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/version.sh)
-        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/launch.sh)
-    else
-        echo "Algo muito errado aconteceu."
-    fi
+if [[ -d "./Zipline/public" ]]; then
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/version.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Zipline/launch.sh)
+else
+    echo "Algo muito errado aconteceu."
+fi
