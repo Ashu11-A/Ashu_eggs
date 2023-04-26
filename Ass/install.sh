@@ -38,7 +38,7 @@ fi
 
 fakeroot chmod 775 ./*
 
-if [ ! -f "./Logs/instalado" ]; then
+if [ ! -d "./Ass/dist" ] || [ ! -d "./Ass/node_modules" ]; then
     (
         cd Ass || exit
         touch config.json
@@ -51,7 +51,7 @@ if [ ! -f "./Logs/instalado" ]; then
 fi
 
 
-if [[ -d "./Ass/public" ]]; then
+if [[ -d "./Ass/dist" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Ass/version.sh)
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Ass/launch.sh)
 else
