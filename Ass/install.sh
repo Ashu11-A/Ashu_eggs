@@ -46,7 +46,6 @@ if [ ! -d "./Ass/dist" ] || [ ! -d "./Ass/node_modules" ]; then
         touch data.json
         npm i --save-dev
         npm run build
-        touch ../Logs/instalado
     )
 fi
 
