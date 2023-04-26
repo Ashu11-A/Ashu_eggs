@@ -1,15 +1,11 @@
 #!/bin/bash
 
-composer="composer"
 composer_start="composer install --no-dev --optimize-autoloader"
 
-setup="setup"
 setup_start="php artisan p:environment:setup"
 
-database="database"
 database_start="php artisan p:environment:database"
 
-migrate="migrate"
 migrate_start="php artisan migrate --seed --force"
 
 user_make="user"
@@ -17,8 +13,6 @@ user_start="php artisan p:user:make"
 
 yarn="build"
 yarn_start="yarn && yarn lint --fix && yarn build"
-
-reinstall="reinstall"
 
 reinstall_a="reinstall all"
 reinstall_a_start="rm -rf painel && rm -rf logs/panel* && rm -rf nginx && rm -rf php-fpm"
@@ -79,27 +73,27 @@ while read -r line; do
 | reinstall |  Reinstala algo ou tudo               |
 +-----------+---------------------------------------+
         "
-    elif [[ "$line" == "${composer}" ]]; then
+    elif [[ "$line" == "composer" ]]; then
 
         Comando1="${composer_start}"
         echo "Instalando pacotes do Composer: ${bold}${lightblue}${Comando1}"
         eval "cd /home/container/painel && $Comando1 && cd .."
         printf "\n \n✅  Comando Executado\n \n"
-    elif [[ "$line" == "${setup}" ]]; then
+    elif [[ "$line" == "setup" ]]; then
 
         Comando2="${setup_start}"
         echo "Configurando ambiente do painel: ${bold}${lightblue}${Comando2}"
         eval "cd /home/container/painel && $Comando2 && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
-    elif [[ "$line" == "${database}" ]]; then
+    elif [[ "$line" == "database" ]]; then
 
         Comando3="${database_start}"
         echo "Configurando ambiente do painel: ${bold}${lightblue}${Comando3}"
         eval "cd /home/container/painel && $Comando3 && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
-    elif [[ "$line" == "${migrate}" ]]; then
+    elif [[ "$line" == "migrate" ]]; then
 
         Comando4="${migrate_start}"
         echo "Migrando banco de dados: ${bold}${lightblue}${Comando4}"
@@ -122,7 +116,7 @@ while read -r line; do
         eval "cd /home/container/painel && $Comando6 && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
-    elif [[ "$line" == "${reinstall}" ]]; then
+    elif [[ "$line" == "reinstall" ]]; then
         echo -e "❗️  \e[1m\e[94mEsse Comando necessita de uma opção use:\n \n${bold}${lightblue}reinstall all ${normal}(reinstala o painel, nginx, php-fpm)\n \n${bold}${lightblue}reinstall painel ${normal}(reinstala somente o painel)\n \n${bold}${lightblue}reinstall nginx ${normal}(reinstala somente o nginx) \n \n${bold}${lightblue}reinstall php-fpm ${normal}(reinstala somente o php-fpm)"
 
     elif [[ "$line" == "${reinstall_a}" ]]; then
