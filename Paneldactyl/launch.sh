@@ -1,5 +1,4 @@
 #!/bin/bash
-help="help"
 
 composer="composer"
 composer_start="composer install --no-dev --optimize-autoloader"
@@ -65,7 +64,7 @@ nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/P
 echo "📃  Comandos Disponíveis: ${bold}${lightblue}composer${normal}, ${bold}${lightblue}setup${normal}, ${bold}${lightblue}database${normal}, ${bold}${lightblue}migrate${normal}, ${bold}${lightblue}user${normal}, ${bold}${lightblue}build${normal}, ${bold}${lightblue}reinstall${normal}. Use ${bold}${lightblue}help${normal} para saber mais..."
 
 while read -r line; do
-    if [[ "$line" == "${help}" ]]; then
+    if [[ "$line" == "help" ]]; then
         echo "Comandos Disponíveis:"
         echo "
 +-----------+---------------------------------------+
