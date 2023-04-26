@@ -41,8 +41,11 @@ fakeroot chmod 775 ./*
 if [ ! -f "./Logs/instalado" ]; then
     (
         cd Ass || exit
+        touch config.json
+        touch auth.json
+        touch data.json
         npm i --save-dev
-        
+        npm run build
         touch ../Logs/instalado
     )
 fi
