@@ -1,5 +1,8 @@
 #!/bin/bash
 export PATH=$PATH:/home/container/.local/bin
+bold=$(echo -en "\e[1m")
+lightblue=$(echo -en "\e[94m")
+normal=$(echo -en "\e[0m")
 
 rm -rf /home/container/tmp/*
 echo "⚙️ Versão do Script: 1.0"
