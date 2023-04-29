@@ -1,7 +1,7 @@
 #!/bin/bash
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
-
+normal=$(echo -en "\e[0m")
 echo "🟢  Iniciando FFmpeg-Commander..."
 (
     cd FFmpeg-Commander || exit
@@ -31,6 +31,8 @@ fi
 if [ ${FFMPEGD_STATUS} == "0" ]; then
     printf "\n \n🔎  A interface é apenas para você copiar o comando que ele ira gerar a partir das suas configurações,\n coloque seus arquivos de video na pasta Media, e após isso cole o comando aqui, e de um simples [ENTER].\n \n"
 fi
+
+echo "📃  Comandos Disponíveis: ${bold}${lightblue}ffmpeg ${normal}[your code]..."
 
 while read -r line; do
     if [[ "$line" == *"ffmpeg"* ]]; then
