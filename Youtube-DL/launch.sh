@@ -26,4 +26,21 @@ echo "🛠 Iniciando PHP-FPM..."
 
 echo "🛠 Iniciando Nginx..."
 echo "✅ Inicializado com sucesso"
-/usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/
+nohup /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/ &
+
+echo "📃  Comandos Disponíveis: ${bold}${lightblue}youtube-dl ${normal}[your code]..."
+
+while read -r line; do
+    if [[ "$line" == *"youtube-dl"* ]]; then
+        echo "Executando: ${bold}${lightblue}${line}"
+        (
+            cd "[your files]" || exit
+            eval "$line"
+        )
+        printf "\n \n✅  Comando Executado\n \n"
+    elif [[ "$line" != *"youtube-dl"* ]]; then
+        echo "Comando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}youtube-dl."
+    else
+        echo "Script Falhou."
+    fi
+done
