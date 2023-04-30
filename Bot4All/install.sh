@@ -4,15 +4,16 @@ if [ ! -d "./logs" ]; then
     mkdir ./logs
 fi
 
+if [ ! -d "./[seu_bot]" ]; then
+    mkdir "./[seu_bot]"
+fi
+
 if [ "${USER_UPLOAD}" == "true" ] || [ "${USER_UPLOAD}" == "1" ]; then
     printf "\n \n⚙️  Modo Upload está ativo (isso irá pular a clonagem do repo do Github)\n \n"
 else
     if [ -n "${GIT_ADDRESS}" ]; then
-        if [ ! -d "./Bot - Repo" ]; then
-            mkdir "./Bot - Repo"
-        fi
         (
-            cd "./Bot - Repo" || exit
+            cd "./[seu_bot]" || exit
             printf "\n \n📌  Usando repo do GitHub\n \n"
             ## add git ending if it's not on the address
             if [[ ${GIT_ADDRESS} != *.git ]]; then
@@ -25,7 +26,7 @@ else
             fi
             ## pull git js bot repo
             if [ "$(ls -A ./)" ]; then
-                echo -e "O diretório '/home/container/Bot - Repo' não está vazio."
+                echo -e "O diretório '/home/container/[seu_bot]' não está vazio."
                 if [ -d .git ]; then
                     echo -e ".git Diretório existe"
                     if [ -f .git/config ]; then
@@ -41,7 +42,7 @@ else
                     git pull
                 fi
             else
-                echo -e "'/home/container/Bot - Repo' está vazia.\nClonando de arquivos no repositório"
+                echo -e "'/home/container/[seu_bot]' está vazia.\nClonando de arquivos no repositório"
                 if [ -z ${BRANCH} ]; then
                     echo -e "cloning default branch"
                     git clone ${GIT_ADDRESS} .
@@ -79,18 +80,11 @@ if [ ! -f "logs/start-conf" ]; then
     echo "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start"
 fi
 
-if [ -n "${GIT_ADDRESS}" ]; then
-    if [ -d "./Bot - Repo" ]; then
-        if [[ -f "./Bot - Repo/${BOT_JS_FILE}" ]]; then
-            bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
-        fi
-    else
-        printf "\n \n📌  Especifique o arquivo para o bot inicar, eu não o encontrei!\n \n"
-    fi
-else
-    if [[ -f "./${BOT_JS_FILE}" ]]; then
+start="$(cat logs/start-conf)"
+
+if [ -d "./[seu_bot]" ]; then
+    if [[ -f "./[seu_bot]/${start}" ]]; then
         bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
-    else
-        printf "\n \n📌  Especifique o arquivo para o bot inicar, eu não o encontrei!\n \n"
     fi
+    printf "\n \n📌  Especifique o arquivo para o bot inicar, eu não o encontrei!\n \n"
 fi

@@ -6,8 +6,8 @@ normal=$(echo -en "\e[0m")
 bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
 
 if [ -n "${GIT_ADDRESS}" ]; then
-    if [ -d "./Bot - Repo" ]; then
-        cd ./Bot - Repo || exit
+    if [ -d "./[seu_bot]" ]; then
+        cd "./[seu_bot]" || exit
     fi
 fi
 
@@ -57,14 +57,14 @@ while read -r line; do
     if [[ "$line" == "help" ]]; then
         echo "👀  Comandos Disponíveis:"
         echo "
-+-----------+---------------------------------------+
-| Comando   |  O que Faz                            |
-+-----------+---------------------------------------+
-| version   |  Troca a versão do Nodejs             |
-| start-conf|  Troca a Inicialização do bot         |
-| npm       |  Executa qualquer comando do npm      |
-| node      |  Executa qualquer comando do nodejs   |
-+-----------+---------------------------------------+
++------------+---------------------------------------+
+| Comando    |  O que Faz                            |
++------------+---------------------------------------+
+| version    |  Troca a versão do Nodejs             |
+| start-conf |  Troca a Inicialização do bot         |
+| npm        |  Executa qualquer comando do npm      |
+| node       |  Executa qualquer comando do nodejs   |
++------------+---------------------------------------+
         "
     elif [[ "$line" == *"npm"* ]]; then
         echo "Executando: ${bold}${lightblue}${line}"
