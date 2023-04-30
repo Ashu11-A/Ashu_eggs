@@ -31,18 +31,18 @@ echo "🛠 Iniciando Nginx..."
 echo "✅ Inicializado com sucesso"
 nohup /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/ 2>&1 &
 
-echo "📃  Comandos Disponíveis: ${bold}${lightblue}youtube-dl ${normal}[your code]..."
+echo "📃  Comandos Disponíveis: ${bold}${lightblue}yt-dlp ${normal}[your code]..."
 
 while read -r line; do
-    if [[ "$line" == *"youtube-dl"* ]]; then
+    if [[ "$line" == *"yt-dlp"* ]]; then
         echo "Executando: ${bold}${lightblue}${line}"
         (
             cd "[your files]" || exit
             eval "$line"
         )
         printf "\n \n✅  Comando Executado\n \n"
-    elif [[ "$line" != *"youtube-dl"* ]]; then
-        echo "Comando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}youtube-dl."
+    elif [[ "$line" != *"yt-dlp"* ]]; then
+        echo "Comando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}yt-dlp."
     else
         echo "Script Falhou."
     fi
