@@ -5,6 +5,12 @@ normal=$(echo -en "\e[0m")
 
 bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
 
+if [ -n "${GIT_ADDRESS}" ]; then
+    if [ -d "./Bot - Repo" ]; then
+        cd ./Bot - Repo || exit
+    fi
+fi
+
 echo "🔎  Pacotes Instalados: iproute2, tzdata, curl, coreutils, git, jq, file, unzip, make, gcc, g++, python3, python3-dev, libtool, nodejs, nodejs-lts, ffmpeg, wget, py3-pip, ncurses, bash e nvm"
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
@@ -39,7 +45,11 @@ if [ ! -f "../nodejs_version" ]; then
     echo "🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version"
 fi
 
-nohup /usr/local/bin/node /home/container/${BOT_JS_FILE} 2>&1 &
+while :; do
+    echo "✅  Auto reconexão ativada para prevenção de quedas..."
+    nohup node iniciar.js 2>&1 &
+    sleep 1
+done
 
 echo "📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]..."
 
