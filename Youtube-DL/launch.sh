@@ -24,8 +24,6 @@ echo "🛠 Instalando server..."
         nohup python -m uvicorn server:app --host 0.0.0.0 --port 4000 --no-server-header --workers 8 >/dev/null 2>&1 &
     )
 )
-echo "🛠 Iniciando PHP-FPM..."
-/usr/sbin/php-fpm81 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
 
 echo "🛠 Iniciando Nginx..."
 echo "✅ Inicializado com sucesso"
