@@ -1,8 +1,5 @@
 #!/bin/bash
 
-apt update
-apt install -y git curl jq file unzip make gcc g++ python python-dev libtool
-
 if [ "${USER_UPLOAD}" == "true" ] || [ "${USER_UPLOAD}" == "1" ]; then
     echo -e "⚙️  Modo Upload está ativo (isso irá pular a clonagem do repo do Github)"
 else
