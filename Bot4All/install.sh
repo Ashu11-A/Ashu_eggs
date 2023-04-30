@@ -42,8 +42,7 @@ else
             fi
         fi
     else
-        echo "⛔️  URL do repositório git não encontrado, usando metodo Upload."
-        echo "🤔  O que clonarei se não há nada especificado?"
+        echo "📌  URL do repositório git não encontrado, usando metodo Upload."
     fi
 fi
 if [[ ! -z ${NODE_PACKAGES} ]]; then
@@ -62,5 +61,5 @@ if [[ -f "./${BOT_JS_FILE}" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/version.sh)
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
 else
-    echo "🧐  Especifique o arquivo para o bot inicar, eu não o encontrei!"
+    echo "📌  Especifique o arquivo para o bot inicar, eu não o encontrei!"
 fi
