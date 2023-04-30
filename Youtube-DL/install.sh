@@ -31,7 +31,7 @@ if [ ! -f "./logs/config_nginx" ]; then
     cd nginx/conf.d/ || exit
     rm default.conf
     wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/default.conf
-    touch ../logs/config_nginx
+    touch ../../logs/config_nginx
 )
 fi
 
