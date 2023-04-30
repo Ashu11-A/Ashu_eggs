@@ -4,8 +4,8 @@ bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
 
-rm -rf /home/container/tmp/*
-echo "⚙️ Versão do Script: 1.0"
+bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Youtube-DL/version.sh)
+
 echo "🛠 Instalando frontend..."
 (
     cd youtube-dl-web/frontend || exit
