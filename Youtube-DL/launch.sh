@@ -29,7 +29,7 @@ echo "🛠 Iniciando PHP-FPM..."
 
 echo "🛠 Iniciando Nginx..."
 echo "✅ Inicializado com sucesso"
-nohup /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/ &
+nohup /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/ 2>&1 &
 
 echo "📃  Comandos Disponíveis: ${bold}${lightblue}youtube-dl ${normal}[your code]..."
 
