@@ -351,6 +351,10 @@ if [ "${DEVELOPER}" = "1" ]; then
         composer install --no-dev --optimize-autoloader
         echo -e "\n \n📂  Executando Migração do Banco de Dados\n \n"
         php artisan migrate --seed --force
+        echo -e "\n \n📂  Executando Limpeza de Cache/View/Route\n \n"
+        php artisan view:clear 
+        php artisan cache:clear 
+        php artisan route:clear
         echo -e "\n \n🔒  Executando Permições da pasta home painel\n \n"
         fakeroot chown -R nginx:nginx /home/container/painel/*
     )
