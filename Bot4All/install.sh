@@ -61,14 +61,16 @@ else
         )
     else
         printf "\n \n📌  URL do repositório git não encontrado, usando metodo Upload.\n \n"
-
-        if [[ ! -z ${NODE_PACKAGES} ]]; then
-            echo "Instalando pacotes NodeJS"
-            /usr/local/bin/npm install ${NODE_PACKAGES}
-        fi
-        if [ -f /mnt/server/package.json ]; then
-            /usr/local/bin/npm install --production
-        fi
+        (
+            cd "./[seu_bot]" || exit
+            if [[ ! -z ${NODE_PACKAGES} ]]; then
+                echo "Instalando pacotes NodeJS"
+                /usr/local/bin/npm install ${NODE_PACKAGES}
+            fi
+            if [ -f /mnt/server/package.json ]; then
+                /usr/local/bin/npm install --production
+            fi
+        )
     fi
 fi
 

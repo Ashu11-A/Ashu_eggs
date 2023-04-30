@@ -5,12 +5,6 @@ normal=$(echo -en "\e[0m")
 
 bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
 
-if [ -n "${GIT_ADDRESS}" ]; then
-    if [ -d "./[seu_bot]" ]; then
-        cd "./[seu_bot]" || exit
-    fi
-fi
-
 echo "🔎  Pacotes Instalados: iproute2, tzdata, curl, coreutils, git, jq, file, unzip, make, gcc, g++, python3, python3-dev, libtool, nodejs, nodejs-lts, ffmpeg, wget, py3-pip, ncurses, bash e nvm"
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
@@ -25,17 +19,21 @@ if [[ -d .git ]] || [[ {{AUTO_UPDATE}} == "1" ]]; then
     git pull
 fi
 
-if [[ ! -z ${NODE_PACKAGES} ]]; then
-    /usr/local/bin/npm install ${NODE_PACKAGES}
-fi
+(
+    cd "./[seu_bot]" || exit
 
-if [[ ! -z ${UNNODE_PACKAGES} ]]; then
-    /usr/local/bin/npm uninstall ${UNNODE_PACKAGES}
-fi
+    if [[ ! -z ${NODE_PACKAGES} ]]; then
+        /usr/local/bin/npm install ${NODE_PACKAGES}
+    fi
 
-if [ -f /home/container/package.json ]; then
-    /usr/local/bin/npm install
-fi
+    if [[ ! -z ${UNNODE_PACKAGES} ]]; then
+        /usr/local/bin/npm uninstall ${UNNODE_PACKAGES}
+    fi
+
+    if [ -f /home/container/package.json ]; then
+        /usr/local/bin/npm install
+    fi
+)
 
 if [ ! -f "logs/nodejs_version" ]; then
     printf "\n \n📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18...) (pressione [ENTER]): \n \n"
@@ -44,7 +42,6 @@ if [ ! -f "logs/nodejs_version" ]; then
     echo "👌  OK, salvei a versão (v$VERSION) aqui!"
     echo "🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version"
 fi
-
 
 echo "📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]..."
 
@@ -68,11 +65,17 @@ while read -r line; do
         "
     elif [[ "$line" == *"npm"* ]]; then
         echo "Executando: ${bold}${lightblue}${line}"
-        eval "$line"
+        (
+            cd "./[seu_bot]" || exit
+            eval "$line"
+        )
         printf "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"node"* ]]; then
         echo "Executando: ${bold}${lightblue}${line}"
-        eval "$line"
+        (
+            cd "./[seu_bot]" || exit
+            eval "$line"
+        )
         printf "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"version"* ]]; then
         echo -n "📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18...) (pressione [ENTER]): "
