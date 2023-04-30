@@ -68,10 +68,6 @@ else
         if [ -f /mnt/server/package.json ]; then
             /usr/local/bin/npm install --production
         fi
-
-        if [ -f "./egg_version" ]; then
-            mv ./egg_version ../
-        fi
     fi
 fi
 
