@@ -1,6 +1,6 @@
 #!/bin/bash
 #version_egg="1.0"
-version_script="1.1"
+version_script="1.2"
 echo "⚙️  Versão do Script: ${version_script}"
 : <<'LIMBO'
 if [[ -f "./logs/egg_version" ]]; then
