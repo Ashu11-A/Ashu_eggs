@@ -5,7 +5,7 @@ if [ ! -d "./logs" ]; then
 fi
 
 if [ "${USER_UPLOAD}" == "true" ] || [ "${USER_UPLOAD}" == "1" ]; then
-    echo -e "⚙️  Modo Upload está ativo (isso irá pular a clonagem do repo do Github)"
+    printf "\n \n⚙️  Modo Upload está ativo (isso irá pular a clonagem do repo do Github)\n \n"
 else
     if [ -n "${GIT_ADDRESS}" ]; then
         if [ ! -d "./Bot - Repo" ]; then
@@ -13,13 +13,13 @@ else
         fi
         (
             cd "./Bot - Repo" || exit
-            echo -e "\n \n📌  Usando repo do GitHub"
+            printf "\n \n📌  Usando repo do GitHub\n \n"
             ## add git ending if it's not on the address
             if [[ ${GIT_ADDRESS} != *.git ]]; then
                 GIT_ADDRESS=${GIT_ADDRESS}.git
             fi
             if [ -z "${USERNAME}" ] && [ -z "${ACCESS_TOKEN}" ]; then
-                echo -e "🤫  Usando chamada de API anonimo."
+                printf "\n \n🤫  Usando chamada de API anonimo.\n \n"
             else
                 GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
             fi
@@ -59,7 +59,7 @@ else
             fi
         )
     else
-        echo "📌  URL do repositório git não encontrado, usando metodo Upload."
+        printf "\n \n📌  URL do repositório git não encontrado, usando metodo Upload.\n \n"
 
         if [[ ! -z ${NODE_PACKAGES} ]]; then
             echo "Instalando pacotes NodeJS"
@@ -71,15 +71,13 @@ else
     fi
 fi
 
-
 if [ ! -f "logs/start-conf" ]; then
-    echo -n "📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): "
+    printf "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
     read START
     echo "$START" >logs/start-conf
     echo "👌  OK, salvei ($START) aqui!"
     echo "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start"
 fi
-
 
 if [ -n "${GIT_ADDRESS}" ]; then
     if [ -d "./Bot - Repo" ]; then
@@ -87,12 +85,12 @@ if [ -n "${GIT_ADDRESS}" ]; then
             bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
         fi
     else
-        echo "📌  Especifique o arquivo para o bot inicar, eu não o encontrei!"
+        printf "\n \n📌  Especifique o arquivo para o bot inicar, eu não o encontrei!\n \n"
     fi
 else
     if [[ -f "./${BOT_JS_FILE}" ]]; then
         bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
     else
-        echo "📌  Especifique o arquivo para o bot inicar, eu não o encontrei!"
+        printf "\n \n📌  Especifique o arquivo para o bot inicar, eu não o encontrei!\n \n"
     fi
 fi

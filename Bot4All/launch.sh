@@ -38,7 +38,7 @@ if [ -f /home/container/package.json ]; then
 fi
 
 if [ ! -f "logs/nodejs_version" ]; then
-    echo -n "📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18...) (pressione [ENTER]): "
+    printf "\n \n📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18...) (pressione [ENTER]): \n \n"
     read VERSION
     echo "$VERSION" >logs/nodejs_version
     echo "👌  OK, salvei a versão (v$VERSION) aqui!"
