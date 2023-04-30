@@ -35,7 +35,7 @@ if [ ! -f "./logs/config_nginx" ]; then
 )
 fi
 
-chown -R nginx:nginx youtube-dl-web && chmod -R 755 youtube-dl-web
+fakeroot chown -R nginx:nginx youtube-dl-web && chmod -R 755 youtube-dl-web
 
 echo "**** Limpando ****"
 rm -rf /tmp/*
