@@ -45,15 +45,15 @@ if [ ! -f "logs/nodejs_version" ]; then
     echo "🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version"
 fi
 
-while :; do
-    echo "✅  Auto reconexão ativada para prevenção de quedas..."
-    nohup node iniciar.js 2>&1 &
-    sleep 1
-done
 
 echo "📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]..."
 
 while read -r line; do
+
+    echo "✅  Auto reconexão ativada para prevenção de quedas..."
+    nohup node iniciar.js 2>&1 &
+    sleep 1
+
     if [[ "$line" == "help" ]]; then
         echo "👀  Comandos Disponíveis:"
         echo "

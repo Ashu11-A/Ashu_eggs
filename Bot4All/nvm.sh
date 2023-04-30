@@ -1,10 +1,12 @@
 #!/bin/bash
+# shellcheck source=/dev/null
+source "/usr/local/bin/nvm.sh"
 
 if [[ -f "logs/nodejs_version" ]]; then
 
-    versions=" $(cat logs/nodejs_version) "
+    versions="$(cat logs/nodejs_version)"
 
-    if [ -z "${versions}" ]; then
+    if [ -n "${versions}" ]; then
         echo "✅  Usando versão: v${versions}"
         nvm install "${versions}"
         nvm use "${versions}"
