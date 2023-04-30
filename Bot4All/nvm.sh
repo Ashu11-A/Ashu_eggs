@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ -f "../nodejs_version" ]]; then
+if [[ -f "logs/nodejs_version" ]]; then
 
     versions=" $(cat ../nodejs_version) "
 
