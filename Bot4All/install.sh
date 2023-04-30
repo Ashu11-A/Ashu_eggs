@@ -7,7 +7,7 @@ fi
 if [ "${USER_UPLOAD}" == "true" ] || [ "${USER_UPLOAD}" == "1" ]; then
     echo -e "⚙️  Modo Upload está ativo (isso irá pular a clonagem do repo do Github)"
 else
-    if [ ! -z "${GIT_ADDRESS}" ]; then
+    if [ -n "${GIT_ADDRESS}" ]; then
         if [ ! -d "./Bot - Repo" ]; then
             mkdir "./Bot - Repo"
         fi
@@ -75,8 +75,28 @@ else
     fi
 fi
 
-if [[ -f "./${BOT_JS_FILE}" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
+
+if [ ! -f "logs/start-conf" ]; then
+    echo -n "📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): "
+    read START
+    echo "$START" >logs/start-conf
+    echo "👌  OK, salvei ($START) aqui!"
+    echo "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start"
+fi
+
+
+if [ -n "${GIT_ADDRESS}" ]; then
+    if [ -d "./Bot - Repo" ]; then
+        if [[ -f "./Bot - Repo/${BOT_JS_FILE}" ]]; then
+            bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
+        fi
+    else
+        echo "📌  Especifique o arquivo para o bot inicar, eu não o encontrei!"
+    fi
 else
-    echo "📌  Especifique o arquivo para o bot inicar, eu não o encontrei!"
+    if [[ -f "./${BOT_JS_FILE}" ]]; then
+        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
+    else
+        echo "📌  Especifique o arquivo para o bot inicar, eu não o encontrei!"
+    fi
 fi

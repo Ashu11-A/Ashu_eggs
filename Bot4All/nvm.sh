@@ -2,7 +2,7 @@
 
 if [[ -f "logs/nodejs_version" ]]; then
 
-    versions=" $(cat ../nodejs_version) "
+    versions=" $(cat logs/nodejs_version) "
 
     if [ -z "${versions}" ]; then
         echo "✅  Usando versão: v${versions}"

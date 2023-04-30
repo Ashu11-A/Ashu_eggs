@@ -37,10 +37,10 @@ if [ -f /home/container/package.json ]; then
     /usr/local/bin/npm install
 fi
 
-if [ ! -f "../nodejs_version" ]; then
+if [ ! -f "logs/nodejs_version" ]; then
     echo -n "📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18...) (pressione [ENTER]): "
     read VERSION
-    echo "$VERSION" >../nodejs_version
+    echo "$VERSION" >logs/nodejs_version
     echo "👌  OK, salvei a versão (v$VERSION) aqui!"
     echo "🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version"
 fi
@@ -61,6 +61,7 @@ while read -r line; do
 | Comando   |  O que Faz                            |
 +-----------+---------------------------------------+
 | version   |  Troca a versão do Nodejs             |
+| start-conf|  Troca a Inicialização do bot         |
 | npm       |  Executa qualquer comando do npm      |
 | node      |  Executa qualquer comando do nodejs   |
 +-----------+---------------------------------------+
@@ -76,8 +77,14 @@ while read -r line; do
     elif [[ "$line" == *"version"* ]]; then
         echo -n "📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18...) (pressione [ENTER]): "
         read VERSION
-        echo "$VERSION" >../nodejs_version
+        echo "$VERSION" >logs/nodejs_version
         echo "👌  OK, salvei a versão (v$VERSION) aqui!"
+        exit
+    elif [[ "$line" == *"start-conf"* ]]; then
+        echo -n "📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): "
+        read START
+        echo "$START" >logs/start-conf
+        echo "👌  OK, salvei ($START) aqui!"
         exit
     elif [[ "$line" != *"npm"* ]]; then
         echo "Comando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}npm ${normal}ou ${bold}${lightblue}node."
