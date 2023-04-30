@@ -37,10 +37,9 @@ fi
 
 fakeroot chown -R nginx:nginx youtube-dl-web && chmod -R 755 youtube-dl-web
 
+if [ ! -f "./logs/instalado" ]; then
 echo "**** Limpando ****"
 rm -rf /tmp/*
-
-if [ ! -f "./logs/instalado" ]; then
 echo "**** configure php and nginx for youtube-dl-web ****" &&
     echo "extension="smbclient.so"" >php-fpm/conf.d/00_smbclient.ini &&
     echo 'apc.enable_cli=1' >>php-fpm/conf.d/apcu.ini &&
