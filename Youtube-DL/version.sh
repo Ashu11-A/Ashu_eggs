@@ -1,7 +1,8 @@
 #!/bin/bash
-version_egg="1.0"
+#version_egg="1.0"
 version_script="1.1"
 echo "⚙️  Versão do Script: ${version_script}"
+: <<'LIMBO'
 if [[ -f "./logs/egg_version" ]]; then
     versions=" $(cat ./logs/egg_version) "
     comm1=$(printf '%s\n' "$versions" | tr -d '.')
@@ -31,3 +32,4 @@ else
     
 "
 fi
+LIMBO
