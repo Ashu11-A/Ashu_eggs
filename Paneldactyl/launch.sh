@@ -12,7 +12,7 @@ user_make="user"
 user_start="php artisan p:user:make"
 
 yarn="build"
-yarn_start="yarn && yarn lint --fix && yarn build"
+yarn_start="yarn && yarn lint --fix && yarn build && php artisan migrate && php artisan view:clear && php artisan cache:clear && php artisan route:clear"
 
 reinstall_a="reinstall all"
 reinstall_a_start="rm -rf painel && rm -rf logs/panel* && rm -rf nginx && rm -rf php-fpm"
