@@ -49,9 +49,9 @@ fi
 echo "📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]..."
 
 while read -r line; do
-
+    start="$(cat logs/start-conf)"
     echo "✅  Auto reconexão ativada para prevenção de quedas..."
-    nohup node iniciar.js 2>&1 &
+    nohup node "${start}" 2>&1 &
     sleep 1
 
     if [[ "$line" == "help" ]]; then
