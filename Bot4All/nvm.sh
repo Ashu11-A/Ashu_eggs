@@ -4,7 +4,7 @@ source "/home/container/.nvm/nvm.sh"
 
 if [ ! -f "logs/nodejs_version" ]; then
     printf "\n \n📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18...) (pressione [ENTER]): \n \n"
-    read VERSION
+    read -r VERSION
     if [[ "$VERSION" == "12" ]]; then
         version="12.22.9"
     elif [[ "$VERSION" == "14" ]]; then
@@ -16,12 +16,12 @@ if [ ! -f "logs/nodejs_version" ]; then
     elif [[ "$VERSION" == "20" ]]; then
         version="20.0.0"
     else
-        echo "🥶 Versão não encontrada, usando a versão 18"
+        printf "🥶 Versão não encontrada, usando a versão 18\n"
         version="18.16.0"
     fi
     echo "$version" >logs/nodejs_version
-    echo "👍  Blz, salvei a versão (v$VERSION) aqui!"
-    echo "🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version"
+    printf "👍  Blz, salvei a versão (v%s) aqui!\n" "$VERSION"
+    printf "🫵  Você pode alterar a versão usando o comando: version.\n"
 fi
 
 if [[ -f "logs/nodejs_version" ]]; then
@@ -30,7 +30,7 @@ if [[ -f "logs/nodejs_version" ]]; then
         nvm install "${version}"
         nvm use "${version}"
     else
-        echo "⚠️  Versão não identificada, usando nvm padrão (v18)."
+        printf "⚠️  Versão não identificada, usando nvm padrão (v18).\n"
         nvm install "18.16.0"
         nvm use "18.16.0"
     fi
