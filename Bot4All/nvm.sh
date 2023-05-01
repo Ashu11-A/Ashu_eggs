@@ -20,7 +20,7 @@ else
 fi
 echo "$VERSION" >logs/nodejs_version
 printf "\n \n👍  Blz, salvei a versão (v%s) aqui!\n \n" "$VERSION"
-printf "\n \n🫵  Você pode alterar a versão usando o comando: version.\n \n"
+echo -e "\n \n🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version.\n \n"
 
 if [[ -f "logs/nodejs_version" ]]; then
 
