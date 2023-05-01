@@ -14,7 +14,7 @@ if [[ -f "logs/nodejs_version" ]]; then
         version="16.20.0"
     elif [[ "$versions" == "18" ]]; then
         version="18.16.0"
-    elif [[ "$versions" == "10" ]]; then
+    elif [[ "$versions" == "20" ]]; then
         version="20.0.0"
     else
         echo "🥶 Versão não encontrada, usando a versão 18"
