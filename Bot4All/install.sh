@@ -12,12 +12,6 @@ export normal
 if [ ! -d "./logs" ]; then
     mkdir ./logs
 fi
-if [ ! -f "./logs/3d.flf" ]; then
-    (
-        cd logs || exit
-        curl -sO https://raw.githubusercontent.com/xero/figlet-fonts/master/3d.flf
-    )
-fi
 
 echo "   "
 figlet -c -f slant -t -k "Bot4All" | $lolcat
@@ -162,3 +156,12 @@ if [ -d "./[seu_bot]" ]; then
         esac
     fi
 fi
+
+: <<'LIMBO'
+if [ ! -f "./logs/3d.flf" ]; then
+    (
+        cd logs || exit
+        curl -sO https://raw.githubusercontent.com/xero/figlet-fonts/master/3d.flf
+    )
+fi
+LIMBO
