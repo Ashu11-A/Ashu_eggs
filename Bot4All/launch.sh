@@ -39,7 +39,7 @@ echo "🟢  Estou rodando ${MGM}..."
     fi
 )
 
-printf "\n \n%s📃 Comandos Disponíveis:%s %shelp%s, %sversion%s, %snpm%s[your code] ou %snode%s[your code]...\n \n" "$bold" "$normal" "$bold" "$normal" "$bold" "$normal" "$bold" "$normal" "$bold" "$normal"
+echo -e "\n \n📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]...\n \n"
 
 start="$(cat logs/start-conf)"
 (
