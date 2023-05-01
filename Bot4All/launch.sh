@@ -3,7 +3,9 @@ bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
 
-bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
+if [ ! -f "logs/nodejs_version" ]; then
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
+fi
 
 printf "\n \n🔎  Pacotes Instalados: 
 ffmpeg tesseract
