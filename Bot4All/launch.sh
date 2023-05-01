@@ -43,10 +43,16 @@ echo -e "\n \n📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${
 start="$(cat logs/start-conf)"
 (
     cd "./[seu_bot]" || exit
-    if nohup node "${start}" > nohup.out & then
-        echo "O comando 'nohup node ${start} > nohup.out &' foi executado com sucesso."
+    nohup node ${start} > nohup.out 2>&1 &
+    pid=$!
+
+    sleep 5
+
+    if ps -p $pid > /dev/null
+    then
+        echo "Servidor iniciado com sucesso!"
     else
-        echo "O comando 'nohup node ${start} > nohup.out &' falhou. Executando 'nohup npm start > nohup.out &' em vez disso."
+        echo "Erro ao iniciar o servidor com nodejs... Tentando usar npm."
         nohup npm start > nohup.out &
     fi
 )
