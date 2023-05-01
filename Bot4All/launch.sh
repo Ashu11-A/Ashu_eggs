@@ -3,7 +3,6 @@ bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
 
-
 printf "\n \n🔎  Pacotes Instalados: 
 ffmpeg tesseract
 iproute2 tzdata curl git
@@ -43,7 +42,7 @@ echo -e "\n \n📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${
 start="$(cat logs/start-conf)"
 (
     cd "./[seu_bot]" || exit
-    nohup node "${start}" >/dev/null 2>&1
+    nohup node "${start}" > nohup.out 2>&1 &
 )
 
 while read -r line; do
