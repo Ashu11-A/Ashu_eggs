@@ -91,7 +91,7 @@ while read -r line; do
         echo "👌  OK, salvei ($START) aqui!"
         exit
         exit
-    elif [[ "$line" != *"npm"* ]] || [[ "$line" != *"node"* ]] || [[ "$line" != *"version"* ]] || [[ "$line" != *"start-conf"* ]]; then
+    elif [[ "$line" != *"npm"* ]] || [[ "$line" != *"node"* ]] || [[ "$line" != *"show"* ]] || [[ "$line" != *"version"* ]] || [[ "$line" != *"start"* ]]; then
         echo -e "\n \nComando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}help${normal}, ${bold}${lightblue}version${normal}, ${bold}${lightblue}start-conf${normal},${bold}${lightblue}show${normal},${bold}${lightblue}npm ${normal}ou ${bold}${lightblue}node.\n \n"
     else
         echo "Script Falhou."
