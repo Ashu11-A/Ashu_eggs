@@ -8,7 +8,9 @@ export bold
 export lightblue
 export normal
 
-bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
+if [ ! -f "logs/nodejs_version" ]; then
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
+fi
 
 NODE_VERSION="$version"
 
