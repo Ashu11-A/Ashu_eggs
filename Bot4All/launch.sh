@@ -78,13 +78,15 @@ while read -r line; do
         printf "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"version"* ]]; then
         bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
-        exit 0
+        exit
+        exit
     elif [[ "$line" == *"start-conf"* ]]; then
         echo -n "📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): "
         read START
         echo "$START" >logs/start-conf
         echo "👌  OK, salvei ($START) aqui!"
-        exit 0
+        exit
+        exit
     elif [[ "$line" != *"npm"* ]] || [[ "$line" != *"node"* ]] || [[ "$line" != *"version"* ]] || [[ "$line" != *"start-conf"* ]]; then
         echo -e "\n \nComando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}help${normal}, ${bold}${lightblue}version${normal}, ${bold}${lightblue}start-conf${normal},${bold}${lightblue}npm ${normal}ou ${bold}${lightblue}node.\n \n"
     else
