@@ -3,7 +3,7 @@ bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
 
-printf "\n \n🔎  Pacotes Instalados: 
+echo -e "\n \n🔎  Pacotes Instalados: 
 ffmpeg tesseract figlet
 iproute2 tzdata curl git
 jq file unzip wget ncurses
@@ -40,7 +40,7 @@ echo "🟢  Estou rodando ${MGM}..."
 
 echo -e "\n \n📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}show ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]...\n \n"
 
-printf "\n \n🔒  Sistema antiqueda inicializando...\n \n"
+echo -e "\n \n🔒  Sistema antiqueda inicializando...\n \n"
 (
     cd "./[seu_bot]" || exit
     nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nobreak.sh) >nohup.out 2>&1 &
@@ -66,21 +66,21 @@ while read -r line; do
             cd "./[seu_bot]" || exit
             eval "$line"
         )
-        printf "\n \n✅  Comando Executado\n \n"
+        echo -e "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"node"* ]]; then
         echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
         (
             cd "./[seu_bot]" || exit
             eval "$line"
         )
-        printf "\n \n✅  Comando Executado\n \n"
+        echo -e "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == "show" ]]; then
         echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
         (
             cd "./[seu_bot]" || exit
             eval "tail -n 40 nohup.out"
         )
-        printf "\n \n✅  Comando Executado\n \n"
+        echo -e "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"version"* ]]; then
         bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
         exit

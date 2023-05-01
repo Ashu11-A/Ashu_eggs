@@ -2,7 +2,7 @@
 # shellcheck source=/dev/null
 source "/home/container/.nvm/nvm.sh"
 
-printf "\n \n📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18, 20) (pressione [ENTER]): \n \n"
+echo -e "\n \n📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18, 20) (pressione [ENTER]): \n \n"
 while read -r VERSION; do
 
     if [[ "$VERSION" =~ ^(12|14|16|18|20)$ ]]; then
@@ -18,7 +18,7 @@ while read -r VERSION; do
             NODE_VERSION="20.0.0"
         fi
         echo "$VERSION" >logs/nodejs_version
-        printf "\n \n👍  Blz, salvei a versão (v%s) aqui!\n \n" "$VERSION"
+        echo -e "\n \n👍  Blz, salvei a versão (v%s) aqui!\n \n" "$VERSION"
         echo -e "\n \n🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version.\n \n"
 
         if [[ -f "logs/nodejs_version" ]]; then
@@ -28,7 +28,7 @@ while read -r VERSION; do
                 nvm use "${NODE_VERSION}"
                 exit
             else
-                printf "\n \n⚠️  Versão não identificada, usando nvm padrão (v18).\n \n"
+                echo -e "\n \n⚠️  Versão não identificada, usando nvm padrão (v18).\n \n"
                 nvm install "18.16.0"
                 nvm use "18.16.0"
                 exit

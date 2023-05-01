@@ -3,7 +3,6 @@
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
-lolcat=/usr/games/lolcat
 
 export bold
 export lightblue
@@ -20,7 +19,7 @@ if [ ! -f "./logs/3d.flf" ]; then
 fi
 
 echo "   "
-figlet -c -f slant -t -k "Bot4All" | $lolcat
+figlet -c -f slant -t -k "Bot4All"
 echo "                                         by Ashu (BotForAll)"
 
 if [ ! -d "./[seu_bot]" ]; then
@@ -46,7 +45,7 @@ elif [[ "$VERSION" == "18" ]]; then
 elif [[ "$VERSION" == "20" ]]; then
     NODE_VERSION="20.0.0"
 else
-    printf "\n \n🥶 Versão não encontrada, usando a versão 18\n \n"
+    echo -e "\n \n🥶 Versão não encontrada, usando a versão 18\n \n"
     NODE_VERSION="18.16.0"
 fi
 
@@ -55,7 +54,7 @@ if [[ -f "logs/nodejs_version" ]]; then
         nvm install "${NODE_VERSION}"
         nvm use "${NODE_VERSION}"
     else
-        printf "\n \n⚠️  Versão não identificada, usando nvm padrão (v18).\n \n"
+        echo -e "\n \n⚠️  Versão não identificada, usando nvm padrão (v18).\n \n"
         nvm install "18.16.0"
         nvm use "18.16.0"
     fi
@@ -68,13 +67,13 @@ export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
 if [ -n "${GIT_ADDRESS}" ]; then
     (
         cd "./[seu_bot]" || exit
-        printf "\n \n📌  Usando repo do GitHub\n \n"
+        echo -e "\n \n📌  Usando repo do GitHub\n \n"
         ## add git ending if it's not on the address
         if [[ ${GIT_ADDRESS} != *.git ]]; then
             GIT_ADDRESS=${GIT_ADDRESS}.git
         fi
         if [ -z "${USERNAME}" ] && [ -z "${ACCESS_TOKEN}" ]; then
-            printf "\n \n🤫  Usando chamada de API anonimo.\n \n"
+            echo -e "\n \n🤫  Usando chamada de API anonimo.\n \n"
         else
             GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
         fi
@@ -118,7 +117,7 @@ if [ -n "${GIT_ADDRESS}" ]; then
         fi
     )
 else
-    printf "\n \n📌  Repositório git não especificado, usando metodo Upload.\n \n"
+    echo -e "\n \n📌  Repositório git não especificado, usando metodo Upload.\n \n"
     (
         cd "./[seu_bot]" || exit
         if [[ ! -z ${NODE_PACKAGES} ]]; then
@@ -134,7 +133,7 @@ else
 fi
 
 if [ ! -f "logs/start-conf" ]; then
-    printf "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
+    echo -e "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
     read -r START
     echo "$START" >logs/start-conf
     echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
@@ -147,12 +146,12 @@ if [ -d "./[seu_bot]" ]; then
     if [[ -f "./[seu_bot]/${start}" ]]; then
         bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
     else
-        printf "\n \n📛  Não achei o arquivo de inicialização selecionado.\n"
-        printf "❔  Deseja mudar o arquivo? [y/N]\n \n"
+        echo -e "\n \n📛  Não achei o arquivo de inicialização selecionado.\n"
+        echo -e "❔  Deseja mudar o arquivo? [y/N]\n \n"
         read -r response
         case "$response" in
         [yY][eE][sS] | [yY])
-            printf "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
+            echo -e "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
             read -r START
             echo "$START" >logs/start-conf
             echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
