@@ -103,6 +103,7 @@ else
                 echo "Instalando pacotes NodeJS"
                 npm install ${NODE_PACKAGES}
             fi
+
             if [ -f /mnt/server/package.json ]; then
                 npm install --production
             fi
@@ -115,8 +116,10 @@ else
                 echo "Instalando pacotes NodeJS"
                 npm install ${NODE_PACKAGES}
             fi
-            if [ -f ./package.json ]; then
-                npm install --production
+            if [ ! -d ./[seu_bot]/node_modules ]; then
+                if [ -f ./package.json ]; then
+                    npm install --production
+                fi
             fi
         )
     fi
