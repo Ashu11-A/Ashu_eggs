@@ -43,7 +43,12 @@ echo -e "\n \n📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${
 start="$(cat logs/start-conf)"
 (
     cd "./[seu_bot]" || exit
-    nohup node "${start}" > nohup.out &
+    if nohup node "${start}" > nohup.out & then
+        echo "O comando 'nohup node ${start} > nohup.out &' foi executado com sucesso."
+    else
+        echo "O comando 'nohup node ${start} > nohup.out &' falhou. Executando 'nohup npm start > nohup.out &' em vez disso."
+        nohup npm start > nohup.out &
+    fi
 )
 
 while read -r line; do
