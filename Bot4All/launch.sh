@@ -5,11 +5,11 @@ normal=$(echo -en "\e[0m")
 
 bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
 
-echo "🔎  Pacotes Instalados: 
+printf "\n \n🔎  Pacotes Instalados: 
 iproute2 tzdata curl git
 jq file unzip wget ncurses
 build-base ca-certificates 
-libressl-dev nvm node npm bash"
+libressl-dev nvm node npm bash\n \n"
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
     MGM="na porta ${SERVER_PORT}"

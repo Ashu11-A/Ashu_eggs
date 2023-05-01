@@ -24,7 +24,6 @@ if [[ -f "logs/nodejs_version" ]]; then
     if [ -n "${versions}" ]; then
         nvm install "${version}"
         nvm use "${version}"
-        node --version
     else
         echo "⚠️  Versão não identificada, usando nvm padrão (v18)."
         nvm install "18.16.0"
