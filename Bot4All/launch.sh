@@ -85,8 +85,8 @@ while read -r line; do
         echo "$START" >logs/start-conf
         echo "👌  OK, salvei ($START) aqui!"
         exit 0
-    elif [[ "$line" != *"npm"* ]]; then
-        echo -e "\n \nComando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}version${normal}, ${bold}${lightblue}start-conf${normal},${bold}${lightblue}npm ${normal}ou ${bold}${lightblue}node.\n \n"
+    elif [[ "$line" != *"npm"* ]] || [[ "$line" != *"node"* ]] || [[ "$line" != *"version"* ]] || [[ "$line" != *"start-conf"* ]]; then
+        echo -e "\n \nComando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}help${normal}, ${bold}${lightblue}version${normal}, ${bold}${lightblue}start-conf${normal},${bold}${lightblue}npm ${normal}ou ${bold}${lightblue}node.\n \n"
     else
         echo "Script Falhou."
     fi
