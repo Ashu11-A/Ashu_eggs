@@ -63,14 +63,14 @@ while read -r line; do
 +------------+---------------------------------------+
         "
     elif [[ "$line" == *"npm"* ]]; then
-        echo "Executando: ${bold}${lightblue}${line}"
+        echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
         (
             cd "./[seu_bot]" || exit
             eval "$line"
         )
         printf "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"node"* ]]; then
-        echo "Executando: ${bold}${lightblue}${line}"
+        echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
         (
             cd "./[seu_bot]" || exit
             eval "$line"
@@ -86,7 +86,7 @@ while read -r line; do
         echo "👌  OK, salvei ($START) aqui!"
         exit 0
     elif [[ "$line" != *"npm"* ]]; then
-        echo "Comando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}npm ${normal}ou ${bold}${lightblue}node."
+        echo -e "\n \nComando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}version${normal}, ${bold}${lightblue}start-conf${normal},${bold}${lightblue}npm ${normal}ou ${bold}${lightblue}node.\n \n"
     else
         echo "Script Falhou."
     fi
