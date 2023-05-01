@@ -31,9 +31,10 @@ echo "🟢  Estou rodando ${MGM}..."
     if [[ ! -z ${UNNODE_PACKAGES} ]]; then
         npm uninstall ${UNNODE_PACKAGES}
     fi
-
-    if [ -f ./.package.json ]; then
-        npm install
+    if [ ! -d "./node_modules" ]; then
+        if [ -f ./.package.json ]; then
+            npm install
+        fi
     fi
 )
 
