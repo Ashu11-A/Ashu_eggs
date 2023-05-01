@@ -77,7 +77,7 @@ while read -r line; do
         echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
         (
             cd "./[seu_bot]" || exit
-            eval "tail -n 25 -F nohup.out"
+            eval "tail -n 20 -F nohup.out"
         )
         printf "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"version"* ]]; then
