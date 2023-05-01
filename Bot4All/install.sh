@@ -4,6 +4,10 @@ lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
 NVM_DIR=/home/container/.nvm
 
+export bold
+export lightblue
+export normal
+
 bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
 
 NODE_VERSION="$version"
