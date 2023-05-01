@@ -20,7 +20,9 @@ else
 fi
 
 export NODE_PATH=$NVM_DIR/v$vers/versions/node/v$vers/lib/node_modules
-export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$NVM_DIR/v$vers/bin:$PATH:$NVM_DIR/versions/node/v$vers/bin
+export PATH=$PATH:$NVM_DIR/v$vers/bin:$PATH:$NVM_DIR/versions/node/v$vers/bin
+
+$PATH
 
 if [[ -f "logs/nodejs_version" ]]; then
     if [ -n "${vers}" ]; then
