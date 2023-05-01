@@ -5,7 +5,11 @@ normal=$(echo -en "\e[0m")
 
 bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
 
-echo "🔎  Pacotes Instalados: iproute2, tzdata, curl, coreutils, git, jq, file, unzip, make, gcc, g++, python3, python3-dev, libtool, nodejs, nodejs-lts, ffmpeg, wget, py3-pip, ncurses, bash e nvm"
+echo "🔎  Pacotes Instalados: 
+iproute2 tzdata curl git
+jq file unzip wget ncurses
+build-base ca-certificates 
+libressl-dev nvm node npm bash"
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
     MGM="na porta ${SERVER_PORT}"
@@ -23,15 +27,15 @@ fi
     cd "./[seu_bot]" || exit
 
     if [[ ! -z ${NODE_PACKAGES} ]]; then
-        /usr/local/bin/npm install ${NODE_PACKAGES}
+        npm install ${NODE_PACKAGES}
     fi
 
     if [[ ! -z ${UNNODE_PACKAGES} ]]; then
-        /usr/local/bin/npm uninstall ${UNNODE_PACKAGES}
+        npm uninstall ${UNNODE_PACKAGES}
     fi
 
     if [ -f /home/container/package.json ]; then
-        /usr/local/bin/npm install
+        npm install
     fi
 )
 
@@ -39,7 +43,7 @@ if [ ! -f "logs/nodejs_version" ]; then
     printf "\n \n📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18...) (pressione [ENTER]): \n \n"
     read VERSION
     echo "$VERSION" >logs/nodejs_version
-    echo "👌  OK, salvei a versão (v$VERSION) aqui!"
+    echo "👍  Blz, salvei a versão (v$VERSION) aqui!"
     echo "🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version"
 fi
 

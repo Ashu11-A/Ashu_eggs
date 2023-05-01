@@ -1,4 +1,13 @@
 #!/bin/bash
+bold=$(echo -en "\e[1m")
+lightblue=$(echo -en "\e[94m")
+normal=$(echo -en "\e[0m")
+NVM_DIR=/home/container/.nvm
+
+export NODE_PATH=$NVM_DIR/v$NODE_VERSION/lib/node_modules
+export PATH=$PATH:$NVM_DIR/v$NODE_VERSION/bin:$PATH:$NVM_DIR/versions/node/v$NODE_VERSION/bin
+
+
 
 if [ ! -d "./logs" ]; then
     mkdir ./logs
@@ -53,22 +62,22 @@ else
             fi
             if [[ ! -z ${NODE_PACKAGES} ]]; then
                 echo "Instalando pacotes NodeJS"
-                /usr/local/bin/npm install ${NODE_PACKAGES}
+                npm install ${NODE_PACKAGES}
             fi
             if [ -f /mnt/server/package.json ]; then
-                /usr/local/bin/npm install --production
+                npm install --production
             fi
         )
     else
-        printf "\n \n📌  URL do repositório git não encontrado, usando metodo Upload.\n \n"
+        printf "\n \n📌  URL do repositório git não especificado, usando metodo Upload.\n \n"
         (
             cd "./[seu_bot]" || exit
             if [[ ! -z ${NODE_PACKAGES} ]]; then
                 echo "Instalando pacotes NodeJS"
-                /usr/local/bin/npm install ${NODE_PACKAGES}
+                npm install ${NODE_PACKAGES}
             fi
-            if [ -f /mnt/server/package.json ]; then
-                /usr/local/bin/npm install --production
+            if [ -f ./package.json ]; then
+                npm install --production
             fi
         )
     fi
