@@ -7,12 +7,6 @@ export bold
 export lightblue
 export normal
 
-if [ ! -f "logs/nodejs_version" ]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
-fi
-
-bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_start.sh)
-
 if [ ! -d "./logs" ]; then
     mkdir ./logs
 fi
@@ -20,6 +14,12 @@ fi
 if [ ! -d "./[seu_bot]" ]; then
     mkdir "./[seu_bot]"
 fi
+
+if [ ! -f "logs/nodejs_version" ]; then
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
+fi
+
+bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_start.sh)
 
 if [ "${USER_UPLOAD}" == "true" ] || [ "${USER_UPLOAD}" == "1" ]; then
     printf "\n \n⚙️  Modo Upload está ativo (isso irá pular a clonagem do repo do Github)\n \n"
