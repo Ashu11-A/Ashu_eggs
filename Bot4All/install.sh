@@ -94,18 +94,18 @@ start="$(cat logs/start-conf)"
 if [ -d "./[seu_bot]" ]; then
     if [[ -f "./[seu_bot]/${start}" ]]; then
         bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
+    else
+        printf "\n \n⚙️  Não achei o arquivo de inicialização selecionou. Deseja mudar novamente?\n \n"
+        read -r response
+        case "$response" in
+        [yY][eE][sS] | [yY])
+            printf "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
+            read -r START
+            echo "$START" >logs/start-conf
+            echo "👌  OK, salvei ($START) aqui!"
+            echo "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start"
+            ;;
+        *) ;;
+        esac
     fi
-    printf "\n \n⚙️  Não achei o arquivo de inicialização selecionou. Deseja mudar novamente?\n \n"
-    read -r response
-    case "$response" in
-    [yY][eE][sS] | [yY])
-        printf "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
-        read -r START
-        echo "$START" >logs/start-conf
-        echo "👌  OK, salvei ($START) aqui!"
-        echo "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start"
-        ;;
-    *) ;;
-    esac
-
 fi
