@@ -74,7 +74,7 @@ while read -r line; do
         )
         printf "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"version"* ]]; then
-        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
+        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
         exit
         exit
     elif [[ "$line" == *"start-conf"* ]]; then

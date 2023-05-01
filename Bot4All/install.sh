@@ -9,8 +9,10 @@ export lightblue
 export normal
 
 if [ ! -f "logs/nodejs_version" ]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
 fi
+
+bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_start.sh)
 
 NODE_VERSION="$version"
 
