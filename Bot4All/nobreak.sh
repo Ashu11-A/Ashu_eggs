@@ -2,7 +2,7 @@
 while true
 do
 
-    start="$(cat logs/start-conf)"
+    start="$(cat ../logs/start-conf)"
     node ${start}
 
     npm start
