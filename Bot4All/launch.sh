@@ -55,6 +55,7 @@ while read -r line; do
 +------------+---------------------------------------+
 | version    |  Troca a versão do Nodejs             |
 | start-conf |  Troca a Inicialização do bot         |
+| show       |  Mostra as logs do bot                |
 | npm        |  Executa qualquer comando do npm      |
 | node       |  Executa qualquer comando do nodejs   |
 +------------+---------------------------------------+
@@ -73,6 +74,13 @@ while read -r line; do
             eval "$line"
         )
         printf "\n \n✅  Comando Executado\n \n"
+    elif [[ "$line" == "show" ]]; then
+        echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
+        (
+            cd "./[seu_bot]" || exit
+            eval "tail -n 25 -F nohup.out"
+        )
+        printf "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"version"* ]]; then
         bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
         exit
@@ -85,7 +93,7 @@ while read -r line; do
         exit
         exit
     elif [[ "$line" != *"npm"* ]] || [[ "$line" != *"node"* ]] || [[ "$line" != *"version"* ]] || [[ "$line" != *"start-conf"* ]]; then
-        echo -e "\n \nComando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}help${normal}, ${bold}${lightblue}version${normal}, ${bold}${lightblue}start-conf${normal},${bold}${lightblue}npm ${normal}ou ${bold}${lightblue}node.\n \n"
+        echo -e "\n \nComando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}help${normal}, ${bold}${lightblue}version${normal}, ${bold}${lightblue}start-conf${normal},${bold}${lightblue}show${normal},${bold}${lightblue}npm ${normal}ou ${bold}${lightblue}node.\n \n"
     else
         echo "Script Falhou."
     fi
