@@ -14,11 +14,6 @@ fi
 
 bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_start.sh)
 
-NODE_VERSION="$version"
-
-export NODE_PATH=$NVM_DIR/v$NODE_VERSION/versions/node/v$NODE_VERSION/lib/node_modules
-export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$NVM_DIR/v$NODE_VERSION/bin:$PATH:$NVM_DIR/versions/node/v$NODE_VERSION/bin
-
 if [ ! -d "./logs" ]; then
     mkdir ./logs
 fi
