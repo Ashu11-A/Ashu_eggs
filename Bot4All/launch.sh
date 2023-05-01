@@ -42,7 +42,7 @@ echo -e "\n \n📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${
 start="$(cat logs/start-conf)"
 (
     cd "./[seu_bot]" || exit
-    nohup node "${start}" > nohup.out 2>&1 &
+    nohup node "${start}" > nohup.out &
 )
 
 while read -r line; do
