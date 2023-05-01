@@ -86,7 +86,7 @@ while read -r line; do
         exit
         exit
     elif [[ "$line" == *"start"* ]]; then
-        echo -n "📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): "
+        printf "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
         read -r START
         echo "$START" >logs/start-conf
         echo "👌  OK, salvei ($START) aqui!"
