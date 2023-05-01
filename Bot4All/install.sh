@@ -19,9 +19,8 @@ fi
 if [ ! -f "logs/nodejs_version" ]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
 fi
-
+######################################## Inicialização do NVM
 source "/home/container/.nvm/nvm.sh"
-
 NVM_DIR=/home/container/.nvm
 VERSION="$(cat logs/nodejs_version)"
 
@@ -40,9 +39,6 @@ else
     NODE_VERSION="18.16.0"
 fi
 
-export NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
-export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
-
 if [[ -f "logs/nodejs_version" ]]; then
     if [ -n "${NODE_VERSION}" ]; then
         nvm install "${NODE_VERSION}"
@@ -55,6 +51,10 @@ if [[ -f "logs/nodejs_version" ]]; then
         node -v
     fi
 fi
+
+export NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
+export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
+######################################## FINAL
 
 if [ -n "${GIT_ADDRESS}" ]; then
     (
@@ -97,18 +97,19 @@ if [ -n "${GIT_ADDRESS}" ]; then
             fi
         fi
         if [[ ! -z ${NODE_PACKAGES} ]]; then
-            echo "Instalando pacotes NodeJS"
+            echo "📦  Instalando pacotes NodeJS"
             npm install ${NODE_PACKAGES}
         fi
 
         if [ ! -d "./node_modules" ]; then
             if [ -f ./package.json ]; then
+                echo "📦  Instalando pacotes NodeJS"
                 npm install
             fi
         fi
     )
 else
-    printf "\n \n📌  URL do repositório git não especificado, usando metodo Upload.\n \n"
+    printf "\n \n📌  Repositório git não especificado, usando metodo Upload.\n \n"
     (
         cd "./[seu_bot]" || exit
         if [[ ! -z ${NODE_PACKAGES} ]]; then
@@ -125,10 +126,10 @@ fi
 
 if [ ! -f "logs/start-conf" ]; then
     printf "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
-    read START
+    read -r START
     echo "$START" >logs/start-conf
-    echo "👌  OK, salvei ($START) aqui!"
-    echo "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start"
+    echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
+    echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
 fi
 
 start="$(cat logs/start-conf)"
@@ -137,7 +138,7 @@ if [ -d "./[seu_bot]" ]; then
     if [[ -f "./[seu_bot]/${start}" ]]; then
         bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
     else
-        printf "\n \n⚙️  Não achei o arquivo de inicialização selecionou.\n"
+        printf "\n \n📛  Não achei o arquivo de inicialização selecionado.\n"
         printf "❔  Deseja mudar o arquivo? [y/N]\n \n"
         read -r response
         case "$response" in
@@ -145,8 +146,8 @@ if [ -d "./[seu_bot]" ]; then
             printf "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
             read -r START
             echo "$START" >logs/start-conf
-            echo "👌  OK, salvei ($START) aqui!"
-            echo "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start"
+            echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
+            echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
             ;;
         *) ;;
         esac

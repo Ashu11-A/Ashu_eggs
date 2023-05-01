@@ -39,23 +39,8 @@ echo "🟢  Estou rodando ${MGM}..."
 )
 
 echo -e "\n \n📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}show ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]...\n \n"
-
-start="$(cat logs/start-conf)"
-(
-    cd "./[seu_bot]" || exit
-    nohup node ${start} > nohup.out 2>&1 &
-    pid=$!
-
-    sleep 5
-
-    if ps -p $pid > /dev/null
-    then
-        echo "Servidor iniciado com sucesso!"
-    else
-        echo "Erro ao iniciar o servidor com nodejs... Tentando usar npm."
-        nohup npm start > nohup.out &
-    fi
-)
+printf "\n \n🔒  Sistema antiqueda inicializando..."
+nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nobreak.sh) >nohup.out 2>&1 &
 
 while read -r line; do
     if [[ "$line" == "help" ]]; then
@@ -98,7 +83,7 @@ while read -r line; do
         exit
     elif [[ "$line" == *"start"* ]]; then
         echo -n "📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): "
-        read START
+        read -r START
         echo "$START" >logs/start-conf
         echo "👌  OK, salvei ($START) aqui!"
         exit
@@ -109,3 +94,29 @@ while read -r line; do
         echo "Script Falhou."
     fi
 done
+
+: <<'LIMBO'
+start="$(cat logs/start-conf)"
+(
+    cd "./[seu_bot]" || exit
+    nohup node ${start} >nohup.out 2>&1 &
+
+    pid=$!
+    sleep 5
+
+    if ps -p $pid >/dev/null; then
+        echo "✅  Servidor iniciado com sucesso!"
+    else
+        echo "⛔️  Erro ao iniciar o servidor com nodejs! Tentando usar npm."
+        nohup npm start >nohup.out &
+
+        pid=$!
+        sleep 5
+        if ps -p $pid >/dev/null; then
+            echo "✅  Servidor iniciado com sucesso!"
+        else
+            echo "⛔️  Erro ao iniciar o servidor com npm e nodejs!"
+        fi
+    fi
+)
+LIMBO
