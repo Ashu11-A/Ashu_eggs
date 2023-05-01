@@ -16,12 +16,12 @@ if [ ! -f "logs/nodejs_version" ]; then
     elif [[ "$VERSION" == "20" ]]; then
         export version="20.0.0"
     else
-        printf "🥶 Versão não encontrada, usando a versão 18\n"
+        printf "\n \n🥶 Versão não encontrada, usando a versão 18\n \n"
         version="18.16.0"
     fi
     echo "$VERSION" >logs/nodejs_version
-    printf "👍  Blz, salvei a versão (v%s) aqui!\n" "$VERSION"
-    printf "🫵  Você pode alterar a versão usando o comando: version.\n"
+    printf "\n \n👍  Blz, salvei a versão (v%s) aqui!\n \n" "$VERSION"
+    printf "\n \n🫵  Você pode alterar a versão usando o comando: version.\n \n"
 fi
 
 if [[ -f "logs/nodejs_version" ]]; then
@@ -30,7 +30,7 @@ if [[ -f "logs/nodejs_version" ]]; then
         nvm install "${version}"
         nvm use "${version}"
     else
-        printf "⚠️  Versão não identificada, usando nvm padrão (v18).\n"
+        printf "\n \n⚠️  Versão não identificada, usando nvm padrão (v18).\n \n"
         nvm install "18.16.0"
         nvm use "18.16.0"
     fi

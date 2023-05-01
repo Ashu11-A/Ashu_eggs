@@ -75,17 +75,14 @@ while read -r line; do
         )
         printf "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"version"* ]]; then
-        echo -n "📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18...) (pressione [ENTER]): "
-        read VERSION
-        echo "$VERSION" >logs/nodejs_version
-        echo "👌  OK, salvei a versão (v$VERSION) aqui!"
-        exit
+        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
+        exit 0
     elif [[ "$line" == *"start-conf"* ]]; then
         echo -n "📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): "
         read START
         echo "$START" >logs/start-conf
         echo "👌  OK, salvei ($START) aqui!"
-        exit
+        exit 0
     elif [[ "$line" != *"npm"* ]]; then
         echo "Comando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}npm ${normal}ou ${bold}${lightblue}node."
     else
