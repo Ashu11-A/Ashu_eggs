@@ -95,7 +95,8 @@ if [ -d "./[seu_bot]" ]; then
     if [[ -f "./[seu_bot]/${start}" ]]; then
         bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
     else
-        printf "\n \n⚙️  Não achei o arquivo de inicialização selecionou. Deseja mudar novamente?\n \n"
+        printf "⚙️  Não achei o arquivo de inicialização selecionou."
+        printf "❔  Deseja mudar o arquivo? [y/N]\n \n"
         read -r response
         case "$response" in
         [yY][eE][sS] | [yY])
