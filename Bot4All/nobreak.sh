@@ -3,12 +3,9 @@ while true
 do
 
     start="$(cat logs/start-conf)"
-    (
-        cd "./[seu_bot]" || exit
-        node ${start}
+    node ${start}
 
-        npm start
-    )
+    npm start
 
     sleep 1
 done
