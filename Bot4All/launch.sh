@@ -54,7 +54,7 @@ while read -r line; do
 | Comando    |  O que Faz                            |
 +------------+---------------------------------------+
 | version    |  Troca a versão do Nodejs             |
-| start-conf |  Troca a Inicialização do bot         |
+| start      |  Troca a Inicialização do bot         |
 | show       |  Mostra as logs do bot                |
 | npm        |  Executa qualquer comando do npm      |
 | node       |  Executa qualquer comando do nodejs   |
@@ -85,7 +85,7 @@ while read -r line; do
         bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
         exit
         exit
-    elif [[ "$line" == *"start-conf"* ]]; then
+    elif [[ "$line" == *"start"* ]]; then
         echo -n "📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): "
         read START
         echo "$START" >logs/start-conf
