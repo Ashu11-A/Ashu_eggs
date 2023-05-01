@@ -56,75 +56,71 @@ if [[ -f "logs/nodejs_version" ]]; then
     fi
 fi
 
-if [ "${USER_UPLOAD}" == "true" ] || [ "${USER_UPLOAD}" == "1" ]; then
-    printf "\n \n⚙️  Modo Upload está ativo (isso irá pular a clonagem do repo do Github)\n \n"
-else
-    if [ -n "${GIT_ADDRESS}" ]; then
-        (
-            cd "./[seu_bot]" || exit
-            printf "\n \n📌  Usando repo do GitHub\n \n"
-            ## add git ending if it's not on the address
-            if [[ ${GIT_ADDRESS} != *.git ]]; then
-                GIT_ADDRESS=${GIT_ADDRESS}.git
-            fi
-            if [ -z "${USERNAME}" ] && [ -z "${ACCESS_TOKEN}" ]; then
-                printf "\n \n🤫  Usando chamada de API anonimo.\n \n"
-            else
-                GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
-            fi
-            ## pull git js bot repo
-            if [ "$(ls -A ./)" ]; then
-                echo -e "O diretório '/home/container/[seu_bot]' não está vazio."
-                if [ -d .git ]; then
-                    echo -e ".git Diretório existe"
-                    if [ -f .git/config ]; then
-                        echo -e "loading info from git config"
-                        ORIGIN=$(git config --get remote.origin.url)
-                    else
-                        echo -e "files found with no git config"
-                        echo -e "closing out without touching things to not break anything"
-                    fi
-                fi
-                if [ "${ORIGIN}" == "${GIT_ADDRESS}" ]; then
-                    echo "pulling latest from github"
-                    git pull
-                fi
-            else
-                echo -e "'/home/container/[seu_bot]' está vazia.\nClonando de arquivos no repositório"
-                if [ -z ${BRANCH} ]; then
-                    echo -e "cloning default branch"
-                    git clone ${GIT_ADDRESS} .
+if [ -n "${GIT_ADDRESS}" ]; then
+    (
+        cd "./[seu_bot]" || exit
+        printf "\n \n📌  Usando repo do GitHub\n \n"
+        ## add git ending if it's not on the address
+        if [[ ${GIT_ADDRESS} != *.git ]]; then
+            GIT_ADDRESS=${GIT_ADDRESS}.git
+        fi
+        if [ -z "${USERNAME}" ] && [ -z "${ACCESS_TOKEN}" ]; then
+            printf "\n \n🤫  Usando chamada de API anonimo.\n \n"
+        else
+            GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
+        fi
+        ## pull git js bot repo
+        if [ "$(ls -A ./)" ]; then
+            echo -e "O diretório '/home/container/[seu_bot]' não está vazio."
+            if [ -d .git ]; then
+                echo -e ".git Diretório existe"
+                if [ -f .git/config ]; then
+                    echo -e "loading info from git config"
+                    ORIGIN=$(git config --get remote.origin.url)
                 else
-                    echo -e "cloning ${BRANCH}'"
-                    git clone --single-branch --branch ${BRANCH} ${GIT_ADDRESS} .
+                    echo -e "files found with no git config"
+                    echo -e "closing out without touching things to not break anything"
                 fi
             fi
-            if [[ ! -z ${NODE_PACKAGES} ]]; then
-                echo "Instalando pacotes NodeJS"
-                npm install ${NODE_PACKAGES}
+            if [ "${ORIGIN}" == "${GIT_ADDRESS}" ]; then
+                echo "pulling latest from github"
+                git pull
             fi
+        else
+            echo -e "'/home/container/[seu_bot]' está vazia.\nClonando de arquivos no repositório"
+            if [ -z ${BRANCH} ]; then
+                echo -e "cloning default branch"
+                git clone ${GIT_ADDRESS} .
+            else
+                echo -e "cloning ${BRANCH}'"
+                git clone --single-branch --branch ${BRANCH} ${GIT_ADDRESS} .
+            fi
+        fi
+        if [[ ! -z ${NODE_PACKAGES} ]]; then
+            echo "Instalando pacotes NodeJS"
+            npm install ${NODE_PACKAGES}
+        fi
 
-            if [ ! -d "./node_modules" ]; then
-                if [ -f ./package.json ]; then
-                    npm install
-                fi
+        if [ ! -d "./node_modules" ]; then
+            if [ -f ./package.json ]; then
+                npm install
             fi
-        )
-    else
-        printf "\n \n📌  URL do repositório git não especificado, usando metodo Upload.\n \n"
-        (
-            cd "./[seu_bot]" || exit
-            if [[ ! -z ${NODE_PACKAGES} ]]; then
-                echo "Instalando pacotes NodeJS"
-                npm install ${NODE_PACKAGES}
+        fi
+    )
+else
+    printf "\n \n📌  URL do repositório git não especificado, usando metodo Upload.\n \n"
+    (
+        cd "./[seu_bot]" || exit
+        if [[ ! -z ${NODE_PACKAGES} ]]; then
+            echo "Instalando pacotes NodeJS"
+            npm install ${NODE_PACKAGES}
+        fi
+        if [ ! -d "./node_modules" ]; then
+            if [ -f ./package.json ]; then
+                npm install
             fi
-            if [ ! -d "./node_modules" ]; then
-                if [ -f ./package.json ]; then
-                    npm install
-                fi
-            fi
-        )
-    fi
+        fi
+    )
 fi
 
 if [ ! -f "logs/start-conf" ]; then
