@@ -23,8 +23,8 @@ printf "\n \n👍  Blz, salvei a versão (v%s) aqui!\n \n" "$VERSION"
 echo -e "\n \n🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version.\n \n"
 
 if [[ -f "logs/nodejs_version" ]]; then
-    echo "${versions}"
-    if [ -n "${versions}" ]; then
+    echo "${version}"
+    if [ -n "${version}" ]; then
         nvm install "${version}"
         nvm use "${version}"
         exit
