@@ -3,6 +3,7 @@
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
+lolcat=/usr/games/lolcat
 
 export bold
 export lightblue
@@ -11,6 +12,16 @@ export normal
 if [ ! -d "./logs" ]; then
     mkdir ./logs
 fi
+if [ ! -f "./logs/3d.flf" ]; then
+    (
+        cd logs || exit
+        curl -sO https://raw.githubusercontent.com/xero/figlet-fonts/master/3d.flf
+    )
+fi
+
+echo "   "
+figlet -c -f slant -t -k "Bot4All" | $lolcat
+echo "                                         by Ashu (BotForAll)"
 
 if [ ! -d "./[seu_bot]" ]; then
     mkdir "./[seu_bot]"
@@ -43,12 +54,10 @@ if [[ -f "logs/nodejs_version" ]]; then
     if [ -n "${NODE_VERSION}" ]; then
         nvm install "${NODE_VERSION}"
         nvm use "${NODE_VERSION}"
-        node -v
     else
         printf "\n \n⚠️  Versão não identificada, usando nvm padrão (v18).\n \n"
         nvm install "18.16.0"
         nvm use "18.16.0"
-        node -v
     fi
 fi
 

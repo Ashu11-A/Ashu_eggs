@@ -4,10 +4,10 @@ lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
 
 printf "\n \n🔎  Pacotes Instalados: 
-ffmpeg tesseract
+ffmpeg tesseract figlet
 iproute2 tzdata curl git
 jq file unzip wget ncurses
-build-base ca-certificates 
+build-base ca-certificates lolcat
 libressl-dev nvm node npm bash\n \n"
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
