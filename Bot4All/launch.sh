@@ -50,7 +50,10 @@ fi
 echo "📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]..."
 
 start="$(cat logs/start-conf)"
-nohup node "${start}" 2>&1 &
+(
+    cd "./[seu_bot]" || exit
+    nohup node "${start}" 2>&1 &
+)
 
 while read -r line; do
     if [[ "$line" == "help" ]]; then
