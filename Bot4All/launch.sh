@@ -39,14 +39,6 @@ echo "🟢  Estou rodando ${MGM}..."
     fi
 )
 
-if [ ! -f "logs/nodejs_version" ]; then
-    printf "\n \n📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18...) (pressione [ENTER]): \n \n"
-    read VERSION
-    echo "$VERSION" >logs/nodejs_version
-    echo "👍  Blz, salvei a versão (v$VERSION) aqui!"
-    echo "🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version"
-fi
-
 echo "📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]..."
 
 start="$(cat logs/start-conf)"

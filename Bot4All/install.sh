@@ -4,22 +4,9 @@ lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
 NVM_DIR=/home/container/.nvm
 
-versions="$(cat logs/nodejs_version)"
+bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
 
-if [[ "$versions" == "12" ]]; then
-    NODE_VERSION="12.22.9"
-elif [[ "$versions" == "14" ]]; then
-    NODE_VERSION="14.21.3"
-elif [[ "$versions" == "16" ]]; then
-    NODE_VERSION="16.20.0"
-elif [[ "$versions" == "18" ]]; then
-    NODE_VERSION="18.16.0"
-elif [[ "$versions" == "20" ]]; then
-    NODE_VERSION="20.0.0"
-else
-    echo "🥶 Versão não encontrada, usando a versão 18"
-    NODE_VERSION="18.16.0"
-fi
+NODE_VERSION="$(cat logs/nodejs_version)"
 
 export NODE_PATH=$NVM_DIR/v$NODE_VERSION/versions/node/v$NODE_VERSION/lib/node_modules
 export PATH=$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:$NVM_DIR/v$NODE_VERSION/bin:$PATH:$NVM_DIR/versions/node/v$NODE_VERSION/bin

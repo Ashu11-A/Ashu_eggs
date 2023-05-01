@@ -2,24 +2,29 @@
 # shellcheck source=/dev/null
 source "/home/container/.nvm/nvm.sh"
 
-if [[ -f "logs/nodejs_version" ]]; then
-
-    versions="$(cat logs/nodejs_version)"
-
-    if [[ "$versions" == "12" ]]; then
+if [ ! -f "logs/nodejs_version" ]; then
+    printf "\n \n📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18...) (pressione [ENTER]): \n \n"
+    read VERSION
+    if [[ "$VERSION" == "12" ]]; then
         version="12.22.9"
-    elif [[ "$versions" == "14" ]]; then
+    elif [[ "$VERSION" == "14" ]]; then
         version="14.21.3"
-    elif [[ "$versions" == "16" ]]; then
+    elif [[ "$VERSION" == "16" ]]; then
         version="16.20.0"
-    elif [[ "$versions" == "18" ]]; then
+    elif [[ "$VERSION" == "18" ]]; then
         version="18.16.0"
-    elif [[ "$versions" == "20" ]]; then
+    elif [[ "$VERSION" == "20" ]]; then
         version="20.0.0"
     else
         echo "🥶 Versão não encontrada, usando a versão 18"
         version="18.16.0"
     fi
+    echo "$version" >logs/nodejs_version
+    echo "👍  Blz, salvei a versão (v$VERSION) aqui!"
+    echo "🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version"
+fi
+
+if [[ -f "logs/nodejs_version" ]]; then
 
     if [ -n "${versions}" ]; then
         nvm install "${version}"
