@@ -2,10 +2,16 @@
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
+NODE_VERSION="$(cat logs/nodejs_version)"
+NVM_DIR=/home/container/.nvm
+
+export NODE_PATH=$NVM_DIR/v$NODE_VERSION/lib/node_modules
+export PATH=$PATH:$NVM_DIR/v$NODE_VERSION/bin:$PATH:$NVM_DIR/versions/node/v$NODE_VERSION/bin
 
 bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm.sh)
 
 printf "\n \n🔎  Pacotes Instalados: 
+ffmpeg tesseract
 iproute2 tzdata curl git
 jq file unzip wget ncurses
 build-base ca-certificates 
@@ -18,14 +24,13 @@ else
 fi
 echo "🟢  Estou rodando ${MGM}..."
 
-if [[ -d .git ]] || [[ {{AUTO_UPDATE}} == "1" ]]; then
-    echo "Executando: git pull"
-    git pull
-fi
-
 (
     cd "./[seu_bot]" || exit
 
+    if [[ -d .git ]] || [[ {{AUTO_UPDATE}} == "1" ]]; then
+        echo "Executando: git pull"
+        git pull
+    fi
     if [[ ! -z ${NODE_PACKAGES} ]]; then
         npm install ${NODE_PACKAGES}
     fi
@@ -34,7 +39,7 @@ fi
         npm uninstall ${UNNODE_PACKAGES}
     fi
 
-    if [ -f /home/container/package.json ]; then
+    if [ -f ./.package.json ]; then
         npm install
     fi
 )
@@ -49,12 +54,10 @@ fi
 
 echo "📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]..."
 
-while read -r line; do
-    start="$(cat logs/start-conf)"
-    echo "✅  Auto reconexão ativada para prevenção de quedas..."
-    nohup node "${start}" 2>&1 &
-    sleep 1
+start="$(cat logs/start-conf)"
+nohup node "${start}" 2>&1 &
 
+while read -r line; do
     if [[ "$line" == "help" ]]; then
         echo "👀  Comandos Disponíveis:"
         echo "
