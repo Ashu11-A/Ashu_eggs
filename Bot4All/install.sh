@@ -104,7 +104,7 @@ else
                 npm install ${NODE_PACKAGES}
             fi
 
-            if [ ! -d ./[seu_bot]/node_modules ]; then
+            if [ ! -d "./node_modules" ]; then
                 if [ -f ./package.json ]; then
                     npm install
                 fi
@@ -118,7 +118,7 @@ else
                 echo "Instalando pacotes NodeJS"
                 npm install ${NODE_PACKAGES}
             fi
-            if [ ! -d ./[seu_bot]/node_modules ]; then
+            if [ ! -d "./node_modules" ]; then
                 if [ -f ./package.json ]; then
                     npm install
                 fi
