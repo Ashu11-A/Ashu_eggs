@@ -3,6 +3,7 @@
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
+lolcat=/usr/games/lolcat
 
 export bold
 export lightblue
@@ -13,7 +14,7 @@ if [ ! -d "./logs" ]; then
 fi
 
 echo "   "
-figlet -c -f slant -t -k "Bot4All"
+figlet -c -f slant -t -k "Bot4All" | $lolcat
 echo "                                         by Ashu (BotForAll)"
 
 if [ ! -d "./[seu_bot]" ]; then
