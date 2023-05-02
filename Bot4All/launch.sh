@@ -1,8 +1,4 @@
 #!/bin/bash
-bold=$(echo -en "\e[1m")
-lightblue=$(echo -en "\e[94m")
-normal=$(echo -en "\e[0m")
-
 echo -e "\n \n🔎  Pacotes Instalados: 
 ffmpeg tesseract figlet
 iproute2 tzdata curl git
