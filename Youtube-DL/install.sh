@@ -71,7 +71,7 @@ if [ ! -d "./tmp" ]; then
     mkdir tmp
 fi
 
-if [[ -d "./youtube-dl-web/frontend/build" ]]; then
+if [[ -d "./youtube-dl-web/frontend" ]]; then
     #Executando Limpeza
     rm -rf tmp/* temp .composer .yarn .cache .yarnrc
 
