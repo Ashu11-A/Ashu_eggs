@@ -18,7 +18,7 @@ while read -r VERSION; do
             NODE_VERSION="20.0.0"
         fi
         echo "$VERSION" >logs/nodejs_version
-        echo -e "\n \n👍  Blz, salvei a versão (v%s) aqui!\n \n" "$VERSION"
+        echo -e "\n \n👍  Blz, salvei a versão $VERSION aqui!\n \n"
         echo -e "\n \n🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version.\n \n"
 
         if [[ -f "logs/nodejs_version" ]]; then
