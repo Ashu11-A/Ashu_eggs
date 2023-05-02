@@ -43,7 +43,7 @@ echo -e "\n \n📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${
 echo -e "\n \n🔒  Sistema antiqueda inicializando...\n \n"
 (
     cd "./[seu_bot]" || exit
-    nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nobreak.sh) >nohup.out 2>&1 &
+    nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nobreak.sh) | tee nohup.out 2>&1 &
 )
 
 while read -r line; do
