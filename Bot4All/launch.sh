@@ -3,8 +3,8 @@ echo -e "\n \n🔎  Pacotes Instalados:
 ffmpeg tesseract figlet
 iproute2 tzdata curl git
 jq file unzip wget ncurses
-build-base ca-certificates lolcat
-libressl-dev nvm node npm bash\n \n"
+libressl-dev nvm node npm bash
+build-base ca-certificates lolcat\n \n"
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
     MGM="na porta ${SERVER_PORT}"
@@ -16,7 +16,7 @@ echo "🟢  Estou rodando ${MGM}..."
 (
     cd "./[seu_bot]" || exit
 
-    if [[ -d .git ]] || [[ {{AUTO_UPDATE}} == "1" ]]; then
+    if [[ -d .git ]] || [[ ${AUTO_UPDATE} == "1" ]]; then
         echo "Executando: git pull"
         git pull
     fi
