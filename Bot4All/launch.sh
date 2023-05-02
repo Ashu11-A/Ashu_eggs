@@ -78,7 +78,7 @@ while read -r line; do
         echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
         (
             cd "./[seu_bot]" || exit
-            eval "tail -n 40 nohup.out"
+            eval "tail -n 40 log.txt"
         )
         echo -e "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"version"* ]]; then
@@ -103,7 +103,7 @@ done
 start="$(cat logs/start-conf)"
 (
     cd "./[seu_bot]" || exit
-    nohup node ${start} >nohup.out 2>&1 &
+    nohup node ${start} >log.txt 2>&1 &
 
     pid=$!
     sleep 5
@@ -112,7 +112,7 @@ start="$(cat logs/start-conf)"
         echo "✅  Servidor iniciado com sucesso!"
     else
         echo "⛔️  Erro ao iniciar o servidor com nodejs! Tentando usar npm."
-        nohup npm start >nohup.out &
+        nohup npm start >log.txt &
 
         pid=$!
         sleep 5
