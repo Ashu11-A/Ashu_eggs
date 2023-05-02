@@ -3,9 +3,9 @@ while true
 do
 
     start="$(cat ../logs/start-conf)"
-    node ${start}
+    node ${start} >nohup.out
 
-    npm start
+    npm start >nohup.out
 
     sleep 1
 done

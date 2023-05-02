@@ -15,7 +15,7 @@ fi
 
 echo "   "
 figlet -c -f slant -t -k "Bot4All" | $lolcat
-echo "                                         by Ashu (BotForAll)"
+echo "                                         by Ashu (BotForAll)" | $lolcat
 
 if [ ! -d "./[seu_bot]" ]; then
     mkdir "./[seu_bot]"
