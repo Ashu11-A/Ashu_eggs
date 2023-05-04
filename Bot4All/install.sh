@@ -46,10 +46,12 @@ if [ -n "${GIT_ADDRESS}" ]; then
         echo -e "'/home/container/' está vazia.\nClonando de arquivos no repositório"
         if [ -z ${BRANCH} ]; then
             echo -e "cloning default branch"
-            git clone ${GIT_ADDRESS} .
+            git clone ${GIT_ADDRESS} code
+            mv -r code/* ./
         else
             echo -e "cloning ${BRANCH}'"
-            git clone --single-branch --branch ${BRANCH} ${GIT_ADDRESS} .
+            git clone --single-branch --branch ${BRANCH} ${GIT_ADDRESS} code
+            mv -r code/* ./
         fi
     fi
     if [[ ! -z ${NODE_PACKAGES} ]]; then
