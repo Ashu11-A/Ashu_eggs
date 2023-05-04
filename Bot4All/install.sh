@@ -64,7 +64,6 @@ fi
 
 if [ -n "${GIT_ADDRESS}" ]; then
     (
-        cd "./[seu_bot]" || exit
         echo -e "\n \n📌  Usando repo do GitHub\n \n"
         ## add git ending if it's not on the address
         if [[ ${GIT_ADDRESS} != *.git ]]; then
@@ -117,7 +116,6 @@ if [ -n "${GIT_ADDRESS}" ]; then
 else
     echo -e "\n \n📌  Repositório git não especificado, usando metodo Upload.\n \n"
     (
-        cd "./[seu_bot]" || exit
         if [[ ! -z ${NODE_PACKAGES} ]]; then
             echo "Instalando pacotes NodeJS"
             npm install ${NODE_PACKAGES}

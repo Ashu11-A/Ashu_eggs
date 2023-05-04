@@ -16,7 +16,7 @@ fi
 echo "🟢  Estou rodando ${MGM}..."
 
 (
-    cd "./[seu_bot]" || exit
+    
 
     if [[ -d .git ]] || [[ ${AUTO_UPDATE} == "1" ]]; then
         echo "Executando: git pull"
@@ -58,21 +58,21 @@ while read -r line; do
     elif [[ "$line" == *"npm"* ]]; then
         echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
         (
-            cd "./[seu_bot]" || exit
+            
             eval "$line"
         )
         echo -e "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"node"* ]]; then
         echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
         (
-            cd "./[seu_bot]" || exit
+            
             eval "$line"
         )
         echo -e "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == "show" ]]; then
         echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
         (
-            cd "./[seu_bot]" || exit
+            
             eval "tail -n 40 log_egg.txt"
         )
         echo -e "\n \n✅  Comando Executado\n \n"
@@ -101,7 +101,7 @@ done
 : <<'LIMBO'
 start="$(cat logs/start-conf)"
 (
-    cd "./[seu_bot]" || exit
+    
     nohup node ${start} >log_egg.txt 2>&1 &
 
     pid=$!
