@@ -16,8 +16,6 @@ fi
 echo "🟢  Estou rodando ${MGM}..."
 
 (
-    
-
     if [[ -d .git ]] || [[ ${AUTO_UPDATE} == "1" ]]; then
         echo "Executando: git pull"
         git pull
@@ -78,9 +76,13 @@ while read -r line; do
         echo -e "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"version"* ]]; then
         if [ -z "${NVM_STATUS}" ] || [ "${NVM_STATUS}" = "1" ]; then
-            bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
-            exit
-            exit
+            if [[ -d ".nvm" ]]; then
+                bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
+                exit
+                exit
+            else
+                echo -e "\n \n⚠️  NVM não instalado, será necessario reinstalar o servidor...\n \n"
+            fi
         else
             printf "\n \n📢  NVM está desativado! você não poderá trocar a versão do Nodejs, ative ele e reinstale o servidor. \n \n"
         fi

@@ -13,53 +13,53 @@ if [ ! -d "./logs" ]; then
     mkdir ./logs
 fi
 
-if [ ! -d "./[seu_bot]" ]; then
-    mkdir "./[seu_bot]"
-fi
-
 echo "   "
 figlet -c -f slant -t -k "Bot4All" | $lolcat
 echo "                                         by Ashu (BotForAll)" | $lolcat
 
 if [ -z "${NVM_STATUS}" ] || [ "${NVM_STATUS}" = "1" ]; then
-    if [ ! -f "logs/nodejs_version" ]; then
-        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
-    fi
-
-    ######################################## Inicialização do NVM
-    source "/home/container/.nvm/nvm.sh"
-    NVM_DIR=/home/container/.nvm
-    VERSION="$(cat logs/nodejs_version)"
-
-    if [[ "$VERSION" == "12" ]]; then
-        NODE_VERSION="12.22.9"
-    elif [[ "$VERSION" == "14" ]]; then
-        NODE_VERSION="14.21.3"
-    elif [[ "$VERSION" == "16" ]]; then
-        NODE_VERSION="16.20.0"
-    elif [[ "$VERSION" == "18" ]]; then
-        NODE_VERSION="18.16.0"
-    elif [[ "$VERSION" == "20" ]]; then
-        NODE_VERSION="20.0.0"
-    else
-        echo -e "\n \n🥶 Versão não encontrada, usando a versão 18\n \n"
-        NODE_VERSION="18.16.0"
-    fi
-
-    if [[ -f "logs/nodejs_version" ]]; then
-        if [ -n "${NODE_VERSION}" ]; then
-            nvm install "${NODE_VERSION}"
-            nvm use "${NODE_VERSION}"
-        else
-            echo -e "\n \n⚠️  Versão não identificada, usando nvm padrão (v18).\n \n"
-            nvm install "18.16.0"
-            nvm use "18.16.0"
+    if [[ -d ".nvm" ]]; then
+        if [ ! -f "logs/nodejs_version" ]; then
+            bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
         fi
-    fi
 
-    export NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
-    export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
-######################################## FINAL
+        ######################################## Inicialização do NVM
+        source "/home/container/.nvm/nvm.sh"
+        NVM_DIR=/home/container/.nvm
+        VERSION="$(cat logs/nodejs_version)"
+
+        if [[ "$VERSION" == "12" ]]; then
+            NODE_VERSION="12.22.9"
+        elif [[ "$VERSION" == "14" ]]; then
+            NODE_VERSION="14.21.3"
+        elif [[ "$VERSION" == "16" ]]; then
+            NODE_VERSION="16.20.0"
+        elif [[ "$VERSION" == "18" ]]; then
+            NODE_VERSION="18.16.0"
+        elif [[ "$VERSION" == "20" ]]; then
+            NODE_VERSION="20.0.0"
+        else
+            echo -e "\n \n🥶 Versão não encontrada, usando a versão 18\n \n"
+            NODE_VERSION="18.16.0"
+        fi
+
+        if [[ -f "logs/nodejs_version" ]]; then
+            if [ -n "${NODE_VERSION}" ]; then
+                nvm install "${NODE_VERSION}"
+                nvm use "${NODE_VERSION}"
+            else
+                echo -e "\n \n⚠️  Versão não identificada, usando nvm padrão (v18).\n \n"
+                nvm install "18.16.0"
+                nvm use "18.16.0"
+            fi
+        fi
+
+        export NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
+        export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
+    ######################################## FINAL
+    else
+        echo -e "\n \n⚠️  NVM não instalado, será necessario reinstalar o servidor...\n \n"
+    fi
 fi
 
 if [ -n "${GIT_ADDRESS}" ]; then
