@@ -1,10 +1,12 @@
 #!/bin/bash
 echo -e "\n \n🔎  Pacotes Instalados: 
-ffmpeg tesseract figlet
-iproute2 tzdata curl git
-jq file unzip wget ncurses
+jq file unzip wget ncurses tar
+sqlite3 libsqlite3-dev python3
 libressl-dev nvm node npm bash
-build-base ca-certificates lolcat\n \n"
+build-base ca-certificates zip
+iproute2 tzdata curl git lolcat
+python3-dev libtool iputils-ping
+ffmpeg tesseract figlet dnsutils\n \n"
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
     MGM="na porta ${SERVER_PORT}"
