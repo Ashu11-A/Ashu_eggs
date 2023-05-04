@@ -13,13 +13,14 @@ if [ ! -d "./logs" ]; then
     mkdir ./logs
 fi
 
+if [ ! -d "./[seu_bot]" ]; then
+    mkdir "./[seu_bot]"
+fi
+
 echo "   "
 figlet -c -f slant -t -k "Bot4All" | $lolcat
 echo "                                         by Ashu (BotForAll)" | $lolcat
 
-if [ ! -d "./[seu_bot]" ]; then
-    mkdir "./[seu_bot]"
-fi
 
 if [ ! -f "logs/nodejs_version" ]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
