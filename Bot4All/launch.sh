@@ -77,9 +77,13 @@ while read -r line; do
         )
         echo -e "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"version"* ]]; then
-        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
-        exit
-        exit
+        if [ -z "${NVM_STATUS}" ] || [ "${NVM_STATUS}" = "1" ]; then
+            bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
+            exit
+            exit
+        else
+            printf "\n \n📢  NVM está desativado! você não poderá trocar a versão do Nodejs, ative ele e reinstale o servidor. \n \n"
+        fi
     elif [[ "$line" == *"start"* ]]; then
         printf "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
         read -r START
