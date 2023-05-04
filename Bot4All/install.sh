@@ -25,7 +25,7 @@ if [ -n "${GIT_ADDRESS}" ]; then
         GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
     fi
     ## pull git js bot repo
-    if ls -A ./ | grep -v -E '(^\.nvm$|^logs$|^\..*rc$)'
+    if ls -A ./ | grep -v -E '(^\.nvm$|^logs$|^code$|^\..*rc$)'
     then
         echo -e "O diretório '/home/container/' não está vazio."
         if [ -d .git ]; then
