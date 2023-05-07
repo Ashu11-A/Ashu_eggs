@@ -1,9 +1,9 @@
 #!/bin/bash
 ## Instalando Postgres
 if [ ! -f "./logs/database_instalado" ]; then
-    if [ "$PWD" = "/mnt/server" ]; then
-        # Comandos a serem executados se estiver na pasta /mnt/server/
-        # Server Files: /mnt/server
+    if [ "$PWD" = "/" ]; then
+        # Comandos a serem executados se estiver na pasta /mnt/server/ yeye
+        # Server Files: /mnt/server yeye
         adduser -D -h /home/container container
         chown -R container: /mnt/server/
         su container -c 'initdb -D /mnt/server/DB/ -A md5 -U "$PGUSER" --pwfile=<(echo "$PGPASSWORD")'
@@ -15,7 +15,7 @@ if [ ! -f "./logs/database_instalado" ]; then
         echo -e "Done"
         touch ./logs/database_instalado
     else
-        # Comandos a serem executados se NÃO estiver na pasta /mnt/server/
+        # Comandos a serem executados se NÃO estiver na pasta /mnt/server/ yeye
         echo "📢  ATENÇÃO: Não tenho acesso root, então não posso instalar o Database, reinstale o Egg!"
     fi
 fi
