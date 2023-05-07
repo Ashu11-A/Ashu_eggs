@@ -11,7 +11,9 @@ if [ ! -d logs ]; then
     mkdir logs
 fi
 
-<(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Uguu/db.sh)
+if [ ! -f "./logs/database_instalado" ] || [ ! -d "./DB" ]; then
+    echo -e "\n \n⚠️  DB não instalado, será necessario reinstalar o servidor...\n \n"
+fi
 
 lolcat=/usr/games/lolcat
 echo -e "\n \n$(figlet -c -f slant -t -k "Uguu")\n                                         by Ashu" | $lolcat
