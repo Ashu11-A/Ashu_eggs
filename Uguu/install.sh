@@ -56,7 +56,7 @@ if [ ! -f "./logs/config_nginx" ]; then
     )
 fi
 
-fakeroot chown -R nginx:nginx Uguu && chmod -R 755 Uguu
+fakeroot chown -R container:container Uguu && chmod -R 755 Uguu
 
 if [ ! -f "./logs/instalado" ]; then
     echo "**** Limpando ****"
