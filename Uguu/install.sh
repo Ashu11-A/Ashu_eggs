@@ -55,6 +55,9 @@ if [ ! -f "./logs/config_nginx" ]; then
         touch ../../logs/config_nginx
     )
 fi
+sed -i \
+    -e "s/listen.*/listen ${SERVER_PORT};/g" \
+    nginx/conf.d/default.conf
 
 fakeroot chown -R container:container Uguu && chmod -R 755 Uguu
 
