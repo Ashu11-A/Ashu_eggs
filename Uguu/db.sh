@@ -1,6 +1,6 @@
 #!/bin/bash
 ## Instalando Postgres
-if [ ! -f "./logs/database_instalado" ]; then
+if [ ! -f "/mnt/server/logs/database_instalado" ]; then
     # Comandos a serem executados se estiver na pasta /mnt/server/
     # Server Files: /mnt/server
     adduser -D -h /home/container container
