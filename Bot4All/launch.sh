@@ -16,7 +16,7 @@ fi
 echo "🟢  Estou rodando ${MGM}..."
 
 (
-    if [[ -d .git ]] || [[ ${AUTO_UPDATE} == "1" ]]; then
+    if [ -n "${GIT_ADDRESS}" ] && [ -d .git ] || [ "${AUTO_UPDATE}" == "1" ]; then
         echo "Executando: git pull"
         git pull
     fi
