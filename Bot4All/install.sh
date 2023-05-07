@@ -9,9 +9,7 @@ export bold
 export lightblue
 export normal
 
-echo "   "
-figlet -c -f slant -t -k "Bot4All" | $lolcat
-echo "                                         by Ashu (BotForAll)" | $lolcat
+echo -e "\n \n$(figlet -c -f slant -t -k "Bot4All")\n                                         by Ashu (BotForAll)" | $lolcat
 
 if [ ! -d "./logs" ]; then
     mkdir ./logs
@@ -74,7 +72,7 @@ if [ -n "${GIT_ADDRESS}" ]; then
         GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
     fi
     ## pull git js bot repo
-    if ls -A ./ | grep -v -E '(^\.nvm$|^logs$|^\.npm$|^code$|^\..*rc$)' > /dev/null; then
+    if ls -A ./ | grep -v -E '(^\.nvm$|^logs$|^install.sh$|^\.npm$|^code$|^\..*rc$)' > /dev/null; then
         echo -e "O diretório '/home/container/' não está vazio."
         if [ -d .git ]; then
             echo -e ".git Diretório existe"

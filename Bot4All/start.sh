@@ -1,10 +1,9 @@
 #!/bin/bash
-bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/install.sh) | tee logs/terminal.log
+if [ -f "./install.sh" ]; then
+    rm ./install.sh
+fi
 
-: <<'LIMBO'
-lolcat=/usr/games/lolcat
+curl -sO https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/install.sh
+chmod +x install.sh
+./install.sh
 
-nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/install.sh) >logs/terminal.log 2>&1 &
-
-tail -f logs/terminal.log | $lolcat
-LIMBO
