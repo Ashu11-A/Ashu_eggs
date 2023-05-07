@@ -19,7 +19,7 @@ lolcat=/usr/games/lolcat
 echo -e "\n \n$(figlet -c -f slant -t -k "Uguu")\n                                         by Ashu" | $lolcat
 
 ## Instalando Nginx
-if [ ! -d "./nginx" ]; then
+if [ ! -d "./nginx" ] || [ ! -d "./php-fpm" ]; then
     git clone https://github.com/Ashu11-A/nginx ./temp
     cp -r ./temp/nginx ./
     cp -r ./temp/php-fpm ./
@@ -48,13 +48,13 @@ if [ ! -d "files" ]; then
 fi
 
 ## configurando Nginx
-if [ ! -f "./logs/config_nginx" ]; then
+if [ ! -f "./logs/config_nginx" ] || [ ! -f "./nginx/conf.d/default.conf" ]; then
     (
         cd nginx/conf.d/ || exit
         rm default.conf
-        wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Uguu/default.conf
-        touch ../../logs/config_nginx
+        curl -sO https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Uguu/default.conf
     )
+     touch ./logs/config_nginx
 fi
 sed -i \
     -e "s/listen.*/listen ${SERVER_PORT};/g" \
