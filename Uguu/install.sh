@@ -24,8 +24,8 @@ if [ ! -f "./Logs/database_instalado" ]; then
         su container -c 'initdb -D /mnt/server/DB/ -A md5 -U "$PGUSER" --pwfile=<(echo "$PGPASSWORD")'
         mkdir -p /mnt/server/DB/run/
         ## Add default "allow from all" auth rule to pg_hba
-        if ! grep -q "# Custom rules" "/mnt/server/postgres_db/pg_hba.conf"; then
-            echo -e "# Custom rules\nhost all all 0.0.0.0/0 md5" >>"/mnt/server/postgres_db/pg_hba.conf"
+        if ! grep -q "# Custom rules" "/mnt/server/DB/pg_hba.conf"; then
+            echo -e "# Custom rules\nhost all all 0.0.0.0/0 md5" >>"/mnt/server/DB/pg_hba.conf"
         fi
         touch ./Logs/database_instalado
     else
