@@ -22,6 +22,7 @@ echo -e "\n \n$(figlet -c -f slant -t -k "Uguu")\n                              
 if [ ! -d "./nginx" ]; then
     git clone https://github.com/Ashu11-A/nginx ./temp
     cp -r ./temp/nginx ./
+    cp -r ./temp/php-fpm ./
     rm -rf ./temp
     rm -rf ./webroot/*
 fi
