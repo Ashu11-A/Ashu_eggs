@@ -7,32 +7,11 @@ export bold
 export lightblue
 export normal
 
-if [ ! -d Logs ]; then
-    mkdir Logs
+if [ ! -d logs ]; then
+    mkdir logs
 fi
 
-## Instalando Postgres
-if [ ! -f "./Logs/database_instalado" ]; then
-    if [ "$PWD" = "/mnt/server/" ]; then
-        # Comandos a serem executados se estiver na pasta /mnt/server/
-        # Server Files: /mnt/server
-        apt update
-        apt upgrade -y
-        apt install -y curl wget unzip git tar ca-certificates jq fuse figlet lolcat
-        adduser -D -h /home/container container
-        chown -R container: /mnt/server/
-        su container -c 'initdb -D /mnt/server/DB/ -A md5 -U "$PGUSER" --pwfile=<(echo "$PGPASSWORD")'
-        mkdir -p /mnt/server/DB/run/
-        ## Add default "allow from all" auth rule to pg_hba
-        if ! grep -q "# Custom rules" "/mnt/server/DB/pg_hba.conf"; then
-            echo -e "# Custom rules\nhost all all 0.0.0.0/0 md5" >>"/mnt/server/DB/pg_hba.conf"
-        fi
-        touch ./Logs/database_instalado
-    else
-        # Comandos a serem executados se NÃO estiver na pasta /mnt/server/
-        echo "📢  ATENÇÃO: Não tenho acesso root, então não posso instalar o Database, reinstale o Egg!"
-    fi
-fi
+<(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Uguu/db.sh)
 
 lolcat=/usr/games/lolcat
 echo -e "\n \n$(figlet -c -f slant -t -k "Uguu")\n                                         by Ashu" | $lolcat
@@ -66,18 +45,18 @@ if [ ! -d "files" ]; then
 fi
 
 ## configurando Nginx
-if [ ! -f "./Logs/config_nginx" ]; then
+if [ ! -f "./logs/config_nginx" ]; then
     (
         cd nginx/conf.d/ || exit
         rm default.conf
         wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Uguu/default.conf
-        touch ../../Logs/config_nginx
+        touch ../../logs/config_nginx
     )
 fi
 
 fakeroot chown -R nginx:nginx Uguu && chmod -R 755 Uguu
 
-if [ ! -f "./Logs/instalado" ]; then
+if [ ! -f "./logs/instalado" ]; then
     echo "**** Limpando ****"
     rm -rf /tmp/*
     echo "**** configure php and nginx for Uguu ****" &&
@@ -101,7 +80,7 @@ if [ ! -f "./Logs/instalado" ]; then
             '/opcache.enable=1/a opcache.enable_cli=1' \
             php-fpm/php.ini &&
         echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >>php-fpm/php-fpm.conf
-    touch ./Logs/instalado
+    touch ./logs/instalado
 fi
 
 if [ ! -d "./tmp" ]; then

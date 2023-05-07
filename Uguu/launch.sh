@@ -1,15 +1,18 @@
 #!/bin/bash
 bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Uguu/version.sh)
 
-echo "🛠 Instalando frontend..."
-(
-    cd Uguu || exit
-    npm install
-    make
-    make install
-)
+echo "🟢  Instalando frontend..."
+if [ ! -d "Uguu/dist/public" ]; then
+    (
+        cd Uguu || exit
+        npm install
+        make
+        make install
+    )
+fi
+
 echo "🟢  Iniciando Postgres (Database)..."
-nohup postgres  -D /home/container/DB/ >/dev/null 2>&1 &
+nohup postgres -D /home/container/DB/ >/dev/null 2>&1 &
 
 echo "🟢  Iniciando PHP-FPM..."
 nohup /usr/sbin/php-fpm81 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize >/dev/null 2>&1 &
