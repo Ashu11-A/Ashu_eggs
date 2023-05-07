@@ -64,9 +64,6 @@ fi
 if [ ! -d "files" ]; then
     mkdir files
 fi
-if [ ! -d "[your files]" ]; then
-    mkdir "[your files]"
-fi
 
 ## configurando Nginx
 if [ ! -f "./Logs/config_nginx" ]; then
