@@ -91,7 +91,9 @@ while read -r line; do
         while read -r START; do
             if [[ "$START" =~ ^(1|2)$ ]]; then
                 echo "$START" >logs/start-ini
-                rm logs/start-set
+                if [ -f "logs/start-set" ]; then
+                    rm logs/start-set
+                fi
                 echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
                 echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
                 exit
