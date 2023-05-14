@@ -127,7 +127,7 @@ else
 fi
 
 if [ ! -f "logs/start-ini" ]; then
-    echo -e "\n \n📝  Qual o tipo de inicialização que você deseja utilizar?\n [1]: Expecificar somente o arquivo (EX: bot.js)\n (funcionará assim: node MEU_ARQUIVO.sh)\n [2]: Inicialição por comando (EX: npm run start) (pressione [ENTER]): \n \n"
+    echo -e "\n \n📝  Qual o tipo de inicialização que você deseja utilizar?\n [1]: Expecificar somente o arquivo (EX: bot.js) (funcionará assim: node MEU_ARQUIVO.sh)\n [2]: Inicialição por comando (EX: npm run start)\n [Selecione 1 ou 2 e pressione [ENTER]): \n \n"
     while read -r START; do
         if [[ "$START" =~ ^(1|2)$ ]]; then
             echo "$START" >logs/start-ini
