@@ -72,7 +72,7 @@ if [ -n "${GIT_ADDRESS}" ]; then
         GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
     fi
     ## pull git js bot repo
-    if ls -A ./ | grep -v -E '(^\.nvm$|^logs$|^install.sh$|^\.npm$|^code$|^\..*rc$)' > /dev/null; then
+    if ls -A ./ | grep -v -E '(^\.nvm$|^logs$|^install.sh$|^\.npm$|^code$|^\..*rc$)' >/dev/null; then
         echo -e "O diretório '/home/container/' não está vazio."
         if [ -d .git ]; then
             echo -e ".git Diretório existe"
@@ -126,33 +126,60 @@ else
     fi
 fi
 
-
-if [ ! -f "logs/start-conf" ]; then
-    echo -e "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
-    read -r START
-    echo "$START" >logs/start-conf
-    echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
-    echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
+if [ ! -f "logs/start-ini" ]; then
+    echo -e "\n \n📝  Qual o tipo de inicialização que você deseja utilizar?\n [1]: Expecificar somente o arquivo (EX: bot.js)\n (funcionará assim: node MEU_ARQUIVO.sh)\n [2]: Inicialição por comando (EX: npm run start) (pressione [ENTER]): \n \n"
+    while read -r START; do
+        if [[ "$START" =~ ^(1|2)$ ]]; then
+            echo "$START" >logs/start-ini
+            rm logs/start-set
+            echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
+            echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
+            exit
+        else
+            echo -e "\n \n😅  Por favor, selecione a forma de inicialização com 1 ou 2\n \n"
+        fi
+    done
 fi
 
-start="$(cat logs/start-conf)"
-
-if [[ -f "${start}" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
-else
-    echo -e "\n \n📛  Não achei o arquivo de inicialização selecionado.\n"
-    echo -e "❔  Deseja mudar o arquivo? [y/N]\n \n"
-    read -r response
-    case "$response" in
-    [yY][eE][sS] | [yY])
-        echo -e "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
+if [ ! -f "logs/start-set" ]; then
+    if [ "$(cat logs/start-ini)" = "1" ]; then
+        echo -e "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (EX: bot.js, index.js...) (pressione [ENTER]): \n \n"
         read -r START
         echo "$START" >logs/start-conf
+        touch logs/start-set
         echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
         echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
-        ;;
-    *) ;;
-    esac
+    else
+        echo -e "\n \n📝  Qual o comando de inicialização que deseja utilizar? (EX: npm run start) (pressione [ENTER]): \n \n"
+        read -r START
+        echo "$START" >logs/start-conf
+        touch logs/start-set
+        echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
+        echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
+    fi
+fi
+
+if [ "$(cat logs/start-ini)" = "1" ]; then
+    start="$(cat logs/start-conf)"
+    if [[ -f "${start}" ]]; then
+        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
+    else
+        echo -e "\n \n📛  Não achei o arquivo de inicialização selecionado.\n"
+        echo -e "❔  Deseja mudar o arquivo? [y/N]\n \n"
+        read -r response
+        case "$response" in
+        [yY][eE][sS] | [yY])
+            echo -e "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
+            read -r START
+            echo "$START" >logs/start-conf
+            echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
+            echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
+            ;;
+        *) ;;
+        esac
+    fi
+else
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
 fi
 
 : <<'LIMBO'
