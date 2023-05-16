@@ -37,7 +37,7 @@ echo "🟢  Estou rodando ${MGM}..."
 echo -e "\n \n📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}start ${normal}, ${bold}${lightblue}show ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]...\n \n"
 
 echo -e "\n \n🔒  Sistema antiqueda inicializando...\n \n"
-nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nobreak.sh) 2>&1 &
+nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nobreak.sh) &
 
 while read -r line; do
     if [[ "$line" == "help" ]]; then
