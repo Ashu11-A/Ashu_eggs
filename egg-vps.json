@@ -7,8 +7,7 @@
     "exported_at": "2023-01-30T19:05:30-04:00",
     "name": "VPS",
     "author": "Matheunsn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: VPS\r\n\u2699\ufe0f Vers\u00e3o: 2.1\r\n\u2753 Oque \u00e9:  Uma VPS, este egg utiliza Proot (FakeRoot) que engana o sistema dizendo que voc\u00ea \u00e9 um superusu\u00e1rio, instalar um Pterodactyl dentro de outro Pterodactyl nunca foi t\u00e3o real!\r\n\r\n\u26a0\ufe0f Aten\u00e7\u00e3o: \r\n     \u2022 N\u00e3o \u00e9 recomend\u00e1vel de forma alguma, a utiliza\u00e7\u00e3o de Root no Docker. Eu n\u00e3o me responsabilizo por qualquer dano\/a\u00e7\u00e3o que voc\u00ea ira fazer com isso.\r\n     \u2022 \u00c9 necess\u00e1rio de no m\u00ednimo 1GB de espa\u00e7o\r\n     \u2022 Distribui\u00e7\u00f5es Debian\/Ubuntu podem levar mais de 15min para terminar a instala\u00e7\u00e3o\r\n     \u2022 Distribui\u00e7\u00f5es Ubuntu n\u00e3o est\u00e1 funcionando no momento\r\n\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n     \u2022 (1.0) Lan\u00e7amento.\r\n     \u2022 (2.0) Detecta se o Egg est\u00e1 atualizado ou n\u00e3o.\r\n     \u2022 (2.0) Possibilidade de trocar de Distribui\u00e7\u00e3o Linux: (Debian, Ubuntu, Alpine).\r\n     \u2022 (2.0) Argumentos atualizados, agora o sistema n\u00e3o est\u00e1 t\u00e3o restrito.\r\n     \u2022 (2.0) Possibilidade de trocar os argumentos.\r\n     \u2022 (2.0) Corre\u00e7\u00e3o do comando de Desligamento, agora n\u00e3o \u00e9 mais necess\u00e1rio matar o servidor.\r\n     \u2022 (2.0) Corre\u00e7\u00e3o da Inicializa\u00e7\u00e3o, agora o Painel sabe que o Servidor est\u00e1 ligado.\r\n     \u2022 (2.0) Script de Instala\u00e7\u00e3o foi reconstru\u00eddo\r\n     \u2022 (2.1) Bugs graves do Script arrumados\r\n     \u2022 (2.1) Possibilidade de trocar de root entre: PRoot(Padr\u00e3o), PRoot-rs, FakechRoot + FakeRoot.\r\n     \u2022 (2.1) Instala\u00e7\u00e3o Limpa Adicionada\r\n\r\n\ud83d\udcdd Novas Vari\u00e1veis: \r\n     \u2022 (2.0) Usar seus argumentos?\r\n     \u2022 (2.0) Seus Argumentos\r\n     \u2022 (2.0) Distribui\u00e7\u00e3o Linux\r\n     \u2022 (2.1) Mudar Root\r\n     \u2022 (2.1) Instala\u00e7\u00e3o Limpa?\r\n\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
-    "features": null,
+    "description": "\ud83d\udc8e Egg: VPS\r\n\u2699\ufe0f Version: 2.1\r\n\u2753 What is it: A VPS, this egg uses Proot (FakeRoot) which tricks the system saying that you are a superuser, installing a Pterodactyl inside another Pterodactyl has never felt so real!\r\n\r\n\u2022 It is in no way recommended to use Root in Docker. I am not responsible for any damage\/action that you will do with it.\r\ n \u2022 \u2022 At least 1GB of space is required\r\n \u2022 Debian\/Ubuntu distributions may take more than 15min to finish installation\r\n \u2022 Ubuntu distributions are currently not working\r\n\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n \u2022 (1.0) Release.\r \n \u2022 (2.0) Detects whether the Egg is up to date or not.\r\n \u2022 (2.0) Possibility to change Linux Distribution: (Debian, Ubuntu, Alpine).\r \n \u2022 (2.0) Updated arguments, now the system is not so restricted.\r\n \u2022 (2.0) Possibility to change arguments.\r\n \u2022 (2.0) Run\ Shutdown command, now it is not necessary to kill the server anymore.\r\n \u2022 (2.0) Startup fix is needed, now the Panel knows that the Server is on.\r\n \u2022 (2.0) Installation Script has been rebuilt\r\n \u2022 (2.1) Serious Script bugs fixed\r\n \u2022 (2.1) Possibility of switch root between: PRoot(Default), PRoot-rs, FakechRoot + FakeRoot.\r\n \u2022 (2.1) Clean Install Added\r\n\r\n\ud83d\udcdd New Variables \u2022 (2.0) Your Arguments\r\n \u2022 (2.0) Linux Distribution\r\n \u2022 (2.1) \u2022 (2.0) ) Change Root\r\n \u2022 (2.1) Clean Install?\r\n\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",    "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/yolks:debian": "ghcr.io\/parkervcp\/yolks:debian"
     },
@@ -16,7 +15,7 @@
     "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/vps\/selector.sh)",
     "config": {
         "files": "{}",
-        "startup": "{\r\n    \"done\": \"Iniciado\"\r\n}",
+        "startup": "{\r\n    \"done\": \"Starting\"\r\n}",
         "logs": "{}",
         "stop": "^^C"
     },
@@ -29,8 +28,8 @@
     },
     "variables": [
         {
-            "name": "Usar seus argumentos?",
-            "description": "Habilitar o uso dos seus argumentos? N\u00e3o habilite isso se voc\u00ea n\u00e3o sabe oque faz.",
+            "name": "Use your arguments?",            
+            "description": "Enable using your arguments? Don\u2019t enable this if you don\u2019t know what to do.",
             "env_variable": "CONSOLE",
             "default_value": "0",
             "user_viewable": true,
@@ -39,8 +38,8 @@
             "field_type": "text"
         },
         {
-            "name": "Seus Argumentos",
-            "description": "CUIDADO, mude somente se voc\u00ea sabe oque est\u00e1 fazendo. Caso queira colocar seus pr\u00f3prios argumentos, veja a Wiki do PRoot: https:\/\/github.com\/proot-me\/proot\/blob\/master\/doc\/proot\/manual.rst\r\nOs argumentos padr\u00f5es s\u00e3o: -0 -r . -b \/dev -b \/proc -b \/sys -w \/ -b .",
+            "name": "Your Arguments",
+            "description": "CAUTION, change only if you know what you are doing. If you want to put your own arguments, see PRoot Wiki: https:\/\/github.com\/proot-me\ /proot\/blob\/master\/doc\/proot\/manual.rst\r\nStandard arguments are: -0 -r .-b \/dev -b \/proc -b \/ sys -w \/ -b .",
             "env_variable": "CONSOLE_OCC",
             "default_value": "-0 -r . -b \/dev -b \/proc -b \/sys -w \/ -b.",
             "user_viewable": true,
@@ -49,8 +48,8 @@
             "field_type": "text"
         },
         {
-            "name": "Distribui\u00e7\u00e3o Linux",
-            "description": "Selecione qual Distribui\u00e7\u00e3o Linux voc\u00ea deseja que o script baixe. Atualmente essas distribui\u00e7\u00f5es est\u00e3o dispon\u00edveis: Debian, Ubuntu, Alpine.",
+            "name": "Linux distribution", 
+            "description": "Select which Linux distribution you want the script to download. Currently these distributions are available: Debian, Ubuntu, Alpine.",
             "env_variable": "LINUX_ISO",
             "default_value": "Debian",
             "user_viewable": true,
@@ -59,8 +58,8 @@
             "field_type": "text"
         },
         {
-            "name": "Mudar Root",
-            "description": "Mudar o sistema de root. Atualmente existem esses 3 tipos: PRoot(Padr\u00e3o), PRoot-rs, FakechRoot + FakeRoot",
+            "name": "Change Root",
+            "description": "Change the root system. Currently there are these 3 types: PRoot(Default), PRoot-rs, FakechRoot + FakeRoot",
             "env_variable": "PROOT",
             "default_value": "PRoot (padr\u00e3o)",
             "user_viewable": true,
@@ -69,8 +68,8 @@
             "field_type": "text"
         },
         {
-            "name": "Instala\u00e7\u00e3o Limpa?",
-            "description": "Com a Instala\u00e7\u00e3o limpa os seguintes pacotes n\u00e3o ser\u00e3o Instalados: sudo wget hwloc htop nano neofetch python3 ngrok gotty curl",
+            "name": "Clean install?",
+            "description": "With clean Setup the following packages will not be Installed: sudo wget hwloc htop nano neofetch python3 ngrok gotty curl",
             "env_variable": "INSTALL",
             "default_value": "0",
             "user_viewable": true,
