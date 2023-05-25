@@ -7,8 +7,7 @@
     "exported_at": "2023-01-25T23:01:20-03:00",
     "name": "Jellyfin",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Jellyfin\r\n\u2699\ufe0f Vers\u00e3o: 2.0\r\n\u2753 Oque \u00e9: resumindo, voc\u00ea pode ter sua pr\u00f3pria Netflix. Jellyfin permite que voc\u00ea colete, gerencie e transmita sua m\u00eddia. Execute o servidor Jellyfin em seu sistema e tenha acesso ao principal sistema de entretenimento de software livre.\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\u2022 Agora o Egg n\u00e3o \u00e9 dependente de atualiza\u00e7\u00f5es, tudo \u00e9 feito por scripts, o ocasiona na sua melhor manuten\u00e7\u00e3o.\r\n\u2022 Essa \u00e9 possivelmente sua \u00faltima vers\u00e3o.\r\n\u2022 C\u00f3digo agora est\u00e1 mais limpo.\r\n\u2022 Docker atualizado.\r\n\u26a0\ufe0f Aten\u00e7\u00e3o: Na primeira inicializa\u00e7\u00e3o haver\u00e1 uma tela de Selecionar Servidor, apague o servidor existente l\u00e1, e reinicia a p\u00e1gina.\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
-    "features": null,
+    "description": "\ud83d\udc8e Egg: Jellyfin\r\n\u2699\ufe0f Version: 2.0\r\n\u753 What it is: In short, you can have your own Netflix. Jellyfin allows for you to collect, manage and stream your media. Run the Jellyfin server on your system and get access to the leading free software entertainment system.\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\ no Now the Egg is not dependent on updates, everything is done by scripts, causes it to be better maintained.\r\n\u2022 This is possibly its last version.\r\n\u2022 Code is now cleaner.\r\n\u2022 Docker updated.\r\n\u26a0\ufe0f Attention: On first launch there will be a Select Server screen, delete the existing server there, and restart the page.\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",    "features": null,
     "docker_images": {
         "ARM64, ARM, 64x ": " ashu11a\/jellyfin:latest"
     },
@@ -29,14 +28,14 @@
     },
     "variables": [
         {
-            "name": "VERSION",
-            "description": "Vers\u00e3o do Jellyfin.\r\n\r\nEx: \"10.8.5\"",
-            "env_variable": "VERSION",
-            "default_value": "10.8.5",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|max:10",
-            "field_type": "text"
-        }
+             "name": "VERSION",
+             "description": "Version of Jellyfin.\r\n\r\nEx: \"10.8.5\"",
+             "env_variable": "VERSION",
+             "default_value": "10.8.5",
+             "user_viewable": true,
+             "user_editable": true,
+             "rules": "required|string|max:10",
+             "field_type": "text"
+         }
     ]
 }
