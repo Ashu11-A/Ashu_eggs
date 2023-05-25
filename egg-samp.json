@@ -41,7 +41,7 @@
         },
         {
             "name": "Max Players",
-            "description": "A quantidade m\u00e1xima de jogadores que seu servidor pode ter.",
+            "description": "The maximum amount of players your server can have.",
             "env_variable": "MAX_PLAYERS",
             "default_value": "50",
             "user_viewable": true,
@@ -51,7 +51,7 @@
         },
         {
             "name": "Max NPC",
-            "description": "A quantidade m\u00e1xima de NPCs que seu servidor pode conter.",
+            "description": "The maximum amount of NPCs your server can hold.",
             "env_variable": "MAX_NPC",
             "default_value": "0",
             "user_viewable": true,
@@ -71,7 +71,7 @@
         },
         {
             "name": "Announce",
-            "description": "Alterna se o servidor deve ser anunciado ao SA-MP masterlist.",
+            "description": "Toggles whether the server should be advertised to the SA-MP masterlist.",            
             "env_variable": "ANNONCE",
             "default_value": "0",
             "user_viewable": true,
@@ -81,7 +81,7 @@
         },
         {
             "name": "Query",
-            "description": "Alterna se as informa\u00e7\u00f5es do servidor devem ser exibidas no navegador do servidor. Os jogadores ainda podem entrar em um servidor que tenha desativado a consulta, mas o navegador do servidor n\u00e3o exibir\u00e1 nenhuma informa\u00e7\u00e3o.",
+            "description": "Toggles whether server information should be displayed in the server browser. Players can still join a server that has querying disabled, but the server browser will not display any information \u00e7\u00e3o.",
             "env_variable": "QUERY",
             "default_value": "1",
             "user_viewable": true,
@@ -91,7 +91,7 @@
         },
         {
             "name": "Rcon Password",
-            "description": "A senha usada para administrar o servidor e usar o console remoto (rcon). Voc\u00ea deve certificar-se de mudar isto para algo dif\u00edcil de quebrar para que outros n\u00e3o possam assumir o controle de seu servidor. Seu servidor N\u00c3O iniciar\u00e1 se a mudan\u00e7a for a senha RCON!",
+            "description": "The password used to administer the server and use the remote console (rcon). You should make sure to change this to something hard to crack so that others cannot take control of your server. Your server will NOT start if you change the RCON password!",
             "env_variable": "PASSWORD",
             "default_value": "changemeplease",
             "user_viewable": true,
