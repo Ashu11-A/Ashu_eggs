@@ -12,7 +12,7 @@
 </div>
 <div align="left">
 
-![**English version**](./ReadmeEN.md)
+[**English version**](./ReadmeEN.md)
   
   
 ## 📃 | Descrição
