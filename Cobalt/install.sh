@@ -1,6 +1,7 @@
 #!/bin/bash
 if [ ! -d "src" ]; then
-    git clone https://github.com/wukko/cobalt .
+    git clone https://github.com/wukko/cobalt ./Cobalt
+    cp Cobalt/* ./
 fi
 
 if [ ! -f "./.env" ]; then
