@@ -61,4 +61,4 @@ Gostou dos Eggs? Então de uma 🌟 ao repositório!
 
 ## 📁 | Contato
 
-```Discord: "꧁Ashû꧂"#0001```
+```Discord: ashu_sama```
