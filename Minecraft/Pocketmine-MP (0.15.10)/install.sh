@@ -1,9 +1,6 @@
 #!/bin/bash
 apt -y --no-install-recommends install wget unzip lib32gcc1 ca-certificates
 
-mkdir -p /mnt/server
-cd /mnt/server || exit
-
 wget "https://github.com/Ashu11-A/Ashu_eggs/raw/main/Minecraft/Pocketmine-MP%20(0.15.10)/PocketMine-MP.phar"
 wget "https://github.com/Ashu11-A/Ashu_eggs/raw/main/Minecraft/Pocketmine-MP%20(0.15.10)/bin.zip"
 
