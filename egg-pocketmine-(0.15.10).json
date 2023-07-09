@@ -1,0 +1,31 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-07-09T17:27:45-03:00",
+    "name": "Pocketmine-MP (0.15.10)",
+    "author": "Matheusn.biolowons@gmail.com",
+    "description": "\ud83d\udc8e Egg: Pocketmine-MP (0.15.10)\r\n\u2699\ufe0f Vers\u00e3o: 1.0\r\n\u2753 Oque \u00e9: Um software de servidor de c\u00f3digo aberto altamente personaliz\u00e1vel para Minecraft: Bedrock Edition escrito em PHP\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n      \u2022 (1.0) Lan\u00e7amento\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "features": null,
+    "docker_images": {
+        "AMD64": "ghcr.io\/parkervcp\/yolks:debian"
+    },
+    "file_denylist": [],
+    "startup": ".\/bin\/php7\/bin\/php .\/PocketMine-MP.phar --no-wizard --disable-ansi",
+    "config": {
+        "files": "{\r\n    \"server.properties\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"server-ip\": \"0.0.0.0\",\r\n            \"enable-query\": \"true\",\r\n            \"server-port\": \"{{server.build.default.port}}\",\r\n            \"query.port\": \"{{server.build.default.port}}\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \")! For help, type \",\r\n    \"userInteraction\": [\r\n        \"Go to eula.txt for more info.\"\r\n    ]\r\n}",
+        "logs": "{}",
+        "stop": "stop"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\napt -y update\r\napt -y --no-install-recommends install curl wget unzip lib32gcc1 ca-certificates\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server || exit\r\nbash <(curl -s \"https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Minecraft\/Pocketmine-MP%20(0.15.10)\/install.sh\") | tee install.log",
+            "container": "debian:buster-slim",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": []
+}
