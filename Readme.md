@@ -9,6 +9,8 @@
 ![Comitts Year](https://img.shields.io/github/commit-activity/y/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=f9e2af&logoColor=f9e2af)
 ![reposize-info](https://img.shields.io/github/repo-size/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=90dceb)
 
+[**🇺🇸 English version**](./ReadmeEN.md)
+
 </div>
 <div align="left">
 
@@ -54,11 +56,6 @@ Gostou dos Eggs? Então de uma 🌟 ao repositório!
 ✅ • Funcionando (o ARM64 foi testado com Oracle Cloud)   
 ❔ • Ainda não testado, mas deve funcionar   
 ❌ • Não funciona   
-
-*Right click and click save  
-✅ • Working (Normal ARM was tested on Oracle Cloud)  
-❔ • Not tested yet but should work  
-❌ • Don't work 
 
 ## 📁 | Contato
 
