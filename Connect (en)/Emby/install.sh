@@ -1,6 +1,6 @@
 #!/bin/bash
 if [[ -f "./Emby/EmbyServer.dll" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Emby/start.sh)
+    bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect%20(en)/Emby/start.sh")
 else
 
     GITHUB_PACKAGE=MediaBrowser/Emby.Releases
@@ -21,7 +21,7 @@ else
     fi
 
     mkdir -p /mnt/server
-    cd /mnt/server
+    cd /mnt/server || exit
 
     if [[ -f "./Emby/EmbyServer.dll" ]]; then
         mkdir Emby_OLD

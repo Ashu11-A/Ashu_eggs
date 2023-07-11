@@ -48,8 +48,8 @@ fakeroot chmod 775 ./*
 )
 
 if [[ -d "./FFmpeg-Commander/public" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/FFmpeg/version.sh)
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/FFmpeg/launch.sh)
+    bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect%20(en)/FFmpeg/version.sh")
+    bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect%20(en)/FFmpeg/launch.sh")
 else
     echo "Something went terribly wrong."
 fi

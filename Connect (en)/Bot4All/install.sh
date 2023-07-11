@@ -18,7 +18,7 @@ fi
 if [ -z "${NVM_STATUS}" ] || [ "${NVM_STATUS}" = "1" ]; then
     if [[ -d ".nvm" ]]; then
         if [ ! -f "logs/nodejs_version" ]; then
-            bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
+            bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect%20(en)/Bot4All/nvm_install.sh")
         fi
         ######################################## NVM Initialization
         source "/home/container/.nvm/nvm.sh"
@@ -162,7 +162,7 @@ fi
 if [ "$(cat logs/start-ini)" = "1" ]; then
     start="$(cat logs/start-conf)"
     if [[ -f "${start}" ]]; then
-        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
+        bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect%20(en)/Bot4All/launch.sh")
     else
         echo -e "\n \n📛  Selected initialization file not found.\n"
         echo -e "❔  Do you want to change the file? [y/N]\n \n"
@@ -179,7 +179,7 @@ if [ "$(cat logs/start-ini)" = "1" ]; then
         esac
     fi
 else
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
+    bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect%20(en)/Bot4All/launch.sh")
 fi
 
 : <<'LIMBO'

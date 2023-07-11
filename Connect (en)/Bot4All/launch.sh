@@ -36,7 +36,7 @@ echo "🟢  I am running ${MGM}..."
 echo -e "\n \n📃  Available Commands: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}start ${normal}, ${bold}${lightblue}show ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] or ${bold}${lightblue}node ${normal}[your code]...\n \n"
 
 echo -e "\n \n🔒  Initializing fail-safe system...\n \n"
-nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nobreak.sh) &
+nohup bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect%20(en)/Bot4All/nobreak.sh") &
 
 while read -r line; do
     if [[ "$line" == "help" ]]; then
@@ -73,7 +73,7 @@ while read -r line; do
     elif [[ "$line" == "version" ]]; then
         if [ -z "${NVM_STATUS}" ] || [ "${NVM_STATUS}" = "1" ]; then
             if [[ -d ".nvm" ]]; then
-                bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
+                bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect%20(en)/Bot4All/nvm_install.sh")
                 exit
                 exit
             else
