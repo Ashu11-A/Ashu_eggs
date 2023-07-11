@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\ncd \/mnt\/server\/\r\ncurl -o start.sh https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Stress\/start.sh\r\nchmod a+x .\/start.sh",
+            "script": "#!\/bin\/bash\r\ncd \/mnt\/server\/\r\ncurl -o start.sh https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/Stress\/start.sh\r\nchmod a+x .\/start.sh",
             "container": "ghcr.io\/ashu11-a\/installers:alpine",
             "entrypoint": "bash"
         }

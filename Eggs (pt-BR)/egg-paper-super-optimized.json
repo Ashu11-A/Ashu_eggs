@@ -20,7 +20,7 @@
         "Java 17 Zulu": "ghcr.io\/software-noob\/pterodactyl-images:java_17_zulu"
     },
     "file_denylist": [],
-    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Paper%20Optimized\/install.sh)",
+    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/Paper%20Optimized\/install.sh)",
     "config": {
         "files": "{\r\n    \"server.properties\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"server-ip\": \"0.0.0.0\",\r\n            \"network-compression-threshold\": \"512\",\r\n            \"server-port\": \"{{server.build.default.port}}\",\r\n            \"query.port\": \"{{server.build.default.port}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \")! For help, type \"\r\n}",
@@ -29,7 +29,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\ncd \/mnt\/server\r\napk --update add git curl file unzip tar autoconf automake git wget jq\r\ncurl -o install.sh https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Paper%20Optimized\/install.sh\r\nchmod a+x .\/install.sh\r\n.\/install.sh\r\nrm .\/install.sh",
+            "script": "#!\/bin\/bash\r\ncd \/mnt\/server\r\napk --update add git curl file unzip tar autoconf automake git wget jq\r\ncurl -o install.sh https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/Paper%20Optimized\/install.sh\r\nchmod a+x .\/install.sh\r\n.\/install.sh\r\nrm .\/install.sh",
             "container": "ghcr.io\/ashu11-a\/installers:alpine",
             "entrypoint": "bash"
         }
