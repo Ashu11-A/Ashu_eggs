@@ -46,5 +46,5 @@ else
     rm -rf multitheftauto_linux.tar.gz mta-baseconfig.tar.gz mtasa-resources-latest.zip
     rm -rf multitheftauto_linux*/
 
-    echo "instalação do script concluído"
+    echo "script installation completed"
 fi
