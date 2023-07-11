@@ -1,8 +1,8 @@
 #!/bin/bash
 if [ ! -d "src" ]; then
-	git clone https://github.com/wukko/cobalt ./Cobalt
+    git clone https://github.com/wukko/cobalt ./Cobalt
     (
-    	cd Cobalt || exit
+        cd Cobalt || exit
         git checkout fa4e418e36
     )
     git clone
@@ -15,10 +15,9 @@ if [ ! -f "./.env" ]; then
     npm run setup
 fi
 
-
-if [[  -f "./.env" && -d "node_modules" ]]; then
+if [[ -f "./.env" && -d "node_modules" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Cobalt/version.sh)
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Cobalt/launch.sh)
 else
-    echo "Algo muito errado aconteceu."
+    echo "Something went very wrong."
 fi
