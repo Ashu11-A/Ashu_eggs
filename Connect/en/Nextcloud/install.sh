@@ -7,10 +7,10 @@ if [ -f "./logs/installed" ]; then
         exit
     else
         echo "✓ Updating install.sh script"
-        curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Nextcloud/install.sh -o install.sh
+        curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Nextcloud/install.sh -o install.sh
         chmod a+x ./install.sh
         echo "✓ Updating start.sh script"
-        curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Nextcloud/start.sh -o start.sh
+        curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Nextcloud/start.sh -o start.sh
         chmod a+x ./start.sh
         ./start.sh
     fi
@@ -27,7 +27,7 @@ else
 fi
 
 echo "✓ Updating install.sh script"
-curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Nextcloud/install.sh -o install.sh
+curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Nextcloud/install.sh -o install.sh
 
 git clone https://github.com/finnie2006/ptero-nginx ./temp
 cp -r ./temp/nginx /mnt/server/
@@ -41,7 +41,7 @@ else
 fi
 rm nginx/conf.d/default.conf
 cd nginx/conf.d/
-wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Nextcloud/default.conf
+wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Nextcloud/default.conf
 cd /mnt/server
 cat <<EOF >./logs/install_log.txt
 Version: $NEXTCLOUD_RELEASE

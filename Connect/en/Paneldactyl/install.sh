@@ -176,7 +176,7 @@ else
     printf "\n| Nginx | 🟡 Downloading Nginx... |"
     cp -r ./temp/nginx ./
     rm nginx/conf.d/default.conf
-    curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Paneldactyl/default.conf -o ./nginx/conf.d/default.conf
+    curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Paneldactyl/default.conf -o ./nginx/conf.d/default.conf
     sed -i \
         -e "s/listen.*/listen ${SERVER_PORT};/g" \
         nginx/conf.d/default.conf
@@ -384,8 +384,8 @@ else
 fi
 
 if [[ -f "./logs/panel_instalado" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Paneldactyl/version.sh)
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Paneldactyl/launch.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Paneldactyl/version.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Paneldactyl/launch.sh)
 else
     echo "Something went very wrong."
 fi

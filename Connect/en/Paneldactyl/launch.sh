@@ -53,7 +53,7 @@ echo "🟢 Started successfully ${MGM}..."
 echo "🟢 Starting panel worker..."
 nohup php /home/container/painel/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3 >/dev/null 2>&1 &
 echo "🟢 Starting cron..."
-nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Paneldactyl/cron.sh) >/dev/null 2>&1 &
+nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Paneldactyl/cron.sh) >/dev/null 2>&1 &
 
 echo "📃 Available Commands: ${bold}${lightblue}composer${normal}, ${bold}${lightblue}setup${normal}, ${bold}${lightblue}database${normal}, ${bold}${lightblue}migrate${normal}, ${bold}${lightblue}user${normal}, ${bold}${lightblue}build${normal}, ${bold}${lightblue}reinstall${normal}. Use ${bold}${lightblue}help${normal} for more information..."
 
