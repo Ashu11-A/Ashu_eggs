@@ -29,26 +29,26 @@ Did you like the Eggs? Then give the repository a 🌟!
 ## 🖥 | Software
 | Service | file* | AMD64 | ARM64 | More info |
 |--|--|--|--|--|
-| Paneldactyl | [egg-paneldactyl.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-paneldactyl.json) | ✅ | ✅ | Panel installer (Pterodactyl, Jexactyl...)
-| FFmpeg Commander | [egg-ffmpeg-commander.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-ffmpeg-commander.json) | ✅ | ✅ | A simple web UI for generating common FFmpeg encoding operations.
-| Frp | [egg-frp.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-frp.json) | ✅ | ✅ | Creates a tunnel traversing NAT (needs a server with an open port)
-| Jellyfin | [egg-jellyfin.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-jellyfin.json) | ✅ | ✅ | media player
-| Emby | [egg-emby.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-emby.json) | ✅ | ✅ | media player
-| Nextcloud | [egg-nextcloud.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-nextcloud.json) | ✅ | ✅ | A place for you to store your files, like Dropbox
-| Stress-ng | [egg-stress.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-stress.json) | ✅ | ✅ | It will stress your machine.
-| VPS | [egg-vps.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-vps.json) | ✅ | ❌ | Root with Proot
-| Youtube-DL Web | [egg-youtube-dl-web.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-youtube-dl-web.json) | ✅ | ✅ | Web interface to download videos from YouTube directly to the user.
+| Paneldactyl | [egg-paneldactyl.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-paneldactyl.json) | ✅ | ✅ | Panel installer (Pterodactyl, Jexactyl...)
+| FFmpeg Commander | [egg-ffmpeg-commander.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-ffmpeg-commander.json) | ✅ | ✅ | A simple web UI for generating common FFmpeg encoding operations.
+| Frp | [egg-frp.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-frp.json) | ✅ | ✅ | Creates a tunnel traversing NAT (needs a server with an open port)
+| Jellyfin | [egg-jellyfin.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-jellyfin.json) | ✅ | ✅ | media player
+| Emby | [egg-emby.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-emby.json) | ✅ | ✅ | media player
+| Nextcloud | [egg-nextcloud.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-nextcloud.json) | ✅ | ✅ | A place for you to store your files, like Dropbox
+| Stress-ng | [egg-stress.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-stress.json) | ✅ | ✅ | It will stress your machine.
+| VPS | [egg-vps.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-vps.json) | ✅ | ❌ | Root with Proot
+| Youtube-DL Web | [egg-youtube-dl-web.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-youtube-dl-web.json) | ✅ | ✅ | Web interface to download videos from YouTube directly to the user.
 
 ## 🎮 | Games
 | Game | file* | AMD64 | ARM64 | More info |
 |--|--|--|--|--|
-| Paper (Super-Optimized) | [egg-paper-super-optimized.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-paper-super-optimized.json) | ✅ | ✅ | Minecraft but super optimized
-| tModLoader | [egg-tModloader.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-tModloader.json) | ✅ | ✅ |Running natively
-| Terraria Vanilla | [egg-terraria-vanilla.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-terraria-vanilla.json) | ✅ | ✅ |
-| SA-MP | [egg-samp.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-samp.json) | ✅ | ✅ |Emulated on ARM with Box86
-| ServerJars | [egg-ServerJars.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-ServerJars.json) | ✅ | ✅ |
-| MTA | [egg-mta.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-mta.json) | ✅ | ✅ |
-| Pocketmine-MP (0.15.10) | [egg-pocketmine-(0.15.10).json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs%20(en)/egg-pocketmine-(0.15.10).json) | ✅ | ❌ |
+| Paper (Super-Optimized) | [egg-paper-super-optimized.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-paper-super-optimized.json) | ✅ | ✅ | Minecraft but super optimized
+| tModLoader | [egg-tModloader.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-tModloader.json) | ✅ | ✅ |Running natively
+| Terraria Vanilla | [egg-terraria-vanilla.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-terraria-vanilla.json) | ✅ | ✅ |
+| SA-MP | [egg-samp.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-samp.json) | ✅ | ✅ |Emulated on ARM with Box86
+| ServerJars | [egg-ServerJars.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-ServerJars.json) | ✅ | ✅ |
+| MTA | [egg-mta.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-mta.json) | ✅ | ✅ |
+| Pocketmine-MP (0.15.10) | [egg-pocketmine-(0.15.10).json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/egg-pocketmine-(0.15.10).json) | ✅ | ❌ |
 
 *Click with the **right button** and **Save link as**...   
 ✅ • Working (ARM64 tested with Oracle Cloud)   
