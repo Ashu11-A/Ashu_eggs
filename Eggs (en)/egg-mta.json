@@ -7,7 +7,7 @@
     "exported_at": "2023-04-13T12:17:10-03:00",
     "name": "MTA",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: MTA\r\n\u2699\ufe0f Version: 1.3\r\n\u2753 What: Multi Theft Auto provides the best Grand Theft Auto experience online that exists.\r\n\ud83d\udc1b Bugs fixed\/changelogs: \r\n \u2022 (1.2) Some variables were not working, so they were removed.\r\n \u2022 (1.3) ) Changed Docker\r\n \u2022 (1.3) Add ARM64 Compatibility\r\n\ud83e\ude84 What's Different?\r\n \u2022 Users Cannot Edit Server Slots\ r\n \u2022 Scripted installation and startup (Better maintenance)\r\n \u2022 New variables:\r\n \u2022 (1.1) Max Players\r \n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "\ud83d\udc8e Egg: MTA\r\n\u2699\ufe0f Version: 1.3\r\n\u2753 What: Multi Theft Auto provides the best Grand Theft Auto experience online that exists.\r\n\ud83d\udc1b Bugs fixed\/changelogs: \r\n \u2022 (1.2) Some variables were not working, so they were removed.\r\n \u2022 (1.3) ) Changed Docker\r\n \u2022 (1.3) Add ARM64 Compatibility\r\n\ud83e\ude84 What's Different?\r\n \u2022 Users Cannot Edit Server Slots\r\n \u2022 Scripted installation and startup (Better maintenance)\r\n \u2022 New variables:\r\n \u2022 (1.1) Max Players\r \n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
         "MTA [Multi-Arch]": "ghcr.io\/ashu11-a\/games:mta"

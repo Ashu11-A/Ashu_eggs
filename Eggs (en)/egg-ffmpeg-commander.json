@@ -7,7 +7,7 @@
     "exported_at": "2023-04-08T21:38:40-03:00",
     "name": "FFmpeg Commander",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: FFmpeg Commander\r\n\u2699\ufe0f Version: 1.0\r\n\u2753 What: A simple web UI for generating operation \u00f5common FFmpeg encodings.\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n \u2022 (1.0) Release.\r\n \ud83d\udcdd Variables: \r\n \u2022 (1.0) Enable FFmpegd.\r\n \u2022 (1.0) FFmpegd Port.\r\n \ud83d\udce6 Docker: \r\n \u2022 Compatibility with ARM64, 64x\r\n\ ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "\ud83d\udc8e Egg: FFmpeg Commander\r\n\u2699\ufe0f Version: 1.0\r\n\u2753 What: A simple web UI for generating operation \u00f5common FFmpeg encodings.\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n \u2022 (1.0) Release.\r\n \ud83d\udcdd Variables: \r\n \u2022 (1.0) Enable FFmpegd.\r\n \u2022 (1.0) FFmpegd Port.\r\n \ud83d\udce6 Docker: \r\n \u2022 Compatibility with ARM64, 64x\r\n ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
         "ARM64, 64x ": " ghcr.io\/ashu11-a\/software:ffmpeg"

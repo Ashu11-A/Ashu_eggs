@@ -7,7 +7,7 @@
     "exported_at": "2023-01-25T18:24:06-03:00",
     "name": "Nextcloud",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Nextcloud\r\n\u2699\u2699\ufe0f Version: 2.0\r\n\u2753 What is it: Nextcloud is an enterprise cloud collaboration platform \u00f3open code that makes it possible to create private or corporate file hosting servers.\r\n\u26a0\ufe0f Attention: This Egg needs a database(Create one, in advance\ own dashboard).\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n\u2022 Egg self-updates, maybe this is its \u201clast release\r\n\u2022 Code is now\ cleaner\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "\ud83d\udc8e Egg: Nextcloud\r\n\u2699\u2699\ufe0f Version: 2.0\r\n\u2753 What is it: Nextcloud is an enterprise cloud collaboration platform \u00f3open code that makes it possible to create private or corporate file hosting servers.\r\n\u26a0\ufe0f Attention: This Egg needs a database(Create one, in advance own dashboard).\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n\u2022 Egg self-updates, maybe this is its \u201clast release\r\n\u2022 Code is now cleaner\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
         "ARM64, ARM, 64x,  ": " ashu11a\/nextcloud:latest"
