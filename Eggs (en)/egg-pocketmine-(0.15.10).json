@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\napt -y update\r\napt -y --no-install-recommends install curl wget unzip lib32gcc1 ca-certificates\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server || exit\r\nbash <(curl -s \"https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/Minecraft\/Pocketmine-MP%20(0.15.10)\/install.sh\") | tee install.log",
+            "script": "#!\/bin\/bash\r\napt -y update\r\napt -y --no-install-recommends install curl wget unzip lib32gcc1 ca-certificates\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server || exit\r\nbash <(curl -s \"https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(en)\/Minecraft\/Pocketmine-MP%20(0.15.10)\/install.sh\") | tee install.log",
             "container": "debian:buster-slim",
             "entrypoint": "bash"
         }

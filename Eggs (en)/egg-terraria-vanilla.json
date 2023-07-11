@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\napk add curl\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/Terraria\/start.sh -o start.sh\r\nchmod a+x .\/start.sh\r\n.\/start.sh",
+            "script": "#!\/bin\/bash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\napk add curl\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(en)\/Terraria\/start.sh -o start.sh\r\nchmod a+x .\/start.sh\r\n.\/start.sh",
             "container": "ghcr.io\/ashu11-a\/installers:alpine",
             "entrypoint": "bash"
         }

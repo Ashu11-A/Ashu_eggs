@@ -13,7 +13,7 @@
         "MTA [Multi-Arch]": "ghcr.io\/ashu11-a\/games:mta"
     },
     "file_denylist": [],
-    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/MTA\/install.sh)",
+    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(en)\/MTA\/install.sh)",
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Server started and is ready to accept connections\"\r\n}",

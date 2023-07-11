@@ -13,7 +13,7 @@
         "ARM64, ARM, 64x ": " ashu11a\/jellyfin:latest"
     },
     "file_denylist": [],
-    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/Jellyfin\/install.sh)",
+    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(en)\/Jellyfin\/install.sh)",
     "config": {
         "files": "{\r\n    \"\/.config\/jellyfin\/network.xml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"<HttpServerPortNumber>\": \"<HttpServerPortNumber>{{server.build.default.port}}<\/HttpServerPortNumber>\",\r\n            \"<PublicPort>\": \"<PublicPort>{{server.build.default.port}}<\/PublicPort>\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Jellyfin version\"\r\n}",
@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n#\r\n# Server Files: \/mnt\/server\r\n## install packages to get version and download links\r\napt update\r\napt upgrade -y\r\napt install -y curl wget unzip git tar ca-certificates jq fuse\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/Jellyfin\/install.sh)",
+            "script": "#!\/bin\/bash\r\n#\r\n# Server Files: \/mnt\/server\r\n## install packages to get version and download links\r\napt update\r\napt upgrade -y\r\napt install -y curl wget unzip git tar ca-certificates jq fuse\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(en)\/Jellyfin\/install.sh)",
             "container": "debian:buster-slim",
             "entrypoint": "bash"
         }
