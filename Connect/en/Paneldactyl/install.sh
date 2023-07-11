@@ -4,7 +4,7 @@ bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
 
-if [ -z "${PANEL}" ]; then ## Caso a variavel ${PANEL} não existir por algum motivo desconhecido
+if [ -z "${PANEL}" ]; then ## If the ${PANEL} variable does not exist for some unknown reason
     GITHUB_PACKAGE=Next-Panel/Jexactyl-BR
     FILE=panel.tar.gz
 else
@@ -20,8 +20,8 @@ else
     elif [ "${PANEL}" = "Pterodactyl Brasil" ]; then
         GITHUB_PACKAGE=Next-Panel/Pterodactyl-BR
         FILE=panel.tar.gz
-    elif [ "${PANEL}" != "Pterodactyl" ] && [ "${PANEL}" != "Jexactyl" ] && [ "${PANEL}" != "Jexactyl Brasil" ] && [ "${PANEL}" != "Pterodactyl Brasil" ]; then ## Verifica se...
-        echo "Por algum motivo não foi possivel detectar o Painel que será instalado, instalando por padrão: Jexactyl Brasil"
+    elif [ "${PANEL}" != "Pterodactyl" ] && [ "${PANEL}" != "Jexactyl" ] && [ "${PANEL}" != "Jexactyl Brasil" ] && [ "${PANEL}" != "Pterodactyl Brasil" ]; then ## Verifies if...
+        echo "For some reason, it was not possible to detect the Panel to be installed, installing by default: Jexactyl Brasil"
         GITHUB_PACKAGE=Next-Panel/Jexactyl-BR
         FILE=panel.tar.gz
     fi
@@ -43,47 +43,47 @@ else
     fi
 fi
 if [ -z "${GIT_ADDRESS}" ]; then
-    if [ -d "/home/container/painel" ]; then
-        printf "\n \n📄  Verificando Instalação...\n \n"
-        printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
-        printf "\n| Painel   | 🟢  Instalado                    |"
+    if [ -d "/home/container/panel" ]; then
+        printf "\n \n📄  Checking Installation...\n \n"
+        printf "+----------+---------------------------------+\n| Task   | Status                          |\n+----------+---------------------------------+"
+        printf "\n| Panel | 🟢  Installed |"
     else
         cat <<EOF >./logs/log_install.txt
-Versão: ${VERSION}
+Version: ${VERSION}
 Git: ${GITHUB_PACKAGE}
 Git_file: ${FILE}
 Link: ${DOWNLOAD_LINK}
-Arquivo: ${DOWNLOAD_LINK##*/}
+File: ${DOWNLOAD_LINK##/}
 EOF
-        printf "\n \n📄  Verificando Instalação...\n \n"
-        printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
-        printf "\n| Painel   | 🟡  Baixando Painel               |\n"
+        printf "\n \n📄  Checking Installation...\n \n"
+        printf "+----------+---------------------------------+\n| Task   | Status                          |\n+----------+---------------------------------+"
+        printf "\n| Panel | 🟡  Downloading Panel |\n"
         curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
-        mkdir painel
-        mv "${DOWNLOAD_LINK##*/}" painel
+        mkdir panel
+        mv "${DOWNLOAD_LINK##*/}" panel
         (
-            cd painel || exit
+            cd panel || exit
             echo -e "Unpacking server files"
             tar -xvzf "${DOWNLOAD_LINK##*/}"
             rm -rf "${DOWNLOAD_LINK##*/}"
             fakeroot chmod -R 755 storage/* bootstrap/cache/
-            fakeroot chown -R nginx:nginx /home/container/painel/*
+            fakeroot chown -R nginx:nginx /home/container/panel/*
         )
         if [ -f "logs/panel_database_instalado" ]; then
-            if [ ! -f "painel/.env" ]; then
-                if [ -f "backups/executado" ]; then
+            if [ ! -f "panel/.env" ]; then
+                if [ -f "backups/executed" ]; then
                     (
-                        cd painel || exit
+                        cd panel || exit
                         composer install --no-interaction --no-dev --optimize-autoloader
                     )
-                    echo "🔴  Uma irregularidade foi encontrada, restaurando .env..."
+                    echo "🔴  An irregularity was found, restoring .env..."
                     (
                         cd backups || exit
-                        cp $(ls .env* -t | head -1) ../painel/.env
+                        cp $(ls .env* -t | head -1) ../panel/.env
                     )
                 else
-                    printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
-                    printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
+                    printf "\n📢 Attention: OH MY GOD WHAT DID YOU DO😱 😱 ??\n🥶 What you did: You may have accidentally or intentionally deleted the panel folder, but according to my information the panel had already been installed \n🫠 dude you're going to have to create a new database if you lost your .env😨\n🔴 TO PROCEED, DELETE THE FILES WITH THE NAME PANEL IN THE LOGS FOLDER SO THAT THE EGG CAN INSTALL CORRECTLY 🔴\n"
+                    printf "\n \n📌 Delete panel files from the logs folder? [y/N]\n \n"
                     read -r response
                     case "$response" in
                     [yY][eE][sS] | [yY])
@@ -96,61 +96,61 @@ EOF
         fi
     fi
 else
-    echo -e "\n \n📌  Usando repo do GitHub"
+    echo -e "\n \n📌 Using GitHub repo"
     if [[ ${GIT_ADDRESS} != *.git ]]; then
         GIT_ADDRESS=${GIT_ADDRESS}.git
     fi
     if [ -z "${USERNAME}" ] && [ -z "${ACCESS_TOKEN}" ]; then
-        echo -e "🤫  Usando chamada de API anonimo."
+        echo -e "🤫  Using anonymous API call."
     else
         GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e "${GIT_ADDRESS}" | cut -d/ -f3-)"
     fi
     ## pull git js bot repo
-    if [ -d "/home/container/painel" ]; then
+    if [ -d "/home/container/panel" ]; then
         (
-            cd painel || exit
+            cd panel || exit
             if [ -d ".git" ]; then
                 if [ -f ".git/config" ]; then
                     ORIGIN=$(git config --get remote.origin.url)
                 else
-                    echo -e "arquivos encontrados sem configuração de git"
-                    echo -e "encerrar sem tocar nas coisas para não quebrar nada"
+                    echo -e "files found without git configuration"
+                    echo -e "exit without touching things to avoid breaking anything"
                     exit 10
                 fi
             fi
             if [ "${ORIGIN}" == "${GIT_ADDRESS}" ]; then
-                echo "📁  Puxando o mais recente do GitHub"
+                echo "📁  Pulling latest from GitHub"
                 git pull --quiet
                 fakeroot chmod -R 755 storage/* bootstrap/cache/
-                fakeroot chown -R nginx:nginx /home/container/painel/*
+                fakeroot chown -R nginx:nginx /home/container/panel/*
             fi
         )
     else
         if [ -z "${BRANCH}" ]; then
-            echo -e "📋  Clonando ramo padrão"
-            git clone --quiet "${GIT_ADDRESS}" ./painel
+            echo -e "📋  Cloning default branch"
+            git clone --quiet "${GIT_ADDRESS}" ./panel
         else
-            echo -e "📋  Clonando ${BRANCH}'"
-            git clone --quiet --single-branch --branch "${BRANCH}" "${GIT_ADDRESS}" ./painel
+            echo -e "📋  Cloning ${BRANCH}'"
+            git clone --quiet --single-branch --branch "${BRANCH}" "${GIT_ADDRESS}" ./panel
         fi
-        fakeroot chmod -R 755 /home/container/painel/storage/* /home/container/painel/bootstrap/cache/
-        fakeroot chown -R nginx:nginx /home/container/painel/*
-        touch ./painel/panel_github_instalado
+        fakeroot chmod -R 755 /home/container/panel/storage/* /home/container/panel/bootstrap/cache/
+        fakeroot chown -R nginx:nginx /home/container/panel/*
+        touch ./panel/panel_github_instalado
         if [ -f "logs/panel_database_instalado" ]; then
-            if [ ! -f "painel/.env" ]; then
-                if [ -f "backups/executado" ]; then
+            if [ ! -f "panel/.env" ]; then
+                if [ -f "backups/executed" ]; then
                     (
-                        cd painel || exit
+                        cd panel || exit
                         composer install --no-interaction --no-dev --optimize-autoloader
                     )
-                    echo "🔴  Uma irregularidade foi encontrada, restaurando .env..."
+                    echo "🔴  An irregularity was found, restoring .env..."
                     (
                         cd backups || exit
-                        cp $(ls .env* -t | head -1) ../painel/.env
+                        cp $(ls .env* -t | head -1) ../panel/.env
                     )
                 else
-                    printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta painel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
-                    printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
+                    printf "\n📢  Attention: OH MY GOD WHAT DID YOU DO😱 😱 ??\n🥶 What you did: You may have accidentally or intentionally deleted the panel folder, but according to my information the panel had already been installed \n🫠 dude you're going to have to create a new database if you lost your .env😨\n🔴 TO PROCEED, DELETE THE FILES WITH THE NAME PANEL IN THE LOGS FOLDER SO THAT THE EGG CAN INSTALL CORRECTLY 🔴\n"
+                    printf "\n \n📌  Delete panel files from the logs folder? [y/N]\n \n"
                     read -r response
                     case "$response" in
                     [yY][eE][sS] | [yY])
@@ -162,18 +162,18 @@ else
             fi
         fi
     fi
-    printf "\n \n📄  Verificando Instalação...\n \n"
-    printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
-    printf "\n| Painel   | 🟡  Puxando arquivos             |"
+    printf "\n \n📄 Checking Installation...\n \n"
+    printf "+----------+---------------------------------+\n| Task | Status |\n+----------+---------------------------------+"
+    printf "\n| Panel | 🟡 Pulling files |"
 fi
-if [ -d "temp" ]; then ## Evita conflitos no painel pelo comando seguinte do git
+if [ -d "temp" ]; then ## Avoid conflicts in the panel by the following git command
     rm -rf temp
 fi
-git clone --quiet https://github.com/Ashu11-A/nginx ./temp ## Sim, ele sempre irá clonar o repo idenpendente de tudo
+git clone --quiet https://github.com/Ashu11-A/nginx ./temp ## Yes, it will always clone the repo regardless of anything
 if [ -f "/home/container/nginx/nginx.conf" ]; then
-    printf "\n| Nginx    | 🟢  Instalado                    |"
+    printf "\n| Nginx | 🟢 Installed |"
 else
-    printf "\n| Nginx    | 🟡  Baixando Nginx...            |"
+    printf "\n| Nginx | 🟡 Downloading Nginx... |"
     cp -r ./temp/nginx ./
     rm nginx/conf.d/default.conf
     curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Paneldactyl/default.conf -o ./nginx/conf.d/default.conf
@@ -182,9 +182,9 @@ else
         nginx/conf.d/default.conf
 fi
 if [ -d "/home/container/php-fpm" ]; then
-    printf "\n| PHP-FPM  | 🟢  Instalado                    |\n+----------+---------------------------------+\n"
+    printf "\n| PHP-FPM | 🟢 Installed |\n+----------+---------------------------------+\n"
 else
-    printf "\n| PHP-FPM  | 🟡  Baixando PHP-FPM...          |\n+----------+---------------------------------+\n"
+    printf "\n| PHP-FPM | 🟡 Downloading PHP-FPM... |\n+----------+---------------------------------+\n"
     cp -r ./temp/php-fpm ./
     echo "extension=\"smbclient.so\"" >php-fpm/conf.d/00_smbclient.ini
     echo 'apc.enable_cli=1' >>php-fpm/conf.d/apcu.ini
@@ -209,52 +209,51 @@ else
 fi
 cp -r ./temp/logs ./
 if [ "${OCC}" == "1" ]; then
-    cd painel || exit
+    cd panel || exit
     php "${COMMANDO_OCC}"
     exit
 else
     if [ -f "logs/panel_database_instalado" ]; then
-        echo "| Env      | 🟢  Configurado                  |"
+        echo "| Env | 🟢 Configured |"
     else
-        if [ ! -f "painel/.env" ]; then
-            if [ -f "backups/executado" ]; then
-                echo "| Env      | 🔴  Restaurando .env...          |"
+        if [ ! -f "panel/.env" ]; then
+            if [ -f "backups/executed" ]; then
+                echo "| Env | 🔴 Restoring .env... |"
                 (
                     cd backups || exit
-                    cp $(ls .env* -t | head -1) ../painel/.env
+                    cp $(ls .env* -t | head -1) ../panel/.env
                 )
             fi
             (
-                cd painel || exit
-                printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
+                cd panel || exit
+                printf "\n \n⚙️ Executing: cp .env.example .env\n \n"
                 cp .env.example .env
             )
         fi
     fi
     (
-        cd painel || exit
+        cd panel || exit
         if [[ -f "../logs/panel_composer_instalado" ]]; then
-            echo "| Composer | 🟢  Instalado                    |"
+            echo "| Composer | 🟢 Installed |"
         else
-            printf "\n \n⚙️  Executando: composer install --no-interaction --no-dev --optimize-autoloader\n \n"
+            printf "\n \n⚙️ Executing: composer install --no-interaction --no-dev --optimize-autoloader\n \n"
             composer install --no-interaction --no-dev --optimize-autoloader
             touch ../logs/panel_composer_instalado
         fi
         if [[ -f "../logs/panel_key_generate_instalado" ]]; then
-            echo "| Key      | 🟢  Gerada                       |"
+            echo "| Key | 🟢 Generated |"
         else
-            printf "\n \n⚙️  Executando: php artisan key:generate --force\n \n"
+            printf "\n \n⚙️ Executing: php artisan key:generate --force\n \n"
             php artisan key:generate --force
             touch ../logs/panel_key_generate_instalado
         fi
-
         if [[ -f "../logs/panel_setup_instalado" ]]; then
-            echo "| Setup    | 🟢  Configurado                  |"
+            echo "| Setup    | 🟢  Configured                   |"
         else
-            printf "\n \n⚙️  Executando: php artisan p:environment:setup\n \n"
+            printf "\n \n⚙️  Executing: php artisan p:environment:setup\n \n"
             php artisan p:environment:setup
             touch ../logs/panel_setup_instalado
-            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
+            printf "\n \n📌  Run the previous command again? [y/N]\n \n"
             read -r response
             case "$response" in
             [yY][eE][sS] | [yY])
@@ -264,28 +263,28 @@ else
             esac
         fi
         if [[ -f "../logs/panel_database_instalado" ]]; then
-            echo "| Database | 🟢  Configurado                  |"
+            echo "| Database | 🟢  Configured                   |"
         else
-            printf "\n \n⚙️  Executando: php artisan p:environment:database\n \n"
+            printf "\n \n⚙️  Executing: php artisan p:environment:database\n \n"
             php artisan p:environment:database
             touch ../logs/panel_database_instalado
-            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
+            printf "\n \n📌  Run the previous command again? [y/N]\n \n"
             read -r response
             case "$response" in
             [yY][eE][sS] | [yY])
                 php artisan p:environment:database
                 ;;
             *)
-                printf "\n \n⚙️  Executando: php artisan migrate --seed --force\n \n"
+                printf "\n \n⚙️  Executing: php artisan migrate --seed --force\n \n"
                 ;;
             esac
         fi
         if [[ -f "../logs/panel_database_migrate_instalado" ]]; then
-            echo "| Migração | 🟢  Concluído                    |"
+            echo "| Migration | 🟢  Completed                    |"
         else
             php artisan migrate --seed --force
             touch ../logs/panel_database_migrate_instalado
-            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
+            printf "\n \n📌  Run the previous command again? [y/N]\n \n"
             read -r response
             case "$response" in
             [yY][eE][sS] | [yY])
@@ -295,12 +294,12 @@ else
             esac
         fi
         if [[ -f "../logs/panel_user_instalado" ]]; then
-            echo "| Usuário  | 🟢  Criado                       |"
+            echo "| User     | 🟢  Created                      |"
         else
-            printf "\n \n⚙️  Executando: php artisan p:user:make\n \n"
+            printf "\n \n⚙️  Executing: php artisan p:user:make\n \n"
             php artisan p:user:make
             touch ../logs/panel_user_instalado
-            printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
+            printf "\n \n📌  Run the previous command again? [y/N]\n \n"
             read -r response
             case "$response" in
             [yY][eE][sS] | [yY])
@@ -312,16 +311,16 @@ else
     )
     if [[ -f "./logs/panel_instalado" ]]; then
         echo "+----------+---------------------------------+"
-        printf "\n \n📑  Verificação do Painel Concluída...\n \n"
+        printf "\n \n📑  Panel Verification Completed...\n \n"
     else
-        printf "\n \n⚙️  Executando: Atribuição de permissões\n \n"
-        fakeroot chown -R nginx:nginx /home/container/painel/*
-        printf "\n \n⚙️  Instalação do painel concluída\n \n"
+        printf "\n \n⚙️  Executing: Permission Assignment\n \n"
+        fakeroot chown -R nginx:nginx /home/container/panel/*
+        printf "\n \n⚙️  Panel installation completed\n \n"
         touch ./logs/panel_instalado
     fi
 fi
 
-#Executando Limpeza
+#Cleaning Up
 if [ -d "tmp" ]; then
     rm -rf tmp/*
 fi
@@ -342,26 +341,26 @@ if [ -f ".yarnrc" ]; then
 fi
 
 if [ "${DEVELOPER}" = "1" ]; then
-    echo -e "🪄  Modo Desenvolvedor Ativo"
+    echo -e "🪄 Developer Mode Active"
     (
-        cd "painel" || exit
-        echo -e "\n \n🔒  Executando Permições das pastas storage e bootstrap/cache/\n \n"
+        cd "panel" || exit
+        echo -e "\n \n🔒 Running Permissions for storage and bootstrap/cache/ folders\n \n"
         fakeroot chmod -R 755 storage/* bootstrap/cache/
-        echo -e "\n \n🎼  Executando Composer\n \n"
+        echo -e "\n \n🎼 Running Composer\n \n"
         composer install --no-dev --optimize-autoloader
-        echo -e "\n \n📂  Executando Migração do Banco de Dados\n \n"
+        echo -e "\n \n📂 Running Database Migration\n \n"
         php artisan migrate --seed --force
-        echo -e "\n \n📂  Executando Limpeza de Cache/View/Route\n \n"
-        php artisan view:clear 
-        php artisan cache:clear 
+        echo -e "\n \n📂 Running Cache/View/Route Clear\n \n"
+        php artisan view:clear
+        php artisan cache:clear
         php artisan route:clear
-        echo -e "\n \n🔒  Executando Permições da pasta home painel\n \n"
-        fakeroot chown -R nginx:nginx /home/container/painel/*
+        echo -e "\n \n🔒 Running Permissions for home/panel folder\n \n"
+        fakeroot chown -R nginx:nginx /home/container/panel/*
     )
 fi
 
-if [ -f "./painel/panel_github_instalado" ]; then
-    echo -e "❗️  Você está usando um painel puxado do GitHub, será necessário executar o comando ${bold}${lightblue}build${normal}, pois o servidor irá retornar erro 500.\n \n"
+if [ -f "./panel/panel_github_instalado" ]; then
+    echo -e "❗️ You are using a panel pulled from GitHub, you need to run the ${bold}${lightblue}build${normal} command as the server will return error 500.\n \n"
 fi
 
 if [ -z "$BACKUP" ] || [ "$BACKUP" == "1" ]; then
@@ -369,26 +368,26 @@ if [ -z "$BACKUP" ] || [ "$BACKUP" == "1" ]; then
         if [ ! -d "backups" ]; then
             mkdir backups
         fi
-        if [ ! -f "backups/executado" ]; then
-            touch backups/executado
+        if [ ! -f "backups/executed" ]; then
+            touch backups/executed
             sleep 5
         fi
-        cp painel/.env backups/.env-$(date +%F-%Hh%Mm)
-        echo "🟢  Backup do .env realizado!"
-        echo "⚠️  Backups com mais de 1 semana serão deletados automaticamente!"
-        find ./backups/ -mindepth 1 -not -name "executado" -mtime +7 -delete
+        cp panel/.env backups/.env-$(date +%F-%Hh%Mm)
+        echo "🟢 Backup of .env completed!"
+        echo "⚠️ Backups older than 1 week will be automatically deleted!"
+        find ./backups/ -mindepth 1 -not -name "executed" -mtime +7 -delete
     else
-        echo "Database não instalado, pulando backup do .env"
+        echo "Database not installed, skipping .env backup"
     fi
 else
-    echo "🟠  Sistema de backups está desativado, caso perca seu .env, você não terá mais acesso ao seu Database!"
+    echo "🟠 Backup system is disabled, if you lose your .env file, you will no longer have access to your Database!"
 fi
 
 if [[ -f "./logs/panel_instalado" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Paneldactyl/version.sh)
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Paneldactyl/launch.sh)
 else
-    echo "Algo muito errado aconteceu."
+    echo "Something went very wrong."
 fi
 
 : <<'LIMBO'

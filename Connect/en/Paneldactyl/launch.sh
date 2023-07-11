@@ -39,153 +39,152 @@ printf "
 |_|       \_||_||_| |_| \____)|_| \____| \_||_| \____) \___) \__  ||_|
                                                             (____/    
 \n \n"
-echo "🟢  Iniciando PHP-FPM..."
+echo "🟢 Starting PHP-FPM..."
 nohup /usr/sbin/php-fpm81 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize >/dev/null 2>&1 &
 
-echo "🟢  Iniciando Nginx..."
+echo "🟢 Starting Nginx..."
 nohup /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/ >/dev/null 2>&1 &
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
-    MGM="na porta ${SERVER_PORT}"
+    MGM="on port ${SERVER_PORT}"
 else
-    MGM="em ${SERVER_IP}:${SERVER_PORT}"
+    MGM="on ${SERVER_IP}:${SERVER_PORT}"
 fi
-echo "🟢  Inicializado com sucesso ${MGM}..."
-echo "🟢  Iniciando worker do painel.."
+echo "🟢 Started successfully ${MGM}..."
+echo "🟢 Starting panel worker..."
 nohup php /home/container/painel/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3 >/dev/null 2>&1 &
-echo "🟢  Iniciando cron..."
+echo "🟢 Starting cron..."
 nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Paneldactyl/cron.sh) >/dev/null 2>&1 &
 
-echo "📃  Comandos Disponíveis: ${bold}${lightblue}composer${normal}, ${bold}${lightblue}setup${normal}, ${bold}${lightblue}database${normal}, ${bold}${lightblue}migrate${normal}, ${bold}${lightblue}user${normal}, ${bold}${lightblue}build${normal}, ${bold}${lightblue}reinstall${normal}. Use ${bold}${lightblue}help${normal} para saber mais..."
+echo "📃 Available Commands: ${bold}${lightblue}composer${normal}, ${bold}${lightblue}setup${normal}, ${bold}${lightblue}database${normal}, ${bold}${lightblue}migrate${normal}, ${bold}${lightblue}user${normal}, ${bold}${lightblue}build${normal}, ${bold}${lightblue}reinstall${normal}. Use ${bold}${lightblue}help${normal} for more information..."
 
 while read -r line; do
     if [[ "$line" == "help" ]]; then
-        echo "Comandos Disponíveis:"
+        echo "Available Commands:"
         echo "
 +-----------+---------------------------------------+
-| Comando   |  O que Faz                            |
+| Command   | What it Does                          |
 +-----------+---------------------------------------+
-| composer  |  Instalar pacotes do Composer         |
-| setup     |  Configurações basicas do Painel      |
-| database  |  Configurar Banco de Dados            |
-| migrate   |  Migração de banco de dados           |
-| user      |  Criar usuário                        |
-| build     |  Builda o painel com Yarn             |
-| reinstall |  Reinstala algo ou tudo               |
+| composer  | Install Composer packages             |
+| setup     | Set up basic panel configurations     |
+| database  | Configure the Database                |
+| migrate   | Migrate the Database                  |
+| user      | Create a user                         |
+| build     | Build the panel with Yarn             |
+| reinstall | Reinstall something or everything     |
 +-----------+---------------------------------------+
-        "
+"
     elif [[ "$line" == "composer" ]]; then
-
-        Comando1="${composer_start}"
-        echo "Instalando pacotes do Composer: ${bold}${lightblue}${Comando1}"
-        eval "cd /home/container/painel && $Comando1 && cd .."
-        printf "\n \n✅  Comando Executado\n \n"
+        Command1="${composer_start}"
+        echo "Installing Composer packages: ${bold}${lightblue}${Command1}"
+        eval "cd /home/container/painel && $Command1 && cd .."
+        printf "\n \n✅  Command Executed\n \n"
     elif [[ "$line" == "setup" ]]; then
 
-        Comando2="${setup_start}"
-        echo "Configurando ambiente do painel: ${bold}${lightblue}${Comando2}"
-        eval "cd /home/container/painel && $Comando2 && cd .."
-        printf "\n \n✅  Comando Executado\n \n"
+        Command2="${setup_start}"
+        echo "Setting up panel environment: ${bold}${lightblue}${Command2}"
+        eval "cd /home/container/painel && $Command2 && cd .."
+        printf "\n \n✅  Command Executed\n \n"
 
     elif [[ "$line" == "database" ]]; then
 
-        Comando3="${database_start}"
-        echo "Configurando ambiente do painel: ${bold}${lightblue}${Comando3}"
-        eval "cd /home/container/painel && $Comando3 && cd .."
-        printf "\n \n✅  Comando Executado\n \n"
+        Command3="${database_start}"
+        echo "Setting up database environment: ${bold}${lightblue}${Command3}"
+        eval "cd /home/container/painel && $Command3 && cd .."
+        printf "\n \n✅  Command Executed\n \n"
 
     elif [[ "$line" == "migrate" ]]; then
 
-        Comando4="${migrate_start}"
-        echo "Migrando banco de dados: ${bold}${lightblue}${Comando4}"
-        eval "cd /home/container/painel && $Comando4 && cd .."
-        printf "\n \n✅  Comando Executado\n \n"
+        Command4="${migrate_start}"
+        echo "Migrating the database: ${bold}${lightblue}${Command4}"
+        eval "cd /home/container/painel && $Command4 && cd .."
+        printf "\n \n✅  Command Executed\n \n"
 
     elif [[ "$line" == "${user_make}" ]]; then
 
-        Comando5="${user_start}"
-        echo "Criando usuário: ${bold}${lightblue}${Comando5}"
-        eval "cd /home/container/painel && $Comando5 && cd .."
-        printf "\n \n✅  Comando Executado\n \n"
+        Command5="${user_start}"
+        echo "Creating user: ${bold}${lightblue}${Command5}"
+        eval "cd /home/container/painel && $Command5 && cd .."
+        printf "\n \n✅  Command Executed\n \n"
 
     elif [[ "$line" == "${yarn}" ]]; then
 
-        Comando6="${yarn_start}"
-        echo "Buildando painel: ${bold}${lightblue}${Comando6}"
-        echo -e "\n \n⚠️  São necessários no mínimo 2 GB de memória RAM"
-        echo -e "📃  Memoria RAM disponivel: ${bold}${lightblue}${SERVER_MEMORY} MB\n \n"
-        eval "cd /home/container/painel && $Comando6 && cd .."
-        printf "\n \n✅  Comando Executado\n \n"
+        Command6="${yarn_start}"
+        echo "Building panel: ${bold}${lightblue}${Command6}"
+        echo -e "\n \n⚠️  At least 2 GB of RAM are required"
+        echo -e "📃  Available RAM: ${bold}${lightblue}${SERVER_MEMORY} MB\n \n"
+        eval "cd /home/container/painel && $Command6 && cd .."
+        printf "\n \n✅  Command Executed\n \n"
 
     elif [[ "$line" == "reinstall" ]]; then
-        echo -e "❗️  \e[1m\e[94mEsse Comando necessita de uma opção use:\n \n${bold}${lightblue}reinstall all ${normal}(reinstala o painel, nginx, php-fpm)\n \n${bold}${lightblue}reinstall painel ${normal}(reinstala somente o painel)\n \n${bold}${lightblue}reinstall nginx ${normal}(reinstala somente o nginx) \n \n${bold}${lightblue}reinstall php-fpm ${normal}(reinstala somente o php-fpm)"
+        echo -e "❗️  \e[1m\e[94mThis Command requires an option, use:\n \n${bold}${lightblue}reinstall all ${normal}(reinstall panel, nginx, php-fpm)\n \n${bold}${lightblue}reinstall painel ${normal}(reinstall only the panel)\n \n${bold}${lightblue}reinstall nginx ${normal}(reinstall only nginx) \n \n${bold}${lightblue}reinstall php-fpm ${normal}(reinstall only php-fpm)"
 
     elif [[ "$line" == "${reinstall_a}" ]]; then
 
-        echo "📌  Reinstalando o painel, nginx e php-fpm..."
-        printf "\n \n⚠️  Tem certeza que deseja Reinstalar? [y/N]\n \n"
+        echo "📌  Reinstalling panel, nginx, and php-fpm..."
+        printf "\n \n⚠️  Are you sure you want to Reinstall? [y/N]\n \n"
         read -r response
         case "$response" in
         [yY][eE][sS] | [yY])
             ${reinstall_a_start}
-            printf "\n \n✅  Comando Executado\n \n"
+            printf "\n \n✅  Command Executed\n \n"
             exit
             ;;
         *)
-            printf "\n \n❌  Comando Não Executado\n \n"
+            printf "\n \n❌  Command Not Executed\n \n"
             ;;
         esac
 
     elif [[ "$line" == "${reinstall_p}" ]]; then
 
-        echo "📌  Reinstalando o Painel..."
-        printf "\n \n⚠️  Tem certeza que deseja Reinstalar? [y/N]\n \n"
+        echo "📌  Reinstalling the Panel..."
+        printf "\n \n⚠️  Are you sure you want to Reinstall? [y/N]\n \n"
         read -r response
         case "$response" in
         [yY][eE][sS] | [yY])
             ${reinstall_p_start}
-            printf "\n \n✅  Comando Executado\n \n"
+            printf "\n \n✅  Command Executed\n \n"
             exit
             ;;
         *)
-            printf "\n \n❌  Comando Não Executado\n \n"
+            printf "\n \n❌  Command Not Executed\n \n"
             ;;
         esac
 
     elif [[ "$line" == "${reinstall_n}" ]]; then
 
-        echo "📌  Reinstalando o Nginx..."
-        printf "\n \n⚠️  Tem certeza que deseja Reinstalar? [y/N]\n \n"
+        echo "📌  Reinstalling Nginx..."
+        printf "\n \n⚠️  Are you sure you want to Reinstall? [y/N]\n \n"
         read -r response
         case "$response" in
         [yY][eE][sS] | [yY])
             ${reinstall_n_start}
-            printf "\n \n✅  Comando Executado\n \n"
+            printf "\n \n✅  Command Executed\n \n"
             exit
             ;;
         *)
-            printf "\n \n❌  Comando Não Executado\n \n"
+            printf "\n \n❌  Command Not Executed\n \n"
             ;;
         esac
 
     elif [[ "$line" == "${reinstall_f}" ]]; then
 
-        echo "📌  Reinstalando o PHP-FPM..."
-        printf "\n \n⚠️  Tem certeza que deseja Reinstalar? [y/N]\n \n"
+        echo "📌  Reinstalling PHP-FPM..."
+        printf "\n \n⚠️  Are you sure you want to Reinstall? [y/N]\n \n"
         read -r response
         case "$response" in
         [yY][eE][sS] | [yY])
             ${reinstall_f_start}
-            printf "\n \n✅  Comando Executado\n \n"
+            printf "\n \n✅  Command Executed\n \n"
             exit
             ;;
         *)
-            printf "\n \n❌  Comando Não Executado\n \n"
+            printf "\n \n❌  Command Not Executed\n \n"
             ;;
         esac
 
     elif [ "$line" != "${composer}" ] || [ "$line" != "${setup}" ] || [ "$line" != "${database}" ] || [ "$line" != "${migrate}" ] || [ "$line" != "${user_make}" ] || [ "$line" != "${yarn}" ]; then
-        echo "Comando Invalido, oque vocẽ está tentando fazer? tente ${bold}${lightblue}help"
+        echo "Invalid Command, what are you trying to do? Try ${bold}${lightblue}help"
     else
-        echo "Script Falhou."
+        echo "Script Failed."
     fi
 done

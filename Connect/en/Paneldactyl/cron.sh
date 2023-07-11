@@ -16,7 +16,7 @@ do
 
     if [ "$HORA" == "$HORA_CERTA" ]; then
       cp painel/.env backups/.env-$(date +%F-%Hh%Mm)
-      find ./backups/ -mindepth 1 -not -name "executado" -mtime +7 -delete # executa o script desejado
+      find ./backups/ -mindepth 1 -not -name "executed" -mtime +7 -delete # executa o script desejado
     fi
 
   php /home/container/painel/artisan schedule:run >> /dev/null 2>&1 && /bin/bash /crontab_test.sh
