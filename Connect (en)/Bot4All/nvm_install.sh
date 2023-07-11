@@ -2,9 +2,8 @@
 # shellcheck source=/dev/null
 source "/home/container/.nvm/nvm.sh"
 
-echo -e "\n \n📝  Qual versão do nodejs você deseja utilizar (12, 14, 16, 18, 20) (pressione [ENTER]): \n \n"
+echo -e "\n \n📝  Which version of Node.js do you want to use (12, 14, 16, 18, 20) (press [ENTER]): \n \n"
 while read -r VERSION; do
-
     if [[ "$VERSION" =~ ^(12|14|16|18|20)$ ]]; then
         if [[ "$VERSION" == "12" ]]; then
             NODE_VERSION="12.22.9"
@@ -18,8 +17,8 @@ while read -r VERSION; do
             NODE_VERSION="20.0.0"
         fi
         echo "$VERSION" >logs/nodejs_version
-        echo -e "\n \n👍  Blz, salvei a versão $VERSION aqui!\n \n"
-        echo -e "\n \n🫵  Você pode alterar a versão usando o comando: ${bold}${lightblue}version.\n \n"
+        echo -e "\n \n👍  Alright, I saved version $VERSION here!\n \n"
+        echo -e "\n \n🫵  You can change the version using the command: ${bold}${lightblue}version.\n \n"
 
         if [[ -f "logs/nodejs_version" ]]; then
             echo "${NODE_VERSION}"
@@ -28,7 +27,7 @@ while read -r VERSION; do
                 nvm use "${NODE_VERSION}"
                 exit
             else
-                echo -e "\n \n⚠️  Versão não identificada, usando nvm padrão (v18).\n \n"
+                echo -e "\n \n⚠️  Unidentified version, using default nvm (v18).\n \n"
                 nvm install "18.16.0"
                 nvm use "18.16.0"
                 exit
@@ -36,6 +35,6 @@ while read -r VERSION; do
         fi
         break
     else
-        echo -e "\n \n🥶  Versão não encontrada, somente as versões: 12, 14, 16, 18, 20 estão disponiveis\n \n"
+        echo -e "\n \n🥶  Version not found, only versions 12, 14, 16, 18, 20 are available.\n \n"
     fi
 done

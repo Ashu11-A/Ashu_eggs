@@ -1,5 +1,5 @@
 #!/bin/bash
-echo -e "\n \n🔎  Pacotes Instalados: 
+echo -e "\n \n🔎 Installed Packages:
 jq file unzip wget ncurses tar
 sqlite3 libsqlite3-dev python3
 libressl-dev nvm node npm bash
@@ -9,21 +9,20 @@ python3-dev libtool iputils-ping
 ffmpeg tesseract figlet dnsutils\n \n"
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
-    MGM="na porta ${SERVER_PORT}"
+    MGM="on port ${SERVER_PORT}"
 else
-    MGM="em ${SERVER_IP}:${SERVER_PORT}"
+    MGM="at ${SERVER_IP}:${SERVER_PORT}"
 fi
-echo "🟢  Estou rodando ${MGM}..."
+echo "🟢  I am running ${MGM}..."
 
 (
     if [ -n "${GIT_ADDRESS}" ] && [ -d .git ] || [ "${AUTO_UPDATE}" == "1" ]; then
-        echo "Executando: git pull"
+        echo "Running: git pull"
         git pull
     fi
     if [[ ! -z ${NODE_PACKAGES} ]]; then
         npm install ${NODE_PACKAGES}
     fi
-
     if [[ ! -z ${UNNODE_PACKAGES} ]]; then
         npm uninstall ${UNNODE_PACKAGES}
     fi
@@ -34,103 +33,98 @@ echo "🟢  Estou rodando ${MGM}..."
     fi
 )
 
-echo -e "\n \n📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}start ${normal}, ${bold}${lightblue}show ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]...\n \n"
+echo -e "\n \n📃  Available Commands: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}start ${normal}, ${bold}${lightblue}show ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] or ${bold}${lightblue}node ${normal}[your code]...\n \n"
 
-echo -e "\n \n🔒  Sistema antiqueda inicializando...\n \n"
+echo -e "\n \n🔒  Initializing fail-safe system...\n \n"
 nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nobreak.sh) &
 
 while read -r line; do
     if [[ "$line" == "help" ]]; then
-        echo "👀  Comandos Disponíveis:"
+        echo "👀  Available Commands:"
         echo "
-+------------+---------------------------------------+
-| Comando    |  O que Faz                            |
-+------------+---------------------------------------+
-| version    |  Troca a versão do Nodejs             |
-| start      |  Troca a Inicialização do bot         |
-| show       |  Mostra as logs do bot                |
-| npm        |  Executa qualquer comando do npm      |
-| node       |  Executa qualquer comando do nodejs   |
-+------------+---------------------------------------+
-        "
-    elif [[ "$line" == *"npm"* ]]; then
-        echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
++---------+---------------------------+
+| Command | What It Does              |
++---------+---------------------------+
+| version | Change Nodejs version     |
+| start   | Change Bot Initialization |
+| show    | Show bot logs             |
+| npm     | Run any npm command       |
+| node    | Run any nodejs command    |
++---------+---------------------------+
+"
+    elif [[ "$line" == "npm" ]]; then
+        echo -e "\n \nRunning: ${bold}${lightblue}${line}\n \n"
         (
-
             eval "$line"
         )
-        echo -e "\n \n✅  Comando Executado\n \n"
-    elif [[ "$line" == *"node"* ]]; then
-        echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
+        echo -e "\n \n✅  Command Executed\n \n"
+    elif [[ "$line" == "node" ]]; then
+        echo -e "\n \nRunning: ${bold}${lightblue}${line}\n \n"
         (
-
             eval "$line"
         )
-        echo -e "\n \n✅  Comando Executado\n \n"
+        echo -e "\n \n✅  Command Executed\n \n"
     elif [[ "$line" == "show" ]]; then
-        echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
+        echo -e "\n \nRunning: ${bold}${lightblue}${line}\n \n"
         (
-
             eval "tail -n 40 log_egg.txt"
         )
-        echo -e "\n \n✅  Comando Executado\n \n"
-    elif [[ "$line" == *"version"* ]]; then
+        echo -e "\n \n✅  Command Executed\n \n"
+    elif [[ "$line" == "version" ]]; then
         if [ -z "${NVM_STATUS}" ] || [ "${NVM_STATUS}" = "1" ]; then
             if [[ -d ".nvm" ]]; then
                 bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/nvm_install.sh)
                 exit
                 exit
             else
-                echo -e "\n \n⚠️  NVM não instalado, será necessario reinstalar o servidor...\n \n"
+                echo -e "\n \n⚠️  NVM not installed, server needs to be reinstalled...\n \n"
             fi
         else
-            printf "\n \n📢  NVM está desativado! você não poderá trocar a versão do Nodejs, ative ele e reinstale o servidor. \n \n"
+            printf "\n \n📢  NVM is disabled! You cannot change the Nodejs version, enable it and reinstall the server. \n \n"
         fi
-    elif [[ "$line" == *"start"* ]]; then
-        echo -e "\n \n📝  Qual o tipo de inicialização que você deseja utilizar?\n [1]: Expecificar somente o arquivo (EX: bot.js)\n (funcionará assim: node MEU_ARQUIVO.sh)\n [2]: Inicialição por comando (EX: npm run start) (pressione [ENTER]): \n \n"
+    elif [[ "$line" == "start" ]]; then
+        echo -e "\n \n📝  What type of initialization do you want to use?\n [1]: Specify only the file (e.g., bot.js)\n (it will work like this: node YOUR_FILE.sh)\n [2]: Command-based initialization (e.g., npm run start) (press [ENTER]): \n \n"
         while read -r START; do
             if [[ "$START" =~ ^(1|2)$ ]]; then
                 echo "$START" >logs/start-ini
                 if [ -f "logs/start-set" ]; then
                     rm logs/start-set
                 fi
-                echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
-                echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
+                echo -e "\n \n👌  OK, saved ($START) here!\n"
+                echo -e "🫵  You can change this using the command: ${bold}${lightblue}start\n \n"
                 exit
             else
-                echo -e "\n \n😅  Por favor, selecione a forma de inicialização com 1 ou 2\n \n"
+                echo -e "\n \n😅  Please select the initialization method with 1 or 2\n \n"
             fi
         done
         exit
         exit
-    elif [[ "$line" != *"npm"* ]] || [[ "$line" != *"node"* ]] || [[ "$line" != *"show"* ]] || [[ "$line" != *"version"* ]] || [[ "$line" != *"start"* ]]; then
-        echo -e "\n \nComando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}help${normal}, ${bold}${lightblue}version${normal}, ${bold}${lightblue}start-conf${normal},${bold}${lightblue}show${normal},${bold}${lightblue}npm ${normal}ou ${bold}${lightblue}node.\n \n"
+    elif [[ "$line" != "npm" ]] || [[ "$line" != "node" ]] || [[ "$line" != "show" ]] || [[ "$line" != "version" ]] || [[ "$line" != "start" ]]; then
+        echo -e "\n \nInvalid Command. What are you trying to do? Try something with ${bold}${lightblue}help${normal}, ${bold}${lightblue}version${normal}, ${bold}${lightblue}start-conf${normal}, ${bold}${lightblue}show${normal}, ${bold}${lightblue}npm ${normal}or ${bold}${lightblue}node.\n \n"
     else
-        echo "Script Falhou."
+        echo "Script Failed."
     fi
 done
-
 : <<'LIMBO'
 start="$(cat logs/start-conf)"
 (
-    
     nohup node ${start} >log_egg.txt 2>&1 &
 
     pid=$!
     sleep 5
 
     if ps -p $pid >/dev/null; then
-        echo "✅  Servidor iniciado com sucesso!"
+        echo "✅  Server started successfully!"
     else
-        echo "⛔️  Erro ao iniciar o servidor com nodejs! Tentando usar npm."
+        echo "⛔️  Error starting server with nodejs! Trying to use npm."
         nohup npm start >log_egg.txt &
 
         pid=$!
         sleep 5
         if ps -p $pid >/dev/null; then
-            echo "✅  Servidor iniciado com sucesso!"
+            echo "✅  Server started successfully!"
         else
-            echo "⛔️  Erro ao iniciar o servidor com npm e nodejs!"
+            echo "⛔️  Error starting server with npm and nodejs!"
         fi
     fi
 )
