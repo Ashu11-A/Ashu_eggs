@@ -9,7 +9,7 @@
 ![Comitts Year](https://img.shields.io/github/commit-activity/y/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=f9e2af&logoColor=f9e2af)
 ![reposize-info](https://img.shields.io/github/repo-size/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=90dceb)
 
-[**🇺🇸 English version**](./ReadmeEN.md)
+[**🇺🇸 English version**](./Readme-EN.md)
 
 </div>
 <div align="left">
