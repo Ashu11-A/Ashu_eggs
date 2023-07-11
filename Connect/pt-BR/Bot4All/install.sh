@@ -1,0 +1,194 @@
+#!/bin/bash
+# shellcheck source=/dev/null
+bold=$(echo -en "\e[1m")
+lightblue=$(echo -en "\e[94m")
+normal=$(echo -en "\e[0m")
+lolcat=/usr/games/lolcat
+
+export bold
+export lightblue
+export normal
+
+echo -e "\n \n$(figlet -c -f slant -t -k "Bot4All")\n                                         by Ashu (BotForAll)" | $lolcat
+
+if [ ! -d "./logs" ]; then
+    mkdir ./logs
+fi
+
+if [ -z "${NVM_STATUS}" ] || [ "${NVM_STATUS}" = "1" ]; then
+    if [[ -d ".nvm" ]]; then
+        if [ ! -f "logs/nodejs_version" ]; then
+            bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Bot4All/nvm_install.sh)
+        fi
+
+        ######################################## Inicialização do NVM
+        source "/home/container/.nvm/nvm.sh"
+        NVM_DIR=/home/container/.nvm
+        VERSION="$(cat logs/nodejs_version)"
+
+        if [[ "$VERSION" == "12" ]]; then
+            NODE_VERSION="12.22.9"
+        elif [[ "$VERSION" == "14" ]]; then
+            NODE_VERSION="14.21.3"
+        elif [[ "$VERSION" == "16" ]]; then
+            NODE_VERSION="16.20.0"
+        elif [[ "$VERSION" == "18" ]]; then
+            NODE_VERSION="18.16.0"
+        elif [[ "$VERSION" == "20" ]]; then
+            NODE_VERSION="20.0.0"
+        else
+            echo -e "\n \n🥶 Versão não encontrada, usando a versão 18\n \n"
+            NODE_VERSION="18.16.0"
+        fi
+
+        if [[ -f "logs/nodejs_version" ]]; then
+            if [ -n "${NODE_VERSION}" ]; then
+                nvm install "${NODE_VERSION}"
+                nvm use "${NODE_VERSION}"
+            else
+                echo -e "\n \n⚠️  Versão não identificada, usando nvm padrão (v18).\n \n"
+                nvm install "18.16.0"
+                nvm use "18.16.0"
+            fi
+        fi
+
+        export NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
+        export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
+    ######################################## FINAL
+    else
+        echo -e "\n \n⚠️  NVM não instalado, será necessario reinstalar o servidor...\n \n"
+    fi
+fi
+
+if [ -n "${GIT_ADDRESS}" ]; then
+    echo -e "\n \n📌  Usando repo do GitHub\n \n"
+    ## add git ending if it's not on the address
+    if [[ ${GIT_ADDRESS} != *.git ]]; then
+        GIT_ADDRESS=${GIT_ADDRESS}.git
+    fi
+    if [ -z "${USERNAME}" ] && [ -z "${ACCESS_TOKEN}" ]; then
+        echo -e "\n \n🤫  Usando chamada de API anonimo.\n \n"
+    else
+        GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
+    fi
+    ## pull git js bot repo
+    if ls -A ./ | grep -v -E '(^\.nvm$|^logs$|^install.sh$|^\.npm$|^code$|^\..*rc$)' >/dev/null; then
+        echo -e "O diretório '/home/container/' não está vazio."
+        if [ -d .git ]; then
+            echo -e ".git Diretório existe"
+            if [ -f .git/config ]; then
+                echo -e "loading info from git config"
+                ORIGIN=$(git config --get remote.origin.url)
+            else
+                echo -e "files found with no git config"
+                echo -e "closing out without touching things to not break anything"
+            fi
+        fi
+        if [ "${ORIGIN}" == "${GIT_ADDRESS}" ]; then
+            echo "pulling latest from github"
+            git pull
+        fi
+    else
+        echo -e "'/home/container/' está vazia.\nClonando de arquivos no repositório"
+        if [ -z ${BRANCH} ]; then
+            echo -e "cloning default branch"
+            git clone ${GIT_ADDRESS} code
+            cp -R code/* ./
+            rm -rf code
+        else
+            echo -e "cloning ${BRANCH}'"
+            git clone --single-branch --branch ${BRANCH} ${GIT_ADDRESS} code
+            cp -R code/* ./
+            rm -rf code
+        fi
+    fi
+    if [[ ! -z ${NODE_PACKAGES} ]]; then
+        echo "📦  Instalando pacotes NodeJS"
+        npm install ${NODE_PACKAGES}
+    fi
+
+    if [ ! -d "./node_modules" ]; then
+        if [ -f ./package.json ]; then
+            echo "📦  Instalando pacotes NodeJS"
+            npm install
+        fi
+    fi
+else
+    echo -e "\n \n📌  Repositório git não especificado, usando metodo Upload.\n \n"
+    if [[ ! -z ${NODE_PACKAGES} ]]; then
+        echo "Instalando pacotes NodeJS"
+        npm install ${NODE_PACKAGES}
+    fi
+    if [ ! -d "./node_modules" ]; then
+        if [ -f ./package.json ]; then
+            npm install
+        fi
+    fi
+fi
+
+if [ ! -f "logs/start-ini" ]; then
+    echo -e "\n \n📝  Qual o tipo de inicialização que você deseja utilizar?\n [1]: Expecificar somente o arquivo (EX: bot.js) (funcionará assim: node MEU_ARQUIVO.sh)\n [2]: Inicialição por comando (EX: npm run start)\n [Selecione 1 ou 2 e pressione [ENTER]): \n \n"
+    while read -r START; do
+        if [[ "$START" =~ ^(1|2)$ ]]; then
+            echo "$START" >logs/start-ini
+            if [ -f "logs/start-set" ]; then
+                rm logs/start-set
+            fi
+            echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
+            echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
+            exit
+        else
+            echo -e "\n \n😅  Por favor, selecione a forma de inicialização com 1 ou 2\n \n"
+        fi
+    done
+fi
+
+if [ ! -f "logs/start-set" ]; then
+    if [ "$(cat logs/start-ini)" = "1" ]; then
+        echo -e "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (EX: bot.js, index.js...) (pressione [ENTER]): \n \n"
+        read -r START
+        echo "$START" >logs/start-conf
+        touch logs/start-set
+        echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
+        echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
+    else
+        echo -e "\n \n📝  Qual o comando de inicialização que deseja utilizar? (EX: npm run start) (pressione [ENTER]): \n \n"
+        read -r START
+        echo "$START" >logs/start-conf
+        touch logs/start-set
+        echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
+        echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
+    fi
+fi
+
+if [ "$(cat logs/start-ini)" = "1" ]; then
+    start="$(cat logs/start-conf)"
+    if [[ -f "${start}" ]]; then
+        bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Bot4All/launch.sh)
+    else
+        echo -e "\n \n📛  Não achei o arquivo de inicialização selecionado.\n"
+        echo -e "❔  Deseja mudar o arquivo? [y/N]\n \n"
+        read -r response
+        case "$response" in
+        [yY][eE][sS] | [yY])
+            echo -e "\n \n📝  Qual é o arquivo de inicialização que você deseja utilizar? (bot.js, index.js...) (pressione [ENTER]): \n \n"
+            read -r START
+            echo "$START" >logs/start-conf
+            echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
+            echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
+            ;;
+        *) ;;
+        esac
+    fi
+else
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Bot4All/launch.sh)
+fi
+
+: <<'LIMBO'
+if [ ! -f "./logs/3d.flf" ]; then
+    (
+        cd logs || exit
+        curl -sO https://raw.githubusercontent.com/xero/figlet-fonts/master/3d.flf
+    )
+fi
+LIMBO
