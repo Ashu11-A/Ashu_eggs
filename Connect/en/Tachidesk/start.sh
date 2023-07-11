@@ -1,6 +1,6 @@
 #!/bin/bash
 bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Tachidesk/version.sh)
 
-echo "👀  Saiba Mais: https://github.com/Suwayomi/Tachidesk-Server"
-echo "✅  Iniciando Tachidesk..."
+echo "👀  More info: https://github.com/Suwayomi/Tachidesk-Server"
+echo "✅  Starting Tachidesk..."
 java -Dsuwayomi.tachidesk.config.server.rootDir="./Config/" -jar ./Tachidesk-Server.jar

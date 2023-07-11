@@ -1,33 +1,33 @@
 #!/bin/bash
 version_egg="1.0"
 version_script="1.0"
-echo "⚙️  Versão do Script: ${version_script}"
+echo "⚙️  Script Version: ${version_script}"
 if [[ -f "./Logs/egg_version" ]]; then
     versions=" $(cat ./Logs/egg_version) "
     comm1=$(printf '%s\n' "$versions" | tr -d '.')
     comm2=$(printf '%s\n' "${version_egg}" | tr -d '.')
     if [ "${ATZ_SYSTEM}" = "1" ]; then
         if [ "${comm1}" -ge "${comm2}" ]; then
-            echo "✅  Egg Atualizado."
+            echo "✅  Updated Egg."
         else
             echo "
     
-⚠️  Egg Desatualizado.
-🔴  Versão Instalado: ${versions}
-🟢  Versão mais Recente: ${version_egg}
-🌐  Acesse: https://github.com/Ashu11-A/Ashu_eggs
-    
+⚠️  Outdated Egg.
+🔴  Installed Version: ${versions}
+🟢  Latest Version: ${version_egg}
+🌐  Visit: https://github.com/Ashu11-A/Ashu_eggs
+
 "
         fi
     fi
 else
     echo "
     
-⚠️  Egg Desatualizado.
-🔴  Versão Instalado: 1.0 (respectivamente).
-🟠  Caso tenha acabado de atualizar o Egg, basta Reinstalar seu Servidor (nada será apagado).
-🟢  Versão mais Recente: ${version_egg}
-🌐  Acesse: https://github.com/Ashu11-A/Ashu_eggs
+⚠️  Outdated Egg.
+🔴  Installed Version: 1.0 (respectively).
+🟠  If you have just updated the Egg, simply reinstall your Server (nothing will be deleted).
+🟢  Latest Version: ${version_egg}
+🌐  Visit: https://github.com/Ashu11-A/Ashu_eggs
     
 "
 fi

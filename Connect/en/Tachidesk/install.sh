@@ -4,7 +4,7 @@ if [[ ! -f "./Tachidesk-Server.jar" ]]; then
     GITHUB_PACKAGE=Suwayomi/Tachidesk-Server
     LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases")
     if echo "$LATEST_JSON" | jq empty >/dev/null; then
-        echo "Erro: resposta inválida da API do GitHub. $LATEST_JSON"
+        echo "Error: Invalid response from GitHub API. $LATEST_JSON"
         exit 1
     fi
 
@@ -24,7 +24,7 @@ if [[ ! -f "./Tachidesk-Server.jar" ]]; then
     fi
 
     if [ -z "$DOWNLOAD_LINK" ]; then
-        echo "Não foi possível encontrar o link de download."
+        echo "Could not find the download link."
         exit 1
     fi
 
@@ -34,9 +34,9 @@ if [[ ! -f "./Tachidesk-Server.jar" ]]; then
 
     if [ ! -f "./Logs/log_install.txt" ]; then
         cat <<EOF >./Logs/log_install.txt
-Versão: ${VERSION}
+Version: ${VERSION}
 Link: ${DOWNLOAD_LINK}
-Arquivo: ${DOWNLOAD_LINK##*/}
+File: ${DOWNLOAD_LINK##*/}
 EOF
     fi
 
@@ -59,5 +59,5 @@ fi
 if [[ -f "./Tachidesk-Server.jar" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Tachidesk/start.sh)
 else
-    echo "Tachidesk-Server.jar não encontrado. Reinstale o servidor."
+    echo "Tachidesk-Server.jar not found. Reinstall the server."
 fi
