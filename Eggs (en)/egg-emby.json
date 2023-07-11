@@ -13,6 +13,7 @@
         "ARM64, ARM, 64x, 86x ": " ashu11a\/emby:latest"
     },
     "file_denylist": [],
+    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/Emby\/install.sh)",
     "config": {
         "files": "{\r\n    \"programdata\/config\/system.xml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"<HttpServerPortNumber>\": \"<HttpServerPortNumber>{{server.build.default.port}}<\/HttpServerPortNumber>\",\r\n            \"<PublicPort>\": \"<PublicPort>{{server.build.default.port}}<\/PublicPort>\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"All entry points have started\"\r\n}",
