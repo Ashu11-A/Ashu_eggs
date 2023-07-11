@@ -19,19 +19,18 @@ fi
 if [ ! -d "FFmpegd" ]; then
     mkdir FFmpegd
     cat <<EOF >./logs/log_install.txt
-Versão: ${VERSION}
+Version: ${VERSION}
 Link: ${DOWNLOAD_LINK}
-Arquivo: ${DOWNLOAD_LINK##*/}
+File: ${DOWNLOAD_LINK##/}
 EOF
     (
         cd FFmpegd || exit
-        echo -e "Executando 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
+        echo -e "Executing 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
         curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}
-        echo -e "Descompactando arquivos..."
+        echo -e "Extracting files..."
         tar -xvzf ${DOWNLOAD_LINK##*/}
         rm ${DOWNLOAD_LINK##*/}
     )
-
 fi
 
 if [ ! -d Media ]; then
@@ -52,5 +51,5 @@ if [[ -d "./FFmpeg-Commander/public" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/FFmpeg/version.sh)
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/FFmpeg/launch.sh)
 else
-    echo "Algo muito errado aconteceu."
+    echo "Something went terribly wrong."
 fi

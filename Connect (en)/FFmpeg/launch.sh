@@ -2,7 +2,7 @@
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
-echo "🟢  Iniciando FFmpeg-Commander..."
+echo "🟢  Starting FFmpeg-Commander..."
 (
     cd FFmpeg-Commander || exit
     touch nohup.out
@@ -10,14 +10,14 @@ echo "🟢  Iniciando FFmpeg-Commander..."
 )
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
-    MGM="na porta ${SERVER_PORT}"
+    MGM="on port ${SERVER_PORT}"
 else
-    MGM="em ${SERVER_IP}:${SERVER_PORT}"
+    MGM="at ${SERVER_IP}:${SERVER_PORT}"
 fi
-echo "🟢  Interface auxiliar iniciando ${MGM}..."
+echo "🟢  Auxiliary interface starting ${MGM}..."
 
 if [ ${FFMPEGD_STATUS} == "1" ]; then
-    echo "🟢  Iniciando FFmpegd em 15 segundos..."
+    echo "🟢  Starting FFmpegd in 15 seconds..."
     sleep 15
     (
         cd FFmpegd || exit
@@ -25,26 +25,26 @@ if [ ${FFMPEGD_STATUS} == "1" ]; then
         ./ffmpegd "${FFMPEGD_PORT}"
     )
 else
-    echo "🙂  FFmpegd está desativado, e que continue assim!"
+    echo "🙂  FFmpegd is disabled, and let it stay that way!"
 fi
 
 if [ ${FFMPEGD_STATUS} == "0" ]; then
-    printf "\n \n🔎  A interface é apenas para você copiar o comando que ele ira gerar a partir das suas configurações,\n coloque seus arquivos de video na pasta Media, e após isso cole o comando aqui, e de um simples [ENTER].\n \n"
+    printf "\n \n🔎  The interface is only for you to copy the command that it will generate based on your settings,\n place your video files in the Media folder, and then paste the command here, and simply press [ENTER].\n \n"
 fi
 
-echo "📃  Comandos Disponíveis: ${bold}${lightblue}ffmpeg ${normal}[your code]..."
+echo "📃  Available Commands: ${bold}${lightblue}ffmpeg ${normal}[your code]..."
 
 while read -r line; do
     if [[ "$line" == *"ffmpeg"* ]]; then
-        echo "Executando: ${bold}${lightblue}${line}"
+        echo "Executing: ${bold}${lightblue}${line}"
         (
             cd Media || exit
             eval "$line"
         )
-        printf "\n \n✅  Comando Executado\n \n"
+        printf "\n \n✅  Command Executed\n \n"
     elif [[ "$line" != *"ffmpeg"* ]]; then
-        echo "Comando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}ffmpeg."
+        echo "Invalid Command. What are you trying to do? Try something with ${bold}${lightblue}ffmpeg."
     else
-        echo "Script Falhou."
+        echo "Script Failed."
     fi
 done
