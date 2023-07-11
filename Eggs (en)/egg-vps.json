@@ -7,7 +7,8 @@
     "exported_at": "2023-01-30T19:05:30-04:00",
     "name": "VPS",
     "author": "Matheunsn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: VPS\r\n\u2699\ufe0f Version: 2.1\r\n\u2753 What is it: A VPS, this egg uses Proot (FakeRoot) which tricks the system saying that you are a superuser, installing a Pterodactyl inside another Pterodactyl has never felt so real!\r\n\r\n\u2022 It is in no way recommended to use Root in Docker. I am not responsible for any damage\/action that you will do with it.\r\ n \u2022 \u2022 At least 1GB of space is required\r\n \u2022 Debian\/Ubuntu distributions may take more than 15min to finish installation\r\n \u2022 Ubuntu distributions are currently not working\r\n\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n \u2022 (1.0) Release.\r \n \u2022 (2.0) Detects whether the Egg is up to date or not.\r\n \u2022 (2.0) Possibility to change Linux Distribution: (Debian, Ubuntu, Alpine).\r \n \u2022 (2.0) Updated arguments, now the system is not so restricted.\r\n \u2022 (2.0) Possibility to change arguments.\r\n \u2022 (2.0) Run\ Shutdown command, now it is not necessary to kill the server anymore.\r\n \u2022 (2.0) Startup fix is needed, now the Panel knows that the Server is on.\r\n \u2022 (2.0) Installation Script has been rebuilt\r\n \u2022 (2.1) Serious Script bugs fixed\r\n \u2022 (2.1) Possibility of switch root between: PRoot(Default), PRoot-rs, FakechRoot + FakeRoot.\r\n \u2022 (2.1) Clean Install Added\r\n\r\n\ud83d\udcdd New Variables \u2022 (2.0) Your Arguments\r\n \u2022 (2.0) Linux Distribution\r\n \u2022 (2.1) \u2022 (2.0) ) Change Root\r\n \u2022 (2.1) Clean Install?\r\n\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",    "features": null,
+    "description": "\ud83d\udc8e Egg: VPS\r\n\u2699\ufe0f Version: 2.1\r\n\u2753 What is it: A VPS, this egg uses Proot (FakeRoot) which tricks the system saying that you are a superuser, installing a Pterodactyl inside another Pterodactyl has never felt so real!\r\n\r\n\u2022 It is in no way recommended to use Root in Docker. I am not responsible for any damage\/action that you will do with it.\r\ n \u2022 \u2022 At least 1GB of space is required\r\n \u2022 Debian\/Ubuntu distributions may take more than 15min to finish installation\r\n \u2022 Ubuntu distributions are currently not working\r\n\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n \u2022 (1.0) Release.\r \n \u2022 (2.0) Detects whether the Egg is up to date or not.\r\n \u2022 (2.0) Possibility to change Linux Distribution: (Debian, Ubuntu, Alpine).\r \n \u2022 (2.0) Updated arguments, now the system is not so restricted.\r\n \u2022 (2.0) Possibility to change arguments.\r\n \u2022 (2.0) Run\ Shutdown command, now it is not necessary to kill the server anymore.\r\n \u2022 (2.0) Startup fix is needed, now the Panel knows that the Server is on.\r\n \u2022 (2.0) Installation Script has been rebuilt\r\n \u2022 (2.1) Serious Script bugs fixed\r\n \u2022 (2.1) Possibility of switch root between: PRoot(Default), PRoot-rs, FakechRoot + FakeRoot.\r\n \u2022 (2.1) Clean Install Added\r\n\r\n\ud83d\udcdd New Variables \u2022 (2.0) Your Arguments\r\n \u2022 (2.0) Linux Distribution\r\n \u2022 (2.1) \u2022 (2.0) ) Change Root\r\n \u2022 (2.1) Clean Install?\r\n\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "features": null,
     "docker_images": {
         "ghcr.io\/parkervcp\/yolks:debian": "ghcr.io\/parkervcp\/yolks:debian"
     },
@@ -28,7 +29,7 @@
     },
     "variables": [
         {
-            "name": "Use your arguments?",            
+            "name": "Use your arguments?",
             "description": "Enable using your arguments? Don\u2019t enable this if you don\u2019t know what to do.",
             "env_variable": "CONSOLE",
             "default_value": "0",
@@ -48,7 +49,7 @@
             "field_type": "text"
         },
         {
-            "name": "Linux distribution", 
+            "name": "Linux distribution",
             "description": "Select which Linux distribution you want the script to download. Currently these distributions are available: Debian, Ubuntu, Alpine.",
             "env_variable": "LINUX_ISO",
             "default_value": "Debian",

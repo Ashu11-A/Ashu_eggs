@@ -7,7 +7,8 @@
     "exported_at": "2023-01-19T13:47:52-03:00",
     "name": "ServerJars",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e ServerJars\r\n\u2699\ufe0f Version: 1.0\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/ Ashu11-A\/Ashu_eggs\r\n\u2753 ServerJars is the easiest and most efficient way to get the most up-to-date Minecraft jars. Using our state-of-the-art system, we check for updates every 5 minutes and we instantly provide these updates for you to download directly from our website.Using our Automatic Updater, you can automatically receive the latest updates for your server effortlessly \u003d in seconds after each server restart.",    "features": [
+    "description": "\ud83d\udc8e ServerJars\r\n\u2699\ufe0f Version: 1.0\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/ Ashu11-A\/Ashu_eggs\r\n\u2753 ServerJars is the easiest and most efficient way to get the most up-to-date Minecraft jars. Using our state-of-the-art system, we check for updates every 5 minutes and we instantly provide these updates for you to download directly from our website.Using our Automatic Updater, you can automatically receive the latest updates for your server effortlessly \u003d in seconds after each server restart.",
+    "features": [
         "eula",
         "java_version",
         "pid_limit"
@@ -35,24 +36,24 @@
     },
     "variables": [
         {
-             "name": "Server Jar File",
-             "description": "The server jarfile name to run the server.",
-             "env_variable": "SERVER_JARFILE",
-             "default_value": "ServerJars.jar",
-             "user_viewable": true,
-             "user_editable": true,
-             "rules": "required|regex:\/^([\\w\\d._-]+)(\\.jar)$\/",
-             "field_type": "text"
-         },
-         {
-             "name": "Server Version",
-             "description": "The version of Server Jars to install. Use \"latest\" to install the latest version, or use some version, eg \"v3.2.2\" to install a newer version. Then go to Settings > Reinstall Server to apply.",
-             "env_variable": "VERSION",
-             "default_value": "latest",
-             "user_viewable": true,
-             "user_editable": true,
-             "rules": "required|string|between:3,15",
-             "field_type": "text"
-         }
+            "name": "Server Jar File",
+            "description": "The server jarfile name to run the server.",
+            "env_variable": "SERVER_JARFILE",
+            "default_value": "ServerJars.jar",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|regex:\/^([\\w\\d._-]+)(\\.jar)$\/",
+            "field_type": "text"
+        },
+        {
+            "name": "Server Version",
+            "description": "The version of Server Jars to install. Use \"latest\" to install the latest version, or use some version, eg \"v3.2.2\" to install a newer version. Then go to Settings > Reinstall Server to apply.",
+            "env_variable": "VERSION",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|between:3,15",
+            "field_type": "text"
+        }
     ]
 }

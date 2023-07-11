@@ -7,7 +7,8 @@
     "exported_at": "2023-01-25T23:01:20-03:00",
     "name": "Jellyfin",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Jellyfin\r\n\u2699\ufe0f Version: 2.0\r\n\u753 What it is: In short, you can have your own Netflix. Jellyfin allows for you to collect, manage and stream your media. Run the Jellyfin server on your system and get access to the leading free software entertainment system.\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\ no Now the Egg is not dependent on updates, everything is done by scripts, causes it to be better maintained.\r\n\u2022 This is possibly its last version.\r\n\u2022 Code is now cleaner.\r\n\u2022 Docker updated.\r\n\u26a0\ufe0f Attention: On first launch there will be a Select Server screen, delete the existing server there, and restart the page.\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",    "features": null,
+    "description": "\ud83d\udc8e Egg: Jellyfin\r\n\u2699\ufe0f Version: 2.0\r\n\u753 What it is: In short, you can have your own Netflix. Jellyfin allows for you to collect, manage and stream your media. Run the Jellyfin server on your system and get access to the leading free software entertainment system.\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\ no Now the Egg is not dependent on updates, everything is done by scripts, causes it to be better maintained.\r\n\u2022 This is possibly its last version.\r\n\u2022 Code is now cleaner.\r\n\u2022 Docker updated.\r\n\u26a0\ufe0f Attention: On first launch there will be a Select Server screen, delete the existing server there, and restart the page.\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "features": null,
     "docker_images": {
         "ARM64, ARM, 64x ": " ashu11a\/jellyfin:latest"
     },
@@ -28,14 +29,14 @@
     },
     "variables": [
         {
-             "name": "VERSION",
-             "description": "Version of Jellyfin.\r\n\r\nEx: \"10.8.5\"",
-             "env_variable": "VERSION",
-             "default_value": "10.8.5",
-             "user_viewable": true,
-             "user_editable": true,
-             "rules": "required|string|max:10",
-             "field_type": "text"
-         }
+            "name": "VERSION",
+            "description": "Version of Jellyfin.\r\n\r\nEx: \"10.8.5\"",
+            "env_variable": "VERSION",
+            "default_value": "10.8.5",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:10",
+            "field_type": "text"
+        }
     ]
 }

@@ -71,7 +71,7 @@
         },
         {
             "name": "Announce",
-            "description": "Toggles whether the server should be advertised to the SA-MP masterlist.",            
+            "description": "Toggles whether the server should be advertised to the SA-MP masterlist.",
             "env_variable": "ANNONCE",
             "default_value": "0",
             "user_viewable": true,

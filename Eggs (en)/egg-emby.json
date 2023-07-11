@@ -7,7 +7,8 @@
     "exported_at": "2023-01-26T13:49:57-03:00",
     "name": "Emby",
     "author": "josdekurk@gmail.com",
-    "description": "\ud83d\udc8e Egg: Emby\r\n\u2699\ufe0f Version: 2.0\r\n\u753 What it is: In short, you can have your own Netflix. Emby \ is a media server designed to organize, play and stream video and audio to a variety of devices.\r\n\ud83d\udc1b Bugs fixed\/changelogs: \r\n \u2022 How it's done Download has changed, now it will always install the latest version\r\n \u2022 Now Egg is not dependent on updates, everything is done by scripts, which causes at its best \u2022 Code is now cleaner.\r\n \ud83d\udce6Docker:\r\n \u2022 Docker Updated (Dotnet Version: 6.0.13) \r\n \u2022 Added ARM compatibility\r\n \u2022 Now there is no need to change between 64x and ARM64 Use image: ashu11a\/emby:latest\r\n\u26a0\ufe0f Aten\ \r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",    "features": null,
+    "description": "\ud83d\udc8e Egg: Emby\r\n\u2699\ufe0f Version: 2.0\r\n\u753 What it is: In short, you can have your own Netflix. Emby \ is a media server designed to organize, play and stream video and audio to a variety of devices.\r\n\ud83d\udc1b Bugs fixed\/changelogs: \r\n \u2022 How it's done Download has changed, now it will always install the latest version\r\n \u2022 Now Egg is not dependent on updates, everything is done by scripts, which causes at its best \u2022 Code is now cleaner.\r\n \ud83d\udce6Docker:\r\n \u2022 Docker Updated (Dotnet Version: 6.0.13) \r\n \u2022 Added ARM compatibility\r\n \u2022 Now there is no need to change between 64x and ARM64 Use image: ashu11a\/emby:latest\r\n\u26a0\ufe0f Aten\ \r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "features": null,
     "docker_images": {
         "ARM64, ARM, 64x, 86x ": " ashu11a\/emby:latest"
     },
@@ -28,14 +29,14 @@
     },
     "variables": [
         {
-             "name": "VERSION",
-             "description": "Version of Emby.\r\n\r\nEx: \"4.7.8.0\"",
-             "env_variable": "VERSION",
-             "default_value": "latest",
-             "user_viewable": true,
-             "user_editable": true,
-             "rules": "nullable|string",
-             "field_type": "text"
-         }
+            "name": "VERSION",
+            "description": "Version of Emby.\r\n\r\nEx: \"4.7.8.0\"",
+            "env_variable": "VERSION",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        }
     ]
 }
