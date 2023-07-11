@@ -1,0 +1,41 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-01-26T13:49:57-03:00",
+    "name": "Emby",
+    "author": "josdekurk@gmail.com",
+    "description": "\ud83d\udc8e Egg: Emby\r\n\u2699\ufe0f Vers\u00e3o: 2.0\r\n\u2753 Oque \u00e9: Resumindo, voc\u00ea pode ter sua pr\u00f3pria Netflix. Emby \u00e9 um servidor de m\u00eddia projetado para organizar, reproduzir e transmitir \u00e1udio e v\u00eddeo para uma variedade de dispositivos.\r\n\ud83d\udc1b Bugs corrigidos\/changelogs: \r\n   \u2022 Forma como \u00e9 feito o Download mudou, agora sempre instalar\u00e1 a vers\u00e3o mais recente\r\n   \u2022 Agora o Egg n\u00e3o \u00e9 dependente de atualiza\u00e7\u00f5es, tudo \u00e9 feito por scripts, o que ocasiona na sua melhor manuten\u00e7\u00e3o.\r\n   \u2022 C\u00f3digo agora est\u00e1 mais limpo.\r\n  \ud83d\udce6Docker:\r\n     \u2022 Docker Atualizado (Vers\u00e3o do Dotnet: 6.0.13)\r\n     \u2022 Compatibilidade com ARM adicionada\r\n     \u2022 Agora n\u00e3o h\u00e1 necessidade de alterar entre 64x e ARM64 Use a imagem: ashu11a\/emby:latest\r\n\u26a0\ufe0f Aten\u00e7\u00e3o:\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "features": null,
+    "docker_images": {
+        "ARM64, ARM, 64x, 86x ": " ashu11a\/emby:latest"
+    },
+    "file_denylist": [],
+    "config": {
+        "files": "{\r\n    \"programdata\/config\/system.xml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"<HttpServerPortNumber>\": \"<HttpServerPortNumber>{{server.build.default.port}}<\/HttpServerPortNumber>\",\r\n            \"<PublicPort>\": \"<PublicPort>{{server.build.default.port}}<\/PublicPort>\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"All entry points have started\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\napt update\r\napt upgrade -y\r\napt install -y curl wget unzip git tar ca-certificates jq fuse unzip\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/Emby\/install.sh)",
+            "container": "debian:buster-slim",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "VERSION",
+            "description": "Vers\u00e3o do Emby.\r\n\r\nEx: \"4.7.8.0\"",
+            "env_variable": "VERSION",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        }
+    ]
+}

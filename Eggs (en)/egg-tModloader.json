@@ -1,0 +1,142 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2023-01-27T16:42:38-03:00",
+    "name": "tModLoader",
+    "author": "Matheusn.biolowons@gmail.com",
+    "description": "\ud83d\udc8e Egg: tModLoader\r\n\u2699\ufe0f Vers\u00e3o: 4.0\r\n\u2753 Oque \u00e9: tModLoader \u00e9 uma modifica\u00e7\u00e3o do Terraria, que possibilitando jogar com mods. Escolha jogar como quiser!\r\n\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\u2022 (3.0) [ARM64] Compatibilidade com o reposit\u00f3rio original, roda o mesmo servidor que o 64x(sem arquivos de terceiros desatualizados, sem emula\u00e7\u00e3o).\r\n\u2022 (3.1) Erros graves corrigidos.\r\n\u2022 (4.0) Otimiza\u00e7\u00e3o do Egg.\r\n\u2022 (4.0) Docker atualizado.\r\n\u2022 (4.0) Agora o Egg n\u00e3o \u00e9 dependente de atualiza\u00e7\u00f5es, tudo \u00e9 feito por scripts, ocasionando na sua melhor manuten\u00e7\u00e3o.\r\n\u2022 (4.0) Configura\u00e7\u00f5es in\u00fateis removidas.\r\n\u2022 (4.0) Tradu\u00e7\u00e3o das vari\u00e1veis.\r\n\r\n\ud83e\ude84 Oque h\u00e1 de diferente?\r\n   \u2022 Docker unido (mesma imagem, m\u00faltiplas arquiteturas).\r\n   \u2022 Steamworks.NET.dll Modificado, mais otimizado e multiplataforma.\r\n   \u2022 Funciona tanto no ARM64 quanto no 64x com o mesmo desemprenho.\r\n   \u2022 Sem Emula\u00e7\u00e3o.\r\n       \ud83d\udcdd Vari\u00e1veis que os outros Eggs n\u00e3o contem: \r\n             \u2022 Seed.\r\n             \u2022 Otimiza\u00e7\u00e3o.\r\n             \u2022 Seguran\u00e7a.\r\n\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "features": null,
+    "docker_images": {
+        "ARM64x, 64x": "ashu11a\/dotnet:6"
+    },
+    "file_denylist": [],
+    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/tModLoader\/install.sh)",
+    "config": {
+        "files": "{\r\n    \"serverconfig.txt\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"modpath\": \"modpath=\/home\/container\/Mods\",\r\n            \"worldpath=\": \"worldpath=\/home\/container\/saves\/Worlds\",\r\n            \"worldname=\": \"worldname={{server.build.env.WORLD_NAME}}\",\r\n            \"world=\": \"world=\/home\/container\/saves\/Worlds\/{{server.build.env.WORLD_NAME}}.wld\",\r\n            \"banlist=\": \"banlist=\/home\/container\/banlist.txt\",\r\n            \"difficulty=\": \"difficulty={{server.build.env.DIFFICULTY}}\",\r\n            \"autocreate=\": \"autocreate={{server.build.env.WORLD_SIZE}}\",\r\n            \"port=\": \"port={{server.build.default.port}}\",\r\n            \"maxplayers=\": \"maxplayers={{server.build.env.MAX_PLAYERS}}\",\r\n            \"motd=\": \"motd={{server.build.env.MOTD}}\",\r\n            \"password=\": \"password={{server.build.env.SERVER_PASSWORD}}\",\r\n            \"secure=\": \"secure={{server.build.env.SECURE}}\",\r\n            \"seed=\": \"seed={{server.build.env.SEED}}\",\r\n            \"language=\": \"language={{server.build.env.LANGUAGE}}\",\r\n            \"slowliquids=\": \"slowliquids={{server.build.env.OPTIMIZE}}\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"Type 'help' for a list of commands\",\r\n    \"userInteraction\": []\r\n}",
+        "logs": "{}",
+        "stop": "exit"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/tModLoader\/install.sh)",
+            "container": "ghcr.io\/parkervcp\/installers:debian",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Vers\u00e3o do tModloader",
+            "description": "A vers\u00e3o do tModloader que deve ser usada. Vers\u00f5es: https:\/\/github.com\/tModLoader\/tModLoader\/releases",
+            "env_variable": "VERSION",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Nome do Mundo",
+            "description": "O nome para o arquivo do mundo.",
+            "env_variable": "WORLD_NAME",
+            "default_value": "world",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Tamanho do mundo",
+            "description": "Define o tamanho do mundo. 4 tamanhos 1 (Pequeno), 2 (M\u00e9dio), 3 (Grande) 4(Extra-Grandes?).",
+            "env_variable": "WORLD_SIZE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:1,2,3,4",
+            "field_type": "text"
+        },
+        {
+            "name": "M\u00e1ximo de jogadores",
+            "description": "O n\u00famero m\u00e1ximo de jogadores que um servidor ir\u00e1 ter.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "8",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|numeric|max:30",
+            "field_type": "text"
+        },
+        {
+            "name": "Idioma",
+            "description": "Define o idioma do servidor a partir de seu c\u00f3digo de idioma.\r\nEnglish = en-US, German = de-DE, Italian = it-IT, French = fr-FR, Spanish = es-ES, Russian = ru-RU, Chinese = zh-Hans, Portuguese = pt-BR, Polish = pl-PL",
+            "env_variable": "LANGUAGE",
+            "default_value": "en-US",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:en-US,pt-BR,de-DE,it-IT,fr-FR,es-ES,ru-RU,zh-Hans,pl-PL",
+            "field_type": "text"
+        },
+        {
+            "name": "Dificuldade",
+            "description": "Dificuldade do Mundo\r\n\r\nOp\u00e7\u00f5es: 0(normal), 1(expert), 2(master), 3(journey)",
+            "env_variable": "DIFFICULTY",
+            "default_value": "3",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1,2,3",
+            "field_type": "text"
+        },
+        {
+            "name": "MOTD",
+            "description": "Mensagem do Servidor",
+            "env_variable": "MOTD",
+            "default_value": "Bem-vindo!",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:128",
+            "field_type": "text"
+        },
+        {
+            "name": "Seed",
+            "description": "Especifica a seed do mundo.",
+            "env_variable": "SEED",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "string|nullable|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Otimiza\u00e7\u00e3o",
+            "description": "Reduz ao m\u00e1ximo os l\u00edquidos em movimento ao mesmo tempo. Se ativado pode reduzir os lags, mas os l\u00edquidos podem levar mais tempo para sedimentar.",
+            "env_variable": "OPTIMIZE",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Seguran\u00e7a",
+            "description": "Adiciona prote\u00e7\u00e3o adicional contra trapa\u00e7as no servidor. (pode levar a banimentos injustos)",
+            "env_variable": "SECURE",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Senha do servidor",
+            "description": "Define a senha do servidor.",
+            "env_variable": "PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "string|nullable|max:20",
+            "field_type": "text"
+        }
+    ]
+}
