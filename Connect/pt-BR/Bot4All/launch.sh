@@ -99,11 +99,11 @@ while read -r line; do
                 fi
                 echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
                 echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
-                exit
             else
                 echo -e "\n \n😅  Por favor, selecione a forma de inicialização com 1 ou 2\n \n"
             fi
         done
+        exit
         exit
     elif [[ "$line" != *"npm"* ]] || [[ "$line" != *"node"* ]] || [[ "$line" != *"show"* ]] || [[ "$line" != *"version"* ]] || [[ "$line" != *"start"* ]]; then
         echo -e "\n \nComando Inválido. O que você está tentando fazer? Tente algo com ${bold}${lightblue}help${normal}, ${bold}${lightblue}version${normal}, ${bold}${lightblue}start-conf${normal},${bold}${lightblue}show${normal},${bold}${lightblue}npm ${normal}ou ${bold}${lightblue}node.\n \n"
