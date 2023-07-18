@@ -6,7 +6,10 @@ libressl-dev nvm node npm bash
 build-base ca-certificates zip
 iproute2 tzdata curl git lolcat
 python3-dev libtool iputils-ping
-ffmpeg tesseract figlet dnsutils\n \n"
+ffmpeg tesseract figlet dnsutils
+libgconf-2-4 libatk1.0-0 libgtk-3-0
+libatk-bridge2.0-0 libgdk-pixbuf2.0-0 
+libgbm-dev libnss3-dev libxss-dev \n \n"
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
     MGM="na porta ${SERVER_PORT}"

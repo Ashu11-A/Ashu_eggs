@@ -11,4 +11,5 @@ while [ $count -lt 10 ]; do
     fi
     count=$((count+1))
     echo -e "\n \n📢  Bot quebrou! numero da tentativa: $count  \n \n"
+    tail -n 100 log_egg.txt
 done
