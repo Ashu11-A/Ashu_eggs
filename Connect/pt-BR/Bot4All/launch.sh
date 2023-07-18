@@ -99,6 +99,7 @@ while read -r line; do
                 fi
                 echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
                 echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
+                exit
             else
                 echo -e "\n \n😅  Por favor, selecione a forma de inicialização com 1 ou 2\n \n"
             fi
