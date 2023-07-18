@@ -12,7 +12,7 @@
 </div>
 <div align="left">
 
-## 📃 | Descrição
+## 📃 | Description
 
 In this repository you can find some Eggs that I [@Ashu](https://github.com/Ashu11-A) developed.
 Eggs in this repo have no connection to [parkervcp/eggs](https://github.com/parkervcp/eggs).
