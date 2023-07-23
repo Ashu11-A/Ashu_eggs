@@ -9,7 +9,7 @@ while [ $count -lt 10 ]; do
             node ${start} >log_egg.txt 2>&1
             sleep 1
         fi
-    else [[ "$start" == "npm run"* ]] || [[ "$start" == "node"* ]]; then
+    elif [[ "$start" == "npm run"* ]] || [[ "$start" == "node"* ]]; then
         $start >log_egg.txt 2>&1
         sleep 1
     fi
