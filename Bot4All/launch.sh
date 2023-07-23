@@ -87,20 +87,12 @@ while read -r line; do
             printf "\n \n📢  NVM está desativado! você não poderá trocar a versão do Nodejs, ative ele e reinstale o servidor. \n \n"
         fi
     elif [[ "$line" == *"start"* ]]; then
-        echo -e "\n \n📝  Qual o tipo de inicialização que você deseja utilizar?\n [1]: Expecificar somente o arquivo (EX: bot.js)\n (funcionará assim: node MEU_ARQUIVO.sh)\n [2]: Inicialição por comando (EX: npm run start) (pressione [ENTER]): \n \n"
-        while read -r START; do
-            if [[ "$START" =~ ^(1|2)$ ]]; then
-                echo "$START" >logs/start-ini
-                if [ -f "logs/start-set" ]; then
-                    rm logs/start-set
-                fi
-                echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
-                echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
-                exit
-            else
-                echo -e "\n \n😅  Por favor, selecione a forma de inicialização com 1 ou 2\n \n"
-            fi
-        done
+        echo -e "\n \n📝  Qual é o comando/arquivo de inicialização que você deseja utilizar? (EX: bot.js, npm run start...) (pressione [ENTER]): \n \n"
+        read -r START
+        echo "$START" >logs/start-conf
+        touch logs/start-set
+        echo -e "\n \n👌  OK, salvei ($START) aqui!\n"
+        echo -e "🫵  Você pode alterar isso usando o comando: ${bold}${lightblue}start\n \n"
         exit
         exit
     elif [[ "$line" != *"npm"* ]] || [[ "$line" != *"node"* ]] || [[ "$line" != *"show"* ]] || [[ "$line" != *"version"* ]] || [[ "$line" != *"start"* ]]; then
