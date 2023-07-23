@@ -139,7 +139,9 @@ start="$(cat logs/start-conf)"
 
 # Verifica se o conteúdo é um arquivo existente ou um comando npm run ou node
 if [ -f "$start" ] || [[ "$start" == "npm run"* ]] || [[ "$start" == "node"* ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Bot4All/launch.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Bot4All/launch.sh)
+    # troque
+    # troque
 else
     echo -e "\n \n📛  Não achei o arquivo de inicialização selecionado.\n"
     echo -e "❔  Deseja mudar o arquivo? [y/N]\n \n"
