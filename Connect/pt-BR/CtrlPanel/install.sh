@@ -3,17 +3,13 @@ GITHUB_PACKAGE=Ctrlpanel-gg/panel
 LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/tags" | jq -c '.[]' | head -1)
 RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/tags" | jq '.[]')
 
-if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
-    DOWNLOAD_LINK=$(echo "$LATEST_JSON" | jq -r .tarball_url)
-else
-    VERSION_CHECK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.name==$VERSION) | .name')
-    if [ "$VERSION" == "$VERSION_CHECK" ]; then
-        if [[ "$VERSION" == v* ]]; then
-            DOWNLOAD_LINK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.name==$VERSION) | .tarball_url')
-        fi
-    else
-        DOWNLOAD_LINK=$(echo "$LATEST_JSON" | jq -r .[].tarball_url)
+VERSION_CHECK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.name==$VERSION) | .name')
+if [ "$VERSION" == "$VERSION_CHECK" ]; then
+    if [[ "$VERSION" == v* ]]; then
+        DOWNLOAD_LINK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.name==$VERSION) | .tarball_url')
     fi
+else
+    DOWNLOAD_LINK=$(echo "$LATEST_JSON" | jq -r .[].tarball_url)
 fi
 if [ -z "${GIT_ADDRESS}" ]; then
     if [ -d "/home/container/controlpanel" ]; then
@@ -30,7 +26,14 @@ EOF
         printf "\n \n📄  Verificando Instalação...\n \n"
         printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
         printf "\n| Painel   | 🟡  Baixando Painel               |\n"
-        curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
+        if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
+            if [ -d controlpanel ]; then
+                mkdir controlpanel
+            fi
+            git clone https://github.com/Ctrlpanel-gg/panel ./controlpanel
+        else
+            curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
+        fi
         mkdir controlpanel
         mv "${DOWNLOAD_LINK##*/}" controlpanel
         (
