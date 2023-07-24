@@ -2,14 +2,15 @@
 GITHUB_PACKAGE=Ctrlpanel-gg/panel
 LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/tags" | jq -c '.[]' | head -1)
 RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/tags" | jq '.[]')
-
-VERSION_CHECK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.name==$VERSION) | .name')
-if [ "$VERSION" == "$VERSION_CHECK" ]; then
-    if [[ "$VERSION" == v* ]]; then
-        DOWNLOAD_LINK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.name==$VERSION) | .tarball_url')
+if [ "$VERSION" != "latest" ]; then
+    VERSION_CHECK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.name==$VERSION) | .name')
+    if [ "$VERSION" == "$VERSION_CHECK" ]; then
+        if [[ "$VERSION" == v* ]]; then
+            DOWNLOAD_LINK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.name==$VERSION) | .tarball_url')
+        fi
+    else
+        DOWNLOAD_LINK=$(echo "$LATEST_JSON" | jq -r .[].tarball_url)
     fi
-else
-    DOWNLOAD_LINK=$(echo "$LATEST_JSON" | jq -r .[].tarball_url)
 fi
 if [ -z "${GIT_ADDRESS}" ]; then
     if [ -d "/home/container/controlpanel" ]; then
