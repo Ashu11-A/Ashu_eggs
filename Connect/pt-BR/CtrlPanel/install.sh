@@ -33,14 +33,17 @@ EOF
             git clone https://github.com/Ctrlpanel-gg/panel ./controlpanel
         else
             curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
+            mkdir controlpanel
+            mv "${DOWNLOAD_LINK##*/}" controlpanel
+            (
+                cd controlpanel || exit
+                echo -e "Unpacking server files"
+                tar -xvzf "${DOWNLOAD_LINK##*/}"
+                rm -rf "${DOWNLOAD_LINK##*/}"
+            )
         fi
-        mkdir controlpanel
-        mv "${DOWNLOAD_LINK##*/}" controlpanel
         (
             cd controlpanel || exit
-            echo -e "Unpacking server files"
-            tar -xvzf "${DOWNLOAD_LINK##*/}"
-            rm -rf "${DOWNLOAD_LINK##*/}"
             fakeroot chmod -R 755 storage/* bootstrap/cache/
             fakeroot chown -R nginx:nginx /home/container/controlpanel/*
         )
@@ -202,16 +205,18 @@ else
         )
     fi
 fi
-(
-    cd controlpanel || exit
-    if [[ -f "../logs/ctrlpanel_composer_instalado" ]]; then
-        echo "| Composer | 🟢  Instalado                    |"
-    else
+
+if [[ -f "logs/ctrlpanel_composer_instalado" ]]; then
+    echo "| Composer | 🟢  Instalado                    |"
+else
+    (
+        cd controlpanel || exit
         printf "\n \n⚙️  Executando: composer install --no-dev --optimize-autoloader\n \n"
         composer install --no-dev --optimize-autoloader
         touch ../logs/ctrlpanel_composer_instalado
-    fi
-)
+    )
+fi
+
 if [[ -f "./logs/ctrlpanel_instalado" ]]; then
     echo "+----------+---------------------------------+"
     printf "\n \n📑  Verificação do Painel Concluída...\n \n"
