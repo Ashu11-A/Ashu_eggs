@@ -48,29 +48,27 @@ EOF
             fakeroot chmod -R 755 storage/* bootstrap/cache/
             fakeroot chown -R nginx:nginx /home/container/controlpanel/*
         )
-        if [ -f "logs/ctrlpanel_database_instalado" ]; then
-            if [ ! -f "controlpanel/.env" ]; then
-                if [ -f "backups/executado" ]; then
-                    (
-                        cd controlpanel || exit
-                        composer install --no-dev --optimize-autoloader
-                    )
-                    echo "🔴  Uma irregularidade foi encontrada, restaurando .env..."
-                    (
-                        cd backups || exit
-                        cp $(ls .env* -t | head -1) ../controlpanel/.env
-                    )
-                else
-                    printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta controlpanel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
-                    printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
-                    read -r response
-                    case "$response" in
-                    [yY][eE][sS] | [yY])
-                        rm -rf logs/panel*
-                        ;;
-                    *) ;;
-                    esac
-                fi
+        if [ ! -f "controlpanel/.env" ]; then
+            if [ -f "backups/executado" ]; then
+                (
+                    cd controlpanel || exit
+                    composer install --no-dev --optimize-autoloader
+                )
+                echo "🔴  Uma irregularidade foi encontrada, restaurando .env..."
+                (
+                    cd backups || exit
+                    cp $(ls .env* -t | head -1) ../controlpanel/.env
+                )
+            else
+                printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta controlpanel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
+                printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
+                read -r response
+                case "$response" in
+                [yY][eE][sS] | [yY])
+                    rm -rf logs/panel*
+                    ;;
+                *) ;;
+                esac
             fi
         fi
     fi
@@ -115,29 +113,27 @@ else
         fakeroot chmod -R 755 /home/container/controlpanel/storage/* /home/container/controlpanel/bootstrap/cache/
         fakeroot chown -R nginx:nginx /home/container/controlpanel/*
         touch ./controlpanel/ctrlpanel_github_instalado
-        if [ -f "logs/ctrlpanel_database_instalado" ]; then
-            if [ ! -f "controlpanel/.env" ]; then
-                if [ -f "backups/executado" ]; then
-                    (
-                        cd controlpanel || exit
-                        composer install --no-interaction --no-dev --optimize-autoloader
-                    )
-                    echo "🔴  Uma irregularidade foi encontrada, restaurando .env..."
-                    (
-                        cd backups || exit
-                        cp $(ls .env* -t | head -1) ../controlpanel/.env
-                    )
-                else
-                    printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta controlpanel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
-                    printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
-                    read -r response
-                    case "$response" in
-                    [yY][eE][sS] | [yY])
-                        rm -rf logs/panel*
-                        ;;
-                    *) ;;
-                    esac
-                fi
+        if [ ! -f "controlpanel/.env" ]; then
+            if [ -f "backups/executado" ]; then
+                (
+                    cd controlpanel || exit
+                    composer install --no-interaction --no-dev --optimize-autoloader
+                )
+                echo "🔴  Uma irregularidade foi encontrada, restaurando .env..."
+                (
+                    cd backups || exit
+                    cp $(ls .env* -t | head -1) ../controlpanel/.env
+                )
+            else
+                printf "\n📢  Atenção: MEU DEUS OQUE VOCÊ FEZ😱 😱  ??\n🥶  Oque você fez: Possivelmente você apagou a pasta controlpanel sem querer ou querendo, mas pelas minhas informações o painel já havia sido instalado  \n🫠  mano se vai ter que criar um database novo se você perdeu seu .env😨\n🔴  PARA PROSSEGUIR APAGUE OS ARQUIVO COM NOME PANEL NA PASTA LOGS PARA QUE O EGG CONSIGA INSTALAR CORRETAMENTE  🔴\n"
+                printf "\n \n📌  Apagar os arquivos panel da pasta logs? [y/N]\n \n"
+                read -r response
+                case "$response" in
+                [yY][eE][sS] | [yY])
+                    rm -rf logs/panel*
+                    ;;
+                *) ;;
+                esac
             fi
         fi
     fi
