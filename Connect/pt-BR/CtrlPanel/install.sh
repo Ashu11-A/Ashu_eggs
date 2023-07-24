@@ -4,7 +4,7 @@ LATEST_JSON=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/tags" 
 RELEASES=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/tags" | jq '.[]')
 
 if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
-    DOWNLOAD_LINK=$(echo "$LATEST_JSON" | jq -r .[].tarball_url)
+    DOWNLOAD_LINK=$(echo "$LATEST_JSON" | jq -r .tarball_url)
 else
     VERSION_CHECK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.name==$VERSION) | .name')
     if [ "$VERSION" == "$VERSION_CHECK" ]; then
