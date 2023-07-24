@@ -66,19 +66,19 @@ while read -r line; do
     elif [[ "$line" == "migrate" ]]; then
 
         echo "Migrando banco de dados: ${bold}${lightblue}${migrate_start}"
-        eval "cd /home/container/painel && $migrate_start && cd .."
+        eval "cd /home/container/controlpanel && $migrate_start && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
     elif [[ "$line" == "clear" ]]; then
 
         echo "Limpando cache: ${bold}${lightblue}${clear}"
-        eval "cd /home/container/painel && $clear && cd .."
+        eval "cd /home/container/controlpanel && $clear && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
     elif [[ "$line" == "mysql"* ]]; then
 
         echo "Executando: ${bold}${lightblue}${line}"
-        eval "cd /home/container/painel && $line && cd .."
+        eval "cd /home/container/controlpanel && $line && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
     elif [[ "$line" == "${reinstall_a}" ]]; then
