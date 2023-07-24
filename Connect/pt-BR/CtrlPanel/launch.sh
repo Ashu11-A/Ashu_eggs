@@ -5,6 +5,10 @@ composer_start="composer install --no-dev --optimize-autoloader"
 reinstall_a="reinstall all"
 reinstall_a_start="rm -rf controlpanel && rm -rf logs/panel* && rm -rf nginx && rm -rf php-fpm"
 
+migrate_start="php artisan migrate --seed --force"
+
+clear="php artisan view:clear && php artisan config:clear"
+
 reinstall_p="reinstall controlpanel"
 reinstall_p_start="rm -rf controlpanel && rm -rf logs/panel*"
 
@@ -35,7 +39,7 @@ nohup php /home/container/controlpanel/artisan queue:work --sleep=3 --tries=3 >/
 echo "🟢  Iniciando cron..."
 nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/CtrlPanel/cron.sh) >/dev/null 2>&1 &
 
-echo "📃  Comandos Disponíveis: ${bold}${lightblue}composer${normal}, ${bold}${lightblue}reinstall${normal}. Use ${bold}${lightblue}help${normal} para saber mais..."
+echo "📃  Comandos Disponíveis: ${bold}${lightblue}composer${normal}, ${bold}${lightblue}mysql${normal}, ${bold}${lightblue}migrate${normal}, ${bold}${lightblue}reinstall${normal}. Use ${bold}${lightblue}help${normal} para saber mais..."
 
 while read -r line; do
     if [[ "$line" == "help" ]]; then
@@ -45,18 +49,37 @@ while read -r line; do
 | Comando   |  O que Faz                            |
 +-----------+---------------------------------------+
 | composer  |  Instalar pacotes do Composer         |
+| mysql     |  Pode executar qualquer comando do... |
+| migrate   |  Migração de banco de dados           |
 | reinstall |  Reinstala algo ou tudo               |
 +-----------+---------------------------------------+
         "
     elif [[ "$line" == "composer" ]]; then
 
-        Comando1="${composer_start}"
-        echo "Instalando pacotes do Composer: ${bold}${lightblue}${Comando1}"
-        eval "cd /home/container/controlpanel && $Comando1 && cd .."
+        echo "Instalando pacotes do Composer: ${bold}${lightblue}${composer_start}"
+        eval "cd /home/container/controlpanel && rm -rf /var/www/controlpanel/vendor && $composer_start && cd .."
         printf "\n \n✅  Comando Executado\n \n"
 
     elif [[ "$line" == "reinstall" ]]; then
         echo -e "❗️  \e[1m\e[94mEsse Comando necessita de uma opção use:\n \n${bold}${lightblue}reinstall all ${normal}(reinstala o controlpanel, nginx, php-fpm)\n \n${bold}${lightblue}reinstall controlpanel ${normal}(reinstala somente o controlpanel)\n \n${bold}${lightblue}reinstall nginx ${normal}(reinstala somente o nginx) \n \n${bold}${lightblue}reinstall php-fpm ${normal}(reinstala somente o php-fpm)"
+
+    elif [[ "$line" == "migrate" ]]; then
+
+        echo "Migrando banco de dados: ${bold}${lightblue}${migrate_start}"
+        eval "cd /home/container/painel && $migrate_start && cd .."
+        printf "\n \n✅  Comando Executado\n \n"
+
+    elif [[ "$line" == "clear" ]]; then
+
+        echo "Limpando cache: ${bold}${lightblue}${clear}"
+        eval "cd /home/container/painel && $clear && cd .."
+        printf "\n \n✅  Comando Executado\n \n"
+
+    elif [[ "$line" == "mysql"* ]]; then
+
+        echo "Executando: ${bold}${lightblue}${line}"
+        eval "cd /home/container/painel && $line && cd .."
+        printf "\n \n✅  Comando Executado\n \n"
 
     elif [[ "$line" == "${reinstall_a}" ]]; then
 
@@ -122,7 +145,7 @@ while read -r line; do
             ;;
         esac
 
-    elif  [ "$line" != "composer" ] || [[ "$line" != "reinstall"* ]]; then
+    elif [ "$line" != "composer" ] || [[ "$line" != "reinstall"* ]]; then
         echo "Comando Invalido, oque vocẽ está tentando fazer? tente ${bold}${lightblue}help"
     else
         echo "Script Falhou."
