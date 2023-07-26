@@ -182,25 +182,22 @@ else
         php-fpm/php.ini
     echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >>php-fpm/php-fpm.conf
 fi
+
 cp -r ./temp/logs ./
 
-if [ -f "logs/ctrlpanel_database_instalado" ]; then
-    echo "| Env      | 🟢  Configurado                  |"
-else
-    if [ ! -f "controlpanel/.env" ]; then
-        if [ -f "backups/executado" ]; then
-            echo "| Env      | 🔴  Restaurando .env...          |"
-            (
-                cd backups || exit
-                cp $(ls .env* -t | head -1) ../controlpanel/.env
-            )
-        fi
+if [ ! -f "controlpanel/.env" ]; then
+    if [ -f "backups/executado" ]; then
+        echo "| Env      | 🔴  Restaurando .env...          |"
         (
-            cd controlpanel || exit
-            printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
-            cp .env.example .env
+            cd backups || exit
+            cp $(ls .env* -t | head -1) ../controlpanel/.env
         )
     fi
+    (
+        cd controlpanel || exit
+        printf "\n \n⚙️  Executando: cp .env.example .env\n \n"
+        cp .env.example .env
+    )
 fi
 
 if [[ -f "logs/ctrlpanel_composer_instalado" ]]; then
@@ -248,11 +245,13 @@ if [ "${DEVELOPER}" = "1" ]; then
     echo -e "🪄  Modo Desenvolvedor Ativo"
     (
         cd "controlpanel" || exit
-        echo -e "\n \n🎼  Executando Composer\n \n"
+        echo -e "\n \n🎼  Executando Composer...\n \n"
         composer install --no-dev --optimize-autoloader
+        echo -e "\n \n🧹 Executando Limpeza...\n \n"
+        php artisan view:clear && php artisan config:clear
         echo -e "\n \n🔒  Executando Permições das pastas storage e bootstrap/cache/\n \n"
         fakeroot chmod -R 755 storage/* bootstrap/cache/
-        echo -e "\n \n🔒  Executando Permições da pasta home controlpanel\n \n"
+        echo -e "\n \n🔒  Executando Permições da pasta controlpanel...\n \n"
         fakeroot chown -R nginx:nginx /home/container/controlpanel/*
     )
 fi
@@ -262,21 +261,17 @@ if [ -f "./controlpanel/ctrlpanel_github_instalado" ]; then
 fi
 
 if [ -z "$BACKUP" ] || [ "$BACKUP" == "1" ]; then
-    if [[ -f "./logs/ctrlpanel_database_instalado" ]]; then
-        if [ ! -d "backups" ]; then
-            mkdir backups
-        fi
-        if [ ! -f "backups/executado" ]; then
-            touch backups/executado
-            sleep 5
-        fi
-        cp controlpanel/.env backups/.env-$(date +%F-%Hh%Mm)
-        echo "🟢  Backup do .env realizado!"
-        echo "⚠️  Backups com mais de 1 semana serão deletados automaticamente!"
-        find ./backups/ -mindepth 1 -not -name "executado" -mtime +7 -delete
-    else
-        echo "Database não instalado, pulando backup do .env"
+    if [ ! -d "backups" ]; then
+        mkdir backups
     fi
+    if [ ! -f "backups/executado" ]; then
+        touch backups/executado
+        sleep 5
+    fi
+    cp controlpanel/.env backups/.env-$(date +%F-%Hh%Mm)
+    echo "🟢  Backup do .env realizado!"
+    echo "⚠️  Backups com mais de 1 semana serão deletados automaticamente!"
+    find ./backups/ -mindepth 1 -not -name "executado" -mtime +7 -delete
 else
     echo "🟠  Sistema de backups está desativado, caso perca seu .env, você não terá mais acesso ao seu Database!"
 fi

@@ -39,7 +39,7 @@ nohup php /home/container/controlpanel/artisan queue:work --sleep=3 --tries=3 >/
 echo "🟢  Iniciando cron..."
 nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/CtrlPanel/cron.sh) >/dev/null 2>&1 &
 
-echo "📃  Comandos Disponíveis: ${bold}${lightblue}composer${normal}, ${bold}${lightblue}mysql${normal}, ${bold}${lightblue}migrate${normal}, ${bold}${lightblue}reinstall${normal}. Use ${bold}${lightblue}help${normal} para saber mais..."
+echo "📃  Comandos Disponíveis: ${bold}${lightblue}composer${normal}, ${bold}${lightblue}clear${normal}, ${bold}${lightblue}mysql ${bold}${lightblue}migrate${normal}, ${bold}${lightblue}reinstall${normal}. Use ${bold}${lightblue}help${normal} para saber mais..."
 
 while read -r line; do
     if [[ "$line" == "help" ]]; then
