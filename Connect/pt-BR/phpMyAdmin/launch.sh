@@ -1,10 +1,10 @@
 #!/bin/bash
 
 reinstall_a="reinstall all"
-reinstall_a_start="rm -rf controlpanel && rm -rf logs/panel* && rm -rf nginx && rm -rf php-fpm"
+reinstall_a_start="rm -rf phpMyAdmin && rm -rf logs/panel* && rm -rf nginx && rm -rf php-fpm"
 
-reinstall_p="reinstall controlpanel"
-reinstall_p_start="rm -rf controlpanel && rm -rf logs/panel*"
+reinstall_p="reinstall phpMyAdmin"
+reinstall_p_start="rm -rf phpMyAdmin && rm -rf logs/panel*"
 
 reinstall_n="reinstall nginx"
 reinstall_n_start="rm -rf nginx"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ -d "/home/container/controlpanel" ]; then
+if [ -d "/home/container/phpMyAdmin" ]; then
     printf "\n \n📄  Verificando Instalação...\n \n"
     printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
     printf "\n| phpMyAdmin | 🟢  Instalado                    |"
@@ -15,7 +15,6 @@ else
     tar xvzf phpMyAdmin-latest-english.tar.gz
     mv phpMyAdmin-*-english/* phpMyAdmin
     rm -rf phpMyAdmin-*-english
-    mv "${DOWNLOAD_LINK##*/}" controlpanel
     fakeroot chmod -R 755 ./*
 fi
 
@@ -69,7 +68,7 @@ if [[ -f "./logs/phpMyAdmin_instalado" ]]; then
     printf "\n \n📑  Verificação do Painel Concluída...\n \n"
 else
     printf "\n \n⚙️  Executando: Atribuição de permissões\n \n"
-    fakeroot chown -R nginx:nginx /home/container/controlpanel/*
+    fakeroot chown -R nginx:nginx ./*
     printf "\n \n⚙️  Instalação do painel concluída\n \n"
     touch ./logs/phpMyAdmin_instalado
 fi
