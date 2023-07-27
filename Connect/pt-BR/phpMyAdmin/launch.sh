@@ -29,8 +29,8 @@ else
 fi
 echo "🟢  Inicializado com sucesso ${MGM}..."
 
-echo "Configure o phpMyAdmin em phpMyAdmin/config.inc.php"
-echo "https://stackoverflow.com/questions/29928109/getting-error-mysqlireal-connect-hy000-2002-no-such-file-or-directory-wh"
+echo "⚙️  Configure o phpMyAdmin em phpMyAdmin/config.inc.php"
+echo "🔗  https://stackoverflow.com/questions/29928109/getting-error-mysqlireal-connect-hy000-2002-no-such-file-or-directory-wh"
 
 echo "📃  Comandos Disponíveis:${bold}${lightblue}reinstall${normal}..."
 
