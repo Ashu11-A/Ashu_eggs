@@ -13,7 +13,12 @@ else
     echo -e "Unpacking server files"
     tar xvzf phpMyAdmin-latest-english.tar.gz
     mv phpMyAdmin-*-english/* phpMyAdmin
+    rm -rf phpMyAdmin-*-english.tar.gz
     rm -rf phpMyAdmin-*-english
+    (
+        cd phpMyAdmin || exit
+        cp config.sample.inc.php config.inc.php
+    )
     fakeroot chmod -R 755 ./*
 fi
 
