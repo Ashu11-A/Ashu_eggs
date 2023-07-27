@@ -32,6 +32,7 @@ Gostou dos Eggs? Então de uma 🌟 ao repositório!
 | Service | file* | AMD64 | ARM64 | More info |
 |--|--|--|--|--|
 | Paneldactyl | [egg-paneldactyl.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/egg-paneldactyl.json) | ✅ | ✅ | Instalador de painéis (Pterodactyl, Jexactyl...)
+| phpMyAdmin | [egg-php-my-admin.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/egg-php-my-admin.json) | ✅ | ✅ | 
 | FFmpeg Commander | [egg-ffmpeg-commander.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/egg-ffmpeg-commander.json) | ✅ | ✅ | Uma interface de usuário da Web simples para gerar operações de codificação FFmpeg comuns.
 | Frp | [egg-frp.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/egg-frp.json) | ✅ | ✅ | Cria um túnel que atravessa NAT (precisa de um servidor com porta aberta)
 | Jellyfin | [egg-jellyfin.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/egg-jellyfin.json) | ✅ | ✅ | Reprodutor de mídia
