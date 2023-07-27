@@ -1,13 +1,12 @@
 #!/bin/bash
-
 if [ -d "/home/container/phpMyAdmin" ]; then
     printf "\n \n📄  Verificando Instalação...\n \n"
-    printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
-    printf "\n| phpMyAdmin | 🟢  Instalado                    |"
+    printf "+------------+--------------------------------+\n| Tarefa     | Status                         |\n+------------+--------------------------------+"
+    printf "\n| phpMyAdmin | 🟢  Instalado                   |"
 else
     printf "\n \n📄  Verificando Instalação...\n \n"
-    printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
-    printf "\n| phpMyAdmin | 🟡  Baixando phpMyAdmin               |\n"
+    printf "+------------+--------------------------------+\n| Tarefa     | Status                         |\n+------------+--------------------------------+"
+    printf "\n| phpMyAdmin | 🟡  Baixando phpMyAdmin         |\n"
 
     wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-english.tar.gz
     mkdir phpMyAdmin
@@ -24,9 +23,9 @@ fi
 
 git clone --quiet https://github.com/Ashu11-A/nginx ./temp ## Sim, ele sempre irá clonar o repo idenpendente de tudo
 if [ -f "/home/container/nginx/nginx.conf" ]; then
-    printf "\n| Nginx    | 🟢  Instalado                    |"
+    printf "\n| Nginx      | 🟢  Instalado                   |"
 else
-    printf "\n| Nginx    | 🟡  Baixando Nginx...            |"
+    printf "\n| Nginx      | 🟡  Baixando Nginx...           |"
     cp -r ./temp/nginx ./
     rm nginx/conf.d/default.conf
     curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/phpMyAdmin/default.conf -o ./nginx/conf.d/default.conf
@@ -35,9 +34,9 @@ else
         nginx/conf.d/default.conf
 fi
 if [ -d "/home/container/php-fpm" ]; then
-    printf "\n| PHP-FPM  | 🟢  Instalado                    |\n+----------+---------------------------------+\n"
+    printf "\n| PHP-FPM    | 🟢  Instalado                   |\n+------------+--------------------------------+\n"
 else
-    printf "\n| PHP-FPM  | 🟡  Baixando PHP-FPM...          |\n+----------+---------------------------------+\n"
+    printf "\n| PHP-FPM    | 🟡  Baixando PHP-FPM...         |\n+------------+--------------------------------+\n"
     cp -r ./temp/php-fpm ./
     echo "extension=\"smbclient.so\"" >php-fpm/conf.d/00_smbclient.ini
     echo 'apc.enable_cli=1' >>php-fpm/conf.d/apcu.ini
@@ -64,7 +63,6 @@ fi
 cp -r ./temp/logs ./
 
 if [[ -f "./logs/phpMyAdmin_instalado" ]]; then
-    echo "+----------+---------------------------------+"
     printf "\n \n📑  Verificação do Painel Concluída...\n \n"
 else
     printf "\n \n⚙️  Executando: Atribuição de permissões\n \n"
