@@ -40,7 +40,7 @@ echo "🟢  Estou rodando ${MGM}..."
 echo -e "\n \n📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}start ${normal}, ${bold}${lightblue}show ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]...\n \n"
 
 echo -e "\n \n🔒  Sistema antiqueda inicializando...\n \n"
-nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Bot4All/nobreak.sh) >logs/run.log 2>&1
+nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Bot4All/nobreak.sh) > logs/run.log 2>&1
 
 if [ "${SHOW_LOGS}" == "1" ]; then
     nohup tail -F logs/run.log
