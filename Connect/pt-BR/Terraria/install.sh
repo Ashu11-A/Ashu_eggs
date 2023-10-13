@@ -30,7 +30,7 @@ else
     fi
     if [ "${TERRARIA_VERSION}" = "1.4.4" ] || [ "${TERRARIA_VERSION}" = "144" ]; then
         CLEAN_VERSION=$(echo ${DOWNLOAD_LINK##*/} | cut -d'-' -f3 | cut -d'.' -f1)
-        cat <<EOF >logs/log.txt
+        cat <<EOF >logs/run.log
 Atenção, essa versão há um erro GRAVE!!!
 Versão: ${TERRARIA_VERSION}
 Link: https://terraria.org/api/download/pc-dedicated-server/terraria-server-144.zip
@@ -44,7 +44,7 @@ EOF
         cp -R 144/Linux/* ./
     else
         CLEAN_VERSION=$(echo ${DOWNLOAD_LINK##*/} | cut -d'-' -f3 | cut -d'.' -f1)
-        cat <<EOF >logs/log.txt
+        cat <<EOF >logs/run.log
 Versão: ${CLEAN_VERSION}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}

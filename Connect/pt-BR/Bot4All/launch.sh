@@ -40,7 +40,11 @@ echo "🟢  Estou rodando ${MGM}..."
 echo -e "\n \n📃  Comandos Disponíveis: ${bold}${lightblue}help ${normal}, ${bold}${lightblue}start ${normal}, ${bold}${lightblue}show ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]...\n \n"
 
 echo -e "\n \n🔒  Sistema antiqueda inicializando...\n \n"
-nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Bot4All/nobreak.sh) &
+nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Bot4All/nobreak.sh) >logs/run.log 2>&1
+
+if [ "${SHOW_LOGS}" == "1" ]; then
+    nohup tail -F logs/run.log
+fi
 
 while read -r line; do
     if [[ "$line" == "help" ]]; then
@@ -74,7 +78,7 @@ while read -r line; do
         echo -e "\n \nExecutando: ${bold}${lightblue}${line}\n \n"
         (
 
-            eval "tail -n 40 log_egg.txt"
+            eval "tail -n 40 logs/run.log"
         )
         echo -e "\n \n✅  Comando Executado\n \n"
     elif [[ "$line" == *"version"* ]]; then
@@ -108,7 +112,7 @@ done
 start="$(cat logs/start-conf)"
 (
     
-    nohup node ${start} >log_egg.txt 2>&1 &
+    nohup node ${start} >logs/run.log 2>&1 &
 
     pid=$!
     sleep 5
@@ -117,7 +121,7 @@ start="$(cat logs/start-conf)"
         echo "✅  Servidor iniciado com sucesso!"
     else
         echo "⛔️  Erro ao iniciar o servidor com nodejs! Tentando usar npm."
-        nohup npm start >log_egg.txt &
+        nohup npm start >logs/run.log &
 
         pid=$!
         sleep 5

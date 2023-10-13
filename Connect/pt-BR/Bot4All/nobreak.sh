@@ -6,11 +6,11 @@ while [ $count -lt 10 ]; do
     if [ -f "$start" ]; then
         # Verifica se o arquivo é um arquivo JavaScript (.js)
         if [[ "$start" == *.js ]]; then
-            node ${start} >log_egg.txt 2>&1
+            node ${start} >logs/run.log 2>&1
             sleep 1
         fi
     elif [[ "$start" == "npm run"* ]] || [[ "$start" == "node"* ]]; then
-        $start >log_egg.txt 2>&1
+        $start >logs/run.log 2>&1
         sleep 1
     fi
     count=$((count + 1))
