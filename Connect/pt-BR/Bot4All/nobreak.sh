@@ -15,4 +15,7 @@ while [ $count -lt "$BREAK_NUMBER" ]; do
     fi
     count=$((count + 1))
     echo -e "\n \n📢  Bot quebrou! numero da tentativa: $count  \n \n"
+    if [ $count == "$BREAK_NUMBER" ]; then
+        break
+    fi
 done
