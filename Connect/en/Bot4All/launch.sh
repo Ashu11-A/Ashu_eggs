@@ -67,7 +67,7 @@ while read -r line; do
     elif [[ "$line" == "show" ]]; then
         echo -e "\n \nRunning: ${bold}${lightblue}${line}\n \n"
         (
-            eval "tail -n 40 log_egg.txt"
+            eval "tail -n 40 logs/run.log"
         )
         echo -e "\n \n✅  Command Executed\n \n"
     elif [[ "$line" == "version" ]]; then
@@ -108,7 +108,7 @@ done
 : <<'LIMBO'
 start="$(cat logs/start-conf)"
 (
-    nohup node ${start} >log_egg.txt 2>&1 &
+    nohup node ${start} >logs/run.log 2>&1 &
 
     pid=$!
     sleep 5
@@ -117,7 +117,7 @@ start="$(cat logs/start-conf)"
         echo "✅  Server started successfully!"
     else
         echo "⛔️  Error starting server with nodejs! Trying to use npm."
-        nohup npm start >log_egg.txt &
+        nohup npm start >logs/run.log &
 
         pid=$!
         sleep 5
