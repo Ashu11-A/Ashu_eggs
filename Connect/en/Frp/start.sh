@@ -1,8 +1,6 @@
 #!/bin/bash
 if [ "${INSTALL_EX}" == "1" ]; then
-    if [[ -d "./Example_Frpc_Windows64" ]]; then
-        cp -f ./Frpc/frpc.ini ./Example_Frpc_Windows64/frpc.ini
-    fi
+    cp -f ./Frpc/frpc.ini ./Example_Frpc_Windows64/frpc.ini
 fi
 
 echo "⚙️ Script Version: 2.5"
