@@ -6,7 +6,7 @@
     },
     "exported_at": "2024-03-23T23:15:22-03:00",
     "name": "Emby",
-    "author": "josdekurk@gmail.com",
+    "author": "Matheusn.biolowons@gmail.com",
     "description": "\ud83d\udc8e Egg: Emby\r\n\u2699\ufe0f Version: 2.1\r\n\u2753 What is it: In short, you can have your own Netflix. Emby is a media server designed to organize, play, and stream audio and video to a variety of devices.\r\n\ud83d\udc1b Fixed bugs\/changelogs: \r\n      \u2022 The way downloads are done has changed, it will now always install the latest version \r\n      \u2022 Now the Egg is not dependent on updates, everything is done by scripts, which results in better maintenance.\r\n      \u2022 Code is now cleaner.\r\n    \ud83d\udce6Docker:\r\n         \u2022 Docker Updated (Dotnet Version: 6.0.13) \r\n         \u2022 ARM compatibility added\r\n         \u2022 Now there is no need to switch between 64x and ARM64 Use the image: ashu11a\/emby:latest\r\n     \u2022 (2.1) Dotnet 8 image added.\r\n\ud83d\udc51 Author: Ashu \ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
