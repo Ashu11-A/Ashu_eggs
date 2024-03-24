@@ -1,8 +1,7 @@
 #!/bin/ash
-# shellcheck shell=dash
 
 MCS=$([ "${METRICS}" == "1" ] && echo "--metrics-brief" || echo "")
-CPU_ON=$([ "${CPU}" == "1" ] && echo "--cpu ${CPU_CORES}" || echo "")
+CPU_ON=$([ "${CPU}" == "1" ] && echo "--cpu ${CPU_CORES}" || echo "") 
 CPU_RAM=$([ "${CPU_MEMORY}" == "1" ] && echo "--vm ${CPU_CORES} --vm-bytes ${MEMORY}M" || echo "")
 TIME=$([ "${TIMEOUT}" == "0" ] && echo "" || echo "--timeout ${TIMEOUT}s")
 
