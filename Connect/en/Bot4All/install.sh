@@ -53,7 +53,7 @@ if [ -z "${NVM_STATUS}" ] || [ "${NVM_STATUS}" = "1" ]; then
 
         export NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
         export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
-    ######################################## END
+    ######################################## FINAL
     else
         echo -e "\n \n⚠️  NVM not installed, server needs to be reinstalled...\n \n"
     fi
@@ -62,7 +62,7 @@ fi
 if [ -n "${GIT_ADDRESS}" ]; then
     echo -e "\n \n📌  Using GitHub repo\n \n"
     ## add git ending if it's not on the address
-    if [[ ${GIT_ADDRESS} != .git ]]; then
+    if [[ ${GIT_ADDRESS} != *.git ]]; then
         GIT_ADDRESS=${GIT_ADDRESS}.git
     fi
     if [ -z "${USERNAME}" ] && [ -z "${ACCESS_TOKEN}" ]; then
@@ -71,8 +71,8 @@ if [ -n "${GIT_ADDRESS}" ]; then
         GIT_ADDRESS="https://${USERNAME}:${ACCESS_TOKEN}@$(echo -e ${GIT_ADDRESS} | cut -d/ -f3-)"
     fi
     ## pull git js bot repo
-    if ls -A ./ | grep -v -E '(^.nvm$|^logs$|^install.sh$|^.npm$|^code$|^..rc$)' >/dev/null; then
         echo -e "The '/home/container/' directory is not empty."
+    if ls -A ./ | grep -v -E '(^\.nvm$|^logs$|^install.sh$|^\.npm$|^code$|^\..*rc$)' >/dev/null; then
         if [ -d .git ]; then
             echo -e ".git directory exists"
             if [ -f .git/config ]; then
@@ -92,12 +92,12 @@ if [ -n "${GIT_ADDRESS}" ]; then
         if [ -z ${BRANCH} ]; then
             echo -e "cloning default branch"
             git clone ${GIT_ADDRESS} code
-            cp -R code/ ./
+            cp -R code/* ./
             rm -rf code
         else
             echo -e "cloning ${BRANCH}'"
             git clone --single-branch --branch ${BRANCH} ${GIT_ADDRESS} code
-            cp -R code/ ./
+            cp -R code/* ./
             rm -rf code
         fi
     fi
@@ -124,62 +124,33 @@ else
     fi
 fi
 
-if [ ! -f "logs/start-ini" ]; then
-    echo -e "\n \n📝  What type of initialization do you want to use?\n [1]: Specify only the file (e.g., bot.js) (it will work like this: node YOUR_FILE.sh)\n [2]: Command-based initialization (e.g., npm run start)\n [Select 1 or 2 and press [ENTER]): \n \n"
-    while read -r START; do
-        if [[ "$START" =~ ^(1|2)$ ]]; then
-            echo "$START" >logs/start-ini
-            if [ -f "logs/start-set" ]; then
-                rm logs/start-set
-            fi
-            echo -e "\n \n👌  OK, saved ($START) here!\n"
-            echo -e "🫵  You can change this using the command: ${bold}${lightblue}start\n \n"
-            exit
-        else
-            echo -e "\n \n😅  Please select the initialization method with 1 or 2\n \n"
-        fi
-    done
+if [ ! -f "logs/start-conf" ]; then
+    echo -e "\n \n📝  What is the startup command/file you want to use? (EX: bot.js, npm run start...) (press [ENTER]): \n \n"
+    read -r START
+    echo "$START" >logs/start-conf
+    echo -e "\n \n👌  OK, I've saved ($START) here!\n"
+    echo -e "🫵  You can change this using the command: ${bold}${lightblue}start\n \n"
 fi
 
-if [ ! -f "logs/start-set" ]; then
-    if [ "$(cat logs/start-ini)" = "1" ]; then
+# Lê o conteúdo do arquivo "logs/start-conf" para a variável "start"
+start="$(cat logs/start-conf)"
+
+# Verifica se o conteúdo é um arquivo existente ou um comando npm run ou node
+if [ -f "$start" ] || [[ "$start" == "npm run"* ]] || [[ "$start" == "node"* ]]; then
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Bot4All/launch.sh)
+else
+    echo -e "\n \n📛  Selected initialization file not found.\n"
+    echo -e "❔ Do you want to change the file? [y/N]\n \n"
+    read -r response
+    case "$response" in
+    [yY][eE][sS] | [yY])
         echo -e "\n \n📝  What is the initialization file you want to use? (e.g., bot.js, index.js...) (press [ENTER]): \n \n"
         read -r START
         echo "$START" >logs/start-conf
-        touch logs/start-set
-        echo -e "\n \n👌  OK, saved ($START) here!\n"
         echo -e "🫵  You can change this using the command: ${bold}${lightblue}start\n \n"
-    else
-        echo -e "\n \n📝 What is the initialization command you want to use? (e.g., npm run start) (press [ENTER]): \n \n"
-        read -r START
-        echo "$START" >logs/start-conf
-        touch logs/start-set
-        echo -e "\n \n👌  OK, saved ($START) here!\n"
-        echo -e "🫵  You can change this using the command: ${bold}${lightblue}start\n \n"
-    fi
-fi
-
-if [ "$(cat logs/start-ini)" = "1" ]; then
-    start="$(cat logs/start-conf)"
-    if [[ -f "${start}" ]]; then
-        bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Bot4All/launch.sh")
-    else
-        echo -e "\n \n📛  Selected initialization file not found.\n"
-        echo -e "❔  Do you want to change the file? [y/N]\n \n"
-        read -r response
-        case "$response" in
-        [yY][eE][sS] | [yY])
-            echo -e "\n \n📝  What is the initialization file you want to use? (e.g., bot.js, index.js...) (press [ENTER]): \n \n"
-            read -r START
-            echo "$START" >logs/start-conf
-            echo -e "\n \n👌  OK, saved ($START) here!\n"
-            echo -e "🫵  You can change this using the command: ${bold}${lightblue}start\n \n"
-            ;;
-        *) ;;
-        esac
-    fi
-else
-    bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Bot4All/launch.sh")
+        ;;
+    *) ;;
+    esac
 fi
 
 : <<'LIMBO'

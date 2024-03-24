@@ -4,6 +4,7 @@ source "/home/container/.nvm/nvm.sh"
 
 echo -e "\n \n📝  Which version of Node.js do you want to use (12, 14, 16, 18, 20) (press [ENTER]): \n \n"
 while read -r VERSION; do
+
     if [[ "$VERSION" =~ ^(12|14|16|18|20)$ ]]; then
         if [[ "$VERSION" == "12" ]]; then
             NODE_VERSION="12.22.9"
