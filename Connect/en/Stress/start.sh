@@ -8,7 +8,7 @@ TIME=$([ "${TIMEOUT}" == "0" ] && echo "" || echo "--timeout ${TIMEOUT}s")
 echo "⚙️ Script Version: 1.2"
 
 echo "✓ Updating the script..."
-curl -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Stress/start.sh
+curl -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Stress/start.sh
 
 if [ "${CONSOLE}" == "1" ]; then
     echo "Executing: stress-ng ${CONSOLE_OCC}"

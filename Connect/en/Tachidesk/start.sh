@@ -1,5 +1,5 @@
 #!/bin/bash
-bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Tachidesk/version.sh)
+bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Tachidesk/version.sh)
 
 echo "👀  More info: https://github.com/Suwayomi/Tachidesk-Server"
 echo "✅  Starting Tachidesk..."
