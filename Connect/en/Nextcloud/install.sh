@@ -1,9 +1,7 @@
 #!/bin/ash
-# shellcheck shell=dash
-
-if [ -f "./logs/installed" ]; then
-    if [ "${OCC}" == "1" ]; then
-        php ./nextcloud/occ ${OCC_COMMAND}
+if [[ -f "./logs/installed" ]]; then
+    if [ "${OCC}" == "1" ]; then 
+        php ./nextcloud/occ ${COMMANDO_OCC}
         exit
     else
         echo "✓ Updating install.sh script"
