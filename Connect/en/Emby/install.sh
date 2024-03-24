@@ -21,7 +21,7 @@ else
     fi
 
     mkdir -p /mnt/server
-    cd /mnt/server || exit
+    cd /mnt/server
 
     if [[ -f "./Emby/EmbyServer.dll" ]]; then
         mkdir Emby_OLD
