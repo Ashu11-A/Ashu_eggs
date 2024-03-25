@@ -1,0 +1,122 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2024-03-24T21:26:57-03:00",
+    "name": "Bot4All",
+    "author": "parker@parkervcp.com",
+    "description": "\ud83d\udc8e Egg: Bot4All (BotForAll)\r\n\u2699\ufe0f Vers\u00e3o: 1.0\r\n\u2753 Oque \u00e9: \r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "features": null,
+    "docker_images": {
+        "64x, ARM64": "ghcr.io\/ashu11-a\/software:bot4all"
+    },
+    "file_denylist": [],
+    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/Bot4All\/start.sh)",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Estou rodando\"\r\n}",
+        "logs": "{}",
+        "stop": "^^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/bash\r\n# shellcheck shell=dash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\napt update\r\napt install -y git curl jq file unzip build-essential libtool\r\nif [ \"${NVM_STATUS}\" = \"1\" ]; then\r\nexport NVM_DIR=\/mnt\/server\/.nvm\r\nexport NODE_VERSION=18.16.0\r\nmkdir -p $NVM_DIR\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/creationix\/nvm\/v0.39.3\/install.sh -o install.sh\r\nchmod a+x .\/install.sh\r\n.\/install.sh\r\nrm .\/install.sh\r\nnvm install $NODE_VERSION\r\nnvm alias default $NODE_VERSION\r\nnvm use default\r\necho \"source \/home\/container\/.nvm\/nvm.sh\" > \/etc\/profile.d\/nvm.sh\r\necho \"source \/home\/container\/.nvm\/nvm.sh\" > \/mnt\/server\/.bashrc\r\nchmod +x \/etc\/profile.d\/nvm.sh\r\nfi\r\nchmod -R 775 \/mnt\/server\/*\r\nif [ ! -d \".\/logs\" ]; then\r\nmkdir logs\r\nfi\r\necho \"1.0\" > logs\/egg_version",
+            "container": "ubuntu:latest",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "URL do Reposit\u00f3rio GIT",
+            "description": "GitHub Repo para clonar\r\n\r\nEX: https:\/\/github.com\/Ashu11-A\/repo_name",
+            "env_variable": "GIT_ADDRESS",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Instalar Branch",
+            "description": "Que ramo tirar do Github.\r\n\r\nO default est\u00e1 em branco para puxar a ramifica\u00e7\u00e3o padr\u00e3o do repo",
+            "env_variable": "BRANCH",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Atualiza\u00e7\u00e3o autom\u00e1tica",
+            "description": "Obtenha os arquivos mais recentes na inicializa\u00e7\u00e3o ao usar um repo GitHub.",
+            "env_variable": "AUTO_UPDATE",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|boolean",
+            "field_type": "text"
+        },
+        {
+            "name": "Pacotes de m\u00f3dulos adicionais",
+            "description": "Instalar pacotes de m\u00f3dulos adicionais.\r\n\r\nUsar espa\u00e7os para separar.",
+            "env_variable": "NODE_PACKAGES",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Nome de usu\u00e1rio do Git",
+            "description": "Nome de usu\u00e1rio a ser autenticado com o Git.",
+            "env_variable": "USERNAME",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Token de Acesso do Git",
+            "description": "Senha para usar com o Git.\r\n\r\n\u00c9 a melhor pr\u00e1tica para usar um Token de Acesso Pessoal.\r\nhttps:\/\/github.com\/settings\/tokens\r\nhttps:\/\/gitlab.com\/-\/profile\/personal_access_tokens",
+            "env_variable": "ACCESS_TOKEN",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Desinstalar pacotes de m\u00f3dulos",
+            "description": "Desinstalar pacotes de m\u00f3dulos.\r\n\r\nUsar espa\u00e7os para separar.",
+            "env_variable": "UNNODE_PACKAGES",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "nullable|string",
+            "field_type": "text"
+        },
+        {
+            "name": "Habilitar NVM",
+            "description": "Isso aqui ativar\u00e1 a possibilidade de utilizar diferentes vers\u00f5es do Nodejs, sem alterar a imagem Docker, caso ativado reinstale o servidor (nada ser\u00e1 apagado).",
+            "env_variable": "NVM_STATUS",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Tente at\u00e9 quebrar!",
+            "description": "Quantas vezes o c\u00f3digo pode quebrar? Se ele exercer esse numero ele para de dar loop no c\u00f3digo.",
+            "env_variable": "BREAK_NUMBER",
+            "default_value": "10",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|max:9999",
+            "field_type": "text"
+        }
+    ]
+}
