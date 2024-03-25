@@ -2,7 +2,7 @@
 
 # Ashu_eggs
 
-![license-info](https://img.shields.io/github/license/Ashu11-A/Ashu_eggs?logo=gnu&style=for-the-badge&colorA=302D41&colorB=f9e2af&logoColor=f9e2af)
+![license-info](https://img.shields.io/github/license/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=f9e2af&logoColor=f9e2af)
 ![stars-infoa](https://img.shields.io/github/stars/Ashu11-A/Ashu_eggs?colorA=302D41&colorB=f9e2af&style=for-the-badge)
 
 ![Last-Comitt](https://img.shields.io/github/last-commit/Ashu11-A/Ashu_eggs?style=for-the-badge&colorA=302D41&colorB=b4befe)
