@@ -59,7 +59,6 @@ Did you like the Eggs? Then give the repository a 🌟!
 
 ## 📁 | Contact
 
-```Discord: ashu_sama```
 ```Discord: idleglance.```
 
 
