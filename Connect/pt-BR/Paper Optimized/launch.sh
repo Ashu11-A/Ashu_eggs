@@ -33,7 +33,7 @@ else
     fi
 fi
 
-if [ "${ALLOW_PLUGINS}" = "0"]; then
+if [ "${ALLOW_PLUGINS}" = "0" ]; then
     if [ -d "plugins" ]; then
         echo "⚠️  Aviso: Plugins foram instalados, mas o servidor está configirado para não permitir plugins."
         rm -rf ./plugins
