@@ -32,5 +32,13 @@ else
     START="java -Xms11G -Xmx11G -XX:+UseG1GC -XX:+ParallelRefProcEnabled -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=40 -XX:G1MaxNewSizePercent=50 -XX:G1HeapRegionSize=16M -XX:G1ReservePercent=15 -XX:G1HeapWastePercent=5 -XX:G1MixedGCCountTarget=4 -XX:InitiatingHeapOccupancyPercent=20 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:SurvivorRatio=32 -XX:+PerfDisableSharedMem -XX:MaxTenuringThreshold=1 -Dusing.aikars.flags=https://mcflags.emc.gs -Daikars.new.flags=true -jar ${SERVER_JARFILE}"
     fi
 fi
+
+if [ "${ALLOW_PLUGINS}" = "0"]; then
+    if [ -d "plugins" ]; then
+        echo "⚠️  Warning: Plugins have been installed, but the server is configured not to allow plugins."
+        rm -rf ./plugins
+    fi
+fi
+
 printf "Running optimization: ${bold}${lightblue}${OPTIMIZE} ${normal}\nWith the arguments: ${bold}${lightblue}$START ${normal}"
 $START
