@@ -4,10 +4,10 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-05-08T18:35:23-03:00",
+    "exported_at": "2024-04-08T16:55:09-03:00",
     "name": "Paper (Super-Optimized)",
-    "author": "parker@pterodactyl.io",
-    "description": "\ud83d\udc8e Egg: Paper (Super-Optimized)\r\n\u2699\ufe0f Version: 1.1\r\n\u2753 What: A branch of Spigot from Alto performance aimed at fixing gameplay and mechanical inconsistencies, but now with an optimization super path by Ashu.\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n \u2022 (1.0) Release.\r\n \u2022 (1.0) All done by scripts, better maintenance and updating.\r\n\ud83e\ude84 What's different ?\r\n \u2022 Optimizations list: https:\/\/github.com\/Ashu11-A\/Ashu_eggs\/blob\/main\/Paper%20Optimized\r\n \u2022 This Egg has several Optimizations in the default files.\r\n \u2022 There is a variable called Optimization that changes the boot argument which will significantly improve performance .\r\n \ud83d\udce6 Docker: \r\n \u2022 Compatibility with ARM64, 64x\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https :\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "author": "Matheusn.biolowons@gmail.com",
+    "description": "\ud83d\udc8e Egg: Paper (Super-Optimized)\r\n\u2699\ufe0f Version: 1.2\r\n\u2753 What: A branch of Spigot from Alto performance aimed at fixing gameplay and mechanical inconsistencies, but now with an optimization super path by Ashu.\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n \u2022 (1.0) Release.\r\n \u2022 (1.0) All done by scripts, better maintenance and updating.\r\n \u2022 (1.2) Possibility of denying the installation of Plugins.\r\n\ud83e\ude84 What's different ?\r\n \u2022 Optimizations list: https:\/\/github.com\/Ashu11-A\/Ashu_eggs\/blob\/main\/Paper%20Optimized\r\n \u2022 This Egg has several Optimizations in the default files.\r\n \u2022 There is a variable called Optimization that changes the boot argument which will significantly improve performance .\r\n \ud83d\udce6 Docker: \r\n \u2022 Compatibility with ARM64, 64x\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": [
         "eula",
         "java_version",
@@ -20,7 +20,7 @@
         "Java 17 Zulu": "ghcr.io\/software-noob\/pterodactyl-images:java_17_zulu"
     },
     "file_denylist": [],
-    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/Paper%20Optimized\/install.sh)",
+    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/Paper%20Optimized\/launch.sh)",
     "config": {
         "files": "{\r\n    \"server.properties\": {\r\n        \"parser\": \"properties\",\r\n        \"find\": {\r\n            \"server-ip\": \"0.0.0.0\",\r\n            \"network-compression-threshold\": \"512\",\r\n            \"server-port\": \"{{server.build.default.port}}\",\r\n            \"query.port\": \"{{server.build.default.port}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \")! For help, type \"\r\n}",
@@ -36,8 +36,28 @@
     },
     "variables": [
         {
+            "name": "Optimization",
+            "description": "Choose which type of optimization is most suitable for you.",
+            "env_variable": "OPTIMIZE",
+            "default_value": "(0) Geral",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:(0) Geral,(1) 1GB RAM,(2) 2GB RAM,(3) 3GB RAM,(4) 4+GB RAM,(5) 4GB RAM \/ 4threads \/ 4cores,(6) 8+GB RAM \/ 8threads \/ 4cores,(7) 12+GB RAM",
+            "field_type": "text"
+        },
+        {
+            "name": "Allow Plugins",
+            "description": "If this is disabled, the installation of Plugins will be blocked.",
+            "env_variable": "ALLOW_PLUGINS",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
             "name": "Minecraft Version",
-            "description": "The version of minecraft for download. \r\n\r\nLeave \"latest\" to always get the latest version. Invalid versions will default is the latest version.",
+            "description": "The version of minecraft for download.\r\n\r\nLeave \"latest\" to always get the latest version. Invalid versions will default is the latest version.",
             "env_variable": "MINECRAFT_VERSION",
             "default_value": "latest",
             "user_viewable": true,
@@ -67,22 +87,12 @@
         },
         {
             "name": "Build Number",
-            "description": "The build number for the paper version.\r\n\r\nLeave \"latest\" to always get the latest version. Invalid versions have The latest version defaults.",
+            "description": "The build number for the paper version.\\r\\n\\r\\nLeave \"latest\" to always get the latest version. Invalid versions have The latest version defaults.",
             "env_variable": "BUILD_NUMBER",
             "default_value": "latest",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:20",
-            "field_type": "text"
-        },
-        {
-            "name": "Optimization",
-            "description": "Choose which type of optimization is most suitable for you.",
-            "env_variable": "OPTIMIZE",
-            "default_value": "(0) General",
-            "user_viewable": true,
-            "user_editable": true,
-            "rules": "required|string|in:(0) General,(1) 1GB RAM,(2) 2GB RAM,(3) 3GB RAM,(4) 4+GB RAM,(5) 4GB RAM \/ 4threads \/ 4cores,(6) 8+GB RAM \/ 8threads \/ 4cores,(7) 12+GB RAM",
             "field_type": "text"
         }
     ]
