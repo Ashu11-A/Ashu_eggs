@@ -35,7 +35,7 @@ fi
 
 if [ "${ALLOW_PLUGINS}" = "0" ]; then
     if [ -d "plugins" ]; then
-        if ls "$diretorio"/*.jar 1> /dev/null 2>&1; then
+        if ls plugins/*.jar 1> /dev/null 2>&1; then
             echo "⚠️  Aviso: Plugins foram instalados, mas o servidor está configirado para não permitir plugins."
             rm -f plugins/*.jar
         fi
