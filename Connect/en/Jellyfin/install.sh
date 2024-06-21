@@ -2,20 +2,72 @@
 if [[ -f "./jellyfin/jellyfin.dll" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Jellyfin/start.sh)
 else
-
+    echo "❌ Jellyfin not installed, try change version! and reinstall"
     mkdir -p /mnt/server
     cd /mnt/server || exit
-    DOWNLOAD_LINK=$(echo https://repo.jellyfin.org/releases/server/portable/versions/stable/combined/${VERSION}/jellyfin_${VERSION}.tar.gz)
+
+    # Define a URL base para versões estáveis e instáveis
+    BASE_URL_STABLE="https://repo.jellyfin.org/files/server/portable/stable"
+    BASE_URL_UNSTABLE="https://repo.jellyfin.org/files/server/portable/unstable"
+
+    # Verifica se a versão especificada existe
+    check_version_exists() {
+        local url=$1
+        local status_code=$(curl -o /dev/null -s -w "%{http_code}\n" "$url")
+        echo "$url"
+        echo "$status_code"
+        if [[ "$status_code" == "302" ]]; then
+            return 0
+        else
+            return 1
+        fi
+    }
+
+    # Processa a versão especificada
+    if [[ "$VERSION" == "latest" ]]; then
+        URL="https://repo.jellyfin.org/?path=/server/portable/latest-stable/any"
+        DOWNLOAD_TYPE="latest-stable"
+    elif [[ "$VERSION" == "beta" ]]; then
+        URL="https://repo.jellyfin.org/?path=/server/portable/latest-unstable/any"
+        DOWNLOAD_TYPE="latest-unstable"
+    else
+        DOWNLOAD_LINK="${BASE_URL_STABLE}/v${VERSION}/any/jellyfin_${VERSION}.tar.xz"
+        FILE_NAME=jellyfin_${VERSION}.tar.xz
+        
+        # Verifica se a versão especificada existe
+        if ! check_version_exists "$DOWNLOAD_LINK"; then
+            echo "Specified version not found, using 'latest'."
+            VERSION="latest"
+            URL="https://repo.jellyfin.org/?path=/server/portable/latest-stable/any"
+            DOWNLOAD_TYPE="latest-stable"
+        fi
+    fi
+
+    if [[ "$VERSION" == "latest" || "$VERSION" == "beta" ]]; then
+        # Baixa o conteúdo da página
+        html_content=$(curl -s "$URL")
+        # Filtra o link que contenha .tar.xz
+        FILE_NAME=$(echo "$html_content" | grep -oP "(?<=href='/files/server/portable/latest-stable/any/)[^']*\.tar\.xz")
+        
+        # Verifica se um link válido foi encontrado
+        if [[ -n "$FILE_NAME" ]]; then
+            DOWNLOAD_LINK="https://repo.jellyfin.org/files/server/portable/latest-stable/any/$FILE_NAME"
+        else
+            echo "No .tar.xz file found on the page."
+            exit 1
+        fi
+    fi
+
     cat <<EOF > .log.txt
 Version: ${VERSION}
 Link: ${DOWNLOAD_LINK}
-File: ${DOWNLOAD_LINK##*/}
+File: ${FILE_NAME}
 EOF
     rm -rf ./*
-    curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}
-    tar -vzxf ${DOWNLOAD_LINK##*/}
+    curl -sSL ${DOWNLOAD_LINK} -o ${FILE_NAME}
+    tar -vzxf ${FILE_NAME}
     mkdir jellyfin
-    mv jellyfin_${VERSION}/* ./jellyfin/
+    mv ${FILE_NAME}/* ./jellyfin/
     mkdir .config
     mkdir .config/jellyfin
     cat <<EOF > .config/jellyfin/network.xml
@@ -45,7 +97,7 @@ EOF
 <KnownProxies />
 </NetworkConfiguration>
 EOF
-    rm -rf ${DOWNLOAD_LINK##*/}
-    rm -rf jellyfin_${VERSION}
+    rm -rf ${FILE_NAME}
+    rm -rf ${FILE_NAME}
     echo "user_allow_other" >> /etc/fuse.conf
 fi
