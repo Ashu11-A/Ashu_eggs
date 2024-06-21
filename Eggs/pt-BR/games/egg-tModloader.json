@@ -4,13 +4,14 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-01-27T16:42:38-03:00",
+    "exported_at": "2024-06-20T21:05:40-03:00",
     "name": "tModLoader",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: tModLoader\r\n\u2699\ufe0f Vers\u00e3o: 4.0\r\n\u2753 Oque \u00e9: tModLoader \u00e9 uma modifica\u00e7\u00e3o do Terraria, que possibilitando jogar com mods. Escolha jogar como quiser!\r\n\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\u2022 (3.0) [ARM64] Compatibilidade com o reposit\u00f3rio original, roda o mesmo servidor que o 64x(sem arquivos de terceiros desatualizados, sem emula\u00e7\u00e3o).\r\n\u2022 (3.1) Erros graves corrigidos.\r\n\u2022 (4.0) Otimiza\u00e7\u00e3o do Egg.\r\n\u2022 (4.0) Docker atualizado.\r\n\u2022 (4.0) Agora o Egg n\u00e3o \u00e9 dependente de atualiza\u00e7\u00f5es, tudo \u00e9 feito por scripts, ocasionando na sua melhor manuten\u00e7\u00e3o.\r\n\u2022 (4.0) Configura\u00e7\u00f5es in\u00fateis removidas.\r\n\u2022 (4.0) Tradu\u00e7\u00e3o das vari\u00e1veis.\r\n\r\n\ud83e\ude84 Oque h\u00e1 de diferente?\r\n   \u2022 Docker unido (mesma imagem, m\u00faltiplas arquiteturas).\r\n   \u2022 Steamworks.NET.dll Modificado, mais otimizado e multiplataforma.\r\n   \u2022 Funciona tanto no ARM64 quanto no 64x com o mesmo desemprenho.\r\n   \u2022 Sem Emula\u00e7\u00e3o.\r\n       \ud83d\udcdd Vari\u00e1veis que os outros Eggs n\u00e3o contem: \r\n             \u2022 Seed.\r\n             \u2022 Otimiza\u00e7\u00e3o.\r\n             \u2022 Seguran\u00e7a.\r\n\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "\ud83d\udc8e Egg: tModLoader\r\n\u2699\ufe0f Vers\u00e3o: 4.1\r\n\u2753 Oque \u00e9: tModLoader \u00e9 uma modifica\u00e7\u00e3o do Terraria, que possibilitando jogar com mods. Escolha jogar como quiser!\r\n\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\u2022 (3.0) [ARM64] Compatibilidade com o reposit\u00f3rio original, roda o mesmo servidor que o 64x(sem arquivos de terceiros desatualizados, sem emula\u00e7\u00e3o).\r\n\u2022 (3.1) Erros graves corrigidos.\r\n\u2022 (4.0) Otimiza\u00e7\u00e3o do Egg.\r\n\u2022 (4.0) Docker atualizado.\r\n\u2022 (4.0) Agora o Egg n\u00e3o \u00e9 dependente de atualiza\u00e7\u00f5es, tudo \u00e9 feito por scripts, ocasionando na sua melhor manuten\u00e7\u00e3o.\r\n\u2022 (4.0) Configura\u00e7\u00f5es in\u00fateis removidas.\r\n\u2022 (4.0) Tradu\u00e7\u00e3o das vari\u00e1veis.\r\n\u2022 (4.1) Add docket Dotnet 8\r\n\r\n\ud83e\ude84 Oque h\u00e1 de diferente?\r\n   \u2022 Docker unido (mesma imagem, m\u00faltiplas arquiteturas).\r\n   \u2022 Steamworks.NET.dll Modificado, mais otimizado e multiplataforma.\r\n   \u2022 Funciona tanto no ARM64 quanto no 64x com o mesmo desemprenho.\r\n   \u2022 Sem Emula\u00e7\u00e3o.\r\n       \ud83d\udcdd Vari\u00e1veis que os outros Eggs n\u00e3o contem: \r\n             \u2022 Seed.\r\n             \u2022 Otimiza\u00e7\u00e3o.\r\n             \u2022 Seguran\u00e7a.\r\n\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ARM64x, 64x": "ashu11a\/dotnet:6"
+        "Dotnet 8 [ARM64x, 64x]": "ghcr.io\/ashu11-a\/yolks:dotnet_8",
+        "Dotnet 6 [ARM64x, 64x]": "ghcr.io\/ashu11-a\/yolks:dotnet_6"
     },
     "file_denylist": [],
     "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/tModLoader\/install.sh)",
@@ -22,7 +23,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/tModLoader\/install.sh)",
+            "script": "#!\/bin\/bash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/tModLoader\/install.sh -o install.sh\r\nchmod a+x .\/install.sh\r\n.\/install.sh",
             "container": "ghcr.io\/parkervcp\/installers:debian",
             "entrypoint": "bash"
         }
