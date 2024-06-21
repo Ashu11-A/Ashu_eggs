@@ -1,8 +1,11 @@
 #!/bin/bash
 echo "⚙️ Script Version: 2.1"
 if [[ -f "./jellyfin/jellyfin.dll" ]]; then
+    echo "🟢  Starting Nginx..."
+    nohup /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/ 2>&1 &
+
     echo "✅ Starting Jellyfin"
     dotnet jellyfin/jellyfin.dll --ffmpeg /usr/lib/jellyfin-ffmpeg/ffmpeg
 else
-    echo "Panel Not Installed, this is really odd, this is a second verification."
+    echo "Jellyfin Not Installed, this is really odd, this is a second verification."
 fi

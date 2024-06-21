@@ -1,11 +1,32 @@
 #!/bin/bash
+## Instalando Nginx
+if [[ ! -f "./nginx/nginx.conf" ]]; then
+    git clone https://github.com/Ashu11-A/nginx ./temp
+    cp -r ./temp/nginx ./
+    rm -rf ./temp
+    rm -rf ./webroot/*
+fi
+
+## configurando Nginx
+if [[ ! -f "./nginx/conf.d/default.conf" ]]; then
+    (
+        cd nginx/conf.d/ || exit
+        rm default.conf
+        curl -sO https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Jellyfin/default.conf
+    )
+fi
+sed -i \
+    -e "s/listen.*/listen ${SERVER_PORT};/g" \
+    nginx/conf.d/default.conf
+
+if [ ! -d "./tmp" ]; then
+    mkdir tmp
+fi
+
 if [[ -f "./jellyfin/jellyfin.dll" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Jellyfin/start.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Jellyfin/start.sh)
 else
     echo "❌ Jellyfin not installed, try change version! and reinstall"
-    apt install -y xz-utils
-    mkdir -p /mnt/server
-    cd /mnt/server || exit
 
     # Define a URL base para versões estáveis e instáveis
     BASE_URL_STABLE="https://repo.jellyfin.org/files/server/portable/stable"
@@ -64,7 +85,6 @@ Version: ${VERSION}
 Link: ${DOWNLOAD_LINK}
 File: ${FILE_NAME}
 EOF
-    rm -rf ./*
     curl -L -O ${DOWNLOAD_LINK} -o ${FILE_NAME}
     tar -Jxvf ${FILE_NAME}
     mkdir .config
