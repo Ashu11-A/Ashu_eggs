@@ -15,8 +15,6 @@ else
     check_version_exists() {
         local url=$1
         local status_code=$(curl -o /dev/null -s -w "%{http_code}\n" "$url")
-        echo "$url"
-        echo "$status_code"
         if [[ "$status_code" == "302" ]]; then
             return 0
         else
@@ -33,7 +31,7 @@ else
         DOWNLOAD_TYPE="latest-unstable"
     else
         DOWNLOAD_LINK="${BASE_URL_STABLE}/v${VERSION}/any/jellyfin_${VERSION}.tar.xz"
-        FILE_NAME=jellyfin_${VERSION}.tar.xz
+        FILE_NAME="jellyfin_${VERSION}.tar.xz"
         NAME=$(basename "$FILE_NAME" .tar.xz)
         
         # Verifica se a versão especificada existe
@@ -49,12 +47,12 @@ else
         # Baixa o conteúdo da página
         html_content=$(curl -s "$URL")
         # Filtra o link que contenha .tar.xz
-        FILE_NAME=$(echo "$html_content" | grep -oP "(?<=href='/files/server/portable/latest-stable/any/)[^']*\.tar\.xz")
+        FILE_NAME=$(echo "$html_content" | grep -oP "(?<=href='/files/server/portable/${DOWNLOAD_TYPE}/any/)[^']*\.tar\.xz" | head -n1)
         NAME=$(basename "$FILE_NAME" .tar.xz)
         
         # Verifica se um link válido foi encontrado
         if [[ -n "$FILE_NAME" ]]; then
-            DOWNLOAD_LINK="https://repo.jellyfin.org/files/server/portable/latest-stable/any/$FILE_NAME"
+            DOWNLOAD_LINK="https://repo.jellyfin.org/files/server/portable/${DOWNLOAD_TYPE}/any//$FILE_NAME"
         else
             echo "No .tar.xz file found on the page."
             exit 1
