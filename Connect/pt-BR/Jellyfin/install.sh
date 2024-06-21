@@ -3,6 +3,7 @@ if [[ -f "./jellyfin/jellyfin.dll" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Jellyfin/start.sh)
 else
     echo "❌ Jellyfin not installed, try change version! and reinstall"
+    apt install -y xz-utils
     mkdir -p /mnt/server
     cd /mnt/server || exit
 
@@ -66,10 +67,8 @@ Link: ${DOWNLOAD_LINK}
 File: ${FILE_NAME}
 EOF
     rm -rf ./*
-    curl -sSL ${DOWNLOAD_LINK} -o ${FILE_NAME}
-    tar -xvf ${FILE_NAME}
-    mkdir jellyfin
-    mv ${NAME}/* ./jellyfin/
+    curl -L -O ${DOWNLOAD_LINK} -o ${FILE_NAME}
+    tar -Jxvf ${FILE_NAME}
     mkdir .config
     mkdir .config/jellyfin
     cat <<EOF > .config/jellyfin/network.xml
@@ -100,6 +99,5 @@ EOF
 </NetworkConfiguration>
 EOF
     rm -rf ${FILE_NAME}
-    rm -rf ${NAME}
     echo "user_allow_other" >> /etc/fuse.conf
 fi
