@@ -5,6 +5,11 @@ if [[ ! -f "./nginx/nginx.conf" ]]; then
     cp -r ./temp/nginx ./
     rm -rf ./temp
     rm -rf ./webroot/*
+    rm -f ./nginx/conf.d/default.conf
+fi
+
+if [ ! -d "logs" ]; then
+    mkdir logs
 fi
 
 ## configurando Nginx

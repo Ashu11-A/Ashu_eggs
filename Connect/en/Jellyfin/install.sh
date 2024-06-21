@@ -8,6 +8,10 @@ if [[ ! -f "./nginx/nginx.conf" ]]; then
     rm -f ./nginx/conf.d/default.conf
 fi
 
+if [ ! -d "logs" ]; then
+    mkdir logs
+fi
+
 ## configurando Nginx
 if [[ ! -f "./nginx/conf.d/default.conf" ]]; then
     (
