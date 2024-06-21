@@ -33,6 +33,7 @@ else
     else
         DOWNLOAD_LINK="${BASE_URL_STABLE}/v${VERSION}/any/jellyfin_${VERSION}.tar.xz"
         FILE_NAME=jellyfin_${VERSION}.tar.xz
+        NAME=$(basename "$FILE_NAME" .tar.xz)
         
         # Verifica se a versão especificada existe
         if ! check_version_exists "$DOWNLOAD_LINK"; then
@@ -48,6 +49,7 @@ else
         html_content=$(curl -s "$URL")
         # Filtra o link que contenha .tar.xz
         FILE_NAME=$(echo "$html_content" | grep -oP "(?<=href='/files/server/portable/latest-stable/any/)[^']*\.tar\.xz")
+        NAME=$(basename "$FILE_NAME" .tar.xz)
         
         # Verifica se um link válido foi encontrado
         if [[ -n "$FILE_NAME" ]]; then
@@ -65,9 +67,9 @@ File: ${FILE_NAME}
 EOF
     rm -rf ./*
     curl -sSL ${DOWNLOAD_LINK} -o ${FILE_NAME}
-    tar -vzxf ${FILE_NAME}
+    tar -xvf ${FILE_NAME}
     mkdir jellyfin
-    mv ${FILE_NAME}/* ./jellyfin/
+    mv ${NAME}/* ./jellyfin/
     mkdir .config
     mkdir .config/jellyfin
     cat <<EOF > .config/jellyfin/network.xml
@@ -98,6 +100,6 @@ EOF
 </NetworkConfiguration>
 EOF
     rm -rf ${FILE_NAME}
-    rm -rf ${FILE_NAME}
+    rm -rf ${NAME}
     echo "user_allow_other" >> /etc/fuse.conf
 fi
