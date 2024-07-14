@@ -210,7 +210,7 @@ fi
 cp -r ./temp/logs ./
 if [ "${OCC}" == "1" ]; then
     cd painel || exit
-    php "${COMMANDO_OCC}"
+    php81 "${COMMANDO_OCC}"
     exit
 else
     if [ -f "logs/panel_database_instalado" ]; then
@@ -243,22 +243,22 @@ else
         if [[ -f "../logs/panel_key_generate_instalado" ]]; then
             echo "| Key      | 🟢  Gerada                       |"
         else
-            printf "\n \n⚙️  Executando: php artisan key:generate --force\n \n"
-            php artisan key:generate --force
+            printf "\n \n⚙️  Executando: php81 artisan key:generate --force\n \n"
+            php81 artisan key:generate --force
             touch ../logs/panel_key_generate_instalado
         fi
 
         if [[ -f "../logs/panel_setup_instalado" ]]; then
             echo "| Setup    | 🟢  Configurado                  |"
         else
-            printf "\n \n⚙️  Executando: php artisan p:environment:setup\n \n"
-            php artisan p:environment:setup
+            printf "\n \n⚙️  Executando: php81 artisan p:environment:setup\n \n"
+            php81 artisan p:environment:setup
             touch ../logs/panel_setup_instalado
             printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
             read -r response
             case "$response" in
             [yY][eE][sS] | [yY])
-                php artisan p:environment:setup
+                php81 artisan p:environment:setup
                 ;;
             *) ;;
             esac
@@ -266,30 +266,30 @@ else
         if [[ -f "../logs/panel_database_instalado" ]]; then
             echo "| Database | 🟢  Configurado                  |"
         else
-            printf "\n \n⚙️  Executando: php artisan p:environment:database\n \n"
-            php artisan p:environment:database
+            printf "\n \n⚙️  Executando: php81 artisan p:environment:database\n \n"
+            php81 artisan p:environment:database
             touch ../logs/panel_database_instalado
             printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
             read -r response
             case "$response" in
             [yY][eE][sS] | [yY])
-                php artisan p:environment:database
+                php81 artisan p:environment:database
                 ;;
             *)
-                printf "\n \n⚙️  Executando: php artisan migrate --seed --force\n \n"
+                printf "\n \n⚙️  Executando: php81 artisan migrate --seed --force\n \n"
                 ;;
             esac
         fi
         if [[ -f "../logs/panel_database_migrate_instalado" ]]; then
             echo "| Migração | 🟢  Concluído                    |"
         else
-            php artisan migrate --seed --force
+            php81 artisan migrate --seed --force
             touch ../logs/panel_database_migrate_instalado
             printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
             read -r response
             case "$response" in
             [yY][eE][sS] | [yY])
-                php artisan migrate --seed --force
+                php81 artisan migrate --seed --force
                 ;;
             *) ;;
             esac
@@ -297,14 +297,14 @@ else
         if [[ -f "../logs/panel_user_instalado" ]]; then
             echo "| Usuário  | 🟢  Criado                       |"
         else
-            printf "\n \n⚙️  Executando: php artisan p:user:make\n \n"
-            php artisan p:user:make
+            printf "\n \n⚙️  Executando: php81 artisan p:user:make\n \n"
+            php81 artisan p:user:make
             touch ../logs/panel_user_instalado
             printf "\n \n📌  Executar o comando anterior novamente? [y/N]\n \n"
             read -r response
             case "$response" in
             [yY][eE][sS] | [yY])
-                php artisan p:user:make
+                php81 artisan p:user:make
                 ;;
             *) ;;
             esac
@@ -350,11 +350,11 @@ if [ "${DEVELOPER}" = "1" ]; then
         echo -e "\n \n🎼  Executando Composer\n \n"
         composer install --no-dev --optimize-autoloader
         echo -e "\n \n📂  Executando Migração do Banco de Dados\n \n"
-        php artisan migrate --seed --force
+        php81 artisan migrate --seed --force
         echo -e "\n \n📂  Executando Limpeza de Cache/View/Route\n \n"
-        php artisan view:clear 
-        php artisan cache:clear 
-        php artisan route:clear
+        php81 artisan view:clear 
+        php81 artisan cache:clear 
+        php81 artisan route:clear
         echo -e "\n \n🔒  Executando Permições da pasta home painel\n \n"
         fakeroot chown -R nginx:nginx /home/container/painel/*
     )

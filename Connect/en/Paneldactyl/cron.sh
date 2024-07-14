@@ -10,7 +10,7 @@ do
 
   if [ "${PANEL}" = "Jexactyl" ] || [ "${PANEL}" = "Jexactyl Brasil" ]; then
      if [ "$HORA" == "$HORA_CERTA" ]; then
-       php /home/container/painel/artisan p:schedule:renewal >> /dev/null 2>&1
+       php81 /home/container/painel/artisan p:schedule:renewal >> /dev/null 2>&1
      fi
   fi
 
@@ -19,7 +19,7 @@ do
       find ./backups/ -mindepth 1 -not -name "executed" -mtime +7 -delete # executa o script desejado
     fi
 
-  php /home/container/painel/artisan schedule:run >> /dev/null 2>&1 && /bin/bash /crontab_test.sh
+  php81 /home/container/painel/artisan schedule:run >> /dev/null 2>&1 && /bin/bash /crontab_test.sh
 
   sleep 60
 done
