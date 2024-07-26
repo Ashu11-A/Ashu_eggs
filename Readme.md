@@ -61,4 +61,4 @@ Gostou dos Eggs? Então de uma 🌟 ao repositório!
 
 ## 📁 | Contato
 
-```Discord: idleglance.```
+```Discord: ashu11_a```

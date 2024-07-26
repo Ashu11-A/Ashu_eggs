@@ -59,7 +59,7 @@ Did you like the Eggs? Then give the repository a 🌟!
 
 ## 📁 | Contact
 
-```Discord: idleglance.```
+```Discord: ashu11_a```
 
 
 > Translated by Tresillo
