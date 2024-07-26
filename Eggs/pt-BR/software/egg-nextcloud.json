@@ -4,13 +4,13 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-01-25T18:24:06-03:00",
+    "exported_at": "2024-07-25T22:08:23-03:00",
     "name": "Nextcloud",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Nextcloud\r\n\u2699\ufe0f Vers\u00e3o: 2.0\r\n\u2753 Oque \u00e9: Nextcloud \u00e9 uma plataforma de colabora\u00e7\u00e3o em nuvem de c\u00f3digo aberto que possibilita a cria\u00e7\u00e3o de servidores de hospedagem de arquivos privados ou empresariais.\r\n\u26a0\ufe0f Aten\u00e7\u00e3o: Esse Egg necessita de um banco de dados(Crie um, no pr\u00f3prio painel).\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\u2022 O Egg se autoatualiza, talvez esse seja seu \u00faltimo lan\u00e7amento\r\n\u2022 C\u00f3digo agora est\u00e1 mais limpo\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "\ud83d\udc8e Egg: Nextcloud\r\n\u2699\ufe0f Vers\u00e3o: 2.1\r\n\u2753 Oque \u00e9: Nextcloud \u00e9 uma plataforma de colabora\u00e7\u00e3o em nuvem de c\u00f3digo aberto que possibilita a cria\u00e7\u00e3o de servidores de hospedagem de arquivos privados ou empresariais.\r\n\u26a0\ufe0f Aten\u00e7\u00e3o: Esse Egg necessita de um banco de dados(Crie um, no pr\u00f3prio painel).\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\u2022 O Egg se autoatualiza, talvez esse seja seu \u00faltimo lan\u00e7amento\r\n\u2022 C\u00f3digo agora est\u00e1 mais limpo\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ARM64, ARM, 64x,  ": " ashu11a\/nextcloud:latest"
+        "ARM64, 64x": "ghcr.io\/ashu11-a\/software:nextcloud"
     },
     "file_denylist": [],
     "startup": ".\/install.sh",

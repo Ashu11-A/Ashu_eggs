@@ -1,8 +1,8 @@
 #!/bin/ash
 rm -rf /home/container/tmp/*
-echo "⚙️ Script Version: 1.8"
+echo "⚙️ Script Version: 1.9"
 echo "🛠 Starting PHP-FPM..."
-/usr/sbin/php-fpm81 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
+/usr/sbin/php-fpm --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
 
 echo "🛠 Starting Nginx..."
 echo "✅ Successfully started"
