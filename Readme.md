@@ -49,9 +49,7 @@ Gostou dos Eggs? Então de uma 🌟 ao repositório!
 | Paper (Super-Optimized) | [egg-paper-super-optimized.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/games/egg-paper-super-optimized.json) | ✅ | ✅ | Minecraft, mas super otimizado
 | tModLoader | [egg-tModloader.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/games/egg-tModloader.json) | ✅ | ✅ |Rodando nativamente
 | Terraria Vanilla | [egg-terraria-vanilla.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/games/egg-terraria-vanilla.json) | ✅ | ✅ |
-| SA-MP | [egg-samp.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/games/egg-samp.json) | ✅ | ✅ |Emulado no ARM com Box86
 | ServerJars | [egg-ServerJars.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/games/egg-ServerJars.json) | ✅ | ✅ |
-| MTA | [egg-mta.json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/games/egg-mta.json) | ✅ | ✅ |
 | Pocketmine-MP (0.15.10) | [egg-pocketmine-(0.15.10).json](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/games/egg-pocketmine-(0.15.10).json) | ✅ | ❌ |
 
 *Clique com o **botão direito** e em **Salvar link como**...   
