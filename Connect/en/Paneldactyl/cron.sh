@@ -3,14 +3,12 @@
 while true
 do
 
-#TROQUE
-#TROQUE
   HORA_CERTA='0000'
   HORA=$(date +%H%M) # captura a hora
 
   if [ "${PANEL}" = "Jexactyl" ] || [ "${PANEL}" = "Jexactyl Brasil" ]; then
      if [ "$HORA" == "$HORA_CERTA" ]; then
-       php81 /home/container/painel/artisan p:schedule:renewal >> /dev/null 2>&1
+       php /home/container/painel/artisan p:schedule:renewal >> /dev/null 2>&1
      fi
   fi
 
@@ -19,7 +17,7 @@ do
       find ./backups/ -mindepth 1 -not -name "executed" -mtime +7 -delete # executa o script desejado
     fi
 
-  php81 /home/container/painel/artisan schedule:run >> /dev/null 2>&1 && /bin/bash /crontab_test.sh
+  php /home/container/painel/artisan schedule:run >> /dev/null 2>&1 && /bin/bash /crontab_test.sh
 
   sleep 60
 done

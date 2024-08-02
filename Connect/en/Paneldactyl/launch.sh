@@ -2,17 +2,17 @@
 
 composer_start="composer install --no-dev --optimize-autoloader"
 
-setup_start="php81 artisan p:environment:setup"
+setup_start="php artisan p:environment:setup"
 
-database_start="php81 artisan p:environment:database"
+database_start="php artisan p:environment:database"
 
-migrate_start="php81 artisan migrate --seed --force"
+migrate_start="php artisan migrate --seed --force"
 
 user_make="user"
-user_start="php81 artisan p:user:make"
+user_start="php artisan p:user:make"
 
 yarn="build"
-yarn_start="yarn && yarn lint --fix && yarn build && php81 artisan migrate && php81 artisan view:clear && php81 artisan cache:clear && php81 artisan route:clear"
+yarn_start="yarn && yarn lint --fix && yarn build && php artisan migrate && php artisan view:clear && php artisan cache:clear && php artisan route:clear"
 
 reinstall_a="reinstall all"
 reinstall_a_start="rm -rf painel && rm -rf logs/panel* && rm -rf nginx && rm -rf php-fpm"
@@ -40,7 +40,7 @@ printf "
                                                             (____/    
 \n \n"
 echo "🟢 Starting PHP-FPM..."
-nohup /usr/sbin/php-fpm81 --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize >/dev/null 2>&1 &
+nohup /usr/sbin/php-fpm --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize >/dev/null 2>&1 &
 
 echo "🟢 Starting Nginx..."
 nohup /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/ >/dev/null 2>&1 &
@@ -51,7 +51,7 @@ else
 fi
 echo "🟢 Started successfully ${MGM}..."
 echo "🟢 Starting panel worker..."
-nohup php81 /home/container/painel/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3 >/dev/null 2>&1 &
+nohup php /home/container/painel/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3 >/dev/null 2>&1 &
 echo "🟢 Starting cron..."
 nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Paneldactyl/cron.sh) >/dev/null 2>&1 &
 
