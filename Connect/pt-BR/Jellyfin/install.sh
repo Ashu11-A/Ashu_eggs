@@ -92,7 +92,7 @@ File: ${FILE_NAME}
 EOF
     curl -L -O ${DOWNLOAD_LINK} -o ${FILE_NAME}
     tar -Jxvf ${FILE_NAME}
-    RUN chown -R container:container /home/container
+    chown -R container:container /home/container
     mkdir .config
     mkdir .config/jellyfin
     cat <<EOF > .config/jellyfin/network.xml
