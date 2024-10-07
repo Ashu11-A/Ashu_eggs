@@ -53,7 +53,7 @@ if [ -z "${NVM_STATUS}" ] || [ "${NVM_STATUS}" = "1" ]; then
 
         export NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
         export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
-    ######################################## FINAL
+        ######################################## FINAL
     else
         echo -e "\n \n⚠️  NVM not installed, server needs to be reinstalled...\n \n"
     fi

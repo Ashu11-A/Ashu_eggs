@@ -1,8 +1,44 @@
 #!/bin/bash
 
+export NVM_DIR=/home/container/.nvm
+export NODE_VERSION=20.9.0
+
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
+
+if [[ -d ".nvm" ]]; then
+    if [ ! -f "logs/nodejs_version" ]; then
+        bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvm_install.sh")
+    fi
+    ######################################## NVM Initialization
+    source "/home/container/.nvm/nvm.sh"
+    NVM_DIR=/home/container/.nvm
+
+    if [ -z "$NODE_VERSION" ]; then
+        echo -e "\n \n🥶 Version not found, using version 18\n \n"
+        NODE_VERSION="18"
+    fi
+
+    nvm install v$NODE_VERSION
+    nvm use v$NODE_VERSION
+
+    export NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
+    export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
+    ######################################## FINAL
+else
+    echo -e "\n \n⚠️  NVM not installed...\n \n"
+    mkdir -p $NVM_DIR
+    curl -sSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh -o nvm.sh
+    chmod a+x ./nvm.sh
+    ./nvm.sh
+    rm ./nvm.sh
+    nvm install v$NODE_VERSION
+    nvm alias default v$NODE_VERSION
+    nvm use default
+    source "/home/container/.nvm/nvm.sh"
+    NVM_DIR=/home/container/.nvm
+fi
 
 if [ -z "${PANEL}" ]; then ## If the ${PANEL} variable does not exist for some unknown reason
     GITHUB_PACKAGE=Next-Panel/Jexactyl-BR
