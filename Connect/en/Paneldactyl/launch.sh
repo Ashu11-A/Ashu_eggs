@@ -71,8 +71,12 @@ while read -r line; do
 | user      | Create a user                         |
 | build     | Build the panel with Yarn             |
 | reinstall | Reinstall something or everything     |
+| nodejs    | Change nodejs version on debian       |
 +-----------+---------------------------------------+
 "
+    elif [[ "$line" == "nodejs" ]]; then
+        bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvm_install.sh")
+        printf "\n \n✅  Command Executed\n \n"
     elif [[ "$line" == "composer" ]]; then
         Command1="${composer_start}"
         echo "Installing Composer packages: ${bold}${lightblue}${Command1}"

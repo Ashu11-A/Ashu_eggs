@@ -1,4 +1,9 @@
 #!/bin/bash
+
+if [ -d "nvm" ]; then
+	source "/home/container/.nvm/nvm.sh"
+fi
+
 if [ -f /etc/os-release ]; then
     # Pega a informação da distribuição
     distro=$(grep ^ID= /etc/os-release | cut -d'=' -f2 | tr -d '"')
@@ -7,16 +12,24 @@ if [ -f /etc/os-release ]; then
     if [ "$distro" = "alpine" ]; then
         echo "⚠️ You are using an alpine version, in this version it is not possible to change the nodejs version, it will only be possible if you change the docker image in the latest Egg! If you are using the debian version, you can use the nvm tool!"
     elif [ "$distro" = "debian" ]; then
-        export NVM_DIR=/home/container/.nvm
-        export NODE_VERSION=20.9.0
-
+    	if [[ ! -d ".nvm" ]]; then
+            echo -e "\n \n⚠️  NVM not installed...\n \n"
+            mkdir -p $NVM_DIR
+            curl -sSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh -o nvm.sh
+            chmod a+x ./nvm.sh
+            ./nvm.sh
+            rm ./nvm.sh
+            source "/home/container/.nvm/nvm.sh"
+        fi
+    
         if [[ -d ".nvm" ]]; then
             if [ ! -f "logs/nodejs_version" ]; then
                 bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvm_install.sh")
             fi
-            ######################################## NVM Initialization
+            # NVM Initialization
             source "/home/container/.nvm/nvm.sh"
             NVM_DIR=/home/container/.nvm
+            NODE_VERSION="$(cat logs/nodejs_version)"
 
             if [ -z "$NODE_VERSION" ]; then
                 echo -e "\n \n🥶 Version not found, using version 18\n \n"
@@ -28,19 +41,8 @@ if [ -f /etc/os-release ]; then
 
             export NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
             export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
-            ######################################## FINAL
-        else
-            echo -e "\n \n⚠️  NVM not installed...\n \n"
-            mkdir -p $NVM_DIR
-            curl -sSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh -o nvm.sh
-            chmod a+x ./nvm.sh
-            ./nvm.sh
-            rm ./nvm.sh
-            nvm install v$NODE_VERSION
-            nvm alias default v$NODE_VERSION
-            nvm use default
-            source "/home/container/.nvm/nvm.sh"
-            NVM_DIR=/home/container/.nvm
+            export NVM_DIR=$NVM_DIR
+            export NODE_VERSION=$NODE_VERSION
         fi
     fi
 fi
