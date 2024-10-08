@@ -17,6 +17,11 @@ while read -r VERSION; do
         elif [[ "$VERSION" == "20" ]]; then
             NODE_VERSION="20"
         fi
+
+        if [ ! -d "logs" ]; then
+            mkdir logs
+        fi
+
         echo "$VERSION" >logs/nodejs_version
         echo -e "\n \n👍  Alright, I saved version $VERSION here!\n \n"
         echo -e "\n \n🫵  You can change the version using the command: ${bold}${lightblue}version.\n \n"
