@@ -4,13 +4,15 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-07-13T22:48:48-03:00",
+    "exported_at": "2024-10-08T15:57:16-03:00",
     "name": "Paneldactyl",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Paneldacty\r\n\u2699\ufe0f Vers\u00e3o: 1.2\r\n\u2753 Oque \u00e9: Um jeito f\u00e1cil e pr\u00e1tico de testar outros pain\u00e9is. Com esse Egg \u00e9 poss\u00edvel instalar um painel Pterodactyl\/Jexactyl no seu pr\u00f3prio painel, literalmente um Painel dentro de outro Painel (Somente Painel, Wings \u00e9 para outro Egg se eu conseguir)\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n \u2022 (1.0) Lan\u00e7amento.\r\n \u2022 (1.0) Possibilidade de executar subcomandos no terminal. (composer, setup, database, migrate, user, build, reinstall).\r\n \u2022 (1.0) Sistema que faz a verifica\u00e7\u00e3o de \"integridade dos arquivos\" (faz a reinstala\u00e7\u00e3o se algo n\u00e3o se encontrar instalado).\r\n \u2022 (1.0) Possibilidade de poder buildar o painel (melhor para quem quer criar seus pr\u00f3prios temas\/customiza\u00e7\u00f5es).\r\n \u2022 (1.0) Sistema que faz a verifica\u00e7\u00e3o se o Egg esta atualizado.\r\n \u2022 (1.0) Tudo \u00e9 feito por scripts, melhor manuten\u00e7\u00e3o e atualiza\u00e7\u00e3o.\r\n \u2022 (1.1) Modo Desenvolvedor Adicionado.\r\n \u2022 (1.1) Possibilidade de clonar os Pain\u00e9is diretamente do GitHub (P\u00fablicos\/Privados).\r\n    \ud83d\udcdd Vari\u00e1veis: \r\n        \u2022 (1.0) Vers\u00e3o.\r\n        \u2022 (1.0) Painel. `(Pterodactyl, Jexactyl,  Jexactyl Brasil)`.\r\n        \u2022 (1.0) Avisos de Atualiza\u00e7\u00e3o.\r\n        \u2022 (1.1) Modo Desenvolvedor\r\n        \u2022 (1.1) URL do Reposit\u00f3rio GIT\r\n        \u2022 (1.1) Escolher Branch\r\n        \u2022 (1.1) Nome de usu\u00e1rio do Git\r\n        \u2022 (1.1) Token de Acesso do Git\r\n        \u2022 (1.1) Altera\u00e7\u00e3o no script de Instala\u00e7\u00e3o.\r\n    \ud83d\udce6 Docker: \r\n         \u2022 Compatibilidade com ARM64, ARM, 64x\r\n\u26a0\ufe0f Aten\u00e7\u00e3o:\r\n   \u2757\ufe0f\u00c9 necess\u00e1rio de um banco de dados\r\n   \u2755Esse Egg \u00e9 bem leve, \u00fanicos picos ser\u00e3o a cada 1 min, devido \u00e0 execu\u00e7\u00e3o cron do painel.\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "\ud83d\udc8e Egg: Paneldacty\r\n\u2699\ufe0f Vers\u00e3o: 1.3\r\nO que \u00e9: Uma maneira f\u00e1cil e pr\u00e1tica de testar outros pain\u00e9is. Com esse Egg, voc\u00ea pode instalar um painel Pterodactyl\/Jexactyl em seu pr\u00f3prio painel, literalmente um Painel dentro de outro Painel (somente Painel, Wings \u00e9 para outro Egg, se eu conseguir).\r\nCorre\u00e7\u00f5es de bugs\/changelogs:\r\n - (1.0) Lan\u00e7amento.\r\n - (1.0) Capacidade de executar subcomandos no terminal (composer, setup, banco de dados, migrate, user, build, reinstall).\r\n - (1.0) Sistema que verifica a \u201cintegridade do arquivo\u201d (reinstala se algo n\u00e3o estiver instalado).\r\n - (1,0) Possibilidade de construir o painel (melhor para aqueles que querem criar seus pr\u00f3prios temas\/personaliza\u00e7\u00f5es).\r\n - (1,0) Sistema que verifica se o Egg est\u00e1 atualizado.\r\n - (1.0) Tudo \u00e9 feito por scripts, melhor manuten\u00e7\u00e3o e atualiza\u00e7\u00e3o.\r\n - (1.1) Adicionado o modo de desenvolvedor.\r\n - (1.1) Possibilidade de clonar Dashboards diretamente do GitHub (P\u00fablico\/Privado).\r\n    \ud83d\udcdd Vari\u00e1veis: \r\n        - (1.0) Vers\u00e3o.\r\n        - (1.0) Painel `(Pterodactyl, Jexactyl, Jexactyl Brasil)`.\r\n        - (1.0) Avisos de atualiza\u00e7\u00e3o.\r\n        - (1.1) Modo Desenvolvedor\r\n        - (1.1) URL do reposit\u00f3rio GIT\r\n        - (1.1) Escolha a ramifica\u00e7\u00e3o\r\n        - (1.1) Nome de usu\u00e1rio do Git\r\n        - (1.1) Token de acesso ao Git\r\n        - (1.1) Altera\u00e7\u00e3o no script de instala\u00e7\u00e3o.\r\n        - (1,3) Alterar o gerenciamento de vers\u00e3o do nodejs para NVM\r\n    Docker: \r\n         - Compatibilidade com ARM64, ARM, 64x\r\n\u26a0\ufe0f Aten\u00e7\u00e3o:\r\n   \u2757\ufe0f Banco de dados \u00e9 necess\u00e1rio",
     "features": null,
     "docker_images": {
-        "ARM64, ARM, 64x": "ghcr.io\/ashu11-a\/software:paneldactyl"
+        "Alpine - Nodejs20 - Better": "ghcr.io\/ashu11-a\/paneldactyl:alpine-20",
+        "Alpine - Nodejs16 - Better": "ghcr.io\/ashu11-a\/paneldactyl:alpine-16",
+        "Debian - NVM - Bad, but has nodejs version control": "ghcr.io\/ashu11-a\/paneldactyl:debian"
     },
     "file_denylist": [],
     "startup": ".\/start.sh",
@@ -22,9 +24,9 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/ash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/Paneldactyl\/start.sh -o start.sh\r\nchmod a+x .\/start.sh\r\nif [ ! -d '.\/logs']; then\r\nmkdir logs\r\nfi\r\necho \"1.2\" > logs\/egg_version",
-            "container": "ashu11a\/paneldactyl:installer",
-            "entrypoint": "ash"
+            "script": "#!\/bin\/bash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/Paneldactyl\/start.sh -o start.sh\r\nchmod a+x .\/start.sh\r\nif [ ! -d '.\/logs' ]; then\r\nmkdir logs\r\nfi\r\necho \"1.3\" > logs\/egg_version\r\necho \"source \/home\/container\/.nvm\/nvm.sh\" > \/etc\/profile.d\/nvm.sh\r\necho \"source \/home\/container\/.nvm\/nvm.sh\" > \/mnt\/server\/.bashrc\r\nchmod +x \/etc\/profile.d\/nvm.sh",
+            "container": "ghcr.io\/ashu11-a\/installers:alpine",
+            "entrypoint": "bash"
         }
     },
     "variables": [

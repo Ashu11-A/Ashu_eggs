@@ -4,13 +4,15 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-07-13T22:51:19-03:00",
+    "exported_at": "2024-10-08T15:52:16-03:00",
     "name": "Paneldactyl",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Paneldacty\r\n\u2699\ufe0f Version: 1.2\r\n\u2753 What it is: An easy and practical way to test other panels. With this Egg you can install a Pterodactyl\/Jexactyl panel in your own panel, literally a Panel inside another Panel (Panel only, Wings is for another Egg if I get it).\r\n\ud83d\udc1b Bugfixes\/changelogs:\r\n - (1.0) Release.\r\n - (1.0) Ability to execute subcommands in the terminal (composer, setup, database, migrate, user, build, reinstall).\r\n - (1.0) System that checks \"file integrity\" (reinstalls if something is not installed).\r\n - (1.0) Possibility of being able to build the panel (best for those who want to create their own themes\/customizations).\r\n - (1.0) System that checks if Egg is up to date.\r\n - (1.0) Everything is done by scripts, better maintenance and updating.\r\n - (1.1) Developer mode added.\r\n - (1.1) Possibility of cloning Dashboards directly from GitHub (Public\/Private).\r\n    \ud83d\udcdd Variables: \r\n        - (1.0) Version.\r\n        - (1.0) Panel `(Pterodactyl, Jexactyl, Jexactyl Brasil)`.\r\n        - (1.0) Update Notices.\r\n        - (1.1) Developer Mode\r\n        - (1.1) GIT Repository URL\r\n        - (1.1) Choose Branch\r\n        - (1.1) Git username\r\n        - (1.1) Git Access Token\r\n        - (1.1) Change in the Installation script.\r\n    \ud83d\udce6 Docker: \r\n         - ARM64, ARM, 64x compatibility\r\n\u26a0\ufe0f Attention:\r\n   \u2757\ufe0f\u00c9 database required\r\n   \u2755This Egg is very lightweight, the only peaks are",
+    "description": "\ud83d\udc8e Egg: Paneldacty\r\n\u2699\ufe0f Version: 1.3\r\n\u2753 What it is: An easy and practical way to test other panels. With this Egg you can install a Pterodactyl\/Jexactyl panel in your own panel, literally a Panel inside another Panel (Panel only, Wings is for another Egg if I get it).\r\n\ud83d\udc1b Bugfixes\/changelogs:\r\n - (1.0) Release.\r\n - (1.0) Ability to execute subcommands in the terminal (composer, setup, database, migrate, user, build, reinstall).\r\n - (1.0) System that checks \"file integrity\" (reinstalls if something is not installed).\r\n - (1.0) Possibility of being able to build the panel (best for those who want to create their own themes\/customizations).\r\n - (1.0) System that checks if Egg is up to date.\r\n - (1.0) Everything is done by scripts, better maintenance and updating.\r\n - (1.1) Developer mode added.\r\n - (1.1) Possibility of cloning Dashboards directly from GitHub (Public\/Private).\r\n    \ud83d\udcdd Variables: \r\n        - (1.0) Version.\r\n        - (1.0) Panel `(Pterodactyl, Jexactyl, Jexactyl Brasil)`.\r\n        - (1.0) Update Notices.\r\n        - (1.1) Developer Mode\r\n        - (1.1) GIT Repository URL\r\n        - (1.1) Choose Branch\r\n        - (1.1) Git username\r\n        - (1.1) Git Access Token\r\n        - (1.1) Change in the Installation script.\r\n        - (1,3) Changing nodejs version management to NVM\r\n    \ud83d\udce6 Docker: \r\n         - ARM64, ARM, 64x compatibility\r\n\u26a0\ufe0f Attention:\r\n   \u2757\ufe0f\u00c9 database required\r\n   \u2755This Egg is very lightweight, the only peaks are",
     "features": null,
     "docker_images": {
-        "ARM64, ARM, 64x": "ghcr.io\/ashu11-a\/software:paneldactyl"
+        "Alpine - Nodejs20 - Better": "ghcr.io\/ashu11-a\/paneldactyl:alpine-20",
+        "Alpine - Nodejs16 - Better": "ghcr.io\/ashu11-a\/paneldactyl:alpine-16",
+        "Debian - NVM - Bad, but has nodejs version control": "ghcr.io\/ashu11-a\/paneldactyl:debian"
     },
     "file_denylist": [],
     "startup": ".\/start.sh",
@@ -22,9 +24,9 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/ash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/Paneldactyl\/start.sh -o start.sh\r\nchmod a+x .\/start.sh\r\necho \"1.1\" > logs\/egg_version",
-            "container": "ashu11a\/paneldactyl:installer",
-            "entrypoint": "ash"
+            "script": "#!\/bin\/bash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/Paneldactyl\/start.sh -o start.sh\r\nchmod a+x .\/start.sh\r\nif [ ! -d '.\/logs' ]; then\r\nmkdir logs\r\nfi\r\necho \"1.3\" > logs\/egg_version\r\necho \"source \/home\/container\/.nvm\/nvm.sh\" > \/etc\/profile.d\/nvm.sh\r\necho \"source \/home\/container\/.nvm\/nvm.sh\" > \/mnt\/server\/.bashrc\r\nchmod +x \/etc\/profile.d\/nvm.sh",
+            "container": "ghcr.io\/ashu11-a\/installers:alpine",
+            "entrypoint": "bash"
         }
     },
     "variables": [
