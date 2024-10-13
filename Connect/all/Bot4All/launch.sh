@@ -39,8 +39,8 @@ nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/C
 
 while read -r line; do
     if [[ "$line" == "help" ]]; then
-        echo "$available_commands_header"
-        echo "$command_list"
+        echo -e "$available_commands_header"
+        echo -e "$command_list"
     elif [[ "$line" == *"npm"* ]]; then
         echo -e "\n \n${executing}: \n \n"
         (

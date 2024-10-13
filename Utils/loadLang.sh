@@ -39,7 +39,7 @@ selectLanguage() {
     echo -e "👉  Select the language:\n"
     echo "1) Portuguese (Brazil)"
     echo "2) English"
-    echo -en "\n📋 Choice (1 or 2): "
+    echo -en "\n📋 Choice (1 or 2): \n"
     read choice
 
     case $choice in
