@@ -1,24 +1,43 @@
 #!/bin/bash
 
-CONFIG_FILE="language.conf"
+CONFIG_FILE="logs/language.conf"
+
+if [ ! -d "logs" ]; then
+    mkdir logs
+fi
 
 # Função para carregar todas as traduções de um idioma
-load_all_translations() {
+loadAllTranslations() {
     local lang="$1"
-    
-    # Lê o arquivo de tradução e filtra apenas as entradas para o idioma escolhido
+
+    # Verifica se LANG_PATH é uma URL ou um arquivo local
+    if [[ "$LANG_PATH" =~ ^https?:// ]]; then
+        # Carrega o conteúdo da URL
+        translations=$(curl -s "$LANG_PATH")
+    else
+        # Lê o arquivo de tradução local
+        translations=$(< "$LANG_PATH")
+    fi
+
+    # Processa as traduções
     while IFS='=' read -r key value; do
-        if [[ $key == "$lang"* ]]; then
-            # Remove o prefixo do idioma da chave
-            local clean_key=${key#"$lang."}
-            # Define uma variável global com o nome da chave
-            eval "$clean_key=\"$value\""
+        # Verifica se a chave não está vazia
+        if [[ -n "$key" ]]; then
+            # Verifica se a chave começa com o prefixo do idioma
+            if [[ "$key" == "$lang"* ]]; then
+                # Remove o prefixo do idioma da chave
+                local clean_key="${key#"$lang."}"
+                # Remove aspas simples se existirem no valor
+                value="${value//\'/}"
+                # Define uma variável global com o nome da chave e exporta
+                export "$clean_key"="$value"
+            fi
         fi
-    done < translations.properties
+    done <<< "$translations"
 }
 
 # Função para selecionar o idioma
-select_language() {
+selectLanguage() {
     echo "Select the language:"
     echo "1) Portuguese (Brazil)"
     echo "2) English"
@@ -45,13 +64,12 @@ if [[ -f "$CONFIG_FILE" ]]; then
     language=$(cat "$CONFIG_FILE")
 else
     # Caso contrário, solicita a seleção de idioma
-    select_language
+    selectLanguage
     language=$(cat "$CONFIG_FILE")
 fi
 
 # Carregar todas as traduções para o idioma selecionado
-load_all_translations "$language"
+loadAllTranslations "$language"
 
-# Usar as traduções como variáveis globais
-echo "$greeting"
-echo "$farewell"
+echo "$hello"
+echo "$world"
