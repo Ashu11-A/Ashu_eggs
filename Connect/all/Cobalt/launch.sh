@@ -8,4 +8,13 @@ fi
 
 printf "$web_interface_starting\n" "$MGM"
 
-npm start
+(
+    cd api || exit
+    touch nohup.out
+    nohup npm run start 2>&1 &
+)
+
+(
+    cd web
+    npm run dev
+)

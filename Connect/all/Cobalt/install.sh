@@ -7,14 +7,23 @@ if [ ! -d "src" ]; then
     mv Cobalt/.github ./
 fi
 
-if [ ! -f "./.env" ]; then
-    npm run setup
+if [ ! -f "./api/.env" ]; then
+    (
+        cd api || exit
+        npm i
+        npm run setup
+    )
 fi
 
+(
+    cd web || exit
+    npm i
+)
 
-if [[  -f "./.env" && -d "node_modules" ]]; then
+
+if [[  -f "./api/.env" && -d "api/node_modules" && -d "web/node_modules" ]]; then
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/version.sh)
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Cobalt/launch.sh)
 else
-    echo "Something went very wrong."
+    echo "$error_install"
 fi
