@@ -16,5 +16,5 @@ printf "$web_interface_starting\n" "$MGM"
 
 (
     cd web
-    npm run dev
+    npm run dev -- --port $SERVER_PORT --host 0.0.0.0
 )
