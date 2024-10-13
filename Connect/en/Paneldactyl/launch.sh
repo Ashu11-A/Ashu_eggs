@@ -75,7 +75,7 @@ while read -r line; do
 +-----------+---------------------------------------+
 "
     elif [[ "$line" == "nodejs" ]]; then
-        bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvm_install.sh")
+        bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvmSelect.sh")
         printf "\n \n✅  Command Executed\n \n"
     elif [[ "$line" == "composer" ]]; then
         Command1="${composer_start}"

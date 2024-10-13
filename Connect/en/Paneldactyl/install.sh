@@ -24,7 +24,7 @@ if [ -f /etc/os-release ]; then
     
         if [[ -d ".nvm" ]]; then
             if [ ! -f "logs/nodejs_version" ]; then
-                bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvm_install.sh")
+                bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvmSelect.sh")
             fi
             # NVM Initialization
             source "/home/container/.nvm/nvm.sh"
