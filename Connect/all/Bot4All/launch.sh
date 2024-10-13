@@ -80,7 +80,7 @@ while read -r line; do
         exit
         exit
     elif [[ "$line" == "lang" ]]; then
-        source <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh)
+        source <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh")
     else
         echo "$invalid_command"
     fi
