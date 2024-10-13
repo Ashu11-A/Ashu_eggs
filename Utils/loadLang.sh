@@ -57,14 +57,19 @@ selectLanguage() {
 }
 
 # Verifica se o arquivo de configuração existe
-if [[ -f "$CONFIG_FILE" && $FORCE_SELECT == 1 ]]; then
+if [[ -f "$CONFIG_FILE" ]]; then
     # Se existir, carrega o idioma do arquivo
     language=$(cat "$CONFIG_FILE")
-    export FORCE_SELECT=0
 else
     # Caso contrário, solicita a seleção de idioma
     selectLanguage
     language=$(cat "$CONFIG_FILE")
+fi
+
+if [[ $FORCE_SELECT == 1]]; then
+    selectLanguage
+    language=$(cat "$CONFIG_FILE")
+    export FORCE_SELECT=0
 fi
 
 # Carregar todas as traduções para o idioma selecionado
