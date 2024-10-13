@@ -11,5 +11,13 @@ while [ $count -lt "$BREAK_NUMBER" ]; do
         fi
     elif [[ "$start" == "npm run"* ]] || [[ "$start" == "node"* ]]; then
         $start >> logs/run.log 2>&1
+        sleep 1
+    fi
+
+    count=$((count + 1))
+    printf "$bot_broken" "$count"
+
+    if [ $count == "$BREAK_NUMBER" ]; then
+        break
     fi
 done
