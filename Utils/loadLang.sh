@@ -66,7 +66,7 @@ else
     language=$(cat "$CONFIG_FILE")
 fi
 
-if [[ $FORCE_SELECT == 1]]; then
+if [[ $FORCE_SELECT == 1 ]]; then
     selectLanguage
     language=$(cat "$CONFIG_FILE")
     export FORCE_SELECT=0
