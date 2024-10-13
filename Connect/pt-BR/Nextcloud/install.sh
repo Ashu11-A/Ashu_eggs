@@ -34,7 +34,7 @@ cp -r ./temp/php-fpm /mnt/server/
 rm -rf ./temp
 rm -rf /mnt/server/webroot/*
 if [ -d logs ]; then
-    echo "Pasta Logs já existe, pulando..."
+    echo "Pasta logs já existe, pulando..."
 else
     mkdir -p logs
 fi

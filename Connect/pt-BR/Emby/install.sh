@@ -30,9 +30,9 @@ else
         echo "Instalação Limpa"
     fi
 
-    mkdir -p Logs
+    mkdir -p logs
 
-    cat <<EOF > ./Logs/log_install.txt
+    cat <<EOF > ./logs/log_install.txt
 Versão: ${VERSION}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}

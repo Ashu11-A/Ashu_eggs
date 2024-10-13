@@ -30,9 +30,9 @@ else
         echo "Clean installation"
     fi
 
-    mkdir -p Logs
+    mkdir -p logs
 
-    cat <<EOF > ./Logs/log_install.txt
+    cat <<EOF > ./logs/log_install.txt
 Version: ${VERSION}
 Link: ${DOWNLOAD_LINK}
 File: ${DOWNLOAD_LINK##*/}

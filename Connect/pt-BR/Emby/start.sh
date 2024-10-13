@@ -2,6 +2,10 @@
 
 echo "⚙️  Versão do Script: 1.4"
 
+if [ -d "Logs" ]; then
+    mv Logs logs
+fi
+
 if [[ -f "./Emby/EmbyServer.dll" ]]; then
     echo "✅  Iniciando Emby"
     dotnet Emby/EmbyServer.dll -ffmpeg /usr/bin/ffmpeg -ffprobe /usr/bin/ffprobe

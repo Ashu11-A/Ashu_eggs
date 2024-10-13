@@ -22,7 +22,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/Ass\/start.sh -o start.sh\r\nchmod a+x .\/start.sh\r\nif [ -d \".\/Logs\" ]; then\r\necho \"1.0\" > Logs\/egg_version\r\nelse\r\nmkdir Logs\r\necho \"1.0\" > Logs\/egg_version\r\nfi",
+            "script": "#!\/bin\/bash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect%20(pt-BR)\/Ass\/start.sh -o start.sh\r\nchmod a+x .\/start.sh\r\nif [ -d \".\/logs\" ]; then\r\necho \"1.0\" > logs\/egg_version\r\nelse\r\nmkdir logs\r\necho \"1.0\" > logs\/egg_version\r\nfi",
             "container": "ghcr.io\/ashu11-a\/installers:alpine",
             "entrypoint": "bash"
         }

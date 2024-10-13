@@ -1,5 +1,10 @@
 #!/bin/ash
 # shellcheck shell=dash
+
+if [ -d "Logs" ]; then
+    mv Logs logs
+fi
+
 if [ -f "./wings" ]; then
     #!/bin/sh
     set -e

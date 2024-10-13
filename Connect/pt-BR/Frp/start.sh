@@ -1,4 +1,9 @@
 #!/bin/bash
+
+if [ -d "Logs" ]; then
+    mv Logs logs
+fi
+
 if [ "${INSTALL_EX}" == "1" ]; then
     cp -f ./Frpc/frpc.ini ./Exemplo_Frpc_Windows64/frpc.ini
 fi

@@ -56,9 +56,9 @@ else
         IP="${SERVER_IP}"
     fi
 
-    mkdir -p Logs
+    mkdir -p logs
 
-    cat <<EOF >./Logs/log_install.txt
+    cat <<EOF >./logs/log_install.txt
 Version: ${VERSION}
 Link: ${DOWNLOAD_LINK}
 File: ${DOWNLOAD_LINK##*/}
@@ -195,7 +195,7 @@ EOF
             fi
         fi
 
-        cat <<EOF >./Logs/log_install_Ex.txt
+        cat <<EOF >./logs/log_install_Ex.txt
 Version: ${VERSION}
 Windows Link: ${DOWNLOAD_LINK_W}
 Windows File: ${DOWNLOAD_LINK_W##*/}

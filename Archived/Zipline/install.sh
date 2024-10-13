@@ -13,8 +13,8 @@ else
             DOWNLOAD_LINK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i "$VERSION" | grep -i .zip)
 
             mkdir -p Zipline
-            mkdir -p Logs
-            cat <<EOF >./Logs/log_install.txt
+            mkdir -p logs
+            cat <<EOF >./logs/log_install.txt
 Versão: ${VERSION}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}
@@ -51,7 +51,7 @@ done
 
 fakeroot chmod 775 ./*
 
-if [ ! -f "./Logs/instalado" ]; then
+if [ ! -f "./logs/instalado" ]; then
     (
         cd Zipline || exit
         yarn install
@@ -59,7 +59,7 @@ if [ ! -f "./Logs/instalado" ]; then
         mv .env.local.example .env.local
         sed -i "s/CORE_HTTPS=.*/CORE_HTTPS=false/g" .env.local
         sed -i "s/CORE_SECRET=.*/CORE_SECRET=$codigo/g" .env.local
-        touch ../Logs/instalado
+        touch ../logs/instalado
     )
 fi
 

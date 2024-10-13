@@ -2,8 +2,8 @@
 version_egg="1.0"
 version_script="1.0"
 echo "⚙️  Script Version: ${version_script}"
-if [[ -f "./Logs/egg_version" ]]; then
-    versions=" $(cat ./Logs/egg_version) "
+if [[ -f "./logs/egg_version" ]]; then
+    versions=" $(cat ./logs/egg_version) "
     comm1=$(printf '%s\n' "$versions" | tr -d '.')
     comm2=$(printf '%s\n' "${version_egg}" | tr -d '.')
     if [ "${ATZ_SYSTEM}" = "1" ]; then

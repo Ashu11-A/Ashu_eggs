@@ -17,7 +17,7 @@
     "config": {
         "files": "{}",
         "startup": "{\r\n    \"done\": \"Server started and is ready to accept connections\"\r\n}",
-        "logs": "{\r\n    \"custom\": true,\r\n    \"location\": \"Logs\/latest.log\"\r\n}",
+        "logs": "{\r\n    \"custom\": true,\r\n    \"location\": \"logs\/latest.log\"\r\n}",
         "stop": "shutdown"
     },
     "scripts": {

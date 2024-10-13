@@ -28,10 +28,10 @@ if [[ ! -f "./Tachidesk-Server.jar" ]]; then
         exit 1
     fi
 
-    mkdir -p Logs
+    mkdir -p logs
 
-    if [ ! -f "./Logs/log_install.txt" ]; then
-        cat <<EOF >./Logs/log_install.txt
+    if [ ! -f "./logs/log_install.txt" ]; then
+        cat <<EOF >./logs/log_install.txt
 Versão: ${VERSION}
 Link: ${DOWNLOAD_LINK}
 Arquivo: ${DOWNLOAD_LINK##*/}
