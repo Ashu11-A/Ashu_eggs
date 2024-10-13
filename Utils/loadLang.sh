@@ -36,10 +36,10 @@ loadAllTranslations() {
 
 # Função para selecionar o idioma
 selectLanguage() {
-    echo "Select the language:"
+    echo -e "👉  Select the language:\n"
     echo "1) Portuguese (Brazil)"
     echo "2) English"
-    echo -n "Choice (1 or 2): "
+    echo -en "\n📋 Choice (1 or 2): "
     read choice
 
     case $choice in
