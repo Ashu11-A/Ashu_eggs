@@ -56,43 +56,15 @@ selectLanguage() {
     esac
 }
 
-# Função principal do processo pai (substitua por seu código principal)
-mainProcess() {
-    echo "🟢 Processo principal rodando. Digite 'lang' para trocar o idioma."
+# Verifica se o arquivo de configuração existe
+if [[ -f "$CONFIG_FILE" ]]; then
+    # Se existir, carrega o idioma do arquivo
+    language=$(cat "$CONFIG_FILE")
+else
+    # Caso contrário, solicita a seleção de idioma
+    selectLanguage
+    language=$(cat "$CONFIG_FILE")
+fi
 
-    # Mantém o processo rodando até receber SIGUSR1
-    while true; do
-        echo "Processo principal ativo..."
-        sleep 5
-    done
-}
-
-# Função para escutar comandos do usuário
-listenForCommands() {
-    while true; do
-        read -r command
-        if [[ "$command" == "lang" ]]; then
-            kill -SIGUSR1 "$PARENT_PID"  # Envia sinal ao processo pai
-            selectLanguage
-            language=$(cat "$CONFIG_FILE")
-            loadAllTranslations "$language"
-        fi
-    done
-}
-
-# Handler para SIGUSR1 que pausa o processo principal
-handleSignal() {
-    echo -e "\n🌍 Alterando o idioma...\n"
-}
-
-# Configura o handler para SIGUSR1
-trap handleSignal SIGUSR1
-
-# Identifica o PID do processo pai
-PARENT_PID=$$
-
-# Inicia o listener em segundo plano
-listenForCommands &
-
-# Executa o processo principal
-mainProcess
+# Carregar todas as traduções para o idioma selecionado
+loadAllTranslations "$language"
