@@ -28,9 +28,7 @@ if [[ ! -f "./Tachidesk-Server.jar" ]]; then
         exit 1
     fi
 
-    if [ ! -d "./Logs" ]; then
-        mkdir Logs
-    fi
+    mkdir -p Logs
 
     if [ ! -f "./Logs/log_install.txt" ]; then
         cat <<EOF >./Logs/log_install.txt
@@ -45,7 +43,7 @@ EOF
 fi
 
 if [ ! -d "./Config" ]; then
-    mkdir Config
+    mkdir -p Config
 fi
 
 if [ ! -f "./Config/server.conf" ]; then

@@ -44,7 +44,7 @@ else
         fi
     fi
     if [[ -f "./Frps/frps" ]]; then
-        mkdir Frp_OLD
+        mkdir -p Frp_OLD
         mv ./* Frp_OLD
     else
         echo "Instalação Limpa"
@@ -56,7 +56,7 @@ else
         IP="${SERVER_IP}"
     fi
 
-    mkdir Logs
+    mkdir -p Logs
 
     cat <<EOF >./Logs/log_install.txt
 Versão: ${VERSION}
@@ -154,15 +154,15 @@ auth.additionalScopes = ["HeartBeats", "NewWorkConns"]
 auth.token =
 EOF
 
-    mkdir Frps
+    mkdir -p Frps
     mv frps* ./Frps
 
-    mkdir Frpc
+    mkdir -p Frpc
     mv frpc* ./Frpc
 
     if [ "${INSTALL_EX}" == "1" ]; then
-        mkdir Exemplo_Frpc_Windows64
-        mkdir Exemplo_Frpc_Linux64
+        mkdir -p Exemplo_Frpc_Windows64
+        mkdir -p Exemplo_Frpc_Linux64
         cp -f ./Frpc/frpc.ini ./Exemplo_Frpc_Windows64/frpc.ini
         cp -f ./Frpc/frpc.ini ./Exemplo_Frpc_Linux64/frpc.ini
         if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then

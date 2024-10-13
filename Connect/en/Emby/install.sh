@@ -24,13 +24,13 @@ else
     cd /mnt/server
 
     if [[ -f "./Emby/EmbyServer.dll" ]]; then
-        mkdir Emby_OLD
+        mkdir -p Emby_OLD
         mv ./* Emby_OLD
     else
         echo "Clean installation"
     fi
 
-    mkdir Logs
+    mkdir -p Logs
 
     cat <<EOF > ./Logs/log_install.txt
 Version: ${VERSION}
@@ -44,8 +44,8 @@ EOF
     unzip ${DOWNLOAD_LINK##*/}
     rm -rf ${DOWNLOAD_LINK##*/}
     mv system Emby
-    mkdir programdata/
-    mkdir programdata/config/
+    mkdir -p programdata/
+    mkdir -p programdata/config/
 
     cat <<EOF > programdata/config/system.xml
 <?xml version="1.0"?>

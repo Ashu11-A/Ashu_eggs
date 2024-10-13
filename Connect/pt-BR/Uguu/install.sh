@@ -7,9 +7,7 @@ export bold
 export lightblue
 export normal
 
-if [ ! -d logs ]; then
-    mkdir logs
-fi
+mkdir -p logs
 
 if [ ! -f "./logs/database_instalado" ] || [ ! -d "./DB" ]; then
     echo -e "\n \n⚠️  DB não instalado, será necessario reinstalar o servidor...\n \n"
@@ -37,15 +35,9 @@ if [ ! -d "Uguu" ]; then
 fi
 
 ## Criando arquivos necessarios...
-if [ ! -d "Uguu/dist" ]; then
-    mkdir Uguu/dist
-fi
-if [ ! -d "DB" ]; then
-    mkdir DB
-fi
-if [ ! -d "files" ]; then
-    mkdir files
-fi
+mkdir -p Uguu/dist
+mkdir -p DB
+mkdir -p files
 
 ## configurando Nginx
 if [ ! -f "./logs/config_nginx" ] || [ ! -f "./nginx/conf.d/default.conf" ]; then
@@ -89,9 +81,7 @@ if [ ! -f "./logs/instalado" ]; then
     touch ./logs/instalado
 fi
 
-if [ ! -d "./tmp" ]; then
-    mkdir tmp
-fi
+mkdir -p tmp
 
 if [[ -d "./Uguu" ]]; then
     #Executando Limpeza

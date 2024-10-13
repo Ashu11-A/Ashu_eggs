@@ -35,7 +35,7 @@ else
     fi
 fi
 
-mkdir Logs
+mkdir -p Logs
 
 cat <<EOF >./Logs/log_install.txt
 Versão: ${VERSION}

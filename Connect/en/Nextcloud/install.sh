@@ -14,7 +14,7 @@ if [[ -f "./logs/installed" ]]; then
     fi
 else
     cd /mnt/server/ || exit
-    mkdir php-fpm
+    mkdir -p php-fpm
     echo "**** Downloading Nextcloud ****"
     rm -rf nextcloud/
     if [ "${NEXTCLOUD_RELEASE}" == "latest" ]; then
@@ -32,11 +32,9 @@ cp -r ./temp/nginx /mnt/server/
 cp -r ./temp/php-fpm /mnt/server/
 rm -rf ./temp
 rm -rf /mnt/server/webroot/*
-if [ -d logs ]; then
-    echo "Logs folder already exists, skipping..."
-else
-    mkdir logs
-fi
+
+mkdir -p logs
+
 rm nginx/conf.d/default.conf
 cd nginx/conf.d/
 wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Nextcloud/default.conf
@@ -76,4 +74,4 @@ sed -i \
 '/opcache.enable=1/a opcache.enable_cli=1' \
 php-fpm/php.ini && \
 echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> php-fpm/php-fpm.conf
-mkdir tmp
+mkdir -p tmp

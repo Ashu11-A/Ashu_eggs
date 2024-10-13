@@ -29,12 +29,12 @@ EOF
         printf "\n| Painel   | 🟡  Baixando Painel               |\n"
         if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
             if [ -d controlpanel ]; then
-                mkdir controlpanel
+                mkdir -p controlpanel
             fi
             git clone https://github.com/Ctrlpanel-gg/panel ./controlpanel
         else
             curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
-            mkdir controlpanel
+            mkdir -p controlpanel
             mv "${DOWNLOAD_LINK##*/}" controlpanel
             (
                 cd controlpanel || exit
@@ -262,7 +262,7 @@ fi
 
 if [ -z "$BACKUP" ] || [ "$BACKUP" == "1" ]; then
     if [ ! -d "backups" ]; then
-        mkdir backups
+        mkdir -p backups
     fi
     if [ ! -f "backups/executado" ]; then
         touch backups/executado

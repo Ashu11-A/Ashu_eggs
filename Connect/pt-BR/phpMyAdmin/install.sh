@@ -9,7 +9,7 @@ else
     printf "\n| phpMyAdmin | 🟡  Baixando phpMyAdmin         |\n"
 
     wget https://www.phpmyadmin.net/downloads/phpMyAdmin-latest-english.tar.gz
-    mkdir phpMyAdmin
+    mkdir -p phpMyAdmin
     echo -e "Unpacking server files"
     tar xvzf phpMyAdmin-latest-english.tar.gz
     mv phpMyAdmin-*-english/* phpMyAdmin

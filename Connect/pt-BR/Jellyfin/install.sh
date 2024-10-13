@@ -9,7 +9,7 @@ if [[ ! -f "./nginx/nginx.conf" ]]; then
 fi
 
 if [ ! -d "logs" ]; then
-    mkdir logs
+    mkdir -p logs
 fi
 
 ## configurando Nginx
@@ -25,7 +25,7 @@ sed -i \
     nginx/conf.d/default.conf
 
 if [ ! -d "./tmp" ]; then
-    mkdir tmp
+    mkdir -p tmp
 fi
 
 if [[ -f "./jellyfin/jellyfin.dll" ]]; then
@@ -93,8 +93,8 @@ EOF
     curl -L -O ${DOWNLOAD_LINK} -o ${FILE_NAME}
     tar -Jxvf ${FILE_NAME}
     chown -R container:container /home/container
-    mkdir .config
-    mkdir .config/jellyfin
+    mkdir -p .config
+    mkdir -p .config/jellyfin
     cat <<EOF > .config/jellyfin/network.xml
 <?xml version="1.0" encoding="utf-8"?>
 <NetworkConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">

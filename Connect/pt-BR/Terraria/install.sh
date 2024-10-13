@@ -9,7 +9,7 @@ else
 
     mkdir -p /mnt/server/
     cd /mnt/server/ || exit
-    mkdir logs
+    mkdir -p logs
 
     DOWNLOAD_LINK=invalid
     if [ "${TERRARIA_VERSION}" = "latest" ] || [ "${TERRARIA_VERSION}" = "" ]; then
@@ -55,8 +55,8 @@ EOF
         printf "Unpacking server files"
         unzip -o ${DOWNLOAD_LINK##*/}
         cp -R ${CLEAN_VERSION}/Linux/* ./
-        mkdir saves
-        mkdir saves/Worlds
+        mkdir -p saves
+        mkdir -p saves/Worlds
     fi
     chmod +x TerrariaServer.bin.x86_64
     chmod +x TerrariaServer.exe

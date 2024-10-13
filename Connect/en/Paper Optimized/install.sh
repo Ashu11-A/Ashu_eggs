@@ -35,7 +35,7 @@ else
         DOWNLOAD_URL=https://api.papermc.io/v2/projects/${PROJECT}/versions/${MINECRAFT_VERSION}/builds/${BUILD_NUMBER}/downloads/${JAR_NAME}
     fi
     cd /mnt/server || exit
-    mkdir logs
+    mkdir -p logs
     echo "Running curl -o ${SERVER_JARFILE} ${DOWNLOAD_URL}"
     if [ -f "${SERVER_JARFILE}" ]; then
         mv "${SERVER_JARFILE}" "${SERVER_JARFILE}.old"
@@ -46,7 +46,7 @@ else
         curl -o server.properties https://raw.githubusercontent.com/parkervcp/eggs/master/minecraft/java/server.properties
         curl -o spigot.yml https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Paper%20Optimized/config/spigot.yml
         curl -o bukkit.yml https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Paper%20Optimized/config/bukkit.yml
-        mkdir config
+        mkdir -p config
         (
             cd config || exit
             curl -o paper-world-defaults.yml https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Paper%20Optimized/config/paper-world-defaults.yml

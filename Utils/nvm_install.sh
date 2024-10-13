@@ -2,9 +2,7 @@
 # shellcheck source=/dev/null
 source "/home/container/.nvm/nvm.sh"
 
-if [ ! -d "logs" ]; then
-    mkdir logs
-fi
+mkdir -p logs
 
 echo -e "\n \n📝  Which version of Node.js do you want to use (12, 14, 16, 18, 20) (press [ENTER]): \n \n"
 while read -r VERSION; do

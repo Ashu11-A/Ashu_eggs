@@ -17,7 +17,7 @@ else
 fi
 
 if [ ! -d "FFmpegd" ]; then
-    mkdir FFmpegd
+    mkdir -p FFmpegd
     cat <<EOF >./logs/log_install.txt
 Versão: ${VERSION}
 Link: ${DOWNLOAD_LINK}
@@ -35,7 +35,7 @@ EOF
 fi
 
 if [ ! -d Media ]; then
-    mkdir Media
+    mkdir -p Media
 fi
 
 if [ ! -d "FFmpeg-Commander" ]; then

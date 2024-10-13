@@ -4,7 +4,7 @@ if [[ -f "./Tdarr_Updater" ]]; then
 else
     mkdir -p /mnt/server/
     cd /mnt/server/ || exit
-    mkdir logs
+    mkdir -p logs
     ARCH=$([ "$(uname -m)" == "x86_64" ] && echo "x64" || echo "arm64")
     echo "**** install tdarr package ****" && \
     DOWNLOAD_LINK=$(echo https://f000.backblazeb2.com/file/tdarrs/versions/2.00.15/linux_$ARCH/Tdarr_Updater.zip)

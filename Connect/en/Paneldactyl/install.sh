@@ -106,7 +106,7 @@ EOF
         printf "+----------+---------------------------------+\n| Task   | Status                          |\n+----------+---------------------------------+"
         printf "\n| Panel | 🟡  Downloading Panel |\n"
         curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
-        mkdir panel
+        mkdir -p panel
         mv "${DOWNLOAD_LINK##*/}" panel
         (
             cd panel || exit
@@ -413,7 +413,7 @@ fi
 if [ -z "$BACKUP" ] || [ "$BACKUP" == "1" ]; then
     if [[ -f "./logs/panel_database_instalado" ]]; then
         if [ ! -d "backups" ]; then
-            mkdir backups
+            mkdir -p backups
         fi
         if [ ! -f "backups/executed" ]; then
             touch backups/executed

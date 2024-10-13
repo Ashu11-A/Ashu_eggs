@@ -27,13 +27,11 @@ EOF
     printf "+----------+---------------------------------+\n| Tarefa   | Status                          |\n+----------+---------------------------------+"
     printf "\n| Painel   | 🟡  Baixando Painel               |\n"
     if [ -z "$VERSION" ]; then
-        if [ -d Typebot ]; then
-            mkdir Typebot
-        fi
+        mkdir -p Typebot
         git clone https://github.com/$GITHUB_PACKAGE ./Typebot
     else
         curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
-        mkdir Typebot
+        mkdir -p Typebot
         mv "${DOWNLOAD_LINK##*/}" Typebot
         (
             cd Typebot || exit
@@ -170,9 +168,8 @@ if [ "${DEVELOPER}" = "1" ]; then
 fi
 
 if [ -z "$BACKUP" ] || [ "$BACKUP" == "1" ]; then
-    if [ ! -d "backups" ]; then
-        mkdir backups
-    fi
+    mkdir -p backups
+
     if [ ! -f "backups/executado" ]; then
         touch backups/executado
         sleep 5

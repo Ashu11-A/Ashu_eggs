@@ -30,13 +30,9 @@ else
         )
     fi
 
-    if [ ! -d "[your files]" ]; then
-        mkdir "[your files]"
-    fi
+    mkdir -p "[your files]"
+    mkdir -p logs
 
-    if [ ! -d logs ]; then
-        mkdir logs
-    fi
     ## configurando Nginx
     if [ ! -f "./logs/config_nginx" ]; then
         (
@@ -76,7 +72,5 @@ else
         touch ./logs/instalado
     fi
 
-    if [ ! -d "./tmp" ]; then
-        mkdir tmp
-    fi
+    mkdir -p tmp
 fi

@@ -145,7 +145,7 @@ else
     if [ -d libraries ]; then
     echo "Pasta libraries já existe, pulando..."
     else
-    mkdir libraries
+    mkdir -p libraries
     fi
     echo "Disto Instalada: $LINUX_ISO" > libraries/distro_installed
     echo "true" > libraries/version_system

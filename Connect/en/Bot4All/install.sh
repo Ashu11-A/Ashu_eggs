@@ -11,9 +11,7 @@ export normal
 
 echo -e "\n \n$(figlet -c -f slant -t -k "Bot4All")\n                                         by Ashu (BotForAll)" | $lolcat
 
-if [ ! -d "./logs" ]; then
-    mkdir ./logs
-fi
+mkdir -p ./logs
 
 if [ -z "${NVM_STATUS}" ] || [ "${NVM_STATUS}" = "1" ]; then
     if [[ -d ".nvm" ]]; then

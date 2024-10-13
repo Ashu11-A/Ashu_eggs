@@ -8,7 +8,7 @@ export lightblue
 export normal
 
 if [ ! -d logs ]; then
-    mkdir logs
+    mkdir -p logs
 fi
 
 if [ ! -f "./logs/database_instalado" ] || [ ! -d "./DB" ]; then
@@ -38,13 +38,13 @@ fi
 
 ## Criando arquivos necessarios...
 if [ ! -d "Uguu/dist" ]; then
-    mkdir Uguu/dist
+    mkdir -p Uguu/dist
 fi
 if [ ! -d "DB" ]; then
-    mkdir DB
+    mkdir -p DB
 fi
 if [ ! -d "files" ]; then
-    mkdir files
+    mkdir -p files
 fi
 
 ## configurando Nginx
@@ -90,7 +90,7 @@ if [ ! -f "./logs/instalado" ]; then
 fi
 
 if [ ! -d "./tmp" ]; then
-    mkdir tmp
+    mkdir -p tmp
 fi
 
 if [[ -d "./Uguu" ]]; then

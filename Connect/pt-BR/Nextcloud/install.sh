@@ -14,7 +14,7 @@ if [[ -f "./logs/instalado" ]]; then
     fi
 else
     cd /mnt/server/
-    mkdir php-fpm
+    mkdir -p php-fpm
 
     echo "**** Fazendo o download do nextcloud ****"
     rm -rf nextcloud/
@@ -36,7 +36,7 @@ rm -rf /mnt/server/webroot/*
 if [ -d logs ]; then
     echo "Pasta Logs já existe, pulando..."
 else
-    mkdir logs
+    mkdir -p logs
 fi
 rm nginx/conf.d/default.conf
 cd nginx/conf.d/
@@ -77,4 +77,4 @@ sed -i \
 php-fpm/php.ini && \
 echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> php-fpm/php-fpm.conf
 touch ./logs/instalado
-mkdir tmp
+mkdir -p tmp

@@ -12,8 +12,7 @@ if [ ! -f "/mnt/server/logs/database_instalado" ]; then
         echo -e "# Custom rules\nhost all all 0.0.0.0/0 md5" >>"/mnt/server/DB/pg_hba.conf"
     fi
     echo -e "Done"
-    if [ ! -d "/mnt/server/logs" ]; then
-        mkdir logs
-    fi
+    
+    mkdir -p logs
     touch /mnt/server/logs/database_instalado
 fi

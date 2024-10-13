@@ -31,12 +31,12 @@ else
     ## download release
     if [ -f "tModLoaderServer" ]; then
         echo -e "Movendo arquivos antigos para tModLoader_OLD"
-        mkdir tModLoader_OLD
+        mkdir -p tModLoader_OLD
         mv ./* tModLoader_OLD
     else
         echo -e "Primeira instalação"
     fi
-    mkdir Mods
+    mkdir -p Mods
     echo -e "Executando 'curl -sSL ${DOWNLOAD_LINK} -o ${DOWNLOAD_LINK##*/}'"
     curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
     echo -e "Descompactando Arquivos"

@@ -12,8 +12,8 @@ else
         if [[ "$VERSION" == v* ]]; then
             DOWNLOAD_LINK=$(echo "$RELEASES" | jq -r --arg VERSION "$VERSION" '. | select(.tag_name==$VERSION) | .assets[].browser_download_url' | grep -i "$VERSION" | grep -i .zip)
 
-            mkdir Ass
-            mkdir Logs
+            mkdir -p Ass
+            mkdir -p Logs
             cat <<EOF >./Logs/log_install.txt
 Versão: ${VERSION}
 Link: ${DOWNLOAD_LINK}

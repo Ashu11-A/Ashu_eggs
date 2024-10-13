@@ -2,9 +2,7 @@
 
 CONFIG_FILE="logs/language.conf"
 
-if [ ! -d "logs" ]; then
-    mkdir logs
-fi
+mkdir -p logs
 
 # Função para carregar todas as traduções de um idioma
 loadAllTranslations() {
@@ -70,6 +68,3 @@ fi
 
 # Carregar todas as traduções para o idioma selecionado
 loadAllTranslations "$language"
-
-echo "$hello"
-echo "$world"

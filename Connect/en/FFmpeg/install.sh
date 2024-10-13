@@ -17,7 +17,7 @@ else
 fi
 
 if [ ! -d "FFmpegd" ]; then
-    mkdir FFmpegd
+    mkdir -p FFmpegd
     cat <<EOF >./logs/log_install.txt
 Version: ${VERSION}
 Link: ${DOWNLOAD_LINK}
@@ -33,9 +33,7 @@ EOF
     )
 fi
 
-if [ ! -d Media ]; then
-    mkdir Media
-fi
+mkdir -p Media
 
 if [ ! -d "FFmpeg-Commander" ]; then
     git clone --quiet https://github.com/Ashu11-A/ffmpeg-commander-Egg FFmpeg-Commander

@@ -13,7 +13,7 @@ if [ ! -f "/mnt/server/logs/database_instalado" ]; then
     fi
     echo -e "Done"
     if [ ! -d "/mnt/server/logs" ]; then
-        mkdir logs
+        mkdir -p logs
     fi
     touch /mnt/server/logs/database_instalado
 fi

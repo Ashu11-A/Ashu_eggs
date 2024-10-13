@@ -28,13 +28,11 @@ EOF
         printf "+----------+---------------------------------+\n| Task     | Status                          |\n+----------+---------------------------------+"
         printf "\n| Panel    | 🟡  Downloading Panel             |\n"
         if [ -z "$VERSION" ] || [ "$VERSION" == "latest" ]; then
-            if [ -d controlpanel ]; then
-                mkdir controlpanel
-            fi
+            mkdir -p controlpanel
             git clone https://github.com/Ctrlpanel-gg/panel ./controlpanel
         else
             curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
-            mkdir controlpanel
+            mkdir -p controlpanel
             mv "${DOWNLOAD_LINK##*/}" controlpanel
             (
                 cd controlpanel || exit
@@ -261,9 +259,8 @@ if [ -f "./controlpanel/ctrlpanel_github_installed" ]; then
 fi
 
 if [ -z "$BACKUP" ] || [ "$BACKUP" == "1" ]; then
-    if [ ! -d "backups" ]; then
-        mkdir backups
-    fi
+    mkdir -p backups
+
     if [ ! -f "backups/executed" ]; then
         touch backups/executed
         sleep 5
