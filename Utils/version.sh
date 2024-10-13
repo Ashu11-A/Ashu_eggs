@@ -1,18 +1,14 @@
 export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/refs/heads/main/Lang/version.conf"
 source <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/refs/heads/main/Utils/loadLang.sh)
 
-printenv
-
-# Variáveis
-version_egg="1.0"
-version_script="1.0"
-
 # Usando as variáveis de tradução
 printf "$version_script\n" "$version_script"
+
 if [[ -f "./logs/egg_version" ]]; then
     versions="$(cat ./logs/egg_version)"
     comm1=$(printf '%s\n' "$versions" | tr -d '.')
     comm2=$(printf '%s\n' "$version_egg" | tr -d '.')
+
     if [ "$ATZ_SYSTEM" = "1" ]; then
         if [ "$comm1" -ge "$comm2" ]; then
             echo "$egg_updated"

@@ -1,4 +1,5 @@
 #!/bin/bash
+
 if [ ! -d "src" ]; then
 	git clone https://github.com/wukko/cobalt ./Cobalt
     mv Cobalt/* ./
@@ -12,8 +13,8 @@ fi
 
 
 if [[  -f "./.env" && -d "node_modules" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Cobalt/version.sh)
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Cobalt/launch.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/version.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Cobalt/launch.sh)
 else
-    echo "Algo muito errado aconteceu."
+    echo "Something went very wrong."
 fi
