@@ -32,7 +32,7 @@ printf "$running\n" "$MGM"
     fi
 )
 
-printf "$available_commands\n" "${bold}${lightblue}help ${normal}, ${bold}${lightblue}start ${normal}, ${bold}${lightblue}show ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code] ou ${bold}${lightblue}node ${normal}[your code]"
+printf "$available_commands\n" "${bold}${lightblue}help ${normal}, ${bold}${lightblue}start ${normal}, ${bold}${lightblue}show ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code], ${bold}${lightblue}node ${normal}[your code], ${bold}${lightblue}lang${normal}."
 
 echo -e "\n \n$initializing_anti_crash\n \n"
 nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Bot4All/nobreak.sh) &
@@ -79,9 +79,9 @@ while read -r line; do
         pritnf "$change_start_command\n" "start"
         exit
         exit
-    elif [[ "$line" != *"npm"* ]] || [[ "$line" != *"node"* ]] || [[ "$line" != *"show"* ]] || [[ "$line" != *"version"* ]] || [[ "$line" != *"start"* ]]; then
-        echo -e "\n \n$invalid_command\n \n"
+    elif [[ "$line" == "lang" ]]; then
+        source <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh)
     else
-        echo "$script_failed"
+        echo "$invalid_command"
     fi
 done
