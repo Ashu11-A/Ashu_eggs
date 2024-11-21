@@ -7,17 +7,22 @@
     "exported_at": "2024-04-08T16:55:09-03:00",
     "name": "Paper (Super-Optimized)",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Paper (Super-Optimized)\r\n\u2699\ufe0f Version: 1.2\r\n\u2753 What: A branch of Spigot from Alto performance aimed at fixing gameplay and mechanical inconsistencies, but now with an optimization super path by Ashu.\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n \u2022 (1.0) Release.\r\n \u2022 (1.0) All done by scripts, better maintenance and updating.\r\n \u2022 (1.2) Possibility of denying the installation of Plugins.\r\n\ud83e\ude84 What's different ?\r\n \u2022 Optimizations list: https:\/\/github.com\/Ashu11-A\/Ashu_eggs\/blob\/main\/Paper%20Optimized\r\n \u2022 This Egg has several Optimizations in the default files.\r\n \u2022 There is a variable called Optimization that changes the boot argument which will significantly improve performance .\r\n \ud83d\udce6 Docker: \r\n \u2022 Compatibility with ARM64, 64x\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "\ud83d\udc8e Egg: Paper (Super-Optimized)\r\n\u2699\ufe0f Version: 1.3\r\n\u2753 What it is: An offshoot of the high-performance Spigot that aims to fix gameplay and mechanical inconsistencies, but now with a super optimization path by Ashu.\r\n\ud83d\udc1b Bug fixes\/changelogs:\r\n- (1.0) Release.\r\n- (1.0) Everything is scripted, better maintenance and updating.\r\n- (1.2) Possibility of denying the installation of Plugins.\r\n- (1.3) Updating images\r\nWhat's different?\r\n- List of optimizations: https:\/\/github.com\/Ashu11-A\/Ashu_eggs\/blob\/main\/Paper%20Optimized\r\n- This Egg has several Optimizations in the default files.\r\n- There is a variable called Optimization that changes the initialization argument which significantly improves performance.\r\n\ud83d\udce6 Docker: \r\n- ARM64, 64x compatibility\r\nAuthor: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": [
         "eula",
         "java_version",
         "pid_limit"
     ],
     "docker_images": {
-        "Java 8 Zulu": "ghcr.io\/software-noob\/pterodactyl-images:java_8_zulu",
-        "Java 11 Zulu": "ghcr.io\/software-noob\/pterodactyl-images:java_11_zulu",
-        "Java 16 Zulu": "ghcr.io\/software-noob\/pterodactyl-images:java_16_zulu",
-        "Java 17 Zulu": "ghcr.io\/software-noob\/pterodactyl-images:java_17_zulu"
+        "Java 8 Zulu": "ghcr.io\/trenutoo\/pterodactyl-images:java_8_zulu",
+        "Java 11 Zulu": "ghcr.io\/trenutoo\/pterodactyl-images:java_11_zulu",
+        "Java 16 Zulu": "ghcr.io\/trenutoo\/pterodactyl-images:java_16_zulu",
+        "Java 17 Zulu": "ghcr.io\/trenutoo\/pterodactyl-images:java_17_zulu",
+        "Java 18 Zulu": "ghcr.io\/trenutoo\/pterodactyl-images:java_18_zulu",
+        "Java 19 Zulu": "ghcr.io\/trenutoo\/pterodactyl-images:java_19_zulu",
+        "Java 20 Zulu": "ghcr.io\/trenutoo\/pterodactyl-images:java_20_zulu",
+        "Java 21 Zulu": "ghcr.io\/trenutoo\/pterodactyl-images:java_21_zulu",
+        "Java 22 Zulu": "ghcr.io\/trenutoo\/pterodactyl-images:java_22_zulu"
     },
     "file_denylist": [],
     "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/Paper%20Optimized\/launch.sh)",
