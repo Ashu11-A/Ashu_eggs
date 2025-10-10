@@ -9,9 +9,11 @@ fi
 if [[ -f "./logs/instalado" ]]; then
   touch ./logs/installed
 fi
+# mais alteracões para forçar
+# atualizar o cache do github
 
 if [[ ! -f "./logs/installed" ]]; then
-  curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Nextcloud/installer.sh -o installer.sh;
+  curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/installer.sh -o installer.sh;
   chmod a+x ./installer.sh
   ./installer.sh
   rm ./installer.sh
