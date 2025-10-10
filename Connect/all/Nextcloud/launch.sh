@@ -18,10 +18,10 @@ if [[ ! -f "./logs/installed" ]]; then
   exit
 fi
 
-# Limpa diretório temporário
+# Limpa diretório temporário.
 rm -rf /home/container/tmp/*
 
-# Permite executar comandos OCC diretamente
+# Permite executar comandos OCC diretamente.
 if [[ $OCC == "1" ]]; then 
   php ./nextcloud/occ ${COMMANDO_OCC}
   exit
@@ -42,7 +42,6 @@ else
   php ./nextcloud/occ config:system:set redis port --value='6379' --type=integer
 
   echo "🛠 Configuring upload limits (16GB)"
-  echo "🛠 Aplicando configurações de upload em nextcloud/.user.ini..."
   cat > ./nextcloud/.user.ini << EOL
 always_populate_raw_post_data=-1
 default_charset='UTF-8'
