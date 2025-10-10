@@ -26,6 +26,7 @@ rm -rf "$BASE_DIR"/webroot/*
 (
   cd nginx/conf.d/
   rm default.conf
+  rm nextcloud.conf
   wget https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/default.conf
 )
 
@@ -46,7 +47,7 @@ echo 'apc.enable_cli=1' >> php-fpm/conf.d/apcu.ini
 chown -R nginx:nginx nextcloud && chmod -R 755 nextcloud
 echo "**** Cleaning up ****"
 rm -rf /tmp/*
-sudo sed -i \
+sed -i \
   -e 's/^memory_limit\s*=.*/memory_limit = 1024M/' \
   -e 's/^upload_max_filesize\s*=.*/upload_max_filesize = 16G/' \
   -e 's/^post_max_size\s*=.*/post_max_size = 16G/' \
