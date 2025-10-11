@@ -1,5 +1,19 @@
 #!/bin/ash
 
+# Function to monitor the installation in the background.
+monitor_installation() {
+  # Wait until Nextcloud is marked as "installed".
+  while ! php ./nextcloud/occ status | grep -q "installed: true"; do
+    sleep 5
+  done
+
+  # Once installed, enter an infinite loop to notify the user.
+  while true; do
+    echo "🔔 Nextcloud has been installed! Please restart the server to apply pending cache settings and optimizations."
+    sleep 5
+  done
+}
+
 if [ ! -d logs ]; then
   mkdir -p logs
 fi
@@ -18,11 +32,13 @@ if [[ ! -f "./logs/installed" ]]; then
   exit
 fi
 
-# Limpa diretório temporário.
+(figlet -c -f slant -t -k Nextcloud; echo "                                                    by Ashu11-A") | lolcat
+
+# Clear temporary directory.
 rm -rf /home/container/tmp/*
 
-# Permite executar comandos OCC diretamente.
-if [[ $OCC == "1" ]]; then 
+# Allow running OCC commands directly.
+if [[ $OCC == "1" ]]; then  
   php ./nextcloud/occ ${COMMANDO_OCC}
   exit
 else
@@ -42,27 +58,30 @@ EOL
 
   echo "🔎 Checking the installation status of Nextcloud..."
   if php ./nextcloud/occ status | grep -q "installed: true"; then
-    echo "✅ Nextcloud is installed. Applying cache settings..."
+    echo "✅ Nextcloud is installed. Applying cache and upload settings..."
     php ./nextcloud/occ config:system:set memcache.local --value='\OC\Memcache\APCu'
     php ./nextcloud/occ config:system:set memcache.distributed --value='\OC\Memcache\Memcached'
     php ./nextcloud/occ config:system:set memcache.locking --value='\OC\Memcache\Redis'
     php ./nextcloud/occ config:system:set memcached_servers --value='[["localhost", 11211]]' --type=json
     php ./nextcloud/occ config:system:set redis host --value='localhost'
     php ./nextcloud/occ config:system:set redis port --value='6379' --type=integer
+
+    echo "📦 Adjusting upload chunk size to 10MB..."
+    php ./nextcloud/occ config:system:set --type int --value 10485760 files.chunked_upload.max_size
+
   else
-    echo "⚠️ Nextcloud has not yet been installed via the web interface. Skipping cache configuration."
-    echo "   Please complete the installation in your browser and then restart the container so that the cache is configured."
+    echo "⚠️ Nextcloud has not yet been installed via the web interface. Skipping configurations."
+    echo "   Please complete the installation in your browser."
+    # Start the monitor in the background to notify when the installation is complete.
+    monitor_installation &
   fi
 
-  echo "✨ Starting Redis Server..."
-  redis-server --daemonize yes
 
-  echo "✨ Starting Memcached..."
-  memcached -d -u nobody
+  curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/supervisord.conf -o supervisord.conf
+  curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/supervisor.sh -o supervisor.sh
+  chmod a+x ./supervisor.sh
+  ./supervisor.sh
 
-  echo "✨ Starting PHP-FPM..."
-  /usr/sbin/php-fpm --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize
-
-  echo "✨ Starting Nginx..."
-  /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/
+  echo "🚀 Starting all services with supervisord..."
+  /usr/bin/supervisor -c ./supervisord.conf
 fi
