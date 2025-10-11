@@ -3,11 +3,11 @@
 # Function to monitor the installation in the background.
 monitor_installation() {
   # Wait until Nextcloud is marked as "installed".
-  while ! php ./nextcloud/occ status | grep -q "installed: true"; do
+  while ! php ./nextcloud/occ status 2> /dev/null | grep -q "installed: true"; do
     sleep 5
   done
 
-  # Once installed, enter an infinite loop to notify the user.
+  # Once installed, enter an infinite loop to notify the user
   while true; do
     echo "🔔 Nextcloud has been installed! Please restart the server to apply pending cache settings and optimizations."
     sleep 5
