@@ -72,7 +72,7 @@ EOL
   else
     echo "⚠️ Nextcloud has not yet been installed via the web interface. Skipping configurations."
     echo "   Please complete the installation in your browser."
-    # Start the monitor in the background to notify when the installation is complete.
+    # Start the monitor in the background to notify when the installation is complete
     monitor_installation &
   fi
 
@@ -83,5 +83,5 @@ EOL
   ./supervisor.sh
 
   echo "🚀 Starting all services with supervisord..."
-  /usr/bin/supervisor -c ./supervisord.conf
+  supervisord -c ./supervisord.conf
 fi
