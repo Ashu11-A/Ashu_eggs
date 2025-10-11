@@ -7,7 +7,7 @@ monitor_installation() {
     sleep 5
   done
 
-  # Once installed, enter an infinite loop to notify the user
+  # Once installed, enter an infinite loop to notify the user.
   while true; do
     echo "🔔 Nextcloud has been installed! Please restart the server to apply pending cache settings and optimizations."
     sleep 5
