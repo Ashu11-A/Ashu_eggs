@@ -3,9 +3,25 @@
 curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/toml.sh -o toml.sh
 source ./toml.sh
 
-# Define BIND_PORT como SERVER_PORT se estiver vazio ou não existir
+# Define valores padrão para variáveis vazias
 if [[ -z "${BIND_PORT}" ]]; then
-  BIND_PORT="${SERVER_PORT}"
+  BIND_PORT="${SERVER_PORT:-7000}"
+fi
+
+if [[ -z "${DASHBOARD_PORT}" ]]; then
+  DASHBOARD_PORT="7500"
+fi
+
+if [[ -z "${DASHBOARD_USER}" ]]; then
+  DASHBOARD_USER="admin"
+fi
+
+if [[ -z "${DASHBOARD_PWD}" ]]; then
+  DASHBOARD_PWD="admin"
+fi
+
+if [[ -z "${TOKEN}" ]]; then
+  TOKEN="change_this_token"
 fi
 
 printf "$script_version\n" "3.0"

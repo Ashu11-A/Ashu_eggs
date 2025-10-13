@@ -68,13 +68,23 @@ function set_toml_value() {
       if (in_target_section && section != "" && $0 ~ "^[[:space:]]*" sub_key "[[:space:]]*=") {
           match($0, /^[[:space:]]*/);
           indent = substr($0, RSTART, RLENGTH);
-          $0 = indent sub_key " = \"" new_value "\"";
+          # Detecta se o valor é um número (inteiro ou decimal)
+          if (new_value ~ /^[0-9]+(\.[0-9]+)?$/) {
+            $0 = indent sub_key " = " new_value;
+          } else {
+            $0 = indent sub_key " = \"" new_value "\"";
+          }
           key_found = 1;
       }
       else if ($0 ~ "^[[:space:]]*" full_key_escaped "[[:space:]]*=") {
           match($0, /^[[:space:]]*/);
           indent = substr($0, RSTART, RLENGTH);
-          $0 = indent full_key " = \"" new_value "\"";
+          # Detecta se o valor é um número (inteiro ou decimal)
+          if (new_value ~ /^[0-9]+(\.[0-9]+)?$/) {
+            $0 = indent full_key " = " new_value;
+          } else {
+            $0 = indent full_key " = \"" new_value "\"";
+          }
           key_found = 1;
       }
     }
