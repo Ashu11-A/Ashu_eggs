@@ -1,9 +1,9 @@
 #!/bin/ash
 
-if [ -f "./install.sh" ]; then
-  rm ./install.sh
+if [ -f "./launch.sh" ]; then
+  rm ./launch.sh
 fi
 
-curl -sO https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/install.sh
-chmod +x install.sh
-./install.sh
+curl -sO https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/launch.sh
+chmod +x launch.sh
+./launch.sh
