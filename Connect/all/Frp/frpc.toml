@@ -31,7 +31,7 @@ token = "your_token_here"
 # [webServer] manages the client's local admin interface.
 # It is useful for hot-reloading configurations and viewing proxy statuses.
 [webServer]
-addr = "127.0.0.1"
+addr = "0.0.0.0"
 port = 7400
 user = "admin"
 password = "admin"

@@ -11,7 +11,7 @@ kcpBindPort = 7000
 # [webServer] manages the server's dashboard.
 [webServer]
 # The IP address the dashboard listens on. '0.0.0.0' for public access.
-addr = "127.0.0.1"
+addr = "0.0.0.0"
 # The port for the dashboard.
 port = 7500
 # Username for dashboard login.
