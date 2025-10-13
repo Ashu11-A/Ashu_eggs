@@ -4,26 +4,26 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-10-11T20:31:49-03:00",
+    "exported_at": "2025-10-13T00:14:29-03:00",
     "name": "Frp",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Frp\r\n\u2699\ufe0f Vers\u00e3o: 2.1\r\n\u2753 Oque \u00e9: Um proxy reverso r\u00e1pido para ajud\u00e1-lo a expor um servidor local atr\u00e1s de um NAT ou firewall \u00e0 Internet.\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\u2022 Agora o Egg n\u00e3o \u00e9 dependente de atualiza\u00e7\u00f5es, tudo \u00e9 feito por scripts, o que ocasiona na sua melhor manuten\u00e7\u00e3o.\r\n\u2022 C\u00f3digo agora est\u00e1 mais limpo.\r\n\u2022 Novas Vari\u00e1veis: \r\n   \u2022 Frps ou Frpc?\r\n   \u2022 Instalar Exemplo?\r\n\u2022  2.1: Atualiza\u00e7\u00e3o para o novo sistema do FRP (.toml)\r\n\u26a0\ufe0f Aten\u00e7\u00e3o:\r\n\u2757\ufe0fEsse Egg necessita de no m\u00ednimo 4 portas(v\u00e1 para startup no painel, e especifique as portas, \u00e9 complicado de se mexer, qualquer coisa me marca.)\r\n\ud83d\udcdbO Windows ir\u00e1 detectar o Frp como v\u00edrus, por causa do Tunelamento de Portas.\r\n\ud83d\udeabSe voc\u00ea j\u00e1 houver esse Egg instado em algum servidor, ser\u00e1 necess\u00e1rio fazer uma reinstala\u00e7\u00e3o (Fa\u00e7a um backup das suas coisas antes.)\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "\ud83d\udc8e Egg: Frp\r\n\u2699\ufe0f Vers\u00e3o: 2.2\r\n\u2753 Oque \u00e9: Um proxy reverso r\u00e1pido para ajud\u00e1-lo a expor um servidor local atr\u00e1s de um NAT ou firewall \u00e0 Internet.\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\u2022 Agora o Egg n\u00e3o \u00e9 dependente de atualiza\u00e7\u00f5es, tudo \u00e9 feito por scripts, o que ocasiona na sua melhor manuten\u00e7\u00e3o.\r\n\u2022 C\u00f3digo agora est\u00e1 mais limpo.\r\n\u2022 Novas Vari\u00e1veis: \r\n   \u2022 Frps ou Frpc?\r\n   \u2022 Instalar Exemplo?\r\n\u2022  2.1: Atualiza\u00e7\u00e3o para o novo sistema do FRP (.toml)\r\n\u2022  2.2: Mudan\u00e7a do docker de ubuntu\/debian para alpine (mais leve)\r\n\u26a0\ufe0f Aten\u00e7\u00e3o:\r\n\u2757\ufe0fEsse Egg necessita de no m\u00ednimo 4 portas(v\u00e1 para startup no painel, e especifique as portas, \u00e9 complicado de se mexer, qualquer coisa me marca.)\r\n\ud83d\udcdbO Windows ir\u00e1 detectar o Frp como v\u00edrus, por causa do Tunelamento de Portas.\r\n\ud83d\udeabSe voc\u00ea j\u00e1 houver esse Egg instado em algum servidor, ser\u00e1 necess\u00e1rio fazer uma reinstala\u00e7\u00e3o (Fa\u00e7a um backup das suas coisas antes.)\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ghcr.io\/parkervcp\/yolks:ubuntu": "ghcr.io\/parkervcp\/yolks:ubuntu"
+        "Alpine": "ghcr.io\/ashu11-a\/distro:alpine"
     },
     "file_denylist": [],
-    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/Frp\/install.sh)",
+    "startup": ".\/start.sh",
     "config": {
-        "files": "{\r\n    \".\/Frps\/frps.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"bind_port\": \"bind_port= {{server.build.env.bind_port}}\",\r\n            \"dashboard_addr\": \"dashboard_addr = 0.0.0.0\",\r\n            \"dashboard_port\": \"dashboard_port = {{server.build.env.dashboard_port}}\",\r\n            \"dashboard_user\": \"dashboard_user = {{server.build.env.dashboard_user}}\",\r\n            \"dashboard_pwd\": \"dashboard_pwd = {{server.build.env.dashboard_pwd}}\",\r\n            \"authentication_method\": \"authentication_method = token\",\r\n            \"authenticate_heartbeats\": \"authenticate_heartbeats = true\",\r\n            \"token\": \"token = {{server.build.env.token}}\"\r\n        }\r\n    },\r\n    \".\/Frpc\/frpc.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"server_port\": \"server_port = {{server.build.env.bind_port}}\",\r\n            \"authentication_method\": \"authentication_method = token\",\r\n            \"authenticate_heartbeats\": \"authenticate_heartbeats = true\",\r\n            \"token\": \"token = {{server.build.env.token}}\"\r\n        }\r\n    },\r\n    \".\/Frps\/frps.toml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"bindPort\": \"bindAddr = {{server.build.env.bind_port}}\",\r\n            \"kcpBindPort\": \"kcpBindPort = {{server.build.env.bind_port}}\",\r\n            \"webServer.addr\": \"webServer.addr = 0.0.0.0\",\r\n            \"webServer.port\": \"webServer.port = {{server.build.env.dashboard_port}}\",\r\n            \"webServer.user\": \"webServer.user = {{server.build.env.dashboard_user}}\",\r\n            \"webServer.password\": \"webServer.password = '{{server.build.env.dashboard_pwd}}'\",\r\n            \"auth.token\": \"auth.token = '{{server.build.env.token}}'\"\r\n        }\r\n    },\r\n    \".\/Frpc\/frpc.toml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"serverPort\": \"serverPort = {{server.build.env.bind_port}}\",\r\n            \"auth.method\": \"auth.method = 'token'\",\r\n            \"auth.additionalScopes\": \"auth.additionalScopes = ['HeartBeats', 'NewWorkConns']\",\r\n            \"auth.token\": \"auth.token = '{{server.build.env.token}}'\"\r\n        }\r\n    }\r\n}",
+        "files": "{}",
         "startup": "{\r\n    \"done\": \"start\",\r\n    \"userInteraction\": []\r\n}",
         "logs": "{}",
-        "stop": "^C"
+        "stop": "^^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\napt update\r\napt install -y git jq file unzip libtool inetutils-ping tar curl\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/Frp\/install.sh)",
-            "container": "debian:buster-slim",
+            "script": "#!\/bin\/bash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\n\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/all\/Frp\/start.sh -o start.sh\r\nchmod a+x .\/start.sh\r\n.\/start.sh",
+            "container": "ghcr.io\/ashu11-a\/installers:alpine",
             "entrypoint": "bash"
         }
     },

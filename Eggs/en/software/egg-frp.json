@@ -4,33 +4,33 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2023-10-11T20:32:07-03:00",
+    "exported_at": "2025-10-13T00:14:29-03:00",
     "name": "Frp",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Frp\r\n\u2699\ufe0f Version: 2.1\r\n\u2753 What is: A fast reverse proxy to help you expose a local server behind a NAT or firewall \u200b\u200bthe Internet.\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n\u2022 Egg is now not dependent on updates, everything is done by scripts, which leads to better maintenance.\r\n\u2022 Code is now cleaner.\r\n\u2022 New Variables: \r\n \u2022 Frps or Frpc?\r\n \u2022 Install Example?\r\n\u2022 2.1: Update to the new FRP system (.toml)\r\n\u26a0\ufe0f Attention:\r\n\u2757\u2019This Egg needs at least 4 ports(see 1 to startup in the panel, and specify the ports, it's hard to move, anything marks me.)\r\n\ud83d\udcdbWindows will detect Frp as a virus, because of Port Tunneling. \r\n\ud83d\udeab If you already have this Egg installed on some server, you will need to do a reinstallation (Make a backup of your stuff first.)\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "💎 Egg: Frp\r\n⚙️ Version: 2.2\r\n❓ What is it: A fast reverse proxy to help you expose a local server behind a NAT or firewall to the Internet.\r\n🐞 Bugs fixed/changelogs:\r\n• Now the Egg is not dependent on updates, everything is done by scripts, which results in better maintenance.\r\n• The code is now cleaner.\r\n• New Variables: \r\n   • Frps or Frpc?\r\n   • Install Example?\r\n•  2.1: Update to the new FRP system (.toml)\r\n•  2.2: Docker changed from ubuntu/debian to alpine (lighter)\r\n⚠️ Attention:\r\n❗️This Egg requires at least 4 ports (go to startup in the panel, and specify the ports, it's complicated to handle, just tag me if you need help.)\r\n📖 Windows will detect Frp as a virus due to Port Tunneling.\r\n🚫If you already have this Egg installed on a server, a reinstallation will be necessary (Make a backup of your files first.)\r\n👑 Author: Ashu\r\n👀 Check for updates: https://github.com/Ashu11-A/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ghcr.io\/parkervcp\/yolks:ubuntu": "ghcr.io\/parkervcp\/yolks:ubuntu"
+        "Alpine": "ghcr.io/ashu11-a/distro:alpine"
     },
     "file_denylist": [],
-    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/Frp\/install.sh)",
+    "startup": "./start.sh",
     "config": {
-        "files": "{\r\n    \".\/Frps\/frps.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"bind_port\": \"bind_port= {{server.build.env.bind_port}}\",\r\n            \"dashboard_addr\": \"dashboard_addr = 0.0.0.0\",\r\n            \"dashboard_port\": \"dashboard_port = {{server.build.env.dashboard_port}}\",\r\n            \"dashboard_user\": \"dashboard_user = {{server.build.env.dashboard_user}}\",\r\n            \"dashboard_pwd\": \"dashboard_pwd = {{server.build.env.dashboard_pwd}}\",\r\n            \"authentication_method\": \"authentication_method = token\",\r\n            \"authenticate_heartbeats\": \"authenticate_heartbeats = true\",\r\n            \"token\": \"token = {{server.build.env.token}}\"\r\n        }\r\n    },\r\n    \".\/Frpc\/frpc.ini\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"server_port\": \"server_port = {{server.build.env.bind_port}}\",\r\n            \"authentication_method\": \"authentication_method = token\",\r\n            \"authenticate_heartbeats\": \"authenticate_heartbeats = true\",\r\n            \"token\": \"token = {{server.build.env.token}}\"\r\n        }\r\n    },\r\n    \".\/Frps\/frps.toml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"bindPort\": \"bindAddr = {{server.build.env.bind_port}}\",\r\n            \"kcpBindPort\": \"kcpBindPort = {{server.build.env.bind_port}}\",\r\n            \"webServer.addr\": \"webServer.addr = 0.0.0.0\",\r\n            \"webServer.port\": \"webServer.port = {{server.build.env.dashboard_port}}\",\r\n            \"webServer.user\": \"webServer.user = {{server.build.env.dashboard_user}}\",\r\n            \"webServer.password\": \"webServer.password = '{{server.build.env.dashboard_pwd}}'\",\r\n            \"auth.token\": \"auth.token = '{{server.build.env.token}}'\"\r\n        }\r\n    },\r\n    \".\/Frpc\/frpc.toml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"serverPort\": \"serverPort = {{server.build.env.bind_port}}\",\r\n            \"auth.method\": \"auth.method = 'token'\",\r\n            \"auth.additionalScopes\": \"auth.additionalScopes = ['HeartBeats', 'NewWorkConns']\",\r\n            \"auth.token\": \"auth.token = '{{server.build.env.token}}'\"\r\n        }\r\n    }\r\n}",
+        "files": "{}",
         "startup": "{\r\n    \"done\": \"start\",\r\n    \"userInteraction\": []\r\n}",
         "logs": "{}",
-        "stop": "^C"
+        "stop": "^^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\napt update\r\napt install -y git jq file unzip libtool inetutils-ping tar curl\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/Frp\/install.sh)",
-            "container": "debian:buster-slim",
+            "script": "#!\/bin\/bash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\n\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/all\/Frp\/start.sh -o start.sh\r\nchmod a+x .\/start.sh\r\n.\/start.sh",
+            "container": "ghcr.io/ashu11-a/installers:alpine",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
             "name": "Version",
-            "description": "Version that will be installed when installing egg.\r\n\r\nEx: v0.44.0 (latest will always install the latest one)",
+            "description": "Version that will be installed when the egg is installed.\r\n\r\nEx: v0.44.0 (latest will always install the most recent one)",
             "env_variable": "VERSION",
             "default_value": "latest",
             "user_viewable": true,
@@ -40,7 +40,7 @@
         },
         {
             "name": "Bind Port",
-            "description": "Modify and set the port to be connected to Frp clients.",
+            "description": "Modify and set the port to connect to Frp clients.",
             "env_variable": "bind_port",
             "default_value": "",
             "user_viewable": true,
@@ -50,7 +50,7 @@
         },
         {
             "name": "Dashboard Port",
-            "description": "Dashboard\r\nCheck Frp status and statistical information of proxies from Dashboard.\r\n\r\nConfigure a port for the panel to enable this feature:",
+            "description": "Dashboard\r\nCheck Frp's status and proxy statistical information via the Dashboard.\r\n\r\nSet a port for the dashboard to enable this feature:",
             "env_variable": "dashboard_port",
             "default_value": "",
             "user_viewable": true,
@@ -60,7 +60,7 @@
         },
         {
             "name": "Dashboard User",
-            "description": "Username to use on Dashboard",
+            "description": "Username to use for the Dashboard.",
             "env_variable": "dashboard_user",
             "default_value": "admin",
             "user_viewable": true,
@@ -70,7 +70,7 @@
         },
         {
             "name": "Dashboard password",
-            "description": "Password for Dashboard",
+            "description": "Password for the Dashboard.",
             "env_variable": "dashboard_pwd",
             "default_value": "admin",
             "user_viewable": true,
@@ -80,7 +80,7 @@
         },
         {
             "name": "Token",
-            "description": "Token to access Frp, this is required as a security measure.",
+            "description": "Token to access Frp, this is necessary as a security measure.",
             "env_variable": "token",
             "default_value": "Change_This",
             "user_viewable": true,
@@ -90,7 +90,7 @@
         },
         {
             "name": "Frps or Frpc",
-            "description": "Choose how Frp will behave, default is 9 Frps, OFF = Frpc (server B on LAN with private IP) ON = Frps (server A with public IP.)",
+            "description": "Choose how Frp will behave. The default is Frps. OFF = Frpc (server B on LAN with private IP) ON = Frps (server A with public IP).",
             "env_variable": "FRP_MODE",
             "default_value": "1",
             "user_viewable": true,
@@ -100,7 +100,7 @@
         },
         {
             "name": "Install Example?",
-            "description": "This will install a Windows 64bit example, if you want another architecture see: https:\/\/github.com\/fatedier\/frp\/releases",
+            "description": "This will install a Windows 64bit example. If you want a different architecture, consult: https://github.com/fatedier/frp/releases",
             "env_variable": "INSTALL_EX",
             "default_value": "1",
             "user_viewable": true,
