@@ -1,0 +1,89 @@
+# frps.toml
+# This is a full configuration file for the frps server.
+# Only essential settings are enabled. Other settings are commented out.
+
+# The port on which the frps server listens for client connections.
+bindPort = 7000
+
+# The UDP port used for KCP protocol support. Can be the same as bindPort.
+kcpBindPort = 7000
+
+# [webServer] manages the server's dashboard.
+[webServer]
+# The IP address the dashboard listens on. '0.0.0.0' for public access.
+addr = "127.0.0.1"
+# The port for the dashboard.
+port = 7500
+# Username for dashboard login.
+user = "admin"
+# Password for dashboard login.
+password = "admin"
+# # Path to the TLS certificate file for a secure dashboard (HTTPS).
+# tls.certFile = "server.crt"
+# # Path to the TLS key file for a secure dashboard (HTTPS).
+# tls.keyFile = "server.key"
+
+# [auth] configures the authentication method between frps and frpc.
+[auth]
+# Authentication method. Can be 'token' or 'oidc'.
+method = "token"
+# The token used for authentication. Must be the same on the client.
+token = "your_token_here"
+# # Additional scopes for authentication, e.g., for heartbeats or new connections.
+# additionalScopes = ["HeartBeats", "NewWorkConns"]
+
+# # [auth.oidc] settings for OIDC authentication.
+# [auth.oidc]
+# # OIDC provider's issuer URL.
+# issuer = "https://example-oidc-issuer.com/"
+# # Audience for the OIDC token.
+# audience = "https://oidc-audience.com/.default"
+
+# # The UDP port for QUIC protocol support.
+# quicBindPort = 7000
+
+# # The port for HTTP vhost requests.
+# vhostHTTPPort = 8080
+# # The port for HTTPS vhost requests.
+# vhostHTTPSPort = 8443
+
+# # Port for TCP multiplexing over HTTP CONNECT.
+# tcpmuxHTTPConnectPort = 5002
+
+# # The domain used for creating subdomains for proxies.
+# # e.g., if set to "frps.com", a client proxy with subdomain "test" will be accessible at "test.frps.com".
+# subDomainHost = "frps.com"
+
+# # A list of allowed ports that clients can create proxies for.
+# allowPorts = [
+#   { start = 2000, end = 3000 },
+#   { single = 3001 },
+#   { single = 3003 },
+#   { start = 4000, end = 50000 }
+# ]
+
+# # Enable Prometheus metrics, accessible at /metrics on the webServer port.
+# enablePrometheus = true
+
+# # [transport] settings for managing data transfer.
+# [transport]
+# # The maximum number of connections in the pool for each proxy.
+# maxPoolCount = 5
+# # Enable or disable TCP stream multiplexing.
+# tcpMux = true
+# # # Force TLS encryption for all connections.
+# [transport.tls]
+# force = true
+# # # Path to the TLS certificate file.
+# certFile = "server.crt"
+# # # Path to the TLS key file.
+# keyFile = "server.key"
+# # # Path to the trusted CA file to verify client certificates.
+# trustedCaFile = "ca.crt"
+
+# # [sshTunnelGateway] configures an SSH gateway on the frps server.
+# [sshTunnelGateway]
+# bindPort = 2200
+
+# # Experimental features can be enabled via featureGates.
+# # featureGates = { VirtualNet = true }

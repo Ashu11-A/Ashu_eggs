@@ -50,65 +50,28 @@ mkdir -p logs
 
 printf "$log_install" "${VERSION}" "${DOWNLOAD_LINK}" "${DOWNLOAD_LINK##*/}" >./logs/log_install.txt
 
-printf "$running_curl\n" "${DOWNLOAD_LINK}" "${DOWNLOAD_LINK##*/}"
-curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
-echo -e "$unpacking_files"
-tar -xvzf "${DOWNLOAD_LINK##*/}"
-cp -R frp*/* ./
+    printf "$running_curl\n" "${DOWNLOAD_LINK}" "${DOWNLOAD_LINK##*/}"
+    curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
+    echo -e "$unpacking_files"
+    tar -xvzf "${DOWNLOAD_LINK##*/}"
+    cp -R frp*/* ./
+    rm -rf frp*linux*
+    rm -rf "${DOWNLOAD_LINK##*/}"
+    rm -f frps.toml frpc.toml
 
-rm -rf frp*linux*
-rm -rf "${DOWNLOAD_LINK##*/}"
-rm frps.toml
-rm frpc.toml
+    # Baixa os arquivos de configuração TOML
+    mkdir -p Frpc
+    curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Frp/frpc.toml -o Frpc/frpc.toml
 
-cat <<EOF >frpc.toml
-[common]
-$frpc_comment_server
-serverAddr = $SERVER_IP
-serverPort = $bind_port
-$frpc_comment_webserver
-webServer.addr = 0.0.0.0
-webServer.port = 7500
-webServer.user = admin
-webServer.password = admin
-$frpc_comment_auth
-auth.additionalScopes = ["HeartBeats", "NewWorkConns"]
-token = $token
-$frpc_comment_example
-[[$frpc_example_name]]
-type = "tcp"
-localIP = "0.0.0.0"
-localPort = 7777
-remotePort = 25310
-transport.useCompression = true
-EOF
+    mkdir -p Frps
+    curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Frp/frps.toml -o Frps/frps.toml
 
-cat <<EOF >frps.toml
-[common]
-$frps_comment_bind
-bindAddr = $IP
-bindPort =
-kcpBindPort =
-$frps_comment_dashboard
-webServer.addr =
-webServer.port =
-webServer.user =
-webServer.password =
-$frps_comment_security
-auth.method = "token"
-auth.additionalScopes = ["HeartBeats", "NewWorkConns"]
-auth.token =
-EOF
+    mv frps ./Frps/
+    mv frpc ./Frpc/
 
-mkdir -p Frps
-mv frps* ./Frps
+    curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Frp/exemple.sh -o exemple.sh
+    chmod a+x ./exemple.sh
+    ./exemple.sh
 
-mkdir -p Frpc
-mv frpc* ./Frpc
-
-curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Frp/exemple.sh -o exemple.sh
-chmod a+x ./exemple.sh
-./exemple.sh
-
-echo -e "$installation_complete"
+    echo -e "$installation_complete"
 exit 0

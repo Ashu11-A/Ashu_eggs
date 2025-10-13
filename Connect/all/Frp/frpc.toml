@@ -1,0 +1,133 @@
+# frpc.toml
+# This is a full configuration file for the frpc client.
+# It includes all possible settings, with most being commented out.
+
+# The IP address or domain name of the frps server.
+serverAddr = "0.0.0.0"
+# The port on which the frps server is listening.
+serverPort = 7000
+
+# [auth] configures the authentication method. Must match the server's settings.
+[auth]
+# Authentication method. Can be 'token' or 'oidc'.
+method = "token"
+# The token for authentication.
+token = "your_token_here"
+# # Additional scopes for authentication.
+# additionalScopes = ["HeartBeats", "NewWorkConns"]
+
+# # [auth.tokenSource] allows loading the token from an external file.
+# [auth.tokenSource]
+# type = "file"
+# file.path = "/path/to/token.txt"
+
+# # [auth.oidc] settings for OIDC authentication.
+# [auth.oidc]
+# clientID = "your-oidc-client-id"
+# clientSecret = "your-oidc-client-secret"
+# audience = "https://oidc-audience.com/.default"
+# tokenEndpointURL = "https://example-oidc-endpoint.com/oauth2/v2.0/token"
+
+# [webServer] manages the client's local admin interface.
+# It is useful for hot-reloading configurations and viewing proxy statuses.
+[webServer]
+addr = "127.0.0.1"
+port = 7400
+user = "admin"
+password = "admin"
+
+# # A list of other configuration files to include.
+# includes = ["/path/to/other_proxies.toml"]
+
+# # [transport] settings for managing data transfer.
+# [transport]
+# # The protocol to use for connecting to the server. Can be 'tcp', 'kcp', or 'quic'.
+# protocol = "tcp"
+# # Number of connections to keep in the pool. Default is 0.
+# poolCount = 1
+# # Enable or disable TCP stream multiplexing.
+# tcpMux = true
+# # Set a bandwidth limit for proxies. Units can be "MB" or "KB".
+# bandwidthLimit = "1MB"
+# # Mode for bandwidth limit: 'client' or 'server'.
+# bandwidthLimitMode = "client"
+# # URL of an HTTP proxy to connect through.
+# proxyURL = "http://user:pass@192.168.1.1:8080"
+# # Specify the Proxy Protocol version to use ('v1', 'v2').
+# proxyProtocolVersion = "v2"
+
+# # [transport.tls] for configuring TLS encryption.
+# [transport.tls]
+# # Enable TLS. Default is true.
+# enable = true
+# # Path to the client's TLS certificate file.
+# certFile = "client.crt"
+# # Path to the client's TLS key file.
+# keyFile = "client.key"
+# # Path to the CA file for verifying the server's certificate.
+# trustedCaFile = "ca.crt"
+
+
+# [[proxies]] defines a single proxy. You can have multiple [[proxies]] sections.
+# Below is a comprehensive example with all settings commented out.
+# [[proxies]]
+# name = "ssh-example"
+# type = "tcp" # "tcp", "udp", "http", "https", "stcp", "xtcp", "tcpmux"
+# localIP = "127.0.0.1"
+# localPort = 22
+# remotePort = 6001
+# # Use a subdomain for this proxy (requires subDomainHost on server).
+# subdomain = "ssh1"
+# # Use custom domains for this proxy.
+# customDomains = ["ssh.example.com"]
+# # For HTTP/HTTPS, route traffic based on URL path.
+# locations = ["/path1", "/path2"]
+# # For HTTP proxies, require basic auth.
+# httpUser = "user"
+# httpPassword = "password"
+# # For tcpmux, defines the multiplexer type.
+# multiplexer = "httpconnect"
+# # For stcp/xtcp, provides a secret key.
+# secretKey = "a_secret_key"
+
+# # [proxies.loadBalancer] for client-side load balancing.
+# [proxies.loadBalancer]
+# group = "web-group"
+# groupKey = "key123"
+
+# # [proxies.healthCheck] for monitoring the local service.
+# [proxies.healthCheck]
+# type = "tcp" # or "http"
+# timeoutSeconds = 3
+# maxFailed = 3
+# intervalSeconds = 10
+# # Path for HTTP health checks.
+# path = "/health"
+
+# # For HTTP/HTTPS proxies, rewrite the Host header.
+# hostHeaderRewrite = "internal.host.com"
+# # Set custom request headers.
+# [proxies.requestHeaders]
+# set.x-from-frp = "true"
+# # Set custom response headers.
+# [proxies.responseHeaders]
+# set.x-server = "frp"
+
+# # [proxies.plugin] for using client-side plugins.
+# [proxies.plugin]
+# type = "static_file" # e.g., static_file, unix_domain_socket, http_proxy
+# localPath = "/var/www/html"
+# stripPrefix = "static"
+# httpUser = "user"
+# httpPassword = "password"
+
+
+# [[visitors]] are used with stcp and xtcp proxies to connect to them.
+# [[visitors]]
+# name = "ssh-visitor"
+# type = "stcp" # or "xtcp"
+# # The name of the server proxy to connect to.
+# serverName = "ssh-example"
+# secretKey = "a_secret_key"
+# bindAddr = "127.0.0.1"
+# bindPort = 9000```
