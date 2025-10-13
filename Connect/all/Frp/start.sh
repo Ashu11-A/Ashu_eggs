@@ -18,8 +18,7 @@ if [[ ! -f "./Frps/frps" || ! -f "./Frpc/frpc" ]]; then
   exit
 fi
 
-# update please
-
+# Carrega as traduções e exporta as variáveis para subshells
 source ./loadLang.sh
 set -a
 
