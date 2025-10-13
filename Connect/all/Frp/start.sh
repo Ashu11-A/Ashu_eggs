@@ -4,6 +4,7 @@ export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang
 curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh -o loadLang.sh
 
 if [[ ! -f "./Frps/frps" || ! -f "./Frpc/frpc" ]]; then
+  mkdir -p logs
   echo "en" > logs/language.conf
 
   source ./loadLang.sh
