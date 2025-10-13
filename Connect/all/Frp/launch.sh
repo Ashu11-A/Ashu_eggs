@@ -3,6 +3,11 @@
 curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/toml.sh -o toml.sh
 source ./toml.sh
 
+# Define BIND_PORT como SERVER_PORT se estiver vazio ou não existir
+if [[ -z "${BIND_PORT}" ]]; then
+  BIND_PORT="${SERVER_PORT}"
+fi
+
 printf "$script_version\n" "3.0"
 echo "$learn_more"
 
