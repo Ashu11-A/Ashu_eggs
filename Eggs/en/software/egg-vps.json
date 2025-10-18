@@ -7,30 +7,30 @@
     "exported_at": "2023-01-30T19:05:30-04:00",
     "name": "VPS",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: VPS\r\n\u2699\ufe0f Version: 2.1\r\n\u2753 What is it: A VPS, this egg uses Proot (FakeRoot) which tricks the system saying that you are a superuser, installing a Pterodactyl inside another Pterodactyl has never felt so real!\r\n\r\n\u2022 It is in no way recommended to use Root in Docker. I am not responsible for any damage\/action that you will do with it.\r\n \u2022 \u2022 At least 1GB of space is required\r\n \u2022 Debian\/Ubuntu distributions may take more than 15min to finish installation\r\n \u2022 Ubuntu distributions are currently not working\r\n\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n \u2022 (1.0) Release.\r \n \u2022 (2.0) Detects whether the Egg is up to date or not.\r\n \u2022 (2.0) Possibility to change Linux Distribution: (Debian, Ubuntu, Alpine).\r \n \u2022 (2.0) Updated arguments, now the system is not so restricted.\r\n \u2022 (2.0) Possibility to change arguments.\r\n \u2022 (2.0) Run Shutdown command, now it is not necessary to kill the server anymore.\r\n \u2022 (2.0) Startup fix is needed, now the Panel knows that the Server is on.\r\n \u2022 (2.0) Installation Script has been rebuilt\r\n \u2022 (2.1) Serious Script bugs fixed\r\n \u2022 (2.1) Possibility of switch root between: PRoot(Default), PRoot-rs, FakechRoot + FakeRoot.\r\n \u2022 (2.1) Clean Install Added\r\n\r\n\ud83d\udcdd New Variables \u2022 (2.0) Your Arguments\r\n \u2022 (2.0) Linux Distribution\r\n \u2022 (2.1) \u2022 (2.0) ) Change Root\r\n \u2022 (2.1) Clean Install?\r\n\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "💎 Egg: VPS\r\n⚙️ Version: 2.1\r\n❓ What is it: A VPS. This egg uses Proot (FakeRoot) which tricks the system into thinking you are a superuser. Installing a Pterodactyl inside another Pterodactyl has never been so real!\r\n\r\n⚠️ Attention: \r\n     • Using Root in Docker is not recommended in any way. I am not responsible for any damage/action you may cause with this.\r\n     • A minimum of 1GB of space is required.\r\n     • Debian/Ubuntu distributions may take more than 15 minutes to complete the installation.\r\n     • Ubuntu distributions are not working at the moment.\r\n\r\n🐞 Bugs fixed/changelogs:\r\n     • (1.0) Release.\r\n     • (2.0) Detects if the Egg is updated or not.\r\n     • (2.0) Ability to change Linux Distribution: (Debian, Ubuntu, Alpine).\r\n     • (2.0) Updated arguments, the system is now less restricted.\r\n     • (2.0) Ability to change arguments.\r\n     • (2.0) Fixed the Shutdown command, it is no longer necessary to kill the server.\r\n     • (2.0) Fixed Initialization, now the Panel knows the Server is on.\r\n     • (2.0) Installation script was rebuilt.\r\n     • (2.1) Serious script bugs fixed.\r\n     • (2.1) Ability to switch root between: PRoot(Default), PRoot-rs, FakechRoot + FakeRoot.\r\n     • (2.1) Clean Installation Added.\r\n\r\n📝 New Variables: \r\n     • (2.0) Use your own arguments?\r\n     • (2.0) Your Arguments\r\n     • (2.0) Linux Distribution\r\n     • (2.1) Change Root\r\n     • (2.1) Clean Installation?\r\n\r\n👑 Author: Ashu\r\n👀 Check for updates: https://github.com/Ashu11-A/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ghcr.io\/parkervcp\/yolks:debian": "ghcr.io\/parkervcp\/yolks:debian"
+        "ghcr.io/parkervcp/yolks:debian": "ghcr.io/parkervcp/yolks:debian"
     },
     "file_denylist": [],
-    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/vps\/selector.sh)",
+    "startup": "bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/vps/selector.sh)",
     "config": {
         "files": "{}",
-        "startup": "{\r\n    \"done\": \"Starting\"\r\n}",
+        "startup": "{\r\n    \"done\": \"Started\"\r\n}",
         "logs": "{}",
         "stop": "^^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\nmkdir -p \/mnt\/server > \/dev\/null\r\ncd \/mnt\/server\r\nmkdir libraries > \/dev\/null\r\necho \"2.1\" > libraries\/version\r\necho \"true\" > libraries\/version_system",
-            "container": "ghcr.io\/pterodactyl\/installers:debian",
+            "script": "#!/bin/bash\r\nmkdir -p /mnt/server > /dev/null\r\ncd /mnt/server\r\nmkdir libraries > /dev/null\r\necho \"2.1\" > libraries/version\r\necho \"true\" > libraries/version_system",
+            "container": "ghcr.io/pterodactyl/installers:debian",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
-            "name": "Use your arguments?",
-            "description": "Enable using your arguments? Don\u2019t enable this if you don\u2019t know what to do.",
+            "name": "Use your own arguments?",
+            "description": "Enable the use of your own arguments? Do not enable this if you don't know what you are doing.",
             "env_variable": "CONSOLE",
             "default_value": "0",
             "user_viewable": true,
@@ -40,17 +40,17 @@
         },
         {
             "name": "Your Arguments",
-            "description": "CAUTION, change only if you know what you are doing. If you want to put your own arguments, see PRoot Wiki: https:\/\/github.com\/proot-me\/proot\/blob\/master\/doc\/proot\/manual.rst\r\nStandard arguments are: -0 -r .-b \/dev -b \/proc -b \/ sys -w \/ -b .",
+            "description": "CAUTION, only change this if you know what you are doing. If you want to add your own arguments, see the PRoot Wiki: https://github.com/proot-me/proot/blob/master/doc/proot/manual.rst\r\nThe default arguments are: -0 -r . -b /dev -b /proc -b /sys -w / -b .",
             "env_variable": "CONSOLE_OCC",
-            "default_value": "-0 -r . -b \/dev -b \/proc -b \/sys -w \/ -b.",
+            "default_value": "-0 -r . -b /dev -b /proc -b /sys -w / -b.",
             "user_viewable": true,
             "user_editable": true,
             "rules": "nullable|string",
             "field_type": "text"
         },
         {
-            "name": "Linux distribution",
-            "description": "Select which Linux distribution you want the script to download. Currently these distributions are available: Debian, Ubuntu, Alpine.",
+            "name": "Linux Distribution",
+            "description": "Select which Linux Distribution you want the script to download. Currently, these distributions are available: Debian, Ubuntu, Alpine.",
             "env_variable": "LINUX_ISO",
             "default_value": "Debian",
             "user_viewable": true,
@@ -60,17 +60,17 @@
         },
         {
             "name": "Change Root",
-            "description": "Change the root system. Currently there are these 3 types: PRoot(Default), PRoot-rs, FakechRoot + FakeRoot",
+            "description": "Change the root system. Currently, there are these 3 types: PRoot(Default), PRoot-rs, FakechRoot + FakeRoot",
             "env_variable": "PROOT",
-            "default_value": "PRoot (padr\u00e3o)",
+            "default_value": "PRoot (default)",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|string|in:PRoot (padr\u00e3o),PRoot-rs,FakechRoot + FakeRoot",
+            "rules": "required|string|in:PRoot (default),PRoot-rs,FakechRoot + FakeRoot",
             "field_type": "text"
         },
         {
-            "name": "Clean install?",
-            "description": "With clean Setup the following packages will not be Installed: sudo wget hwloc htop nano neofetch python3 ngrok gotty curl",
+            "name": "Clean Installation?",
+            "description": "With a clean installation, the following packages will not be installed: sudo wget hwloc htop nano neofetch python3 ngrok gotty curl",
             "env_variable": "INSTALL",
             "default_value": "0",
             "user_viewable": true,

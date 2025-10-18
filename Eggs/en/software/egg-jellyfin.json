@@ -7,22 +7,22 @@
     "exported_at": "2024-06-21T03:05:34-03:00",
     "name": "Jellyfin",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Jellyfin\r\n\u2699\ufe0f Version: 2.2\r\n\u2753 What is it: In short, you can have your own Netflix. Jellyfin allows you to collect, manage, and stream your media. Run the Jellyfin server on your system and enjoy access to the leading open-source entertainment software system.\r\n\ud83d\udc1b Fixed Bugs\/Changelogs:\r\n\u2022 Now Egg is no longer dependent on updates; everything is handled by scripts, resulting in better maintenance.\r\n\u2022 This is possibly its final version.\r\n\u2022 Code is now cleaner.\r\n\u2022 Docker updated.\r\n\u26a0\ufe0f Attention: Upon first startup, you will see a \"Select Server\" screen; delete the existing server there and refresh the page.\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates at: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "💎 Egg: Jellyfin\r\n⚙️ Version: 2.2\r\n❓ What is it: In short, you can have your own Netflix. Jellyfin allows you to collect, manage, and stream your media. Run the Jellyfin server on your system and get access to the leading free software entertainment system.\r\n🐞 Bugs fixed/changelogs:\r\n• Now the Egg is not dependent on updates; everything is done by scripts, which results in better maintenance.\r\n• This is possibly its last version.\r\n• The code is now cleaner.\r\n• Docker updated.\r\n⚠️ Attention: On the first startup, there will be a Select Server screen. Delete the existing server there and refresh the page.\r\n👑 Author: Ashu\r\n👀 Check for updates: https://github.com/Ashu11-A/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ARM64, 64x ": "ghcr.io\/ashu11-a\/software:jellyfin"
+        "ARM64, 64x ": "ghcr.io/ashu11-a/software:jellyfin"
     },
     "file_denylist": [],
-    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/Jellyfin\/install.sh)",
+    "startup": "bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Jellyfin/install.sh)",
     "config": {
-        "files": "{\r\n    \"\/.config\/jellyfin\/network.xml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"<HttpServerPortNumber>\": \"<HttpServerPortNumber>{{server.build.default.port}}<\/HttpServerPortNumber>\",\r\n            \"<PublicPort>\": \"<PublicPort>{{server.build.default.port}}<\/PublicPort>\"\r\n        }\r\n    },\r\n    \"nginx\/conf.d\/default.conf\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"listen\": \"listen {{server.build.default.port}};\"\r\n        }\r\n    }\r\n}",
+        "files": "{\r\n    \"/.config/jellyfin/network.xml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"<HttpServerPortNumber>\": \"<HttpServerPortNumber>{{server.build.default.port}}</HttpServerPortNumber>\",\r\n            \"<PublicPort>\": \"<PublicPort>{{server.build.default.port}}</PublicPort>\"\r\n        }\r\n    },\r\n    \"nginx/conf.d/default.conf\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"listen\": \"listen {{server.build.default.port}};\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Jellyfin version\"\r\n}",
         "logs": "{}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n#\r\n# Server Files: \/mnt\/server\r\n## install packages to get version and download links\r\napt update\r\napt upgrade -y\r\napt install -y curl wget unzip git tar ca-certificates jq fuse xz-utils\r\nif [ ! -d \"logs\" ]; then\r\nmkdir logs\r\nfi\r\nif [ ! -d \"\/mnt\/server\" ]; then\r\nmkdir -p \/mnt\/server\r\nfi\r\ncd \/mnt\/server || exit\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/Jellyfin\/install.sh)",
+            "script": "#!/bin/bash\r\n#\r\n# Server Files: /mnt/server\r\n## install packages to get version and download links\r\napt update\r\napt upgrade -y\r\napt install -y curl wget unzip git tar ca-certificates jq fuse xz-utils\r\nif [ ! -d \"logs\" ]; then\r\nmkdir logs\r\nfi\r\nif [ ! -d \"/mnt/server\" ]; then\r\nmkdir -p /mnt/server\r\nfi\r\ncd /mnt/server || exit\r\nbash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Jellyfin/install.sh)",
             "container": "debian:buster-slim",
             "entrypoint": "bash"
         }
@@ -30,7 +30,7 @@
     "variables": [
         {
             "name": "VERSION",
-            "description": "Version of Jellyfin.\r\n\r\nEx: 10.9.6 | latest | beta",
+            "description": "Jellyfin version.\r\n\r\nEx: 10.9.6 | latest | beta",
             "env_variable": "VERSION",
             "default_value": "latest",
             "user_viewable": true,

@@ -7,30 +7,30 @@
     "exported_at": "2023-04-08T21:38:40-03:00",
     "name": "FFmpeg Commander",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: FFmpeg Commander\r\n\u2699\ufe0f Version: 1.0\r\n\u2753 What: A simple web UI for generating operation \u00f5common FFmpeg encodings.\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n \u2022 (1.0) Release.\r\n \ud83d\udcdd Variables: \r\n \u2022 (1.0) Enable FFmpegd.\r\n \u2022 (1.0) FFmpegd Port.\r\n \ud83d\udce6 Docker: \r\n \u2022 Compatibility with ARM64, 64x\r\n ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "💎 Egg: FFmpeg Commander\r\n⚙️ Version: 1.0\r\n❓ What is it: A simple web user interface to generate common FFmpeg encoding operations.\r\n🐞 Bugs fixed/changelogs:\r\n • (1.0) Release.\r\n    📝 Variables: \r\n        • (1.0) Enable FFmpegd.\r\n        • (1.0) FFmpegd Port.\r\n    📦 Docker: \r\n         • ARM64, 64x compatibility\r\n👑 Author: Ashu\r\n👀 Check for updates: https://github.com/Ashu11-A/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ARM64, 64x ": " ghcr.io\/ashu11-a\/software:ffmpeg"
+        "ARM64, 64x ": " ghcr.io/ashu11-a/software:ffmpeg"
     },
     "file_denylist": [],
-    "startup": ".\/start.sh",
+    "startup": "./start.sh",
     "config": {
         "files": "{}",
-        "startup": "{\r\n    \"done\": \"Iniciando FFmpeg-Commander...\",\r\n    \"userInteraction\": []\r\n}",
-        "logs": "{\r\n    \"custom\": true,\r\n    \"location\": \"logs\/latest.log\"\r\n}",
+        "startup": "{\r\n    \"done\": \"Starting FFmpeg-Commander...\",\r\n    \"userInteraction\": []\r\n}",
+        "logs": "{\r\n    \"custom\": true,\r\n    \"location\": \"logs/latest.log\"\r\n}",
         "stop": "^^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/ash\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server\r\ncurl -sSL https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/FFmpeg\/start.sh -o start.sh\r\nchmod a+x .\/start.sh\r\nif [ -d \".\/logs\" ]; then\r\necho \"1.0\" > logs\/egg_version\r\nelse\r\nmkdir logs\r\necho \"1.0\" > logs\/egg_version\r\nfi",
-            "container": "ghcr.io\/ashu11-a\/installers:alpine",
+            "script": "#!/bin/ash\r\nmkdir -p /mnt/server\r\ncd /mnt/server\r\ncurl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/FFmpeg/start.sh -o start.sh\r\nchmod a+x ./start.sh\r\nif [ -d \"./logs\" ]; then\r\necho \"1.0\" > logs/egg_version\r\nelse\r\nmkdir logs\r\necho \"1.0\" > logs/egg_version\r\nfi",
+            "container": "ghcr.io/ashu11-a/installers:alpine",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
             "name": "Enable FFmpegd?",
-            "description": "\u00c9 I think you don\u2019t know what you\u2019re doing, but ok.",
+            "description": "I guess you don't know what you're doing, but ok.",
             "env_variable": "FFMPEGD_STATUS",
             "default_value": "0",
             "user_viewable": true,
@@ -40,7 +40,7 @@
         },
         {
             "name": "FFmpegd Port",
-            "description": "Put the port that FFmpegd will use here",
+            "description": "Enter the port that FFmpegd will use here",
             "env_variable": "FFMPEGD_PORT",
             "default_value": "0",
             "user_viewable": true,

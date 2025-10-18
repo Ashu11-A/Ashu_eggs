@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Depurar Script Bash",
+            "type": "bashdb",
+            "request": "launch",
+            "program": "${file}",
+            "cwd": "${workspaceFolder}",
+            "args": [],
+            "terminalKind": "integrated"
+        }
+    ]
+}

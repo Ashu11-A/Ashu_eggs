@@ -7,22 +7,22 @@
     "exported_at": "2024-07-25T22:08:23-03:00",
     "name": "Nextcloud",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Nextcloud\r\n\u2699\u2699\ufe0f Version: 2.1\r\n\u2753 What is it: Nextcloud is an enterprise cloud collaboration platform \u00f3open code that makes it possible to create private or corporate file hosting servers.\r\n\u26a0\ufe0f Attention: This Egg needs a database(Create one, in advance own dashboard).\r\n\ud83d\udc1b Bugs fixed\/changelogs:\r\n\u2022 Egg self-updates, maybe this is its \u201clast release\r\n\u2022 Code is now cleaner\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "💎 Egg: Nextcloud\r\n⚙️ Version: 2.1\r\n❓ What it is: Nextcloud is an open-source cloud collaboration platform that allows the creation of private or corporate file hosting servers.\r\n⚠️ Attention: This Egg requires a database (Create one in the panel itself).\r\n🐛 Bugs fixed/changelogs:\r\n• The Egg auto-updates, perhaps this will be its last release\r\n• Code is now cleaner\r\n👑 Author: Ashu\r\n👀 Check for updates: https://github.com/Ashu11-A/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ARM64, 64x": "ghcr.io\/ashu11-a\/software:nextcloud"
+        "ARM64, 64x": "ghcr.io/ashu11-a/software:nextcloud"
     },
     "file_denylist": [],
-    "startup": ".\/install.sh",
+    "startup": "./install.sh",
     "config": {
-        "files": "{\r\n    \"nginx\/conf.d\/default.conf\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"    listen \": \"    listen {{server.build.default.port}};\"\r\n        }\r\n    }\r\n}",
-        "startup": "{\r\n \"done\": \"Successfully started\",\r\n \"userInteraction\": []\r\n}",
-        "logs": "{\r\n    \"custom\": false,\r\n    \"location\": \"logs\/latest.log\"\r\n}",
+        "files": "{\r\n    \"nginx/conf.d/default.conf\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"    listen \": \"    listen {{server.build.default.port}};\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"Inicializado com sucesso\",\r\n    \"userInteraction\": []\r\n}",
+        "logs": "{\r\n    \"custom\": false,\r\n    \"location\": \"logs/latest.log\"\r\n}",
         "stop": "^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/ash\r\ncd \/mnt\/server\r\napk --update add git curl file unzip tar autoconf automake git wget\r\ncurl -o install.sh https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/Nextcloud\/install.sh\r\nchmod a+x .\/install.sh\r\n.\/install.sh",
+            "script": "#!/bin/ash\r\ncd /mnt/server\r\napk --update add git curl file unzip tar autoconf automake git wget\r\ncurl -o install.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/Nextcloud/install.sh\r\nchmod a+x ./install.sh\r\n./install.sh",
             "container": "alpine:latest",
             "entrypoint": "ash"
         }
@@ -30,7 +30,7 @@
     "variables": [
         {
             "name": "Version",
-            "description": "Nextcloud version, latest will install the latest version.\r\n\r\nEx: \"24.0.6\"",
+            "description": "Nextcloud version, 'latest' will install the most recent version.\r\n\r\nEx: \"24.0.6\"",
             "env_variable": "NEXTCLOUD_RELEASE",
             "default_value": "latest",
             "user_viewable": true,
@@ -40,7 +40,7 @@
         },
         {
             "name": "Enable OCC",
-            "description": "Only use it to do Maintenance.\r\nRun the command and then disable it.\r\nOcc \u00e9 Nextcloud command line interface. You can perform many operations. \u003d common server with occ, how to install and update Nextcloud, manage users, encryption, passwords, LDAP configuration and much more.",
+            "description": "Only use for Maintenance.\r\nExecute the command and then disable this.\r\nOCC is Nextcloud's command-line interface. You can perform many common server operations with occ, such as installing and upgrading Nextcloud, managing users, encryption, passwords, LDAP configuration, and much more.",
             "env_variable": "OCC",
             "default_value": "0",
             "user_viewable": true,
@@ -50,7 +50,7 @@
         },
         {
             "name": "OCC Command",
-            "description": "Write here the command that will be executed by occ on startup. Ex: list (will list all existing commands)",
+            "description": "Enter the command to be executed by occ at startup here. Ex: list (will list all existing commands)",
             "env_variable": "COMMANDO_OCC",
             "default_value": "list",
             "user_viewable": true,
