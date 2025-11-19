@@ -1,6 +1,7 @@
 #!/bin/bash
 
-lolcat=/usr/games/lolcat
+echo "Paneldactyl" | figlet -c -f slant -t -k | /usr/games/lolcat
+
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
@@ -32,8 +33,6 @@ reinstall_n="reinstall nginx"
 reinstall_n_start="rm -rf nginx"
 reinstall_f="reinstall php-fpm"
 reinstall_f_start="rm -rf php-fpm"
-
-echo -e "\n \n$(figlet -c -f slant -t -k "Paneldactyl")\n                                         by Ashu" | $lolcat
 
 echo "$starting_php"
 nohup /usr/sbin/php-fpm --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize >/dev/null 2>&1 &
