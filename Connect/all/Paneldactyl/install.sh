@@ -1,11 +1,13 @@
 #!/bin/bash
 
-# Baixa e carrega o sistema de linguagem manualmente
 export NVM_DIR=/home/container/.nvm
 export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang/paneldactyl.conf"
+
 curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh" -o /tmp/loadLang.sh
+curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/fmt.sh" -o /tmp/fmt.sh
+
 source /tmp/loadLang.sh
-rm -f /tmp/loadLang.sh
+source /tmp/fmt.sh
 
 # Detecta nome da pasta do painel
 if [ -d "/home/container/painel" ]; then
@@ -101,8 +103,8 @@ fi
 if [ -z "${GIT_ADDRESS}" ]; then
     if [ -d "/home/container/$PANEL_DIR" ]; then
         printf "\n \n$check_install\n \n"
-        printf "+----------+---------------------------------+\n| $task_column   | $status_column                          |\n+----------+---------------------------------+"
-        printf "\n| Panel    | $panel_installed                    |"
+        print_status_header "$task_column" "$status_column"
+        print_status_row "Panel" "$panel_installed"
     else
         cat <<EOF >./logs/log_install.txt
 Version: ${VERSION}
@@ -112,8 +114,9 @@ Link: ${DOWNLOAD_LINK}
 File: ${DOWNLOAD_LINK##/}
 EOF
         printf "\n \n$check_install\n \n"
-        printf "+----------+---------------------------------+\n| $task_column   | $status_column                          |\n+----------+---------------------------------+"
-        printf "\n| Panel    | $panel_downloading               |\n"
+        print_status_header "$task_column" "$status_column"
+        print_status_row "Panel" "$panel_downloading"
+
         curl -sSL "${DOWNLOAD_LINK}" -o "${DOWNLOAD_LINK##*/}"
         mkdir -p $PANEL_DIR
         mv "${DOWNLOAD_LINK##*/}" $PANEL_DIR
@@ -122,8 +125,9 @@ EOF
             echo -e "$unpacking"
             tar -xvzf "${DOWNLOAD_LINK##*/}"
             rm -rf "${DOWNLOAD_LINK##*/}"
+
+            printf "\n \n$setup_permission\n \n"
             fakeroot chmod -R 755 storage/* bootstrap/cache/
-            fakeroot chown -R nginx:nginx /home/container/$PANEL_DIR/*
         )
         if [ -f "logs/panel_database_instalado" ]; then
             if [ ! -f "$PANEL_DIR/.env" ]; then
@@ -152,6 +156,7 @@ EOF
         fi
     fi
 else
+    # MODO GIT
     echo -e "\n \n$using_github_repo"
     if [[ ${GIT_ADDRESS} != *.git ]]; then
         GIT_ADDRESS=${GIT_ADDRESS}.git
@@ -175,8 +180,9 @@ else
             if [ "${ORIGIN}" == "${GIT_ADDRESS}" ]; then
                 echo "📁  Pulling latest from GitHub"
                 git pull --quiet
+
+                printf "\n \n$setup_permission\n \n"
                 fakeroot chmod -R 755 storage/* bootstrap/cache/
-                fakeroot chown -R nginx:nginx /home/container/$PANEL_DIR/*
             fi
         )
     else
@@ -187,8 +193,9 @@ else
             echo -e "📋  Cloning ${BRANCH}'"
             git clone --quiet --single-branch --branch "${BRANCH}" "${GIT_ADDRESS}" ./$PANEL_DIR
         fi
+        printf "\n \n$setup_permission\n \n"
         fakeroot chmod -R 755 /home/container/$PANEL_DIR/storage/* /home/container/$PANEL_DIR/bootstrap/cache/
-        fakeroot chown -R nginx:nginx /home/container/$PANEL_DIR/*
+
         touch ./$PANEL_DIR/panel_github_instalado
         
         if [ -f "logs/panel_database_instalado" ] && [ ! -f "$PANEL_DIR/.env" ]; then
@@ -196,8 +203,8 @@ else
         fi
     fi
     printf "\n \n$check_install\n \n"
-    printf "+----------+---------------------------------+\n| $task_column   | $status_column                          |\n+----------+---------------------------------+"
-    printf "\n| Panel    | $pulling_files             |"
+    print_status_header "$task_column" "$status_column"
+    print_status_row "Panel" "$pulling_files"
 fi
 
 if [ -d "temp" ]; then
@@ -207,9 +214,10 @@ fi
 git clone --quiet https://github.com/Ashu11-A/nginx ./temp
 
 if [ -f "/home/container/nginx/nginx.conf" ]; then
-    printf "\n| Nginx    | $panel_installed                    |"
+    print_status_row "Nginx" "$panel_installed"
 else
-    printf "\n| Nginx    | $nginx_downloading            |"
+    print_status_row "Nginx" "$nginx_downloading"
+    
     cp -r ./temp/nginx ./
     rm nginx/conf.d/default.conf
     curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Paneldactyl/default.conf -o ./nginx/conf.d/default.conf
@@ -222,9 +230,12 @@ else
 fi
 
 if [ -d "/home/container/php-fpm" ]; then
-    printf "\n| PHP-FPM  | $panel_installed                    |\n+----------+---------------------------------+\n"
+    print_status_row "PHP-FPM" "$panel_installed"
+    print_status_footer
 else
-    printf "\n| PHP-FPM  | $php_downloading          |\n+----------+---------------------------------+\n"
+    print_status_row "PHP-FPM" "$php_downloading"
+    print_status_footer
+
     cp -r ./temp/php-fpm ./
     echo "extension=\"smbclient.so\"" >php-fpm/conf.d/00_smbclient.ini
     echo 'apc.enable_cli=1' >>php-fpm/conf.d/apcu.ini
@@ -255,11 +266,11 @@ if [ "${OCC}" == "1" ]; then
     exit
 else
     if [ -f "logs/panel_database_instalado" ]; then
-        echo "| Env      | 🟢  Configured                  |"
+        print_status_row "Env" "🟢  Configured"
     else
         if [ ! -f "$PANEL_DIR/.env" ]; then
             if [ -f "backups/executado" ] || [ -f "backups/executed" ]; then
-                echo "| Env      | $env_restoring          |"
+                print_status_row "Env" "$env_restoring"
                 (
                     cd backups || exit
                     cp $(ls .env* -t | head -1) ../$PANEL_DIR/.env
@@ -275,14 +286,14 @@ else
     (
         cd $PANEL_DIR || exit
         if [[ -f "../logs/panel_composer_instalado" ]]; then
-            echo "| Composer | $panel_installed                    |"
+            print_status_row "Composer" "$panel_installed"
         else
             printf "\n \n$executing composer install --no-interaction --no-dev --optimize-autoloader\n \n"
             composer install --no-interaction --no-dev --optimize-autoloader
             touch ../logs/panel_composer_instalado
         fi
         if [[ -f "../logs/panel_key_generate_instalado" ]]; then
-            echo "| Key      | 🟢  Generated                       |"
+            print_status_row "Key" "🟢  Generated"
         else
             printf "\n \n$executing php artisan key:generate --force\n \n"
             php artisan key:generate --force
@@ -290,7 +301,7 @@ else
         fi
 
         if [[ -f "../logs/panel_setup_instalado" ]]; then
-            echo "| Setup    | 🟢  Configured                  |"
+             print_status_row "Setup" "🟢  Configured"
         else
             printf "\n \n$executing php artisan p:environment:setup\n \n"
             php artisan p:environment:setup
@@ -305,7 +316,7 @@ else
             esac
         fi
         if [[ -f "../logs/panel_database_instalado" ]]; then
-            echo "| Database | 🟢  Configured                  |"
+            print_status_row "Database" "🟢  Configured"
         else
             printf "\n \n$executing php artisan p:environment:database\n \n"
             php artisan p:environment:database
@@ -322,7 +333,7 @@ else
             esac
         fi
         if [[ -f "../logs/panel_database_migrate_instalado" ]]; then
-            echo "| Migration| 🟢  Concluído/Done                    |"
+            print_status_row "Migration" "🟢  Concluído/Done"
         else
             php artisan migrate --seed --force
             touch ../logs/panel_database_migrate_instalado
@@ -336,7 +347,7 @@ else
             esac
         fi
         if [[ -f "../logs/panel_user_instalado" ]]; then
-            echo "| User     | 🟢  Created/Criado                       |"
+            print_status_row "User" "🟢  Created/Criado"
         else
             printf "\n \n$executing php artisan p:user:make\n \n"
             php artisan p:user:make
@@ -352,17 +363,16 @@ else
         fi
     )
     if [[ -f "./logs/panel_instalado" ]]; then
-        echo "+----------+---------------------------------+"
+        # Fecha a tabela final
+        print_status_footer
         printf "\n \n$setup_completed\n \n"
     else
-        printf "\n \n$setup_permission\n \n"
-        fakeroot chown -R nginx:nginx /home/container/$PANEL_DIR/*
         printf "\n \n$setup_done\n \n"
         touch ./logs/panel_instalado
     fi
 fi
 
-# Limpeza
+# Limpeza e Backup (Sem alterações de lógica, apenas removendo formatação manual antiga se houver)
 if [ -d "tmp" ]; then rm -rf tmp/*; fi
 if [ -d "temp" ]; then rm -rf temp; fi
 if [ -d ".composer" ]; then rm -rf .composer; fi
@@ -374,13 +384,14 @@ if [ "${DEVELOPER}" = "1" ]; then
     echo -e "$developer_mode"
     (
         cd "$PANEL_DIR" || exit
+
+        printf "\n \n$setup_permission\n \n"
         fakeroot chmod -R 755 storage/* bootstrap/cache/
         composer install --no-dev --optimize-autoloader
         php artisan migrate --seed --force
         php artisan view:clear 
         php artisan cache:clear 
         php artisan route:clear
-        fakeroot chown -R nginx:nginx /home/container/$PANEL_DIR/*
     )
 fi
 

@@ -3,24 +3,12 @@
 PHP_BIN=$(command -v php || echo "/usr/bin/php")
 NGINX_BIN=$(command -v nginx || echo "/usr/sbin/nginx")
 PHP_FPM_BIN=$(command -v php-fpm || command -v php-fpm83 || command -v php-fpm82 || command -v php-fpm81 || command -v php-fpm8 || echo "/usr/sbin/php-fpm")
-LOLCAT_BIN=$(command -v lolcat|| echo "/usr/games/lolcat")
-
-echo "Paneldactyl" | figlet -c -f slant -t -k | $LOLCAT_BIN
 
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
 rm -rf /home/container/tmp/*
 
-# Verifica se foram encontrados (opcional, para debug)
-if [ ! -x "$NGINX_BIN" ] || [ ! -x "$PHP_FPM_BIN" ]; then
-    echo "AVISO: Binários do Nginx ou PHP-FPM não foram encontrados automaticamente."
-    echo "Nginx: $NGINX_BIN | PHP-FPM: $PHP_FPM_BIN"
-fi
-
-# ---------------------------------------------------------
-
-# Carrega tradução manualmente
 export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang/paneldactyl.conf"
 curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh" -o /tmp/loadLang.sh
 source /tmp/loadLang.sh
@@ -52,11 +40,9 @@ reinstall_f="reinstall php-fpm"
 reinstall_f_start="rm -rf php-fpm"
 
 echo "$starting_php"
-# Usa a variável dinâmica PHP_FPM_BIN
 nohup "$PHP_FPM_BIN" --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize >/dev/null 2>&1 &
 
 echo "$starting_nginx"
-# Usa a variável dinâmica NGINX_BIN
 nohup "$NGINX_BIN" -c /home/container/nginx/nginx.conf -p /home/container/ >/dev/null 2>&1 &
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
@@ -67,7 +53,6 @@ fi
 echo "$started_success ${MGM}..."
 
 echo "$starting_worker"
-# Usa a variável dinâmica PHP_BIN
 nohup "$PHP_BIN" /home/container/$PANEL_DIR/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3 >/dev/null 2>&1 &
 
 echo "$starting_cron"
@@ -78,55 +63,33 @@ nohup bash /home/container/.cron_runner.sh >/dev/null 2>&1 &
 echo "$avail_commands ${bold}${lightblue}composer${normal}, ${bold}${lightblue}setup${normal}, ${bold}${lightblue}database${normal}, ${bold}${lightblue}migrate${normal}, ${bold}${lightblue}user${normal}, ${bold}${lightblue}build${normal}, ${bold}${lightblue}reinstall${normal}. Use ${bold}${lightblue}help${normal}..."
 
 while read -r line; do
-    if [[ "$line" == "help" ]]; then
-      echo "$avail_commands"
+  if [[ "$line" == "help" ]]; then
+    echo "$avail_commands"
 
-      # --- Lógica de Tabela Dinâmica ---
+    # Baixa utils de formatação se não existir
+    curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/fmt.sh" -o /tmp/fmt.sh
+    source /tmp/fmt.sh
 
-      # 1. Define a largura da primeira coluna (Comandos)
-      # "reinstall" é a maior palavra (9 chars), damos uma margem para 12.
-      c1_width=12
+    # Prepara Cabeçalhos
+    title_c1="Command"
+    title_c2=$(echo "$cmd_desc_header" | awk -F'|' '{print $NF}' | xargs)
+    [ -z "$title_c2" ] && title_c2="Description"
 
-      # 2. Encontra a largura necessária para a segunda coluna (Descrições)
-      # Adicionamos o cabeçalho e todas as descrições em um array temporário
-      desc_list=("$cmd_desc_header" "$cmd_composer" "$cmd_setup" "$cmd_database" "$cmd_migrate" "$cmd_user" "$cmd_build" "$cmd_reinstall" "$cmd_nodejs")
-      
-      max_len=0
-      for item in "${desc_list[@]}"; do
-          len=${#item}
-          if (( len > max_len )); then max_len=$len; fi
-      done
+    # Monta lista de linhas (Formato: comando|descrição)
+    # Nota: use pipe | para separar colunas
+    rows=(
+        "composer|$cmd_composer"
+        "setup|$cmd_setup"
+        "database|$cmd_database"
+        "migrate|$cmd_migrate"
+        "user|$cmd_user"
+        "build|$cmd_build"
+        "reinstall|$cmd_reinstall"
+        "nodejs|$cmd_nodejs"
+    )
 
-      # Adiciona um pouco de respiro (padding) à largura máxima encontrada
-      c2_width=$((max_len + 2))
-
-      # 3. Cria a linha separadora (+-----------+----------------...+)
-      # Usa printf para criar espaços e tr para substituir por traços
-      sep_line="+$(printf '%*s' "$c1_width" "" | tr ' ' '-')+$(printf '%*s' "$c2_width" "" | tr ' ' '-')+"
-
-      # 4. Define o formato da linha para o printf
-      # "| %-12s | %-Ns |\n" (alinha à esquerda com padding)
-      fmt="| %-$((c1_width-1))s | %-$((c2_width-1))s |\n"
-
-      # 5. Imprime a tabela
-      echo ""
-      echo "$sep_line"
-      # Cabeçalho (Command | Description Header)
-      printf "$fmt" " Command" " $cmd_desc_header"
-      echo "$sep_line"
-      
-      # Linhas de comando
-      printf "$fmt" " composer" " $cmd_composer"
-      printf "$fmt" " setup" " $cmd_setup"
-      printf "$fmt" " database" " $cmd_database"
-      printf "$fmt" " migrate" " $cmd_migrate"
-      printf "$fmt" " user" " $cmd_user"
-      printf "$fmt" " build" " $cmd_build"
-      printf "$fmt" " reinstall" " $cmd_reinstall"
-      printf "$fmt" " nodejs" " $cmd_nodejs"
-      
-      echo "$sep_line"
-      echo ""
+    # Chama a função
+    print_dynamic_table "$title_c1" "$title_c2" "${rows[@]}"
     elif [[ "$line" == "nodejs" ]]; then
         curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvmSelect.sh" -o /tmp/nvmSelect.sh
         bash /tmp/nvmSelect.sh
