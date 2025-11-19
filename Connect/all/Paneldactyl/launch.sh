@@ -7,6 +7,27 @@ lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
 rm -rf /home/container/tmp/*
 
+# ---------------------------------------------------------
+# Detecção Dinâmica de Binários
+# ---------------------------------------------------------
+
+# Procura pelo binário do PHP (CLI)
+PHP_BIN=$(command -v php || echo "/usr/bin/php")
+
+# Procura pelo binário do Nginx
+NGINX_BIN=$(command -v nginx || echo "/usr/sbin/nginx")
+
+# Procura pelo binário do PHP-FPM (Tenta genérico, depois versões especificas comuns, depois fallback hardcoded)
+PHP_FPM_BIN=$(command -v php-fpm || command -v php-fpm83 || command -v php-fpm82 || command -v php-fpm81 || command -v php-fpm8 || echo "/usr/sbin/php-fpm")
+
+# Verifica se foram encontrados (opcional, para debug)
+if [ ! -x "$NGINX_BIN" ] || [ ! -x "$PHP_FPM_BIN" ]; then
+    echo "AVISO: Binários do Nginx ou PHP-FPM não foram encontrados automaticamente."
+    echo "Nginx: $NGINX_BIN | PHP-FPM: $PHP_FPM_BIN"
+fi
+
+# ---------------------------------------------------------
+
 # Carrega tradução manualmente
 export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang/paneldactyl.conf"
 curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh" -o /tmp/loadLang.sh
@@ -16,14 +37,18 @@ rm -f /tmp/loadLang.sh
 # Detecta pasta
 if [ -d "/home/container/painel" ]; then PANEL_DIR="painel"; else PANEL_DIR="panel"; fi
 
+# Usa o PHP dinâmico nos comandos do artisan/composer se desejar,
+# mas geralmente 'php' e 'composer' já estão no PATH. 
+# Abaixo mantive os comandos originais, mas alterei as linhas de inicialização do serviço.
+
 composer_start="composer install --no-dev --optimize-autoloader"
-setup_start="php artisan p:environment:setup"
-database_start="php artisan p:environment:database"
-migrate_start="php artisan migrate --seed --force"
+setup_start="$PHP_BIN artisan p:environment:setup"
+database_start="$PHP_BIN artisan p:environment:database"
+migrate_start="$PHP_BIN artisan migrate --seed --force"
 user_make="user"
-user_start="php artisan p:user:make"
+user_start="$PHP_BIN artisan p:user:make"
 yarn="build"
-yarn_start="yarn && yarn lint --fix && yarn build && php artisan migrate && php artisan view:clear && php artisan cache:clear && php artisan route:clear"
+yarn_start="yarn && yarn lint --fix && yarn build && $PHP_BIN artisan migrate && $PHP_BIN artisan view:clear && $PHP_BIN artisan cache:clear && $PHP_BIN artisan route:clear"
 
 reinstall_a="reinstall all"
 reinstall_a_start="rm -rf $PANEL_DIR && rm -rf logs/panel* && rm -rf nginx && rm -rf php-fpm"
@@ -35,10 +60,12 @@ reinstall_f="reinstall php-fpm"
 reinstall_f_start="rm -rf php-fpm"
 
 echo "$starting_php"
-nohup /usr/sbin/php-fpm --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize >/dev/null 2>&1 &
+# Usa a variável dinâmica PHP_FPM_BIN
+nohup "$PHP_FPM_BIN" --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize >/dev/null 2>&1 &
 
 echo "$starting_nginx"
-nohup /usr/sbin/nginx -c /home/container/nginx/nginx.conf -p /home/container/ >/dev/null 2>&1 &
+# Usa a variável dinâmica NGINX_BIN
+nohup "$NGINX_BIN" -c /home/container/nginx/nginx.conf -p /home/container/ >/dev/null 2>&1 &
 
 if [ "${SERVER_IP}" = "0.0.0.0" ]; then
     MGM="0.0.0.0:${SERVER_PORT}"
@@ -48,7 +75,8 @@ fi
 echo "$started_success ${MGM}..."
 
 echo "$starting_worker"
-nohup php /home/container/$PANEL_DIR/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3 >/dev/null 2>&1 &
+# Usa a variável dinâmica PHP_BIN
+nohup "$PHP_BIN" /home/container/$PANEL_DIR/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3 >/dev/null 2>&1 &
 
 echo "$starting_cron"
 # Baixa o cron para um arquivo persistente oculto e executa
@@ -59,21 +87,54 @@ echo "$avail_commands ${bold}${lightblue}composer${normal}, ${bold}${lightblue}s
 
 while read -r line; do
     if [[ "$line" == "help" ]]; then
-        echo "$avail_commands"
-        echo "
-+-----------+---------------------------------------+
-| $cmd_desc_header                          |
-+-----------+---------------------------------------+
-| composer  | $cmd_composer             |
-| setup     | $cmd_setup     |
-| database  | $cmd_database                |
-| migrate   | $cmd_migrate                  |
-| user      | $cmd_user                         |
-| build     | $cmd_build             |
-| reinstall | $cmd_reinstall     |
-| nodejs    | $cmd_nodejs       |
-+-----------+---------------------------------------+
-"
+      echo "$avail_commands"
+
+      # --- Lógica de Tabela Dinâmica ---
+
+      # 1. Define a largura da primeira coluna (Comandos)
+      # "reinstall" é a maior palavra (9 chars), damos uma margem para 12.
+      c1_width=12
+
+      # 2. Encontra a largura necessária para a segunda coluna (Descrições)
+      # Adicionamos o cabeçalho e todas as descrições em um array temporário
+      desc_list=("$cmd_desc_header" "$cmd_composer" "$cmd_setup" "$cmd_database" "$cmd_migrate" "$cmd_user" "$cmd_build" "$cmd_reinstall" "$cmd_nodejs")
+      
+      max_len=0
+      for item in "${desc_list[@]}"; do
+          len=${#item}
+          if (( len > max_len )); then max_len=$len; fi
+      done
+
+      # Adiciona um pouco de respiro (padding) à largura máxima encontrada
+      c2_width=$((max_len + 2))
+
+      # 3. Cria a linha separadora (+-----------+----------------...+)
+      # Usa printf para criar espaços e tr para substituir por traços
+      sep_line="+$(printf '%*s' "$c1_width" "" | tr ' ' '-')+$(printf '%*s' "$c2_width" "" | tr ' ' '-')+"
+
+      # 4. Define o formato da linha para o printf
+      # "| %-12s | %-Ns |\n" (alinha à esquerda com padding)
+      fmt="| %-$((c1_width-1))s | %-$((c2_width-1))s |\n"
+
+      # 5. Imprime a tabela
+      echo ""
+      echo "$sep_line"
+      # Cabeçalho (Command | Description Header)
+      printf "$fmt" " Command" " $cmd_desc_header"
+      echo "$sep_line"
+      
+      # Linhas de comando
+      printf "$fmt" " composer" " $cmd_composer"
+      printf "$fmt" " setup" " $cmd_setup"
+      printf "$fmt" " database" " $cmd_database"
+      printf "$fmt" " migrate" " $cmd_migrate"
+      printf "$fmt" " user" " $cmd_user"
+      printf "$fmt" " build" " $cmd_build"
+      printf "$fmt" " reinstall" " $cmd_reinstall"
+      printf "$fmt" " nodejs" " $cmd_nodejs"
+      
+      echo "$sep_line"
+      echo ""
     elif [[ "$line" == "nodejs" ]]; then
         curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvmSelect.sh" -o /tmp/nvmSelect.sh
         bash /tmp/nvmSelect.sh
