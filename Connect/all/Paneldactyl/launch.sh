@@ -1,24 +1,16 @@
 #!/bin/bash
 
-echo "Paneldactyl" | figlet -c -f slant -t -k | /usr/games/lolcat
+PHP_BIN=$(command -v php || echo "/usr/bin/php")
+NGINX_BIN=$(command -v nginx || echo "/usr/sbin/nginx")
+PHP_FPM_BIN=$(command -v php-fpm || command -v php-fpm83 || command -v php-fpm82 || command -v php-fpm81 || command -v php-fpm8 || echo "/usr/sbin/php-fpm")
+LOLCAT_BIN=$(command -v lolcat|| echo "/usr/games/lolcat")
+
+echo "Paneldactyl" | figlet -c -f slant -t -k | $LOLCAT_BIN
 
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
 rm -rf /home/container/tmp/*
-
-# ---------------------------------------------------------
-# Detecção Dinâmica de Binários
-# ---------------------------------------------------------
-
-# Procura pelo binário do PHP (CLI)
-PHP_BIN=$(command -v php || echo "/usr/bin/php")
-
-# Procura pelo binário do Nginx
-NGINX_BIN=$(command -v nginx || echo "/usr/sbin/nginx")
-
-# Procura pelo binário do PHP-FPM (Tenta genérico, depois versões especificas comuns, depois fallback hardcoded)
-PHP_FPM_BIN=$(command -v php-fpm || command -v php-fpm83 || command -v php-fpm82 || command -v php-fpm81 || command -v php-fpm8 || echo "/usr/sbin/php-fpm")
 
 # Verifica se foram encontrados (opcional, para debug)
 if [ ! -x "$NGINX_BIN" ] || [ ! -x "$PHP_FPM_BIN" ]; then
