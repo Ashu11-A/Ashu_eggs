@@ -4,6 +4,12 @@ PHP_BIN=$(command -v php || echo "/usr/bin/php")
 NGINX_BIN=$(command -v nginx || echo "/usr/sbin/nginx")
 PHP_FPM_BIN=$(command -v php-fpm || command -v php-fpm83 || command -v php-fpm82 || command -v php-fpm81 || command -v php-fpm8 || echo "/usr/sbin/php-fpm")
 
+# Tenta carregar o NVM se existir para disponibilizar o comando
+export NVM_DIR="/home/container/.nvm"
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+    source "$NVM_DIR/nvm.sh"
+fi
+
 bold=$(echo -en "\e[1m")
 lightblue=$(echo -en "\e[94m")
 normal=$(echo -en "\e[0m")
@@ -14,12 +20,8 @@ curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadL
 source /tmp/loadLang.sh
 rm -f /tmp/loadLang.sh
 
-# Detecta pasta
+# Detecta pasta do painel
 if [ -d "/home/container/painel" ]; then PANEL_DIR="painel"; else PANEL_DIR="panel"; fi
-
-# Usa o PHP dinâmico nos comandos do artisan/composer se desejar,
-# mas geralmente 'php' e 'composer' já estão no PATH. 
-# Abaixo mantive os comandos originais, mas alterei as linhas de inicialização do serviço.
 
 composer_start="composer install --no-dev --optimize-autoloader"
 setup_start="$PHP_BIN artisan p:environment:setup"
@@ -56,40 +58,60 @@ echo "$starting_worker"
 nohup "$PHP_BIN" /home/container/$PANEL_DIR/artisan queue:work --queue=high,standard,low --sleep=3 --tries=3 >/dev/null 2>&1 &
 
 echo "$starting_cron"
-# Baixa o cron para um arquivo persistente oculto e executa
 curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Paneldactyl/cron.sh -o /home/container/.cron_runner.sh
 nohup bash /home/container/.cron_runner.sh >/dev/null 2>&1 &
 
 echo "$avail_commands ${bold}${lightblue}composer${normal}, ${bold}${lightblue}setup${normal}, ${bold}${lightblue}database${normal}, ${bold}${lightblue}migrate${normal}, ${bold}${lightblue}user${normal}, ${bold}${lightblue}build${normal}, ${bold}${lightblue}reinstall${normal}. Use ${bold}${lightblue}help${normal}..."
 
 while read -r line; do
-  if [[ "$line" == "help" ]]; then
-    echo "$avail_commands"
+    if [[ "$line" == "help" ]]; then
+        echo "$avail_commands"
 
-    # Baixa utils de formatação se não existir
-    curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/fmt.sh" -o /tmp/fmt.sh
-    source /tmp/fmt.sh
+        if [ ! -f "/tmp/format.sh" ]; then
+            curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/format.sh" -o /tmp/format.sh
+        fi
+        source /tmp/format.sh
 
-    # Prepara Cabeçalhos
-    title_c1="Command"
-    title_c2=$(echo "$cmd_desc_header" | awk -F'|' '{print $NF}' | xargs)
-    [ -z "$title_c2" ] && title_c2="Description"
+        title_c1="Command"
+        title_c2=$(echo "$cmd_desc_header" | awk -F'|' '{print $NF}' | xargs)
+        [ -z "$title_c2" ] && title_c2="Description"
 
-    # Monta lista de linhas (Formato: comando|descrição)
-    # Nota: use pipe | para separar colunas
-    rows=(
-        "composer|$cmd_composer"
-        "setup|$cmd_setup"
-        "database|$cmd_database"
-        "migrate|$cmd_migrate"
-        "user|$cmd_user"
-        "build|$cmd_build"
-        "reinstall|$cmd_reinstall"
-        "nodejs|$cmd_nodejs"
-    )
+        rows=(
+            "composer|$cmd_composer"
+            "setup|$cmd_setup"
+            "database|$cmd_database"
+            "migrate|$cmd_migrate"
+            "user|$cmd_user"
+            "build|$cmd_build"
+            "reinstall|$cmd_reinstall"
+            "nodejs|$cmd_nodejs"
+            "php|$cmd_php_desc"
+        )
 
-    # Chama a função
-    print_dynamic_table "$title_c1" "$title_c2" "${rows[@]}"
+        # Adiciona NVM na tabela apenas se o comando estiver disponível
+        if command -v nvm >/dev/null 2>&1; then
+            rows+=("nvm|$cmd_nvm_desc")
+        fi
+
+        # Chama a função de tabela
+        print_dynamic_table "$title_c1" "$title_c2" "${rows[@]}"
+
+    elif [[ "$line" == php* ]]; then
+        CMD_TO_RUN="${line/php/$PHP_BIN}"
+        echo "$php_executing ${bold}${lightblue}$line${normal}"
+        eval "cd /home/container/$PANEL_DIR && $CMD_TO_RUN && cd .."
+        printf "\n \n$cmd_executed\n \n"
+
+    elif [[ "$line" == nvm* ]]; then
+        # Executa comandos nvm se disponivel
+        if command -v nvm >/dev/null 2>&1; then
+            echo "$nvm_executing ${bold}${lightblue}$line${normal}"
+            eval "$line"
+            printf "\n \n$cmd_executed\n \n"
+        else
+            echo "$nvm_err_load"
+        fi
+
     elif [[ "$line" == "nodejs" ]]; then
         curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvmSelect.sh" -o /tmp/nvmSelect.sh
         bash /tmp/nvmSelect.sh
