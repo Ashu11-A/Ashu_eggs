@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Baixa e carrega o sistema de linguagem manualmente
+export NVM_DIR=/home/container/.nvm
 export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang/paneldactyl.conf"
 curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh" -o /tmp/loadLang.sh
 source /tmp/loadLang.sh
@@ -25,7 +26,7 @@ if [ -f /etc/os-release ]; then
     	if [[ ! -d ".nvm" ]]; then
             echo -e "\n \n$nvm_installing\n \n"
             mkdir -p $NVM_DIR
-            curl -sSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh -o nvm.sh
+            curl -sSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh -o nvm.sh
             chmod a+x ./nvm.sh
             ./nvm.sh
             rm ./nvm.sh
@@ -40,7 +41,6 @@ if [ -f /etc/os-release ]; then
                 rm -f /tmp/nvmSelect.sh
             fi
             source "/home/container/.nvm/nvm.sh"
-            NVM_DIR=/home/container/.nvm
             NODE_VERSION="$(cat logs/nodejs_version)"
 
             if [ -z "$NODE_VERSION" ]; then
@@ -58,10 +58,6 @@ if [ -f /etc/os-release ]; then
         fi
     fi
 fi
-
-bold=$(echo -en "\e[1m")
-lightblue=$(echo -en "\e[94m")
-normal=$(echo -en "\e[0m")
 
 if [ -z "${PANEL}" ]; then
     GITHUB_PACKAGE=Next-Panel/Jexactyl-BR
