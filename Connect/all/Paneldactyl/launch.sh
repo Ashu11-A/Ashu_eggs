@@ -67,10 +67,10 @@ while read -r line; do
     if [[ "$line" == "help" ]]; then
         echo "$avail_commands"
 
-        if [ ! -f "/tmp/format.sh" ]; then
-            curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/format.sh" -o /tmp/format.sh
+        if [ ! -f "/tmp/fmt.sh" ]; then
+            curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/fmt.sh" -o /tmp/fmt.sh
         fi
-        source /tmp/format.sh
+        source /tmp/fmt.sh
 
         title_c1="Command"
         title_c2=$(echo "$cmd_desc_header" | awk -F'|' '{print $NF}' | xargs)
