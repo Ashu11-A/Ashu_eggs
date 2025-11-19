@@ -57,6 +57,9 @@ if [ -f /etc/os-release ]; then
             export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
             export NVM_DIR=$NVM_DIR
             export NODE_VERSION=$NODE_VERSION
+
+            printf "$yarn_install"
+            npm install --global yarn
         fi
     fi
 fi
