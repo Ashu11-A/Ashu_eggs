@@ -25,7 +25,7 @@
     "scripts": {
         "installation": {
             "script": "#!\/bin\/bash\r\napt update\r\napt install -y curl wget unzip git tar ca-certificates jq\r\nmkdir -p logs\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server || exit\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/Jellyfin\/install.sh)",
-            "container": "debian:13-slim\u2060",
+            "container": "debian:13-slim",
             "entrypoint": "bash"
         }
     },
