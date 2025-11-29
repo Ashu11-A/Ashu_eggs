@@ -4,13 +4,15 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2024-06-21T03:05:34-03:00",
+    "exported_at": "2025-11-29T15:16:43-03:00",
     "name": "Jellyfin",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Jellyfin\r\n\u2699\ufe0f Vers\u00e3o: 2.2\r\n\u2753 Oque \u00e9: resumindo, voc\u00ea pode ter sua pr\u00f3pria Netflix. Jellyfin permite que voc\u00ea colete, gerencie e transmita sua m\u00eddia. Execute o servidor Jellyfin em seu sistema e tenha acesso ao principal sistema de entretenimento de software livre.\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\u2022 Agora o Egg n\u00e3o \u00e9 dependente de atualiza\u00e7\u00f5es, tudo \u00e9 feito por scripts, o ocasiona na sua melhor manuten\u00e7\u00e3o.\r\n\u2022 Essa \u00e9 possivelmente sua \u00faltima vers\u00e3o.\r\n\u2022 C\u00f3digo agora est\u00e1 mais limpo.\r\n\u2022 Docker atualizado.\r\n\u26a0\ufe0f Aten\u00e7\u00e3o: Na primeira inicializa\u00e7\u00e3o haver\u00e1 uma tela de Selecionar Servidor, apague o servidor existente l\u00e1, e reinicia a p\u00e1gina.\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "\ud83d\udc8e Egg: Jellyfin\r\n\u2699\ufe0f Vers\u00e3o: 2.3\r\n\u2753 Oque \u00e9: resumindo, voc\u00ea pode ter sua pr\u00f3pria Netflix. Jellyfin permite que voc\u00ea colete, gerencie e transmita sua m\u00eddia. Execute o servidor Jellyfin em seu sistema e tenha acesso ao principal sistema de entretenimento de software livre.\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\u2022 2.2: Agora o Egg n\u00e3o \u00e9 dependente de atualiza\u00e7\u00f5es, tudo \u00e9 feito por scripts, o ocasiona na sua melhor manuten\u00e7\u00e3o.\r\n\u2022 2.3: Adicionando novas vers\u00f5es Docker\r\n\u26a0\ufe0f Aten\u00e7\u00e3o: Se na primeira inicializa\u00e7\u00e3o haver uma tela de Selecionar Servidor, apague o servidor existente l\u00e1, e recarregue a p\u00e1gina.\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "ARM64, 64x ": "ghcr.io\/ashu11-a\/software:jellyfin"
+        "latest": "ghcr.io\/ashu11-a\/software:jellyfin",
+        "9.0 ASP.NET": "ghcr.io\/ashu11-a\/jellyfin:9",
+        "8.0 ASP.NET": "ghcr.io\/ashu11-a\/jellyfin:8"
     },
     "file_denylist": [],
     "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/Jellyfin\/install.sh)",
@@ -22,15 +24,15 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\n#\r\n# Server Files: \/mnt\/server\r\n## install packages to get version and download links\r\napt update\r\napt upgrade -y\r\napt install -y curl wget unzip git tar ca-certificates jq fuse xz-utils\r\nif [ ! -d \"logs\" ]; then\r\nmkdir logs\r\nfi\r\nif [ ! -d \"\/mnt\/server\" ]; then\r\nmkdir -p \/mnt\/server\r\nfi\r\ncd \/mnt\/server || exit\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/Jellyfin\/install.sh)",
-            "container": "debian:buster-slim",
+            "script": "#!\/bin\/bash\r\napt update\r\napt install -y curl wget unzip git tar ca-certificates jq\r\nmkdir -p logs\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server || exit\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/Jellyfin\/install.sh)",
+            "container": "debian:13-slim\u2060",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
             "name": "VERSION",
-            "description": "Vers\u00e3o do Jellyfin.\r\n\r\nEx: 10.9.6 | latest | beta",
+            "description": "Vers\u00e3o do Jellyfin.\r\n\r\nEx: 10.11.3 | latest | beta",
             "env_variable": "VERSION",
             "default_value": "latest",
             "user_viewable": true,
