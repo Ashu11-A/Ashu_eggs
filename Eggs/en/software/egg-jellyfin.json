@@ -20,7 +20,7 @@
         "files": "{\r\n    \"\/.config\/jellyfin\/network.xml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"<HttpServerPortNumber>\": \"<HttpServerPortNumber>{{server.build.default.port}}<\/HttpServerPortNumber>\",\r\n            \"<PublicPort>\": \"<PublicPort>{{server.build.default.port}}<\/PublicPort>\"\r\n        }\r\n    },\r\n    \"nginx\/conf.d\/default.conf\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"listen\": \"listen {{server.build.default.port}};\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Jellyfin version\"\r\n}",
         "logs": "{}",
-        "stop": "^C"
+        "stop": "^^C"
     },
     "scripts": {
         "installation": {
