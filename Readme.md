@@ -16,6 +16,9 @@
     These Eggs have no official connection to <a href="https://github.com/pelican-eggs">pelican-eggs</a>.
     <br>
     Please <strong>DO NOT</strong> open issues in their repository regarding these eggs.
+    <br>
+    <br>
+    You might also be interested in the <a href="https://github.com/Ashu11-A/Eggs-Tracker">Eggs Tracker</a> repository.
   </sub>
 </p>
 
@@ -73,4 +76,5 @@
 <a href="https://discord.com/users/ashu11_a">
   <img src="https://img.shields.io/badge/Discord-Ashu11__a-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Contact">
 </a>
+
 
