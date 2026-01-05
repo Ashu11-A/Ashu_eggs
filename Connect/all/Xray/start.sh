@@ -24,8 +24,12 @@ else
   UUID=$(cat /proc/sys/kernel/random/uuid)
 fi
 
-# Salva o UUID para persistência
 echo "$UUID" > "$UUID_FILE"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+  echo "$downloading_config"
+  curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Xray/config.json" -o "$CONFIG_FILE"
+fi
 
 if [ -f "$CONFIG_FILE" ]; then
   echo "$applying_config"
