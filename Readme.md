@@ -26,6 +26,12 @@ Did you like the Eggs? Then give the repository a 🌟!
 
 </div>
 
+## 🖥 | VPN/Proxies
+| Service | Terminal | App | Egg | AMD64 | ARM64 | More info |
+|--|--|--|--|--|--|--|
+| [Xray-core](https://github.com/XTLS/Xray-core) | <img width="207" height="140" alt="image" src="https://github.com/user-attachments/assets/fa6d75ba-6768-4093-8496-3e83ef1721d6" /> | <img width="135" height="300" alt="image" src="https://github.com/user-attachments/assets/3ff1e8c0-e59e-43bb-8a63-3ac12522ec64" /> <img width="135" height="19" alt="image" src="https://github.com/user-attachments/assets/5f95a656-8dd5-4fa9-a960-46d4a0662975" /> | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/proxies/egg-xray-core.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/proxies/egg-xray-core.json) | ✅ | ✅ | |
+
+
 ## 🖥 | Software
 | Service | Terminal | App | Egg | AMD64 | ARM64 | More info |
 |--|--|--|--|--|--|--|
@@ -38,7 +44,6 @@ Did you like the Eggs? Then give the repository a 🌟!
 | Emby | ![image](https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/4f14a380-1548-4f36-bb7f-b1fb714e808d) | ![image](https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/a52b5df9-9cf9-4422-8265-050b77ecd5f6) | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-emby.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-emby.json) | ✅ | ✅ | Media player |
 | Nextcloud | ![image](https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/a0c46470-4545-440c-b15f-039c77b82021) | ![image](https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/9583ed82-b80d-4013-811f-9815ef9e0888) | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-nextcloud.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-nextcloud.json) | ✅ | ✅ | A place for you to store your files, like Dropbox |
 | Stress-ng | ![image](https://github.com/user-attachments/assets/051fca71-d65b-42b1-a744-99945cd22a28) | ![image](https://github.com/user-attachments/assets/422676be-5c20-4f97-9b03-187496630d5b) | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-stress.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-stress.json) | ✅ | ✅ | It will stress your machine. |
-| VPS | | | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-vps.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-vps.json) | ✅ | ❌ | Root with Proot |
 
 ## 🎮 | Games
 | Game | Egg* | AMD64 | ARM64 | More info |
@@ -55,5 +60,6 @@ Did you like the Eggs? Then give the repository a 🌟!
 ❌ • Does not work   
 
 ## 📁 | Contact
+
 
 ```Discord: ashu11_a```
