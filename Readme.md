@@ -29,7 +29,7 @@ Did you like the Eggs? Then give the repository a 🌟!
 ## 🖥 | VPN/Proxies
 | Service | Terminal | App | Egg | AMD64 | ARM64 | More info |
 |--|--|--|--|--|--|--|
-| [Xray-core](https://github.com/XTLS/Xray-core) | <img width="207" height="140" alt="image" src="https://github.com/user-attachments/assets/fa6d75ba-6768-4093-8496-3e83ef1721d6" /> | <img width="135" height="300" alt="image" src="https://github.com/user-attachments/assets/3ff1e8c0-e59e-43bb-8a63-3ac12522ec64" /> <img width="135" height="19" alt="image" src="https://github.com/user-attachments/assets/5f95a656-8dd5-4fa9-a960-46d4a0662975" /> | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/proxies/egg-xray-core.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/proxies/egg-xray-core.json) | ✅ | ✅ | |
+| [Xray-core](https://github.com/XTLS/Xray-core) | <img width="207" height="140" alt="image" src="https://github.com/user-attachments/assets/fa6d75ba-6768-4093-8496-3e83ef1721d6" /> | <img width="135" height="300" alt="image" src="https://github.com/user-attachments/assets/3ff1e8c0-e59e-43bb-8a63-3ac12522ec64" /> <img width="135" height="19" alt="image" src="https://github.com/user-attachments/assets/5f95a656-8dd5-4fa9-a960-46d4a0662975" /> | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/proxies/egg-xray-core.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="30">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/proxies/egg-xray-core.json) | ✅ | ✅ | VMess with TCP |
 
 
 ## 🖥 | Software
@@ -63,3 +63,4 @@ Did you like the Eggs? Then give the repository a 🌟!
 
 
 ```Discord: ashu11_a```
+
