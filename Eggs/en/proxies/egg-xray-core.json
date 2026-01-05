@@ -1,0 +1,42 @@
+{
+  "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+  "meta": {
+    "version": "PTDL_v2",
+    "update_url": null
+  },
+  "exported_at": "2026-01-04T23:24:01-03:00",
+  "name": "Xray-core",
+  "author": "Matheusn.biolowons@gmail.com",
+  "description": "💎 Egg: Xray-core\r\n⚙️ Version: 1.0\r\n❓ What is it: Xray is an advanced proxy system that creates encrypted tunnels disguised as common web traffic, allowing you to bypass blocks and censorship with high discretion. It connects your device to a secure server flexibly.\r\n🐛 Bug fixes/changelogs: \r\n      • (1.0) Release (VMess + TCP Stream Support).\r\n\r\nFreedom is a right, not a privilege.\r\n👑 Author: Ashu\r\n👀 Check for updates: https://github.com/Ashu11-A/Ashu_eggs",
+  "features": null,
+  "docker_images": {
+    "Xray-core [latest]": "ghcr.io/ashu11-a/software:xray"
+  },
+  "file_denylist": [],
+  "startup": "./start.sh",
+  "config": {
+    "files": "{}",
+    "startup": "{\r\n    \"done\": \"started:\"\r\n}",
+    "logs": "{}",
+    "stop": "^^C"
+  },
+  "scripts": {
+    "installation": {
+      "script": "#!/bin/bash\r\ncd /mnt/server/\r\ncurl -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Xray/start.sh\r\nchmod a+x ./start.sh",
+      "container": "ghcr.io/ashu11-a/installers:alpine",
+      "entrypoint": "bash"
+    }
+  },
+  "variables": [
+    {
+      "name": "V2Ray UUID (Password)",
+      "description": "This is the unique identifier that functions as the authentication password. The client and server must use exactly the same UUID for the connection to work. If changed, update your applications.",
+      "env_variable": "TOKEN",
+      "default_value": "",
+      "user_viewable": true,
+      "user_editable": true,
+      "rules": "nullable|string|max:36",
+      "field_type": "text"
+    }
+  ]
+}
