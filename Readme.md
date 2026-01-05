@@ -12,7 +12,11 @@
 <p align="center">
   <strong>Collection of custom Eggs for Pterodactyl/Jexactyl developed by <a href="https://github.com/Ashu11-A">@Ashu</a>.</strong>
   <br>
-  <sub>These Eggs have no official connection to <a href="https://github.com/parkervcp/eggs">parkervcp/eggs</a>.</sub>
+  <sub>
+    These Eggs have no official connection to <a href="https://github.com/pelican-eggs">pelican-eggs</a>.
+    <br>
+    Please <strong>DO NOT</strong> open issues in their repository regarding these eggs.
+  </sub>
 </p>
 
 <p align="center">
@@ -69,3 +73,4 @@
 <a href="https://discord.com/users/ashu11_a">
   <img src="https://img.shields.io/badge/Discord-Ashu11__a-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Contact">
 </a>
+
