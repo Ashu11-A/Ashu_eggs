@@ -17,7 +17,7 @@
     "startup": "./install.sh",
     "config": {
         "files": "{\r\n    \"serverconfig.txt\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"modpath\": \"modpath=/home/container/Mods\",\r\n            \"worldpath=\": \"worldpath=/home/container/saves/Worlds\",\r\n            \"worldname=\": \"worldname={{server.build.env.WORLD_NAME}}\",\r\n            \"world=\": \"world=/home/container/saves/Worlds/{{server.build.env.WORLD_NAME}}.wld\",\r\n            \"banlist=\": \"banlist=/home/container/banlist.txt\",\r\n            \"difficulty=\": \"difficulty={{server.build.env.DIFFICULTY}}\",\r\n            \"autocreate=\": \"autocreate={{server.build.env.WORLD_SIZE}}\",\r\n            \"port=\": \"port={{server.build.default.port}}\",\r\n            \"maxplayers=\": \"maxplayers={{server.build.env.MAX_PLAYERS}}\",\r\n            \"motd=\": \"motd={{server.build.env.MOTD}}\",\r\n            \"password=\": \"password={{server.build.env.SERVER_PASSWORD}}\",\r\n            \"secure=\": \"secure={{server.build.env.SECURE}}\",\r\n            \"seed=\": \"seed={{server.build.env.SEED}}\",\r\n            \"language=\": \"language={{server.build.env.LANGUAGE}}\",\r\n            \"slowliquids=\": \"slowliquids={{server.build.env.OPTIMIZE}}\"\r\n        }\r\n    }\r\n}",
-        "startup": "{\r\n    \"done\": \"Type 'help' for a list of commands\",\r\n    \"userInteraction\": []\r\n}",
+        "startup": "{\r\n    \"done\": \"Running\",\r\n    \"userInteraction\": []\r\n}",
         "logs": "{}",
         "stop": "exit"
     },
