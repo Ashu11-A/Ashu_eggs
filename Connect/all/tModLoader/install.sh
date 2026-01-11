@@ -1,5 +1,5 @@
 #!/bin/bash
-SERVER_DIR="/mnt/server"
+
 GITHUB_PACKAGE="tModLoader/tModLoader"
 DLL_DOWNLOAD_URL="https://github.com/Ashu11-A/Ashu_eggs/releases/download/tmodloader-arm64/Steamworks.NET.dll"
 START_SCRIPT_URL="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/tModLoader/start.sh"
@@ -40,39 +40,39 @@ check_self_update() {
   fi
 }
 
-install_dependencies() {
-  echo "Installing system dependencies..."
-  # Instala apenas se necessário (Alpine)
-  apk add --no-cache curl jq unzip file
-}
-
 get_download_url() {
   local target_version="${VERSION:-latest}"
   local releases_json
   local download_url=""
 
   if [ "$target_version" == "latest" ] || [ -z "$target_version" ]; then
-    echo "Fetching the latest version..."
-    releases_json=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
-    download_url=$(echo "$releases_json" | jq .assets | jq -r .[].browser_download_url | grep -i tmodloader.zip)
+    echo "Fetching the latest version..." >&2
+    releases_json=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases/latest")
+    download_url=$(echo "$releases_json" | jq -r '.assets[] | select(.name | test("tModLoader.zip"; "i")) | .browser_download_url')
   else
-    echo "Fetching specific version: $target_version"
-    local all_releases
-    all_releases=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq '.[]')
+    echo "Fetching specific version: $target_version" >&2
     
-    local version_check
-    version_check=$(echo "$all_releases" | jq -r --arg VER "$target_version" '. | select(.tag_name==$VER) | .tag_name')
+    # MUDANÇA PRINCIPAL: Busca direta pelo endpoint de TAGS
+    # Isso evita o problema de paginação (limite de 30 itens) da API
+    local specific_release_json
+    specific_release_json=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases/tags/$target_version")
+    
+    # Verifica se o ID do release existe no retorno (se não existir, a tag é inválida/não encontrada)
+    local release_id
+    release_id=$(echo "$specific_release_json" | jq -r .id)
 
-    if [ "$target_version" == "$version_check" ]; then
+    if [ "$release_id" != "null" ]; then
+      # Lógica de seleção de arquivo
       if [[ "$target_version" == v* ]]; then
-        download_url=$(echo "$all_releases" | jq -r --arg VER "$target_version" '. | select(.tag_name==$VER) | .assets[].browser_download_url' | grep -i linux | grep -i zip)
+        # Tenta encontrar versão específica Linux, se não, pega o zip padrão
+        download_url=$(echo "$specific_release_json" | jq -r '.assets[] | select(.name | test("linux.*zip|tmodloader.zip"; "i")) | .browser_download_url' | head -1)
       else
-        download_url=$(echo "$all_releases" | jq -r --arg VER "$target_version" '. | select(.tag_name==$VER) | .assets[].browser_download_url' | grep -i tmodloader.zip)
+        download_url=$(echo "$specific_release_json" | jq -r '.assets[] | select(.name | test("tModLoader.zip"; "i")) | .browser_download_url')
       fi
     else
-      echo "Requested version not found. Downloading the latest version instead..."
-      releases_json=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases" | jq -c '.[]' | head -1)
-      download_url=$(echo "$releases_json" | jq .assets | jq -r .[].browser_download_url | grep -i tmodloader.zip)
+      echo "Requested version not found via API. Downloading the latest version instead..." >&2
+      releases_json=$(curl --silent "https://api.github.com/repos/$GITHUB_PACKAGE/releases/latest")
+      download_url=$(echo "$releases_json" | jq -r '.assets[] | select(.name | test("tModLoader.zip"; "i")) | .browser_download_url')
     fi
   fi
 
@@ -121,17 +121,13 @@ EOF
 
 cleanup_installation() {
   echo "Cleaning up temporary and unnecessary files..."
-  rm -rf "$SERVER_DIR/.local/share/Terraria/ModLoader/Mods"
+  rm -rf ".local/share/Terraria/ModLoader/Mods"
   rm -f terraria-server-*.zip
-  rm -rf DedicatedServerUtils LaunchUtils PlatformVariantLibs tModPorter RecentGitHubCommits.txt *.bat *.sh serverconfig.txt
+  rm -rf DedicatedServerUtils LaunchUtils PlatformVariantLibs tModPorter RecentGitHubCommits.txt *.bat start-* serverconfig.txt
 }
 
 install_tmodloader() {
   echo "Starting installation process..."
-  
-  install_dependencies
-  mkdir -p "$SERVER_DIR"
-  cd "$SERVER_DIR" || exit
 
   # Backup da versão anterior
   if [ -f "tModLoaderServer" ]; then
