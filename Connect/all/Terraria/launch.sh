@@ -4,7 +4,7 @@
 declare -a fake_time_cmd=()
 if [ "${FAKETIME}" = "1" ]; then
     # Execute o comando em um ambiente modificado com `env`
-    fake_time_cmd=(env "LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1" "FAKETIME=$ANO_DIA")
+    fake_time_cmd=(env "LD_PRELOAD=/usr/lib/faketime/libfaketime.so.1" "FAKETIME=$SET_DATE")
 fi
 
 declare -a params

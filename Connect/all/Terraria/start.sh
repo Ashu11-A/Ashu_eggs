@@ -1,9 +1,7 @@
 #!/bin/bash
 
-if [ "$PWD" = "/mnt/server" ]; then
-    mkdir -p logs
-    echo "en" > logs/language.conf
-fi
+mkdir -p logs
+echo "en" > logs/language.conf
 
 export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang/terraria.conf"
 curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh" -o /tmp/loadLang.sh
