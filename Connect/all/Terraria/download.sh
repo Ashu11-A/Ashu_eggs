@@ -1,6 +1,5 @@
 #!/bin/bash
 # shellcheck shell=dash
-# Terraria server download: primary = GitHub release (Ashu_eggs) + checksum; fallback = wiki/fandom.
 
 GITHUB_REPO="Ashu11-A/Ashu_eggs"
 RELEASE_TAG="terraria-servers"
@@ -82,7 +81,35 @@ try_github() {
     return 0
 }
 
-# ---- Fallback: Wiki / official links ----
+# ---- Official Terraria API ----
+try_official() {
+    printf "%s\n" "${fallback_official:-Using official Terraria API fallback. }"
+
+    if [ "$CLEAN_VERSION" = "latest" ]; then
+        printf "%s\n" "${official_no_latest:-Official API does not support 'latest' version directly. }"
+        return 1
+    fi
+
+    local official_download_url="https://terraria.org/api/download/pc-dedicated-server/terraria-server-${CLEAN_VERSION}.zip"
+    local official_file_name="terraria-server-${CLEAN_VERSION}.zip"
+
+    if ! curl --output /dev/null --silent --head --fail "$official_download_url"; then
+        printf "%s\n" "${link_invalid:-Link invalid. }"
+        return 1
+    fi
+
+    printf "%s\n" "${link_valid:-Link valid. }"
+    DOWNLOAD_LINK="$official_download_url"
+    FILE_NAME="$official_file_name" 
+    
+    printf "%s\n" "${running_curl:-Downloading... }"
+    curl -sSL "$DOWNLOAD_LINK" -o "$FILE_NAME" || return 1
+
+    DOWNLOAD_SOURCE="wiki"
+    return 0
+}
+
+# ---- Fallback: Wiki / official links (original fandom parser) ----
 do_wiki() {
     printf "%s\n" "${fallback_wiki:-Using wiki fallback. }"
 
@@ -108,8 +135,10 @@ do_wiki() {
     return 0
 }
 
-# Run: try GitHub first, then wiki
+# Run: try GitHub first, then official API, then wiki
 if try_github; then
+    :
+elif try_official; then
     :
 elif do_wiki; then
     :
