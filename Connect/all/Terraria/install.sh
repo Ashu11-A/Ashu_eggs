@@ -10,7 +10,7 @@ source /tmp/download.sh
 
 cat <<EOF >logs/run.log
 ${version}: ${CLEAN_VERSION}
-${link}: ${WIKI_DOWNLOAD_LINK:-}
+${link}: ${DOWNLOAD_LINK:-}
 ${file}: ${FILE_NAME:-}
 ${clean_version}: ${CLEAN_VERSION}
 EOF

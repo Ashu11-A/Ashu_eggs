@@ -19,7 +19,7 @@ normalize_version() {
 CLEAN_VERSION=$(normalize_version "${TERRARIA_VERSION:-latest}")
 DOWNLOAD_SOURCE=""
 FILE_NAME=""
-WIKI_DOWNLOAD_LINK=""
+DOWNLOAD_LINK=""
 export CLEAN_VERSION
 
 # ---- Primary: GitHub release + checksum ----
@@ -49,6 +49,7 @@ try_github() {
 
     download_url=$(echo "$release_json" | jq -r --arg n "$asset_name" '.assets[] | select(.name == $n) | .browser_download_url')
     [ -n "$download_url" ] || return 1
+    DOWNLOAD_LINK="$download_url"
 
     printf "%s\n" "${downloading_github:-Downloading from GitHub }"
     if ! curl -sSLf "$download_url" -o "$asset_name"; then
@@ -86,22 +87,22 @@ do_wiki() {
     printf "%s\n" "${fallback_wiki:-Using wiki fallback. }"
 
     if [ "$CLEAN_VERSION" = "latest" ]; then
-        WIKI_DOWNLOAD_LINK=$(curl -sSL https://terraria.fandom.com/wiki/Server#Downloads | grep '>Terraria Server ' | grep -Eoi '<a [^>]+>' | grep -Eo 'href="[^"]+"' | grep -Eo '(http|https)://[^"]+' | tail -1 | cut -d'?' -f1)
+        DOWNLOAD_LINK=$(curl -sSL https://terraria.fandom.com/wiki/Server#Downloads | grep '>Terraria Server ' | grep -Eoi '<a [^>]+>' | grep -Eo 'href="[^"]+"' | grep -Eo '(http|https)://[^"]+' | tail -1 | cut -d'?' -f1)
     else
-        WIKI_DOWNLOAD_LINK=$(curl -sSL https://terraria.fandom.com/wiki/Server#Downloads | grep '>Terraria Server ' | grep -Eoi '<a [^>]+>' | grep -Eo 'href="[^"]+"' | grep -Eo '(http|https)://[^"]+' | grep "${CLEAN_VERSION}" | cut -d'?' -f1)
+        DOWNLOAD_LINK=$(curl -sSL https://terraria.fandom.com/wiki/Server#Downloads | grep '>Terraria Server ' | grep -Eoi '<a [^>]+>' | grep -Eo 'href="[^"]+"' | grep -Eo '(http|https)://[^"]+' | grep "${CLEAN_VERSION}" | cut -d'?' -f1)
     fi
 
-    [ -n "$WIKI_DOWNLOAD_LINK" ] || return 1
+    [ -n "$DOWNLOAD_LINK" ] || return 1
 
-    if ! curl --output /dev/null --silent --head --fail "$WIKI_DOWNLOAD_LINK"; then
+    if ! curl --output /dev/null --silent --head --fail "$DOWNLOAD_LINK"; then
         printf "%s\n" "${link_invalid:-Link invalid. }"
         return 1
     fi
 
     printf "%s\n" "${link_valid:-Link valid. }"
-    FILE_NAME="${WIKI_DOWNLOAD_LINK##*/}"
+    FILE_NAME="${DOWNLOAD_LINK##*/}"
     printf "%s\n" "${running_curl:-Downloading... }"
-    curl -sSL "$WIKI_DOWNLOAD_LINK" -o "$FILE_NAME" || return 1
+    curl -sSL "$DOWNLOAD_LINK" -o "$FILE_NAME" || return 1
 
     DOWNLOAD_SOURCE="wiki"
     return 0
@@ -117,4 +118,4 @@ else
     exit 2
 fi
 
-export FILE_NAME DOWNLOAD_SOURCE
+export FILE_NAME DOWNLOAD_SOURCE DOWNLOAD_LINK
