@@ -36,7 +36,7 @@ try_github() {
     local download_url
 
     if [ "$CLEAN_VERSION" = "latest" ]; then
-        CLEAN_VERSION=$(echo "$release_json" | jq -r '.assets[].name' | grep -E '^[0-9]+\.tar\.gz$' | sed 's/\.tar\.gz$//' | sort -n | tail -1)
+        CLEAN_VERSION=$(echo "$release_json" | jq -r '.assets[].name' | grep -E '^[0-9]+\.tar\.gz$' | sed 's/\.tar\.gz$//' | sort -r | head -1)
         [ -n "$CLEAN_VERSION" ] || return 1
         asset_name="${CLEAN_VERSION}.tar.gz"
     else
