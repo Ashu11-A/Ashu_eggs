@@ -101,7 +101,7 @@ do_wiki() {
     printf "%s" "${link_valid:-Link valid. }"
     FILE_NAME="${WIKI_DOWNLOAD_LINK##*/}"
     printf "%s" "${running_curl:-Downloading... }"
-    curl -sSL "$WIKI_DOWNLOAD_LINK" -O "$FILE_NAME" || return 1
+    curl -sSL "$WIKI_DOWNLOAD_LINK" -o "$FILE_NAME" || return 1
 
     DOWNLOAD_SOURCE="wiki"
     return 0
