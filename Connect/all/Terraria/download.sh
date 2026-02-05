@@ -50,7 +50,7 @@ try_github() {
     download_url=$(echo "$release_json" | jq -r --arg n "$asset_name" '.assets[] | select(.name == $n) | .browser_download_url')
     [ -n "$download_url" ] || return 1
 
-    printf "%s" "${downloading_github:-Downloading from GitHub }"
+    printf "%s\n" "${downloading_github:-Downloading from GitHub }"
     if ! curl -sSLf "$download_url" -o "$asset_name"; then
         rm -f "$asset_name"
         return 1
@@ -66,7 +66,7 @@ try_github() {
             echo "$checksums_line" > "checksums_one.txt"
             if command -v sha256sum >/dev/null 2>&1; then
                 if ! sha256sum -c checksums_one.txt >/dev/null 2>&1; then
-                    printf "%s" "${checksum_fail:-Checksum verification failed. }"
+                    printf "%s\n" "${checksum_fail:-Checksum verification failed. }"
                     rm -f "checksums_one.txt" "$asset_name"
                     return 1
                 fi
@@ -74,7 +74,7 @@ try_github() {
             rm -f checksums_one.txt
         fi
     fi
-    printf "%s" "${checksum_ok:-Checksum OK. }"
+    printf "%s\n" "${checksum_ok:-Checksum OK. }"
 
     DOWNLOAD_SOURCE="github"
     FILE_NAME="$asset_name"
@@ -83,7 +83,7 @@ try_github() {
 
 # ---- Fallback: Wiki / official links ----
 do_wiki() {
-    printf "%s" "${fallback_wiki:-Using wiki fallback. }"
+    printf "%s\n" "${fallback_wiki:-Using wiki fallback. }"
 
     if [ "$CLEAN_VERSION" = "latest" ]; then
         WIKI_DOWNLOAD_LINK=$(curl -sSL https://terraria.fandom.com/wiki/Server#Downloads | grep '>Terraria Server ' | grep -Eoi '<a [^>]+>' | grep -Eo 'href="[^"]+"' | grep -Eo '(http|https)://[^"]+' | tail -1 | cut -d'?' -f1)
@@ -94,13 +94,13 @@ do_wiki() {
     [ -n "$WIKI_DOWNLOAD_LINK" ] || return 1
 
     if ! curl --output /dev/null --silent --head --fail "$WIKI_DOWNLOAD_LINK"; then
-        printf "%s" "${link_invalid:-Link invalid. }"
+        printf "%s\n" "${link_invalid:-Link invalid. }"
         return 1
     fi
 
-    printf "%s" "${link_valid:-Link valid. }"
+    printf "%s\n" "${link_valid:-Link valid. }"
     FILE_NAME="${WIKI_DOWNLOAD_LINK##*/}"
-    printf "%s" "${running_curl:-Downloading... }"
+    printf "%s\n" "${running_curl:-Downloading... }"
     curl -sSL "$WIKI_DOWNLOAD_LINK" -o "$FILE_NAME" || return 1
 
     DOWNLOAD_SOURCE="wiki"
@@ -113,7 +113,7 @@ if try_github; then
 elif do_wiki; then
     :
 else
-    printf "%s" "${link_invalid:-Download failed. }"
+    printf "%s\n" "${link_invalid:-Download failed. }"
     exit 2
 fi
 
