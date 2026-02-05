@@ -1,8 +1,6 @@
 #!/bin/bash
 # shellcheck shell=dash
 
-mkdir -p /mnt/server/
-cd /mnt/server/ || exit
 mkdir -p logs
 
 apk add --no-cache curl wget file unzip zip jq
