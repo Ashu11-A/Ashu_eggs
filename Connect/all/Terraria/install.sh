@@ -1,8 +1,6 @@
 #!/bin/bash
 # shellcheck shell=dash
 
-mkdir -p /mnt/server/
-cd /mnt/server/ || exit
 mkdir -p logs
 
 apk add --no-cache curl wget file unzip zip jq
@@ -26,8 +24,8 @@ if [ "$DOWNLOAD_SOURCE" = "github" ] && [ -n "$FILE_NAME" ]; then
 else
     # Wiki fallback: zip with version folder
     unzip -o "$FILE_NAME"
-    cp -R "${CLEAN_VERSION}/Linux"/* ./
-    rm -r "${CLEAN_VERSION}"
+    cp -rf "${CLEAN_VERSION}/Linux"/* ./
+    rm -rf "${CLEAN_VERSION}"
     rm -f "$FILE_NAME"
 fi
 

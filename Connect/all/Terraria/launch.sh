@@ -28,4 +28,4 @@ else
 fi
 
 # A expansão de array citada "${array[@]}" garante que cada parâmetro seja tratado como uma string separada, evitando problemas com espaços.
-"${fake_time_cmd[@]}" mono --server --gc=sgen -O=all ./TerrariaServer.exe "${params[@]}"
+"${fake_time_cmd[@]}" mono --server --gc=sgen -O=all ./TerrariaServer.exe "${params[@]}" < /dev/null
