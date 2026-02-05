@@ -3,8 +3,6 @@
 
 mkdir -p logs
 
-apk add --no-cache curl wget file unzip zip jq
-
 # download.sh: primary = GitHub release + checksum; fallback = wiki
 curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Terraria/download.sh" -o /tmp/download.sh
 # shellcheck source=/dev/null
