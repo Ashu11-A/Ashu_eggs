@@ -16,8 +16,3 @@ else
     curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Terraria/install.sh" -o install.sh
     bash install.sh | tee logs/terminal.log
 fi
-
-# Cleanup: Remove logs/language.conf if in /mnt/server
-if [ "$PWD" = "/mnt/server" ]; then
-    rm -f logs/language.conf
-fi
