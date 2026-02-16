@@ -1,13 +1,13 @@
 #!/bin/bash
 
 export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang/frp.conf"
-curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh -o loadLang.sh
+curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh -o /tmp/loadLang.sh
 
 if [[ ! -f "./Frps/frps" || ! -f "./Frpc/frpc" ]]; then
   mkdir -p logs
   echo "en" > logs/language.conf
 
-  source ./loadLang.sh
+  source /tmp/loadLang.sh
   set -a
 
   curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Frp/install.sh -o install.sh
@@ -19,7 +19,7 @@ if [[ ! -f "./Frps/frps" || ! -f "./Frpc/frpc" ]]; then
 fi
 
 # Carrega as traduções e exporta as variáveis para subshells
-source ./loadLang.sh
+source /tmp/loadLang.sh
 set -a
 
 if [[ -f "./exemple.sh" ]]; then 
