@@ -11,8 +11,13 @@ source /tmp/loadLang.sh
 
 if [[ -f "valkey.conf" ]]; then
     curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Valkey/launch.sh -o launch.sh
-    bash launch.sh
+    exec bash launch.sh
 else
     curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Valkey/install.sh -o install.sh
+    # We don't use exec here because we want to run launch.sh after install
     bash install.sh | tee logs/terminal.log
+    
+    # After install, we reload and exec launch
+    curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Valkey/launch.sh -o launch.sh
+    exec bash launch.sh
 fi

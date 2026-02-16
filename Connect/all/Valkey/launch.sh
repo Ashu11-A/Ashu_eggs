@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Standardize output
-printf "$script_version\n" "1.2"
+printf "$script_version\n" "1.3"
 echo "$learn_more"
 
 # Define default memory if not set
