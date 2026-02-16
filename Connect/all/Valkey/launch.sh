@@ -1,6 +1,6 @@
 #!/bin/bash
 
-printf "$script_version\n" "1.0"
+printf "$script_version\n" "1.1"
 echo "$learn_more"
 
 # Define default memory if not set
@@ -13,9 +13,10 @@ printf "$configuring_memory\n" "${SERVER_MEMORY}"
 
 if [[ -n "${SERVER_PASSWORD}" ]]; then
   echo "$configuring_password"
+  if [[ "${SERVER_PASSWORD}" == "change this" ]]; then
+    echo -e "$password_not_changed"
+  fi
 fi
-
-echo "$entering_cli"
 
 declare -a params=(
     /home/container/valkey.conf
@@ -24,7 +25,9 @@ declare -a params=(
     --bind 0.0.0.0
     --port "${SERVER_PORT}"
     --maxmemory "${SERVER_MEMORY}mb"
+    --pidfile "/home/container/valkey.pid"
     --daemonize yes
+    --logfile "/home/container/logs/server.log"
 )
 
 if [[ -n "${SERVER_PASSWORD}" ]]; then
@@ -36,10 +39,30 @@ if [[ -n "${SERVER_PASSWORD}" ]]; then
     cli_params+=(-a "${SERVER_PASSWORD}")
 fi
 
-# Execute Valkey Server in background, then open CLI
-# When CLI is closed, shutdown the server safely
-/usr/local/bin/valkey-server "${params[@]}" && \
-    /usr/local/bin/valkey-cli "${cli_params[@]}"
+# Ensure logs directory exists
+mkdir -p logs
+
+# Execute Valkey Server in background
+/usr/local/bin/valkey-server "${params[@]}"
+
+# Wait for server to be ready
+echo "$waiting_server"
+MAX_RETRIES=30
+RETRIES=0
+until /usr/local/bin/valkey-cli -p "${SERVER_PORT}" ${SERVER_PASSWORD:+-a "${SERVER_PASSWORD}"} PING > /dev/null 2>&1; do
+    sleep 1
+    RETRIES=$((RETRIES + 1))
+    if [ $RETRIES -ge $MAX_RETRIES ]; then
+        echo "Error: Valkey server failed to start within $MAX_RETRIES seconds."
+        echo "Check logs/server.log for more details."
+        exit 1
+    fi
+done
+
+echo "$entering_cli"
+
+# Open CLI
+/usr/local/bin/valkey-cli "${cli_params[@]}"
 
 echo "$stopping_valkey"
 /usr/local/bin/valkey-cli "${cli_params[@]}" shutdown save
