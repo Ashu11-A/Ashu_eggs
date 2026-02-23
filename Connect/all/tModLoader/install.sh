@@ -78,4 +78,14 @@ rm -rf DedicatedServerUtils LaunchUtils PlatformVariantLibs tModPorter RecentGit
 printf "Generating configuration...\n"
 curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/tModLoader/serverconfig.txt" -o serverconfig.txt
 
+printf "Saving environment data...\n"
+{
+    echo "CLEAN_VERSION=\"$CLEAN_VERSION\""
+    echo "DOWNLOAD_LINK=\"$DOWNLOAD_LINK\""
+    echo "TAG_NAME=\"$TAG_NAME\""
+    echo "FILE_NAME=\"$FILE_NAME\""
+    echo "SYNC_DOWNLOAD_LINK=\"$SYNC_DOWNLOAD_LINK\""
+    echo "SYNC_FILE_NAME=\"$SYNC_FILE_NAME\""
+} > logs/environment-server.log
+
 printf "Installation complete.\n"
