@@ -1,0 +1,21 @@
+||----------------------------------------------------------------||
+Note: To change any value go to Startup, and change there!
+Notas: Para alterar qualquer valor va para Startup, e altere la!
+||----------------------------------------------------------------||
+world=
+worldpath=
+modpath=
+banlist=
+port=
+||----------------------------------------------------------------||
+worldname=
+maxplayers=
+difficulty=
+autocreate=
+slowliquids=
+seed=
+motd=
+||----------------------------------------------------------------||
+password=
+secure=
+language=
