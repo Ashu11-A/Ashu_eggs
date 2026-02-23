@@ -8,6 +8,8 @@ curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/update
 mkdir -p logs
 
 if [ -f "./tModLoader.dll" ]; then
+    rm -f "logs/attempts.conf"
+
     curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/tModLoader/launch.sh" -o launch.sh
     bash launch.sh "$@"
 else
