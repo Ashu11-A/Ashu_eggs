@@ -11,29 +11,29 @@ color_reset='\e[0m'
 text_bold='\e[1m'
 
 echo ""
-echo -e "${color_accent} ▍ ${text_bold}tModLoader${color_reset} ${color_dim}• Gerenciador de Inicialização${color_reset}"
+echo -e "${color_accent} ▍ ${text_bold}tModLoader${color_reset} ${color_dim}• Boot Manager${color_reset}"
 echo ""
-echo -e "   [${color_accent}1${color_reset}] Iniciar Servidor ${color_dim}(Padrão)${color_reset}"
-echo -e "   [${color_accent}2${color_reset}] Sincronizar Mods ${color_dim}(Steam)${color_reset}"
+echo -e "   [${color_accent}1${color_reset}] Start Server ${color_dim}(Default)${color_reset}"
+echo -e "   [${color_accent}2${color_reset}] Sync Mods ${color_dim}(Steam)${color_reset}"
 echo ""
 
 # Prompt de seleção minimalista
-read -r -t 10 -p $'\e[38;5;111m ❯ \e[0mSelecione uma opção [1]: ' selected_option
+read -r -t 10 -p $'\e[38;5;111m ❯ \e[0mSelect an option [1]: ' selected_option
 echo ""
 
 if [[ "$selected_option" == "2" ]]; then
   if [ -f "./tml-sync" ]; then
-    echo -e "${color_warning} ⟳ ${color_reset} Iniciando sincronização de mods..."
+    echo -e "${color_warning} ⟳ ${color_reset} Starting mod synchronization..."
     chmod +x ./tml-sync
     ./tml-sync --port "${SERVER_PORT}"
-    echo -e "${color_success} ✓ ${color_reset} Sincronização concluída."
+    echo -e "${color_success} ✓ ${color_reset} Synchronization complete."
   else
-    echo -e "${color_error} ✗ ${color_reset} Arquivo tml-sync não encontrado!"
+    echo -e "${color_error} ✗ ${color_reset} tml-sync file not found!"
   fi
   exit 0
 fi
 
-echo -e "${color_success} 🚀 ${color_reset} Iniciando servidor..."
+echo -e "${color_success} 🚀 ${color_reset} Starting server..."
 
 # Prepara o comando de tempo falso se a variável estiver ativa
 declare -a fake_time_command=()
