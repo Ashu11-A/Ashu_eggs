@@ -45,6 +45,7 @@
 | :--- | :---: | :---: | :---: | :---: | :--- |
 | Paneldactyl | <img src="https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/587122d3-4e08-4b88-b4b3-79d08d8e65d8" height="45" alt="Terminal" /> | <img src="https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/929f730c-9cf0-412b-b513-305b4902060f" height="45" alt="App" /> | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-paneldactyl.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-paneldactyl.json) | ✅ | Panel installer (Pterodactyl, Jexactyl...) |
 | phpMyAdmin | <img src="https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/69ea01f6-022c-4d7b-827a-6c7ab38602a4" height="45" alt="Terminal" /> | <img src="https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/67481a5b-1bf1-4ada-8387-54cdd1943081" height="45" alt="App" /> | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-php-my-admin.json) | ✅ | Database management tool |
+| Valkey | <img src="https://github.com/user-attachments/assets/4e10aed2-46da-4ea5-8940-fa813bcd92b0" height="45" alt="Terminal" /> | | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-valkey.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-valkey.json) | ✅ | In-memory data structure store |
 
 ## 🎬 Media & Encoding
 
@@ -61,7 +62,6 @@
 | Nextcloud | <img src="https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/a0c46470-4545-440c-b15f-039c77b82021" height="45" alt="Terminal" /> | <img src="https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/9583ed82-b80d-4013-811f-9815ef9e0888" height="45" alt="App" /> | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-nextcloud.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-nextcloud.json) | ✅ | File storage and collaboration |
 | Bot4All | <img src="https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/b027d041-fc7d-4597-8587-91525d9f8314" height="45" alt="Terminal" /> | | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-bot4-all.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-bot4-all.json) | ❔ | What is that? 👀 |
 | Stress-ng | <img src="https://github.com/user-attachments/assets/051fca71-d65b-42b1-a744-99945cd22a28" height="45" alt="Terminal" /> | <img src="https://github.com/user-attachments/assets/422676be-5c20-4f97-9b03-187496630d5b" height="45" alt="App" /> | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-stress.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-stress.json) | ✅ | System stress testing tool |
-| Valkey | <img src="https://github.com/user-attachments/assets/4e10aed2-46da-4ea5-8940-fa813bcd92b0" height="45" alt="Terminal" /> | | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-valkey.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-valkey.json) | ✅ | In-memory data structure store |
 
 ## 🎮 Game Servers
 
@@ -86,6 +86,7 @@
 <a href="https://discord.com/users/ashu11_a">
   <img src="https://img.shields.io/badge/Discord-Ashu11__a-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Contact">
 </a>
+
 
 
 
