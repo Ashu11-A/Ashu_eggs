@@ -1,0 +1,42 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2026-02-24T05:09:05-03:00",
+    "name": "Valkey",
+    "author": "Matheusn.biolowons@gmail.com",
+    "description": "💎 Egg: Valkey\r\n⚙️ Version: 1.0\r\n❓ What it is: Valkey is an open-source (3-clause BSD license) in-memory data structure store, used as a database, cache, and message broker. It is a community-driven fork of Redis, created to maintain a fully open codebase after Redis transitioned to more restrictive licensing. It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial indexes with radius queries, and streams.\r\n\r\n🐛 Fixed bugs/changelogs: \r\n      • (1.0) Release\r\n\r\n👑 Author: Ashu\r\n👀 Check for updates: https://github.com/Ashu11-A/Ashu_eggs",
+    "features": null,
+    "docker_images": {
+        "ghcr.io/ashu11-a/yolks:valkey_9": "ghcr.io/ashu11-a/yolks:valkey_9"
+    },
+    "file_denylist": [],
+    "startup": "./start.sh",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Configuration loaded\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!/bin/bash\r\nif [ ! -d /mnt/server ]; then\r\n    mkdir -p /mnt/server/\r\nfi\r\n\r\ncd /mnt/server/\r\n\r\ncurl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Valkey/start.sh -o start.sh\r\nchmod a+x ./start.sh",
+            "container": "ghcr.io/ashu11-a/installers:alpine",
+            "entrypoint": "ash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Valkey Password",
+            "description": "The password valkey should use to secure the server.",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "change this",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        }
+    ]
+}

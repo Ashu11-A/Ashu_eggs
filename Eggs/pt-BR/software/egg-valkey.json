@@ -1,0 +1,42 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2026-02-24T05:09:05-03:00",
+    "name": "Valkey",
+    "author": "Matheusn.biolowons@gmail.com",
+    "description": "💎 Egg: Valkey\r\n⚙️ Versão: 1.0\r\n❓ Oque é: O Valkey é um armazenamento de estrutura de dados em memória de código aberto (licença BSD de 3 cláusulas), utilizado como banco de dados, cache e message broker (intermediário de mensagens). Trata-se de um fork do Redis impulsionado pela comunidade, criado para manter uma base de código totalmente aberta após a transição do Redis para um licenciamento mais restritivo. Ele oferece suporte a estruturas de dados como strings, hashes, listas, conjuntos (sets), conjuntos ordenados (sorted sets) com consultas de intervalo, bitmaps, hyperloglogs, índices geoespaciais com consultas de raio e fluxos (streams).\r\n\r\n🐛 Bugs corrigidos/changelogs: \r\n      • (1.0) Lançamento\r\n\r\n👑 Autor: Ashu\r\n👀 Verifique por atualizações: https://github.com/Ashu11-A/Ashu_eggs",
+    "features": null,
+    "docker_images": {
+        "ghcr.io/ashu11-a/yolks:valkey_9": "ghcr.io/ashu11-a/yolks:valkey_9"
+    },
+    "file_denylist": [],
+    "startup": "./start.sh",
+    "config": {
+        "files": "{}",
+        "startup": "{\r\n    \"done\": \"Configuration loaded\"\r\n}",
+        "logs": "{}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!/bin/bash\r\nif [ ! -d /mnt/server ]; then\r\n    mkdir -p /mnt/server/\r\nfi\r\n\r\ncd /mnt/server/\r\n\r\ncurl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Valkey/start.sh -o start.sh\r\nchmod a+x ./start.sh",
+            "container": "ghcr.io/ashu11-a/installers:alpine",
+            "entrypoint": "ash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Senha Valkey",
+            "description": "A senha que o valkey deve usar para proteger o servidor.",
+            "env_variable": "SERVER_PASSWORD",
+            "default_value": "change this",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string",
+            "field_type": "text"
+        }
+    ]
+}
