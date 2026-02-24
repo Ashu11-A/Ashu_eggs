@@ -1,0 +1,143 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2026-02-24T04:31:16-03:00",
+    "name": "tModLoader",
+    "author": "Matheusn.biolowons@gmail.com",
+    "description": "💎 Egg: tModLoader\r\n⚙️ Versão: 5.1\r\n❓ O que é: tModLoader é uma modificação do Terraria, que possibilita jogar com mods. Escolha jogar como quiser!\r\n\r\n🐛 Bugs corrigidos/changelogs:\r\n• (3.0) [ARM64] Compatibilidade com o repositório original, roda o mesmo servidor que o 64x (sem arquivos de terceiros desatualizados, sem emulação).\r\n• (3.1) Erros críticos corrigidos.\r\n• (4.0) Otimização do Egg.\r\n• (4.0) Docker atualizado.\r\n• (4.0) O Egg não é mais dependente de atualizações, tudo é feito por scripts, resultando em melhor manutenção.\r\n• (4.0) Configurações desnecessárias removidas.\r\n• (4.0) Tradução das variáveis.\r\n• (4.1) Adicionado Docker Dotnet 8\r\n• (5.0) Imagens alteradas para Alpine\r\n• (5.1) Novo sistema de sincronia de mods\r\n• (5.1) Mudança do comando de inicialização de ./install.sh para ./start.sh\r\n\r\n🪄 O que há de diferente?\r\n   • Docker unificado (mesma imagem, múltiplas arquiteturas).\r\n   • Funciona tanto em ARM64 quanto em 64x com o mesmo desempenho.\r\n   • Sem Emulação.\r\n       📝 Variáveis que outros Eggs não contêm: \r\n             • Seed.\r\n             • Otimização.\r\n             • Segurança.\r\n\r\n👑 Autor: Ashu\r\n👀 Verifique atualizações: https://github.com/Ashu11-A/Ashu_eggs",
+    "features": null,
+    "docker_images": {
+        ">= v2024.03.2.4 (1.4.4)": "ghcr.io/ashu11-a/yolks:dotnet_8",
+        "<=  v2024.02.3.0  (1.4.3/1.4.4 beta)": "ghcr.io/ashu11-a/yolks:dotnet_6"
+    },
+    "file_denylist": [],
+    "startup": "./start.sh",
+    "config": {
+        "files": "{\r\n    \"serverconfig.txt\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"modpath\": \"modpath=/home/container/Mods\",\r\n            \"worldpath=\": \"worldpath=/home/container/saves/Worlds\",\r\n            \"worldname=\": \"worldname={{server.build.env.WORLD_NAME}}\",\r\n            \"world=\": \"world=/home/container/saves/Worlds/{{server.build.env.WORLD_NAME}}.wld\",\r\n            \"banlist=\": \"banlist=/home/container/banlist.txt\",\r\n            \"difficulty=\": \"difficulty={{server.build.env.DIFFICULTY}}\",\r\n            \"autocreate=\": \"autocreate={{server.build.env.WORLD_SIZE}}\",\r\n            \"port=\": \"port={{server.build.default.port}}\",\r\n            \"maxplayers=\": \"maxplayers={{server.build.env.MAX_PLAYERS}}\",\r\n            \"motd=\": \"motd={{server.build.env.MOTD}}\",\r\n            \"password=\": \"password={{server.build.env.SERVER_PASSWORD}}\",\r\n            \"secure=\": \"secure={{server.build.env.SECURE}}\",\r\n            \"seed=\": \"seed={{server.build.env.SEED}}\",\r\n            \"language=\": \"language={{server.build.env.LANGUAGE}}\",\r\n            \"slowliquids=\": \"slowliquids={{server.build.env.OPTIMIZE}}\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"Running\",\r\n    \"userInteraction\": []\r\n}",
+        "logs": "{}",
+        "stop": "exit"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!/bin/bash\r\nmkdir -p /mnt/server\r\ncd /mnt/server\r\nrm -rf ./*\r\ncurl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/tModLoader/start.sh -o start.sh\r\nchmod a+x ./start.sh\r\n./start.sh",
+            "container": "ghcr.io/ashu11-a/installers:alpine",
+            "entrypoint": "bash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Versão do tModloader",
+            "description": "A versão do tModloader a ser usada. Versões: https://github.com/tModLoader/tModLoader/releases\r\n\r\n┃• v1.4.4.9: v2025.11.3.1 ou latest\r\n┃• v1.4.3.6: v2022.09.47.82\r\n┃• v1.3.5.3: Não funciona",
+            "env_variable": "VERSION",
+            "default_value": "latest",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Nome do Mundo",
+            "description": "O nome para o arquivo do mundo.",
+            "env_variable": "WORLD_NAME",
+            "default_value": "world",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Tamanho do Mundo",
+            "description": "Define o tamanho do mundo. 4 tamanhos: 1 (Pequeno), 2 (Médio), 3 (Grande).",
+            "env_variable": "WORLD_SIZE",
+            "default_value": "1",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:1,2,3",
+            "field_type": "text"
+        },
+        {
+            "name": "Máximo de jogadores",
+            "description": "O número máximo de jogadores que o servidor terá.",
+            "env_variable": "MAX_PLAYERS",
+            "default_value": "8",
+            "user_viewable": true,
+            "user_editable": false,
+            "rules": "required|numeric|max:30",
+            "field_type": "text"
+        },
+        {
+            "name": "Idioma",
+            "description": "Define o idioma do servidor a partir do código de linguagem.\r\nInglês = en-US, Alemão = de-DE, Italiano = it-IT, Francês = fr-FR, Espanhol = es-ES, Russo = ru-RU, Chinês = zh-Hans, Português = pt-BR, Polonês = pl-PL",
+            "env_variable": "LANGUAGE",
+            "default_value": "en-US",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|in:en-US,pt-BR,de-DE,it-IT,fr-FR,es-ES,ru-RU,zh-Hans,pl-PL",
+            "field_type": "text"
+        },
+        {
+            "name": "Dificuldade",
+            "description": "Dificuldade do Mundo\r\n\r\nOpções: 0(normal), 1(expert), 2(master), 3(journey)",
+            "env_variable": "DIFFICULTY",
+            "default_value": "3",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1,2,3",
+            "field_type": "text"
+        },
+        {
+            "name": "MOTD",
+            "description": "Mensagem do Servidor",
+            "env_variable": "MOTD",
+            "default_value": "Bem-vindo!",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|string|max:128",
+            "field_type": "text"
+        },
+        {
+            "name": "Seed",
+            "description": "Especifica a seed do mundo.",
+            "env_variable": "SEED",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "string|nullable|max:20",
+            "field_type": "text"
+        },
+        {
+            "name": "Otimização",
+            "description": "Minimiza líquidos movendo-se ao mesmo tempo. Se ativado, pode reduzir lags, mas líquidos podem levar mais tempo para assentar.",
+            "env_variable": "OPTIMIZE",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Segurança",
+            "description": "Adiciona proteção extra contra trapaças no servidor. (pode levar a banimentos injustos)",
+            "env_variable": "SECURE",
+            "default_value": "0",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "required|numeric|in:0,1",
+            "field_type": "text"
+        },
+        {
+            "name": "Senha do servidor",
+            "description": "Define a senha do servidor.",
+            "env_variable": "PASSWORD",
+            "default_value": "",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "string|nullable|max:20",
+            "field_type": "text"
+        }
+    ]
+}

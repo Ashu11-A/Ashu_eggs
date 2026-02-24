@@ -4,17 +4,17 @@
         "version": "PTDL_v2",
         "update_url": null
     },
-    "exported_at": "2026-01-11T00:30:55-03:00",
+    "exported_at": "2026-02-24T04:31:16-03:00",
     "name": "tModLoader",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: tModLoader\r\n\u2699\ufe0f Versão: 5.0\r\n\u2753 O que é: tModLoader é uma modificação do Terraria, que possibilita jogar com mods. Escolha jogar como quiser!\r\n\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\u2022 (3.0) [ARM64] Compatibilidade com o repositório original, roda o mesmo servidor que o 64x (sem arquivos de terceiros desatualizados, sem emulação).\r\n\u2022 (3.1) Erros críticos corrigidos.\r\n\u2022 (4.0) Otimização do Egg.\r\n\u2022 (4.0) Docker atualizado.\r\n\u2022 (4.0) O Egg não é mais dependente de atualizações, tudo é feito por scripts, resultando em melhor manutenção.\r\n\u2022 (4.0) Configurações desnecessárias removidas.\r\n\u2022 (4.0) Tradução das variáveis.\r\n\u2022 (4.1) Adicionado Docker Dotnet 8\r\n\u2022 (5.0) Imagens alteradas para Alpine\r\n\r\n\ud83e\ude84 O que há de diferente?\r\n   \u2022 Docker unificado (mesma imagem, múltiplas arquiteturas).\r\n   \u2022 Steamworks.NET.dll modificado, mais otimizado e multiplataforma.\r\n   \u2022 Funciona tanto em ARM64 quanto em 64x com o mesmo desempenho.\r\n   \u2022 Sem Emulação.\r\n       \ud83d\udcdd Variáveis que outros Eggs não contêm: \r\n             \u2022 Seed.\r\n             \u2022 Otimização.\r\n             \u2022 Segurança.\r\n\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique atualizações: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "💎 Egg: tModLoader\r\n⚙️ Version: 5.1\r\n❓ What is it: tModLoader is a Terraria modification that allows you to play with mods. Choose to play however you want!\r\n\r\n🐛 Fixed bugs/changelogs:\r\n• (3.0) [ARM64] Compatibility with the original repository, runs the same server as 64x (no outdated third-party files, no emulation).\r\n• (3.1) Critical errors fixed.\r\n• (4.0) Egg optimization.\r\n• (4.0) Docker updated.\r\n• (4.0) The Egg is no longer dependent on updates, everything is done by scripts, resulting in better maintenance.\r\n• (4.0) Unnecessary configurations removed.\r\n• (4.0) Variables translated.\r\n• (4.1) Added Docker Dotnet 8\r\n• (5.0) Images changed to Alpine\r\n• (5.1) New mod sync system\r\n• (5.1) Startup command changed from ./install.sh to ./start.sh\r\n\r\n🪄 What's different?\r\n   • Unified Docker (same image, multiple architectures).\r\n   • Works on both ARM64 and 64x with the same performance.\r\n   • No Emulation.\r\n       📝 Variables that other Eggs don't contain: \r\n             • Seed.\r\n             • Optimization.\r\n             • Security.\r\n\r\n👑 Author: Ashu\r\n👀 Check for updates: https://github.com/Ashu11-A/Ashu_eggs",
     "features": null,
     "docker_images": {
         ">= v2024.03.2.4 (1.4.4)": "ghcr.io/ashu11-a/yolks:dotnet_8",
         "<=  v2024.02.3.0  (1.4.3/1.4.4 beta)": "ghcr.io/ashu11-a/yolks:dotnet_6"
     },
     "file_denylist": [],
-    "startup": "./install.sh",
+    "startup": "./start.sh",
     "config": {
         "files": "{\r\n    \"serverconfig.txt\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"modpath\": \"modpath=/home/container/Mods\",\r\n            \"worldpath=\": \"worldpath=/home/container/saves/Worlds\",\r\n            \"worldname=\": \"worldname={{server.build.env.WORLD_NAME}}\",\r\n            \"world=\": \"world=/home/container/saves/Worlds/{{server.build.env.WORLD_NAME}}.wld\",\r\n            \"banlist=\": \"banlist=/home/container/banlist.txt\",\r\n            \"difficulty=\": \"difficulty={{server.build.env.DIFFICULTY}}\",\r\n            \"autocreate=\": \"autocreate={{server.build.env.WORLD_SIZE}}\",\r\n            \"port=\": \"port={{server.build.default.port}}\",\r\n            \"maxplayers=\": \"maxplayers={{server.build.env.MAX_PLAYERS}}\",\r\n            \"motd=\": \"motd={{server.build.env.MOTD}}\",\r\n            \"password=\": \"password={{server.build.env.SERVER_PASSWORD}}\",\r\n            \"secure=\": \"secure={{server.build.env.SECURE}}\",\r\n            \"seed=\": \"seed={{server.build.env.SEED}}\",\r\n            \"language=\": \"language={{server.build.env.LANGUAGE}}\",\r\n            \"slowliquids=\": \"slowliquids={{server.build.env.OPTIMIZE}}\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Running\",\r\n    \"userInteraction\": []\r\n}",
@@ -23,15 +23,15 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!/bin/bash\r\nmkdir -p /mnt/server\r\ncd /mnt/server\r\nrm -rf ./*\r\ncurl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/tModLoader/install.sh -o install.sh\r\nchmod a+x ./install.sh\r\n./install.sh",
+            "script": "#!/bin/bash\r\nmkdir -p /mnt/server\r\ncd /mnt/server\r\nrm -rf ./*\r\ncurl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/tModLoader/start.sh -o start.sh\r\nchmod a+x ./start.sh\r\n./start.sh",
             "container": "ghcr.io/ashu11-a/installers:alpine",
             "entrypoint": "bash"
         }
     },
     "variables": [
         {
-            "name": "Versão do tModloader",
-            "description": "A versão do tModloader a ser usada. Versões: https://github.com/tModLoader/tModLoader/releases\r\n\r\n\u2503\u2022 v1.4.4.9: v2025.11.3.1 ou latest\r\n\u2503\u2022 v1.4.3.6: v2022.09.47.82\r\n\u2503\u2022 v1.3.5.3: Não funciona",
+            "name": "tModLoader Version",
+            "description": "The tModLoader version to be used. Versions: https://github.com/tModLoader/tModLoader/releases\r\n\r\n┃• v1.4.4.9: v2025.11.3.1 or latest\r\n┃• v1.4.3.6: v2022.09.47.82\r\n┃• v1.3.5.3: Does not work",
             "env_variable": "VERSION",
             "default_value": "latest",
             "user_viewable": true,
@@ -40,8 +40,8 @@
             "field_type": "text"
         },
         {
-            "name": "Nome do Mundo",
-            "description": "O nome para o arquivo do mundo.",
+            "name": "World Name",
+            "description": "The name for the world file.",
             "env_variable": "WORLD_NAME",
             "default_value": "world",
             "user_viewable": true,
@@ -50,18 +50,18 @@
             "field_type": "text"
         },
         {
-            "name": "Tamanho do Mundo",
-            "description": "Define o tamanho do mundo. 4 tamanhos: 1 (Pequeno), 2 (Médio), 3 (Grande).",
+            "name": "World Size",
+            "description": "Defines the world size. 4 sizes: 1 (Small), 2 (Medium), 3 (Large).",
             "env_variable": "WORLD_SIZE",
             "default_value": "1",
             "user_viewable": true,
             "user_editable": true,
-            "rules": "required|numeric|in:1,2,3,4",
+            "rules": "required|numeric|in:1,2,3",
             "field_type": "text"
         },
         {
-            "name": "Máximo de jogadores",
-            "description": "O número máximo de jogadores que o servidor terá.",
+            "name": "Max Players",
+            "description": "The maximum number of players the server will have.",
             "env_variable": "MAX_PLAYERS",
             "default_value": "8",
             "user_viewable": true,
@@ -70,8 +70,8 @@
             "field_type": "text"
         },
         {
-            "name": "Idioma",
-            "description": "Define o idioma do servidor a partir do código de linguagem.\r\nInglês = en-US, Alemão = de-DE, Italiano = it-IT, Francês = fr-FR, Espanhol = es-ES, Russo = ru-RU, Chinês = zh-Hans, Português = pt-BR, Polonês = pl-PL",
+            "name": "Language",
+            "description": "Defines the server language from the language code.\r\nEnglish = en-US, German = de-DE, Italian = it-IT, French = fr-FR, Spanish = es-ES, Russian = ru-RU, Chinese = zh-Hans, Portuguese = pt-BR, Polish = pl-PL",
             "env_variable": "LANGUAGE",
             "default_value": "en-US",
             "user_viewable": true,
@@ -80,8 +80,8 @@
             "field_type": "text"
         },
         {
-            "name": "Dificuldade",
-            "description": "Dificuldade do Mundo\r\n\r\nOpções: 0(normal), 1(expert), 2(master), 3(journey)",
+            "name": "Difficulty",
+            "description": "World Difficulty\r\n\r\nOptions: 0(normal), 1(expert), 2(master), 3(journey)",
             "env_variable": "DIFFICULTY",
             "default_value": "3",
             "user_viewable": true,
@@ -91,9 +91,9 @@
         },
         {
             "name": "MOTD",
-            "description": "Mensagem do Servidor",
+            "description": "Server Message",
             "env_variable": "MOTD",
-            "default_value": "Bem-vindo!",
+            "default_value": "Welcome!",
             "user_viewable": true,
             "user_editable": true,
             "rules": "required|string|max:128",
@@ -101,7 +101,7 @@
         },
         {
             "name": "Seed",
-            "description": "Especifica a seed do mundo.",
+            "description": "Specifies the world seed.",
             "env_variable": "SEED",
             "default_value": "",
             "user_viewable": true,
@@ -110,8 +110,8 @@
             "field_type": "text"
         },
         {
-            "name": "Otimização",
-            "description": "Minimiza líquidos movendo-se ao mesmo tempo. Se ativado, pode reduzir lags, mas líquidos podem levar mais tempo para assentar.",
+            "name": "Optimization",
+            "description": "Minimizes liquids moving at the same time. If enabled, it may reduce lag, but liquids may take longer to settle.",
             "env_variable": "OPTIMIZE",
             "default_value": "0",
             "user_viewable": true,
@@ -120,8 +120,8 @@
             "field_type": "text"
         },
         {
-            "name": "Segurança",
-            "description": "Adiciona proteção extra contra trapaças no servidor. (pode levar a banimentos injustos)",
+            "name": "Security",
+            "description": "Adds extra anti-cheat protection on the server. (may lead to unfair bans)",
             "env_variable": "SECURE",
             "default_value": "0",
             "user_viewable": true,
@@ -130,8 +130,8 @@
             "field_type": "text"
         },
         {
-            "name": "Senha do servidor",
-            "description": "Define a senha do servidor.",
+            "name": "Server Password",
+            "description": "Defines the server password.",
             "env_variable": "PASSWORD",
             "default_value": "",
             "user_viewable": true,
