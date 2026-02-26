@@ -17,14 +17,14 @@ mkdir -p logs tmp
 touch logs/nextcloud.log
 
 # Migration/Compatibility check
-if [[ -f "./logs/instalado" ]]; then
+if [ -f "./logs/instalado" ]; then
   mv "./logs/instalado" "./logs/installed"
 fi
 
 # Initial Installation
-if [[ ! -f "./logs/installed" ]]; then
+if [ ! -f "./logs/installed" ]; then
     echo "⚙️ Starting Nextcloud Installation..."
-    curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/update.sh | bash -s -- bootstrap "installer.sh" "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/installer.sh"
+    curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/update.sh | ash -s -- bootstrap "installer.sh" "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/installer.sh"
     echo "✅ Installation Finished."
     exit
 fi
@@ -40,7 +40,7 @@ fi
 rm -rf /home/container/tmp/*
 
 # Handle OCC Commands
-if [[ $OCC == "1" ]]; then  
+if [ "$OCC" = "1" ]; then  
     echo "🚀 Running OCC command: php ./nextcloud/occ ${COMMANDO_OCC}"
     php ./nextcloud/occ ${COMMANDO_OCC}
     exit

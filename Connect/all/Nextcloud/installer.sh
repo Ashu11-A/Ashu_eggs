@@ -9,7 +9,7 @@ mkdir -p php-fpm logs
 echo "⚙️ Setting up environment..."
 
 # Determine download link
-if [ "${NEXTCLOUD_RELEASE}" == "latest" ] ; then
+if [ "${NEXTCLOUD_RELEASE}" = "latest" ] ; then
   DOWNLOAD_LINK="latest.zip"
 else
   DOWNLOAD_LINK="nextcloud-${NEXTCLOUD_RELEASE}.zip"
