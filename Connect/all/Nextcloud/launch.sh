@@ -13,7 +13,8 @@ monitor_installation() {
 }
 
 # Setup environment
-mkdir -p logs tmp
+mkdir -p logs tmp php-fpm/sessions
+
 touch logs/nextcloud.log
 
 # Migration/Compatibility check
