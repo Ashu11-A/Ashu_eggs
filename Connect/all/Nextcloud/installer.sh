@@ -9,7 +9,7 @@ mkdir -p php-fpm logs
 echo "⚙️ Setting up environment..."
 
 # Determine download link
-if [ "${NEXTCLOUD_RELEASE}" == "latest" ] ; then
+if [ "${NEXTCLOUD_RELEASE}" = "latest" ] ; then
   DOWNLOAD_LINK="latest.zip"
 else
   DOWNLOAD_LINK="nextcloud-${NEXTCLOUD_RELEASE}.zip"
@@ -25,11 +25,10 @@ rm -rf "$BASE_DIR"/webroot/*
 
 # Custom Nginx config
 echo "🔧 Applying custom Nginx config..."
-(
-  cd nginx/conf.d/ || exit
-  rm -f default.conf nextcloud.conf
-  wget -q https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/default.conf
-)
+cd nginx/conf.d/ || exit
+rm -f default.conf nextcloud.conf
+wget -q https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/default.conf
+cd ../../ || exit
 
 # Log installation info
 cat <<EOF > ./logs/install_log.txt
