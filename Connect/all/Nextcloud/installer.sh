@@ -25,10 +25,11 @@ rm -rf "$BASE_DIR"/webroot/*
 
 # Custom Nginx config
 echo "🔧 Applying custom Nginx config..."
-cd nginx/conf.d/ || exit
-rm -f default.conf nextcloud.conf
-wget -q https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/default.conf
-cd ../../ || exit
+(
+  cd nginx/conf.d/ || exit
+  rm -f default.conf nextcloud.conf
+  wget -q https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/default.conf
+)
 
 # Log installation info
 cat <<EOF > ./logs/install_log.txt
