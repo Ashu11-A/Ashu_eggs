@@ -1,7 +1,7 @@
-#!/bin/ash
+#!/bin/bash
 
 # Function to monitor the installation in the background.
-monitor_installation () {
+monitor_installation() {
   while ! php ./nextcloud/occ status 2> /dev/null | grep -q "installed: true"; do
     sleep 5
   done
@@ -17,26 +17,30 @@ mkdir -p logs tmp
 touch logs/nextcloud.log
 
 # Migration/Compatibility check
-if [ -f "./logs/instalado" ]; then
+if [[ -f "./logs/instalado" ]]; then
   mv "./logs/instalado" "./logs/installed"
 fi
 
 # Initial Installation
-if [ ! -f "./logs/installed" ]; then
+if [[ ! -f "./logs/installed" ]]; then
     echo "⚙️ Starting Nextcloud Installation..."
-    curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/update.sh | ash -s -- bootstrap "installer.sh" "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/installer.sh"
+    curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/update.sh | bash -s -- bootstrap "installer.sh" "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Nextcloud/installer.sh"
     echo "✅ Installation Finished."
     exit
 fi
 
 # Visual Header
-{ figlet -c -f slant -t -k Nextcloud; echo "                                                    by Ashu11-A"; } | lolcat   
+if command -v figlet >/dev/null && command -v lolcat >/dev/null; then
+    { figlet -c -f slant -t -k Nextcloud; echo "                                                    by Ashu11-A"; } | lolcat
+else
+    echo "--- Nextcloud by Ashu11-A ---"
+fi
 
 # Clear temporary directory.
 rm -rf /home/container/tmp/*
 
 # Handle OCC Commands
-if [ "$OCC" = "1" ]; then  
+if [[ "$OCC" == "1" ]]; then  
     echo "🚀 Running OCC command: php ./nextcloud/occ ${COMMANDO_OCC}"
     php ./nextcloud/occ "${COMMANDO_OCC}"
     exit
@@ -62,17 +66,9 @@ fi
 
 # Service Configuration Optimization
 echo "🔧 Optimizing service configs for unified logging..."
-if [ -f "/home/container/nginx/nginx.conf" ]; then
-    sed -i 's#^\s*access_log\s*.*#access_log /dev/stdout;#' "/home/container/nginx/nginx.conf"
-    sed -i 's#^\s*error_log\s*.*#error_log /dev/stderr;#' "/home/container/nginx/nginx.conf"
-fi
-if [ -f "/home/container/php-fpm/php-fpm.conf" ]; then
-    sed -i 's#^;*daemonize\s*=\s*yes#daemonize = no#' "/home/container/php-fpm/php-fpm.conf"
-    sed -i 's#^error_log\s*=\s*.*#error_log = /proc/self/fd/2#' "/home/container/php-fpm/php-fpm.conf"
-fi
-if [ -f "/home/container/php-fpm/fpm.pool.d/www.conf" ]; then
-    sed -i 's#^;*catch_workers_output\s*=\s*.*#catch_workers_output = yes#' "/home/container/php-fpm/fpm.pool.d/www.conf"
-fi
+[[ -f "/home/container/nginx/nginx.conf" ]] && sed -i 's#^\s*access_log\s*.*#access_log /dev/stdout;#' "/home/container/nginx/nginx.conf" && sed -i 's#^\s*error_log\s*.*#error_log /dev/stderr;#' "/home/container/nginx/nginx.conf"
+[[ -f "/home/container/php-fpm/php-fpm.conf" ]] && sed -i 's#^;*daemonize\s*=\s*yes#daemonize = no#' "/home/container/php-fpm/php-fpm.conf" && sed -i 's#^error_log\s*=\s*.*#error_log = /proc/self/fd/2#' "/home/container/php-fpm/php-fpm.conf"
+[[ -f "/home/container/php-fpm/fpm.pool.d/www.conf" ]] && sed -i 's#^;*catch_workers_output\s*=\s*.*#catch_workers_output = yes#' "/home/container/php-fpm/fpm.pool.d/www.conf"
 
 # Start unified log output
 tail -f logs/nextcloud.log &

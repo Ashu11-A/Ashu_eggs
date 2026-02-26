@@ -1,7 +1,7 @@
-#!/bin/ash
+#!/bin/bash
 
 BASE_DIR="/mnt/server"
-[ -d "/home/container" ] && BASE_DIR="/home/container"
+[[ -d "/home/container" ]] && BASE_DIR="/home/container"
 
 cd "$BASE_DIR" || exit 1
 mkdir -p php-fpm logs
@@ -9,7 +9,7 @@ mkdir -p php-fpm logs
 echo "⚙️ Setting up environment..."
 
 # Determine download link
-if [ "${NEXTCLOUD_RELEASE}" = "latest" ] ; then
+if [[ "${NEXTCLOUD_RELEASE}" == "latest" ]] ; then
   DOWNLOAD_LINK="latest.zip"
 else
   DOWNLOAD_LINK="nextcloud-${NEXTCLOUD_RELEASE}.zip"
