@@ -11,7 +11,7 @@ if [[ -d "/home/container/painel" ]]; then
 fi
 
 # (instalado -> installed)
-if [[ -d "logs" ]]; then
+if [[ -d "logs" ]] && ls logs/*_instalado &>/dev/null; then
   echo "${migrating_logs_instalado_to_installed}"
   for old_log in logs/*_instalado; do
     if [[ -f "${old_log}" ]]; then
