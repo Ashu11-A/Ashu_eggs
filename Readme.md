@@ -43,7 +43,7 @@
 
 | Service | Terminal | App | Egg | Arch | Description |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-| Paneldactyl | <img src="https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/587122d3-4e08-4b88-b4b3-79d08d8e65d8" height="45" alt="Terminal" /> | <img src="https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/929f730c-9cf0-412b-b513-305b4902060f" height="45" alt="App" /> | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-paneldactyl.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-paneldactyl.json) | ✅ | Panel installer (Pterodactyl, Jexactyl...) |
+| Paneldactyl | <img src="https://github.com/user-attachments/assets/268a3ef5-c9a0-41bc-80d5-a6a35518dd06" height="45" alt="Terminal" /> | <img src="https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/929f730c-9cf0-412b-b513-305b4902060f" height="45" alt="App" /> | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-paneldactyl.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-paneldactyl.json) | ✅ | Panel installer (Pterodactyl, Jexactyl...) |
 | phpMyAdmin | <img src="https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/69ea01f6-022c-4d7b-827a-6c7ab38602a4" height="45" alt="Terminal" /> | <img src="https://github.com/Ashu11-A/Ashu_eggs/assets/30575805/67481a5b-1bf1-4ada-8387-54cdd1943081" height="45" alt="App" /> | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-php-my-admin.json) | ✅ | Database management tool |
 | Valkey | <img src="https://github.com/user-attachments/assets/4e10aed2-46da-4ea5-8940-fa813bcd92b0" height="45" alt="Terminal" /> | | [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/us.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/en/software/egg-valkey.json) [<img src="https://raw.githubusercontent.com/lipis/flag-icons/main/flags/4x3/br.svg" width="40">](https://github.com/Ashu11-A/Ashu_eggs/raw/main/Eggs/pt-BR/software/egg-valkey.json) | ✅ | In-memory data structure store |
 
@@ -86,6 +86,7 @@
 <a href="https://discord.com/users/ashu11_a">
   <img src="https://img.shields.io/badge/Discord-Ashu11__a-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord Contact">
 </a>
+
 
 
 
