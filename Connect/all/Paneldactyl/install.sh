@@ -30,7 +30,7 @@ fi
   [[ ! -f "../logs/panel_key_generate_installed" ]] && php artisan key:generate --force && touch ../logs/panel_key_generate_installed
   [[ ! -f "../logs/panel_setup_installed" ]] && php artisan p:environment:setup && touch ../logs/panel_setup_installed
   [[ ! -f "../logs/panel_database_installed" ]] && php artisan p:environment:database && touch ../logs/panel_database_installed
-  [[ ! -f "../logs/panel_database_migrate_installed" ]] && php artisan migrate --seed --force && touch ../logs/panel_database_migrate_installed
+  [[ ! -f "../logs/panel_database_migrate_installed" ]] && echo -e "[client]\nskip-ssl" > ~/.my.cnf && php artisan migrate --seed --force && touch ../logs/panel_database_migrate_installed
   [[ ! -f "../logs/panel_user_installed" ]] && php artisan p:user:make && touch ../logs/panel_user_installed
 )
 
