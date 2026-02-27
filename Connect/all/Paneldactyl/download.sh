@@ -139,20 +139,20 @@ EOF
 fi
 
 # 4. Configuração de Nginx e PHP-FPM
-if [[ ! -d "nginx" ]]; then
-  git clone --quiet https://github.com/Ashu11-A/nginx ./temp_nginx
-  cp -r ./temp_nginx/nginx ./
-  rm -rf ./temp_nginx
-  curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Paneldactyl/default.conf" -o ./nginx/conf.d/default.conf
+if [[ ! -d "nginx" ]] || [[ ! -d "php-fpm" ]]; then
+  git clone --quiet https://github.com/Ashu11-A/nginx ./temp_config
   
-  sed -i "s|root /home/container/panel/public|root /home/container/panel/public|g" nginx/conf.d/default.conf
-  sed -i "s/listen.*/listen ${SERVER_PORT};/g" nginx/conf.d/default.conf
-fi
+  if [[ ! -d "nginx" ]]; then
+    cp -r ./temp_config/nginx ./
+    curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Paneldactyl/default.conf" -o ./nginx/conf.d/default.conf
+    sed -i "s/listen.*/listen ${SERVER_PORT};/g" nginx/conf.d/default.conf
+  fi
 
-if [[ ! -d "php-fpm" ]]; then
-  git clone --quiet https://github.com/Ashu11-A/nginx ./temp_php
-  cp -r ./temp_php/php-fpm ./
-  cp -r ./temp_php/logs ./
-  rm -rf ./temp_php
-  echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> php-fpm/php-fpm.conf
+  if [[ ! -d "php-fpm" ]]; then
+    cp -r ./temp_config/php-fpm ./
+    cp -r ./temp_config/logs ./
+    echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> php-fpm/php-fpm.conf
+  fi
+
+  rm -rf ./temp_config
 fi

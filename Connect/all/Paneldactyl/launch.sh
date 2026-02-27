@@ -8,18 +8,16 @@ php_binary=$(command -v php || echo "/usr/bin/php")
 nginx_binary=$(command -v nginx || echo "/usr/sbin/nginx")
 php_fpm_binary=$(command -v php-fpm || command -v php-fpm83 || command -v php-fpm82 || command -v php-fpm81 || echo "/usr/sbin/php-fpm")
 
-# 1. Inicialização de Serviços em Segundo Plano
+mkdir -p /home/container/tmp
 echo "${starting_php}"
 nohup "${php_fpm_binary}" --fpm-config /home/container/php-fpm/php-fpm.conf --daemonize >/dev/null 2>&1 &
 
 echo "${starting_nginx}"
 nohup "${nginx_binary}" -c /home/container/nginx/nginx.conf -p /home/container/ >/dev/null 2>&1 &
 
-# Determina o endereço de acesso
 server_address="${SERVER_IP:-0.0.0.0}:${SERVER_PORT}"
 echo "${started_success} ${server_address}..."
 
-# Inicia o worker e o cron runner
 echo "${starting_worker}"
 nohup "${php_binary}" "/home/container/panel/artisan" queue:work --queue=high,standard,low --sleep=3 --tries=3 >/dev/null 2>&1 &
 
