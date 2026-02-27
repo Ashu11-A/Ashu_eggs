@@ -2,7 +2,7 @@ export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/refs/head
 source <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/refs/heads/main/Utils/loadLang.sh)
 
 # Usando as variáveis de tradução
-printf "$version_script\n" "$version_script"
+printf "$version_script\n" "$version_script_egg"
 
 if [[ -f "./logs/egg_version" ]]; then
     versions="$(cat ./logs/egg_version)"
