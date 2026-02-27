@@ -22,7 +22,7 @@ fi
 
 
 if [[  -f "./api/.env" && -d "api/node_modules" && -d "web/node_modules" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/version.sh)
+    curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/version.sh" -o /tmp/version.sh && bash /tmp/version.sh
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Cobalt/launch.sh)
 else
     echo "$error_install"

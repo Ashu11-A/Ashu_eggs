@@ -24,38 +24,17 @@ if [ -z "$NVM_STATUS" ] || [ "$NVM_STATUS" = "1" ]; then
         if [ "$distro" = "alpine" ]; then
             echo "$nvm_alpine"
         elif [ "$distro" = "debian" ]; then
-            if [[ ! -d ".nvm" ]]; then
-                echo -e "$nvm_not_installed"
-                mkdir -p $NVM_DIR
-                curl -sSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh -o nvm.sh
-                chmod a+x ./nvm.sh
-                ./nvm.sh
-                rm ./nvm.sh
-                source "/home/container/.nvm/nvm.sh"
-            fi
-        
-            if [[ -d ".nvm" ]]; then
-                if [ ! -f "logs/nodejs_version" ]; then
-                    bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvmSelect.sh")
-                fi
-                # NVM Initialization
-                source "/home/container/.nvm/nvm.sh"
-                NVM_DIR=/home/container/.nvm
-                NODE_VERSION="$(cat logs/nodejs_version)"
+            curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvm.sh" -o /tmp/nvm.sh && bash /tmp/nvm.sh
 
-                if [ -z "$NODE_VERSION" ]; then
-                    echo -e "\n \n$version_not_found\n \n"
-                    NODE_VERSION="18"
-                fi
+            # NVM Initialization
+            source "/home/container/.nvm/nvm.sh"
+            NVM_DIR=/home/container/.nvm
+            NODE_VERSION="$(cat logs/nodejs_version)"
 
-                nvm install v$NODE_VERSION
-                nvm use v$NODE_VERSION
-
-                export NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
-                export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
-                export NVM_DIR=$NVM_DIR
-                export NODE_VERSION=$NODE_VERSION
-            fi
+            export NODE_PATH=$NVM_DIR/versions/node/v$NODE_VERSION/lib/node_modules
+            export PATH="$PATH":/home/container/.nvm/versions/node/v$NODE_VERSION/bin
+            export NVM_DIR=$NVM_DIR
+            export NODE_VERSION=$NODE_VERSION
         fi
     fi
 fi
@@ -139,7 +118,7 @@ start="$(cat logs/start-conf)"
 
 # Verifica se o conteúdo é um arquivo existente ou um comando npm run ou node
 if [ -f "$start" ] || [[ "$start" == "npm run"* ]] || [[ "$start" == "node"* ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Bot4All/launch.sh)
+    curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Bot4All/launch.sh" -o /tmp/launch.sh && bash /tmp/launch.sh
 else
     echo -e "\n \n$start_file_not_found\n"
     echo -e "$change_start_command_prompt\n \n"

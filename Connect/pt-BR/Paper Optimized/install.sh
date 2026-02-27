@@ -4,7 +4,8 @@
 #
 # Server Files: /mnt/server
 if [ -f "${SERVER_JARFILE}" ]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Paper%20Optimized/launch.sh)
+    curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Paper%20Optimized/launch.sh" -o /tmp/launch.sh
+    bash /tmp/launch.sh
 else
     PROJECT=paper
     if [ -n "${DL_PATH}" ]; then

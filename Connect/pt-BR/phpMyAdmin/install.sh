@@ -97,7 +97,7 @@ if [ -f ".yarnrc" ]; then
 fi
 
 if [[ -f "./logs/phpMyAdmin_instalado" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/phpMyAdmin/version.sh)
+    curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/phpMyAdmin/version.sh" -o /tmp/version.sh && bash /tmp/version.sh
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/phpMyAdmin/launch.sh)
 else
     echo "Algo muito errado aconteceu."

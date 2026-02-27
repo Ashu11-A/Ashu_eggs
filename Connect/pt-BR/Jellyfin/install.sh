@@ -29,7 +29,8 @@ if [ ! -d "./tmp" ]; then
 fi
 
 if [[ -f "./jellyfin/jellyfin.dll" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Jellyfin/start.sh)
+    curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/Jellyfin/start.sh" -o /tmp/start.sh
+    bash /tmp/start.sh
 else
     echo "❌ Jellyfin not installed, try change version! and reinstall"
 

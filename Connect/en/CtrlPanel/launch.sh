@@ -37,7 +37,8 @@ echo "🟢  Successfully initialized ${MGM}..."
 echo "🟢  Starting controlpanel worker..."
 nohup php /home/container/controlpanel/artisan queue:work --sleep=3 --tries=3 >/dev/null 2>&1 &
 echo "🟢  Starting cron..."
-nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/CtrlPanel/cron.sh) >/dev/null 2>&1 &
+curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/CtrlPanel/cron.sh" -o /tmp/cron.sh
+nohup bash /tmp/cron.sh >/dev/null 2>&1 &
 
 echo "📃  Available Commands: ${bold}${lightblue}composer${normal}, ${bold}${lightblue}clear${normal}, ${bold}${lightblue}mysql ${bold}${lightblue}migrate${normal}, ${bold}${lightblue}reinstall${normal}. Use ${bold}${lightblue}help${normal} to learn more..."
 

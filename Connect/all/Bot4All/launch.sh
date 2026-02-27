@@ -35,7 +35,7 @@ printf "$running\n" "$MGM"
 printf "$available_commands\n" "${bold}${lightblue}help ${normal}, ${bold}${lightblue}start ${normal}, ${bold}${lightblue}show ${normal}, ${bold}${lightblue}version ${normal}, ${bold}${lightblue}npm ${normal}[your code], ${bold}${lightblue}node ${normal}[your code], ${bold}${lightblue}lang${normal}."
 
 echo -e "\n \n$initializing_anti_crash\n \n"
-nohup bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Bot4All/nobreak.sh) &
+nohup curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Bot4All/nobreak.sh" -o /tmp/nobreak.sh && bash /tmp/nobreak.sh &
 
 while read -r line; do
     if [[ "$line" == "help" ]]; then
@@ -61,13 +61,9 @@ while read -r line; do
         echo -e "\n \n$command_executed\n \n"
     elif [[ "$line" == *"version"* ]]; then
         if [ -z "$NVM_STATUS" ] || [ "$NVM_STATUS" = "1" ]; then
-            if [[ -d ".nvm" ]]; then
-                bash <(curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvmSelect.sh")
-                exit
-                exit
-            else
-                echo -e "\n \n$nvm_not_installed\n \n"
-            fi
+            curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/nvm.sh" -o /tmp/nvm.sh && bash /tmp/nvm.sh --select
+            exit
+            exit
         else
             echo -e "\n \n$nvm_disabled\n \n"
         fi

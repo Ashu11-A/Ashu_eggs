@@ -277,7 +277,7 @@ else
 fi
 
 if [[ -f "./logs/ctrlpanel_instalado" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/CtrlPanel/version.sh)
+    curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/CtrlPanel/version.sh" -o /tmp/version.sh && bash /tmp/version.sh
     bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/pt-BR/CtrlPanel/launch.sh)
 else
     echo "Algo muito errado aconteceu."

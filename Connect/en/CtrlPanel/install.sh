@@ -274,8 +274,10 @@ else
 fi
 
 if [[ -f "./logs/ctrlpanel_installed" ]]; then
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/CtrlPanel/version.sh)
-    bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/CtrlPanel/launch.sh)
+    curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/CtrlPanel/version.sh" -o /tmp/version.sh
+    bash /tmp/version.sh
+    curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/CtrlPanel/launch.sh" -o /tmp/launch.sh
+    bash /tmp/launch.sh
 else
     echo "Something very wrong happened."
 fi

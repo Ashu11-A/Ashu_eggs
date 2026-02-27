@@ -2,4 +2,5 @@
 lolcat=/usr/games/lolcat
 echo -e "\n \n$(figlet -c -f slant -t -k "Egg CtrlPanel")\n                                         by Ashu" | $lolcat
 
-bash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/CtrlPanel/install.sh) | tee logs/terminal.log
+curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/en/CtrlPanel/install.sh" -o /tmp/install.sh
+bash /tmp/install.sh | tee logs/terminal.log
