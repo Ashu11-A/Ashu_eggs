@@ -4,7 +4,7 @@ export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang
 curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh" -o /tmp/loadLang.sh
 source /tmp/loadLang.sh
 
-echo "${start_banner_name}" | figlet -c -f slant -t -k | lolcat
+echo "Paneldactyl" | figlet -c -f slant -t -k | lolcat
 
 curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/update.sh" | bash -s -- update "start.sh" "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Paneldactyl/start.sh" "${start_update_message}" "diff"
 

@@ -1,5 +1,9 @@
 #!/bin/bash
 
+export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang/paneldactyl.conf"
+curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh" -o /tmp/loadLang.sh
+source /tmp/loadLang.sh
+
 # (painel -> panel)
 if [[ -d "/home/container/painel" ]]; then
   echo "${migrating_dir_painel_to_panel}"
