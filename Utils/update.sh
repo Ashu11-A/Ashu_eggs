@@ -33,7 +33,14 @@ update_script() {
             mv "$TMP_FILE" "$SCRIPT_PATH"
             chmod +x "$SCRIPT_PATH"
             [[ -n "$MSG" ]] && echo "✅ $MSG"
-            exec "$SCRIPT_PATH" "${ARGS[@]}"
+
+            # Ensure the path is executable by prefixing with ./ if it's a relative path
+            local EXEC_PATH="$SCRIPT_PATH"
+            if [[ "$EXEC_PATH" != /* && "$EXEC_PATH" != ./* ]]; then
+                EXEC_PATH="./$EXEC_PATH"
+            fi
+
+            exec "$EXEC_PATH" "${ARGS[@]}"
         fi
         rm -f "$TMP_FILE"
     else
