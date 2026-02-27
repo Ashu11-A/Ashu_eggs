@@ -139,18 +139,18 @@ EOF
 fi
 
 # 4. Configuração de Nginx e PHP-FPM
-if [[ ! -d "nginx" ]] || [[ ! -d "php-fpm" ]]; then
+if [[ ! -d "nginx/nginx.conf" ]] || [[ ! -d "php-fpm/php.ini" ]]; then
+  rm -rf ./temp_config
   git clone --quiet https://github.com/Ashu11-A/nginx ./temp_config
   
-  if [[ ! -d "nginx" ]]; then
-    cp -r ./temp_config/nginx ./
-    curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Paneldactyl/default.conf" -o ./nginx/conf.d/default.conf
-    sed -i "s/listen.*/listen ${SERVER_PORT};/g" nginx/conf.d/default.conf
-  fi
+  cp -rf ./temp_config/nginx ./
+  cp -rf ./temp_config/php-fpm ./
+  cp -rf ./temp_config/logs ./
 
-  if [[ ! -d "php-fpm" ]]; then
-    cp -r ./temp_config/php-fpm ./
-    cp -r ./temp_config/logs ./
+  curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Paneldactyl/default.conf" -o ./nginx/conf.d/default.conf
+  sed -i "s/listen.*/listen ${SERVER_PORT};/g" nginx/conf.d/default.conf
+
+  if ! grep -q "env\[PATH\]" php-fpm/php-fpm.conf; then
     echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> php-fpm/php-fpm.conf
   fi
 
