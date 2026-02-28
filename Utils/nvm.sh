@@ -1,7 +1,8 @@
 #!/bin/bash
-# shellcheck source=/dev/null
+
 export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/refs/heads/main/Lang/nvm.conf"
-source <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/refs/heads/main/Utils/lang.sh)
+curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/lang.sh" -o /tmp/lang.sh
+source /tmp/lang.sh
 
 NVM_DIR="${NVM_DIR:-/home/container/.nvm}"
 export NVM_VERSION="0.40.1"

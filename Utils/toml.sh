@@ -9,6 +9,7 @@
 #   $2: Chave a ser alterada (ex: "auth.token" ou "port")
 #   $3: Novo valor a ser definido (ex: "novo-token-secreto")
 # ==============================================================================
+
 function set_toml_value() {
   local file="$1"
   local full_key="$2"

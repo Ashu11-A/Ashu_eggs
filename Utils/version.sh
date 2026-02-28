@@ -1,5 +1,8 @@
+#!/bin/bash
+
 export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/refs/heads/main/Lang/version.conf"
-source <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/refs/heads/main/Utils/lang.sh)
+curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/lang.sh" -o /tmp/lang.sh
+source /tmp/lang.sh
 
 # Usando as variáveis de tradução
 printf "$version_script\n" "$version_script_egg"
