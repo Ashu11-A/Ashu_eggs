@@ -15,7 +15,6 @@ declare -a _legacy_gc=(
     "-XX:MaxGCPauseMillis=30"
     "-XX:GCPauseIntervalMillis=150"
     "-XX:-UseGCOverheadLimit"
-    "-XX:+UseBiasedLocking"
     "-XX:SurvivorRatio=8"
     "-XX:TargetSurvivorRatio=90"
     "-Dfml.ignorePatchDiscrepancies=true"
