@@ -6,8 +6,8 @@ if [[ ! -f "logs/language.conf" ]]; then
 fi
 
 export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang/valkey.conf"
-curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh -o /tmp/loadLang.sh
-source /tmp/loadLang.sh
+curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/lang.sh -o /tmp/lang.sh
+source /tmp/lang.sh
 
 if [[ -f "valkey.conf" ]]; then
     curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Valkey/launch.sh -o launch.sh

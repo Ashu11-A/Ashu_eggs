@@ -11,8 +11,8 @@ if [[ ! -f "logs/language.conf" ]]; then
 fi
 
 export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang/terraria.conf"
-curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh" -o /tmp/loadLang.sh
-source /tmp/loadLang.sh
+curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/lang.sh" -o /tmp/lang.sh
+source /tmp/lang.sh
 
 if [ -f "./TerrariaServer.exe" ]; then
     curl -s "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Terraria/launch.sh" -o launch.sh

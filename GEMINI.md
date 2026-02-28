@@ -17,7 +17,7 @@ Ashu_eggs uses a modular architecture to simplify the maintenance and update pro
 - **`Eggs/`**: Contains the JSON definitions for the eggs, organized by language (`en`, `pt-BR`) and category (`games`, `proxies`, `software`).
 - **`Connect/`**: Contains the core Bash scripts that the eggs execute during installation and runtime.
 - **`Lang/`**: Localization files (`.conf`) containing translated strings for the scripts.
-- **`Utils/`**: Shared utility scripts for common tasks (e.g., `loadLang.sh`, `toml.sh`).
+- **`Utils/`**: Shared utility scripts for common tasks (e.g., `lang.sh`, `toml.sh`).
 - **`Archived/`**: Repository for older or deprecated eggs and scripts.
 
 ## 🛠️ Development Workflow
@@ -25,14 +25,14 @@ Ashu_eggs uses a modular architecture to simplify the maintenance and update pro
 ### Adding/Updating an Egg
 1.  **JSON Definition**: Create or modify the egg JSON in `Eggs/`. Ensure the `installation` and `startup` commands point to the correct scripts in `Connect/` (usually via `curl` to the `main` branch).
 2.  **Scripts**: Implement or update the installation and startup logic in `Connect/`.
-3.  **Localization**: Add or update strings in the relevant `Lang/*.conf` files. Use `Utils/loadLang.sh` in your scripts to load these strings.
+3.  **Localization**: Add or update strings in the relevant `Lang/*.conf` files. Use `Utils/lang.sh` in your scripts to load these strings.
 4.  **Testing**: Import the JSON into a Pterodactyl panel and verify the installation and startup process.
 
 ### Script Conventions
 - **Architecture Detection**: Always detect the architecture (`uname -m`) to support both AMD64 and ARM64 where possible.
 - **Version Management**: Use environment variables (like `VERSION` or `SERVICE_VERSION`) to allow users to specify which version to install. Implement version normalization (e.g., removing dots) if the service requires it.
 - **User Feedback**: Use localized strings for all output to maintain multi-language support.
-- **Auxiliary Scripts**: Save auxiliary or temporary scripts (like `loadLang.sh`) in `/tmp/` to avoid cluttering the server's root directory (e.g., `curl ... -o /tmp/lang.sh`).
+- **Auxiliary Scripts**: Save auxiliary or temporary scripts (like `lang.sh`) in `/tmp/` to avoid cluttering the server's root directory (e.g., `curl ... -o /tmp/lang.sh`).
 - **Modular Architecture (Terraria Standard)**: For complex services, split the logic into separate scripts:
     - **`start.sh`**: The main entry point. Sets up the environment (i18n), checks for the existence of the executable, and delegates to either `install.sh` (if missing) or `launch.sh` (if present).
     - **`install.sh`**: Handles binary acquisition, extraction, and initial configuration.

@@ -1,8 +1,8 @@
 #!/bin/bash
 
 export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang/paneldactyl.conf"
-curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/loadLang.sh" -o /tmp/loadLang.sh
-source /tmp/loadLang.sh
+curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/lang.sh" -o /tmp/lang.sh
+source /tmp/lang.sh
 
 php_binary=$(command -v php || echo "/usr/bin/php")
 nginx_binary=$(command -v nginx || echo "/usr/sbin/nginx")
