@@ -1,19 +1,13 @@
-#!/bin/ash
+#!/bin/bash
 
-MCS=$([ "${METRICS}" == "1" ] && echo "--metrics-brief" || echo "")
-CPU_ON=$([ "${CPU}" == "1" ] && echo "--cpu ${CPU_CORES}" || echo "") 
-CPU_RAM=$([ "${CPU_MEMORY}" == "1" ] && echo "--vm ${CPU_CORES} --vm-bytes ${MEMORY}M" || echo "")
-TIME=$([ "${TIMEOUT}" == "0" ] && echo "" || echo "--timeout ${TIMEOUT}s")
+curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/update.sh | bash -s -- update "$0" "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Stress/start.sh" "Updated successfully. Re-executing..." "diff" "$@"
 
-echo "⚙️ Script Version: 1.2"
+export LANG_PATH="https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Lang/stress.conf"
+curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/lang.sh" -o /tmp/lang.sh
+source /tmp/lang.sh
 
-echo "✓ Updating the script..."
-curl -o start.sh https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Stress/start.sh
+printf "${script_version}\n" "1.2"
+echo "$updating"
 
-if [ "${CONSOLE}" == "1" ]; then
-    echo "Executing: stress-ng ${CONSOLE_OCC}"
-    stress-ng ${CONSOLE_OCC}
-else
-    echo "Executing: stress-ng ${CPU_ON} ${CPU_RAM} ${MCS} ${TIME}"
-    stress-ng ${CPU_ON} ${CPU_RAM} ${MCS} ${TIME}
-fi
+curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Stress/launch.sh" -o launch.sh
+exec bash launch.sh
