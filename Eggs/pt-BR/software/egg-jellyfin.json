@@ -7,24 +7,26 @@
     "exported_at": "2025-11-29T15:16:43-03:00",
     "name": "Jellyfin",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Jellyfin\r\n\u2699\ufe0f Vers\u00e3o: 2.3\r\n\u2753 Oque \u00e9: resumindo, voc\u00ea pode ter sua pr\u00f3pria Netflix. Jellyfin permite que voc\u00ea colete, gerencie e transmita sua m\u00eddia. Execute o servidor Jellyfin em seu sistema e tenha acesso ao principal sistema de entretenimento de software livre.\r\n\ud83d\udc1b Bugs corrigidos\/changelogs:\r\n\u2022 2.2: Agora o Egg n\u00e3o \u00e9 dependente de atualiza\u00e7\u00f5es, tudo \u00e9 feito por scripts, o ocasiona na sua melhor manuten\u00e7\u00e3o.\r\n\u2022 2.3: Adicionando novas vers\u00f5es Docker\r\n\u26a0\ufe0f Aten\u00e7\u00e3o: Se na primeira inicializa\u00e7\u00e3o haver uma tela de Selecionar Servidor, apague o servidor existente l\u00e1, e recarregue a p\u00e1gina.\r\n\ud83d\udc51 Autor: Ashu\r\n\ud83d\udc40 Verifique por atualiza\u00e7\u00f5es: https:\/\/github.com\/Ashu11-A\/Ashu_eggs",
+    "description": "💎 Egg: Jellyfin\r\n⚙️ Versão: 2.4\r\n❓ Oque é: resumindo, você pode ter sua própria Netflix. Jellyfin permite que você colete, gerencie e transmita sua mídia. Execute o servidor Jellyfin em seu sistema e tenha acesso ao principal sistema de entretenimento de software livre.\r\n🐛 Bugs corrigidos/changelogs:\r\n• 2.2: Agora o Egg não é dependente de atualizações, tudo é feito por scripts, o ocasiona na sua melhor manutenção.\r\n• 2.3: Adicionando novas versões Docker\r\n• 2.4: Script unificado em Connect/all, imagem serverless (binário nativo, sem .NET) e imagem .NET 10\r\n⚠️ Atenção: Se na primeira inicialização haver uma tela de Selecionar Servidor, apague o servidor existente lá, e recarregue a página.\r\n👑 Autor: Ashu\r\n👀 Verifique por atualizações: https://github.com/Ashu11-A/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "latest": "ghcr.io\/ashu11-a\/software:jellyfin",
-        "9.0 ASP.NET": "ghcr.io\/ashu11-a\/jellyfin:9",
-        "8.0 ASP.NET": "ghcr.io\/ashu11-a\/jellyfin:8"
+        "serverless": "ghcr.io/ashu11-a/jellyfin:serverless",
+        "latest": "ghcr.io/ashu11-a/software:jellyfin",
+        "10.0 ASP.NET": "ghcr.io/ashu11-a/jellyfin:10",
+        "9.0 ASP.NET": "ghcr.io/ashu11-a/jellyfin:9",
+        "8.0 ASP.NET": "ghcr.io/ashu11-a/jellyfin:8"
     },
     "file_denylist": [],
-    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/Jellyfin\/install.sh)",
+    "startup": "./start.sh",
     "config": {
-        "files": "{\r\n    \"\/.config\/jellyfin\/network.xml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"<HttpServerPortNumber>\": \"<HttpServerPortNumber>{{server.build.default.port}}<\/HttpServerPortNumber>\",\r\n            \"<PublicPort>\": \"<PublicPort>{{server.build.default.port}}<\/PublicPort>\"\r\n        }\r\n    },\r\n    \"nginx\/conf.d\/default.conf\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"listen\": \"listen {{server.build.default.port}};\"\r\n        }\r\n    }\r\n}",
+        "files": "{\r\n    \"/.config/jellyfin/network.xml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"<HttpServerPortNumber>\": \"<HttpServerPortNumber>{{server.build.default.port}}</HttpServerPortNumber>\",\r\n            \"<PublicPort>\": \"<PublicPort>{{server.build.default.port}}</PublicPort>\"\r\n        }\r\n    },\r\n    \"nginx/conf.d/default.conf\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"listen\": \"listen {{server.build.default.port}};\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Jellyfin version\"\r\n}",
         "logs": "{}",
         "stop": "^^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\napt update\r\napt install -y curl wget unzip git tar ca-certificates jq\r\nmkdir -p logs\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server || exit\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/pt-BR\/Jellyfin\/install.sh)",
+            "script": "#!/bin/bash\r\napt update\r\napt install -y curl wget unzip git tar ca-certificates jq\r\nmkdir -p /mnt/server\r\ncd /mnt/server\r\ncurl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Jellyfin/start.sh -o start.sh\r\nchmod a+x ./start.sh\r\n./start.sh",
             "container": "debian:13-slim",
             "entrypoint": "bash"
         }
@@ -32,7 +34,7 @@
     "variables": [
         {
             "name": "VERSION",
-            "description": "Vers\u00e3o do Jellyfin.\r\n\r\nEx: 10.11.3 | latest | beta",
+            "description": "Versão da build portátil do Jellyfin para baixar.\r\nEx: 10.11.3 | latest | beta\r\n\r\nUsada apenas pelas imagens ASP.NET. Ignorada na imagem serverless, pois o Jellyfin já vem instalado nela.",
             "env_variable": "VERSION",
             "default_value": "latest",
             "user_viewable": true,

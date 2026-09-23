@@ -7,24 +7,26 @@
     "exported_at": "2025-11-29T15:16:43-03:00",
     "name": "Jellyfin",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "\ud83d\udc8e Egg: Jellyfin\r\n\u2699\ufe0f Version: 2.3\r\n\u2753 What it is: in short, you can have your own Netflix. Jellyfin allows you to collect, manage, and stream your media. Run the Jellyfin server on your system and gain access to the leading free software entertainment system.\r\n\ud83d\udc1b Bug fixes\/changelogs:\r\n\u2022 2.2: Now the Egg is not dependent on updates, everything is done via scripts, resulting in better maintenance.\r\n\u2022 2.3: Added new Docker versions\r\n\u26a0\ufe0f Attention: If a Select Server screen appears on the first startup, delete the existing server there, and reload the page.\r\n\ud83d\udc51 Author: Ashu\r\n\ud83d\udc40 Check for updates: [https:\/\/github.com\/Ashu11-A\/Ashu_eggs](https:\/\/github.com\/Ashu11-A\/Ashu_eggs)",
+    "description": "💎 Egg: Jellyfin\r\n⚙️ Version: 2.4\r\n❓ What it is: in short, you can have your own Netflix. Jellyfin allows you to collect, manage, and stream your media. Run the Jellyfin server on your system and gain access to the leading free software entertainment system.\r\n🐛 Bug fixes/changelogs:\r\n• 2.2: Now the Egg is not dependent on updates, everything is done via scripts, resulting in better maintenance.\r\n• 2.3: Added new Docker versions\r\n• 2.4: Unified Connect/all script, serverless image (native binary, no .NET) and .NET 10 image\r\n⚠️ Attention: If a Select Server screen appears on the first startup, delete the existing server there, and reload the page.\r\n👑 Author: Ashu\r\n👀 Check for updates: [https://github.com/Ashu11-A/Ashu_eggs](https://github.com/Ashu11-A/Ashu_eggs)",
     "features": null,
     "docker_images": {
-        "latest": "ghcr.io\/ashu11-a\/software:jellyfin",
-        "9.0 ASP.NET": "ghcr.io\/ashu11-a\/jellyfin:9",
-        "8.0 ASP.NET": "ghcr.io\/ashu11-a\/jellyfin:8"
+        "serverless": "ghcr.io/ashu11-a/jellyfin:serverless",
+        "latest": "ghcr.io/ashu11-a/software:jellyfin",
+        "10.0 ASP.NET": "ghcr.io/ashu11-a/jellyfin:10",
+        "9.0 ASP.NET": "ghcr.io/ashu11-a/jellyfin:9",
+        "8.0 ASP.NET": "ghcr.io/ashu11-a/jellyfin:8"
     },
     "file_denylist": [],
-    "startup": "bash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/Jellyfin\/install.sh)",
+    "startup": "./start.sh",
     "config": {
-        "files": "{\r\n    \"\/.config\/jellyfin\/network.xml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"<HttpServerPortNumber>\": \"<HttpServerPortNumber>{{server.build.default.port}}<\/HttpServerPortNumber>\",\r\n            \"<PublicPort>\": \"<PublicPort>{{server.build.default.port}}<\/PublicPort>\"\r\n        }\r\n    },\r\n    \"nginx\/conf.d\/default.conf\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"listen\": \"listen {{server.build.default.port}};\"\r\n        }\r\n    }\r\n}",
+        "files": "{\r\n    \"/.config/jellyfin/network.xml\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"<HttpServerPortNumber>\": \"<HttpServerPortNumber>{{server.build.default.port}}</HttpServerPortNumber>\",\r\n            \"<PublicPort>\": \"<PublicPort>{{server.build.default.port}}</PublicPort>\"\r\n        }\r\n    },\r\n    \"nginx/conf.d/default.conf\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"listen\": \"listen {{server.build.default.port}};\"\r\n        }\r\n    }\r\n}",
         "startup": "{\r\n    \"done\": \"Jellyfin version\"\r\n}",
         "logs": "{}",
         "stop": "^^C"
     },
     "scripts": {
         "installation": {
-            "script": "#!\/bin\/bash\r\napt update\r\napt install -y curl wget unzip git tar ca-certificates jq\r\nmkdir -p logs\r\nmkdir -p \/mnt\/server\r\ncd \/mnt\/server || exit\r\nbash <(curl -s https:\/\/raw.githubusercontent.com\/Ashu11-A\/Ashu_eggs\/main\/Connect\/en\/Jellyfin\/install.sh)",
+            "script": "#!/bin/bash\r\napt update\r\napt install -y curl wget unzip git tar ca-certificates jq\r\nmkdir -p /mnt/server\r\ncd /mnt/server\r\ncurl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Jellyfin/start.sh -o start.sh\r\nchmod a+x ./start.sh\r\n./start.sh",
             "container": "debian:13-slim",
             "entrypoint": "bash"
         }
@@ -32,7 +34,7 @@
     "variables": [
         {
             "name": "VERSION",
-            "description": "Jellyfin version.\r\n\r\nEx: 10.11.3 | latest | beta",
+            "description": "Portable Jellyfin build version to download.\r\nEx: 10.11.3 | latest | beta\r\n\r\nOnly used by the ASP.NET images. Ignored on the serverless image, which already ships Jellyfin.",
             "env_variable": "VERSION",
             "default_value": "latest",
             "user_viewable": true,
