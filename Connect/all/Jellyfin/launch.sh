@@ -15,7 +15,7 @@ printf "${script_version:-Script Version: %s}\n" "$SCRIPT_VERSION"
 
 mkdir -p logs tmp data cache .config/jellyfin logs/jellyfin
 
-if [[ ! -f "./nginx/nginx.conf" || ! -f "./nginx/conf.d/default.conf" || ! -f "./.config/jellyfin/network.xml" ]]; then
+if [[ ! -f "./.config/jellyfin/network.xml" ]]; then
     bash <(curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Jellyfin/install.sh)
 fi
 
@@ -25,7 +25,8 @@ if [[ "$BASE_DIR" == "/mnt/server" ]]; then
 fi
 
 if [[ -n "${SERVER_PORT:-}" ]]; then
-    [[ -f "./nginx/conf.d/default.conf" ]] && sed -i -e "s/listen.*/listen ${SERVER_PORT};/g" nginx/conf.d/default.conf
+    sed -i -e "s|<HttpServerPortNumber>.*</HttpServerPortNumber>|<HttpServerPortNumber>${SERVER_PORT}</HttpServerPortNumber>|g" \
+        -e "s|<PublicPort>.*</PublicPort>|<PublicPort>${SERVER_PORT}</PublicPort>|g" .config/jellyfin/network.xml
 fi
 
 echo "${permissions:-Setting file permissions...}"
@@ -44,13 +45,6 @@ if [[ -n "$FFMPEG_BIN" ]]; then
 else
     echo "${ffmpeg_missing:-FFmpeg not found, starting without --ffmpeg.}"
     FFMPEG_ARG=()
-fi
-
-echo "${starting_nginx:-Starting Nginx...}"
-if [[ -f "./nginx/nginx.conf" ]]; then
-    nohup /usr/sbin/nginx -c "$BASE_DIR/nginx/nginx.conf" -p "$BASE_DIR/" 2>&1 &
-else
-    echo "⚠️ nginx/nginx.conf not found, skipping Nginx."
 fi
 
 WEBDIR=""

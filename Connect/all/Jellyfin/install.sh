@@ -66,31 +66,6 @@ echo "${setting_up_env:-Setting up environment...}"
 echo "${preparing_dirs:-Creating directories...}"
 mkdir -p logs tmp data cache .config/jellyfin
 
-if [[ ! -f "./nginx/nginx.conf" ]]; then
-    echo "${nginx_setup:-Configuring Nginx...}"
-    rm -rf ./temp
-    git clone --quiet https://github.com/Ashu11-A/nginx ./temp
-    cp -r ./temp/nginx ./
-    rm -rf ./temp
-    rm -rf ./webroot/*
-    rm -f ./nginx/conf.d/default.conf
-else
-    echo "${nginx_found:-Nginx already configured.}"
-fi
-
-if [[ ! -f "./nginx/conf.d/default.conf" ]]; then
-    echo "${nginx_setup:-Configuring Nginx...}"
-    (
-        cd nginx/conf.d/ || exit
-        rm -f default.conf
-        curl -sSL -O https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Jellyfin/default.conf
-    )
-fi
-
-if [[ -n "${SERVER_PORT:-}" && -f "./nginx/conf.d/default.conf" ]]; then
-    sed -i -e "s/listen.*/listen ${SERVER_PORT};/g" nginx/conf.d/default.conf
-fi
-
 if [[ ! -f "./.config/jellyfin/network.xml" ]]; then
     cat <<'EOF' > .config/jellyfin/network.xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -124,6 +99,11 @@ else
     echo "${network_xml_exists:-network.xml already exists.}"
 fi
 
+if [[ -n "${SERVER_PORT:-}" ]]; then
+    sed -i -e "s|<HttpServerPortNumber>.*</HttpServerPortNumber>|<HttpServerPortNumber>${SERVER_PORT}</HttpServerPortNumber>|g" \
+        -e "s|<PublicPort>.*</PublicPort>|<PublicPort>${SERVER_PORT}</PublicPort>|g" .config/jellyfin/network.xml
+fi
+
 if [[ "$HAS_NATIVE_JELLYFIN" == "1" ]]; then
     echo "${standalone_detected:-Standalone Jellyfin detected.}"
     rm -rf ./jellyfin
@@ -136,7 +116,7 @@ fi
 NATIVE_JELLYFIN_PATH="no"
 [[ "$HAS_NATIVE_JELLYFIN" == "1" ]] && NATIVE_JELLYFIN_PATH="$(command -v jellyfin)"
 cat <<EOF > ./logs/install_log.txt
-Mode: install (nginx + dirs + network.xml + portable unless standalone)
+Mode: install (dirs + network.xml + portable unless standalone)
 Standalone: ${NATIVE_JELLYFIN_PATH}
 Portable: $([[ -f ./jellyfin/jellyfin.dll || -x ./jellyfin/jellyfin ]] && echo "yes" || echo "no")
 EOF
