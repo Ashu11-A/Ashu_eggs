@@ -26,7 +26,7 @@
     },
     "scripts": {
         "installation": {
-            "script": "#!/bin/bash\r\napt update\r\napt install -y curl wget unzip git tar ca-certificates jq\r\nmkdir -p /mnt/server\r\ncd /mnt/server\r\nbash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Jellyfin/start.sh)",
+            "script": "#!/bin/bash\r\napt update\r\napt install -y curl wget unzip git tar xz-utils ca-certificates jq\r\nmkdir -p /mnt/server\r\ncd /mnt/server\r\nbash <(curl -s https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Jellyfin/start.sh)",
             "container": "debian:13-slim",
             "entrypoint": "bash"
         }

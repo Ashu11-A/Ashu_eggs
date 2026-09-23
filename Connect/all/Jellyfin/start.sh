@@ -9,5 +9,5 @@ mkdir -p logs
 source <(curl -sSL "https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Utils/lang.sh") || true
 set -a
 
-bash <(curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Jellyfin/install.sh)
+bash <(curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Jellyfin/install.sh) || exit 1
 bash <(curl -sSL https://raw.githubusercontent.com/Ashu11-A/Ashu_eggs/main/Connect/all/Jellyfin/launch.sh)

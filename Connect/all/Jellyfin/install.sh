@@ -107,10 +107,12 @@ fi
 if [[ "$HAS_NATIVE_JELLYFIN" == "1" ]]; then
     echo "${standalone_detected:-Standalone Jellyfin detected.}"
     rm -rf ./jellyfin
-elif [[ ! -f "./jellyfin/jellyfin.dll" && ! -x "./jellyfin/jellyfin" ]]; then
+elif [[ -f "./jellyfin/jellyfin.dll" || -x "./jellyfin/jellyfin" ]]; then
+    echo "${dotnet_detected:-Portable Jellyfin install found.}"
+elif command -v dotnet >/dev/null 2>&1; then
     download_portable || exit 1
 else
-    echo "${dotnet_detected:-Portable Jellyfin install found.}"
+    echo "${base_only:-Base setup only, no Jellyfin runtime in this container.}"
 fi
 
 NATIVE_JELLYFIN_PATH="no"
