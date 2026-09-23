@@ -76,9 +76,12 @@ if [[ ! -f "./.config/jellyfin/network.xml" ]]; then
 <BaseUrl />
 <PublicHttpsPort>8920</PublicHttpsPort>
 <HttpServerPortNumber>8096</HttpServerPortNumber>
+<InternalHttpPort>8096</InternalHttpPort>
 <HttpsPortNumber>8920</HttpsPortNumber>
+<InternalHttpsPort>8920</InternalHttpsPort>
 <EnableHttps>false</EnableHttps>
 <PublicPort>8096</PublicPort>
+<PublicHttpPort>8096</PublicHttpPort>
 <EnableIPV6>false</EnableIPV6>
 <EnableIPV4>true</EnableIPV4>
 <IgnoreVirtualInterfaces>true</IgnoreVirtualInterfaces>
@@ -101,7 +104,11 @@ fi
 
 if [[ -n "${SERVER_PORT:-}" ]]; then
     sed -i -e "s|<HttpServerPortNumber>.*</HttpServerPortNumber>|<HttpServerPortNumber>${SERVER_PORT}</HttpServerPortNumber>|g" \
-        -e "s|<PublicPort>.*</PublicPort>|<PublicPort>${SERVER_PORT}</PublicPort>|g" .config/jellyfin/network.xml
+        -e "s|<InternalHttpPort>.*</InternalHttpPort>|<InternalHttpPort>${SERVER_PORT}</InternalHttpPort>|g" \
+        -e "s|<PublicPort>.*</PublicPort>|<PublicPort>${SERVER_PORT}</PublicPort>|g" \
+        -e "s|<PublicHttpPort>.*</PublicHttpPort>|<PublicHttpPort>${SERVER_PORT}</PublicHttpPort>|g" .config/jellyfin/network.xml
+    grep -q "<InternalHttpPort>" .config/jellyfin/network.xml || sed -i "s|</NetworkConfiguration>|<InternalHttpPort>${SERVER_PORT}</InternalHttpPort>\n</NetworkConfiguration>|" .config/jellyfin/network.xml
+    grep -q "<PublicHttpPort>" .config/jellyfin/network.xml || sed -i "s|</NetworkConfiguration>|<PublicHttpPort>${SERVER_PORT}</PublicHttpPort>\n</NetworkConfiguration>|" .config/jellyfin/network.xml
 fi
 
 if [[ "$HAS_NATIVE_JELLYFIN" == "1" ]]; then

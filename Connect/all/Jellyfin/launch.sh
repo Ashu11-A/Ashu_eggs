@@ -26,7 +26,11 @@ fi
 
 if [[ -n "${SERVER_PORT:-}" ]]; then
     sed -i -e "s|<HttpServerPortNumber>.*</HttpServerPortNumber>|<HttpServerPortNumber>${SERVER_PORT}</HttpServerPortNumber>|g" \
-        -e "s|<PublicPort>.*</PublicPort>|<PublicPort>${SERVER_PORT}</PublicPort>|g" .config/jellyfin/network.xml
+        -e "s|<InternalHttpPort>.*</InternalHttpPort>|<InternalHttpPort>${SERVER_PORT}</InternalHttpPort>|g" \
+        -e "s|<PublicPort>.*</PublicPort>|<PublicPort>${SERVER_PORT}</PublicPort>|g" \
+        -e "s|<PublicHttpPort>.*</PublicHttpPort>|<PublicHttpPort>${SERVER_PORT}</PublicHttpPort>|g" .config/jellyfin/network.xml
+    grep -q "<InternalHttpPort>" .config/jellyfin/network.xml || sed -i "s|</NetworkConfiguration>|<InternalHttpPort>${SERVER_PORT}</InternalHttpPort>\n</NetworkConfiguration>|" .config/jellyfin/network.xml
+    grep -q "<PublicHttpPort>" .config/jellyfin/network.xml || sed -i "s|</NetworkConfiguration>|<PublicHttpPort>${SERVER_PORT}</PublicHttpPort>\n</NetworkConfiguration>|" .config/jellyfin/network.xml
 fi
 
 echo "${permissions:-Setting file permissions...}"
