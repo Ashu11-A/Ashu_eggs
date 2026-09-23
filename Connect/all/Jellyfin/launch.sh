@@ -53,12 +53,24 @@ else
     echo "⚠️ nginx/nginx.conf not found, skipping Nginx."
 fi
 
+WEBDIR=""
+for candidate in "/usr/share/jellyfin/web" "/usr/lib/jellyfin/bin/jellyfin-web"; do
+    if [[ -d "$candidate" && -n "$(ls -A "$candidate" 2>/dev/null)" ]]; then
+        WEBDIR="$candidate"
+        break
+    fi
+done
+
 JELLY_ARGS=(
     --datadir "$BASE_DIR/data"
     --configdir "$BASE_DIR/.config/jellyfin"
     --cachedir "$BASE_DIR/cache"
     --logdir "$BASE_DIR/logs/jellyfin"
 )
+if [[ -n "$WEBDIR" ]]; then
+    printf "${webdir_using:-Using web client: %s}\n" "$WEBDIR"
+    JELLY_ARGS+=(--webdir "$WEBDIR")
+fi
 
 if [[ "$HAS_NATIVE_JELLYFIN" == "1" ]]; then
     echo "${starting_standalone:-Starting Jellyfin (standalone)...}"
