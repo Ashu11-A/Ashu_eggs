@@ -7,10 +7,10 @@
     "exported_at": "2025-11-29T15:16:43-03:00",
     "name": "Jellyfin",
     "author": "Matheusn.biolowons@gmail.com",
-    "description": "💎 Egg: Jellyfin\r\n⚙️ Versão: 2.4\r\n❓ Oque é: resumindo, você pode ter sua própria Netflix. Jellyfin permite que você colete, gerencie e transmita sua mídia. Execute o servidor Jellyfin em seu sistema e tenha acesso ao principal sistema de entretenimento de software livre.\r\n🐛 Bugs corrigidos/changelogs:\r\n• 2.2: Agora o Egg não é dependente de atualizações, tudo é feito por scripts, o ocasiona na sua melhor manutenção.\r\n• 2.3: Adicionando novas versões Docker\r\n• 2.4: Script unificado em Connect/all, imagem serverless (binário nativo, sem .NET) e imagem .NET 10\r\n⚠️ Atenção: Se na primeira inicialização haver uma tela de Selecionar Servidor, apague o servidor existente lá, e recarregue a página.\r\n👑 Autor: Ashu\r\n👀 Verifique por atualizações: https://github.com/Ashu11-A/Ashu_eggs",
+    "description": "💎 Egg: Jellyfin\r\n⚙️ Versão: 2.4\r\n❓ Oque é: resumindo, você pode ter sua própria Netflix. Jellyfin permite que você colete, gerencie e transmita sua mídia. Execute o servidor Jellyfin em seu sistema e tenha acesso ao principal sistema de entretenimento de software livre.\r\n🐛 Bugs corrigidos/changelogs:\r\n• 2.2: Agora o Egg não é dependente de atualizações, tudo é feito por scripts, o ocasiona na sua melhor manutenção.\r\n• 2.3: Adicionando novas versões Docker\r\n• 2.4: Script unificado em Connect/all, imagem standalone (binário nativo, sem .NET) e imagem .NET 10\r\n⚠️ Atenção: Se na primeira inicialização haver uma tela de Selecionar Servidor, apague o servidor existente lá, e recarregue a página.\r\n👑 Autor: Ashu\r\n👀 Verifique por atualizações: https://github.com/Ashu11-A/Ashu_eggs",
     "features": null,
     "docker_images": {
-        "serverless": "ghcr.io/ashu11-a/jellyfin:serverless",
+        "standalone": "ghcr.io/ashu11-a/jellyfin:standalone",
         "latest": "ghcr.io/ashu11-a/software:jellyfin",
         "10.0 ASP.NET": "ghcr.io/ashu11-a/jellyfin:10",
         "9.0 ASP.NET": "ghcr.io/ashu11-a/jellyfin:9",
@@ -34,7 +34,7 @@
     "variables": [
         {
             "name": "VERSION",
-            "description": "Versão da build portátil do Jellyfin para baixar.\r\nEx: 10.11.3 | latest | beta\r\n\r\nUsada apenas pelas imagens ASP.NET. Ignorada na imagem serverless, pois o Jellyfin já vem instalado nela.",
+            "description": "Versão da build portátil do Jellyfin para baixar.\r\nEx: 10.11.3 | latest | beta\r\n\r\nUsada apenas pelas imagens ASP.NET. Ignorada na imagem standalone, pois o Jellyfin já vem instalado nela.",
             "env_variable": "VERSION",
             "default_value": "latest",
             "user_viewable": true,

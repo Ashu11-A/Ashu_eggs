@@ -61,7 +61,7 @@ JELLY_ARGS=(
 )
 
 if [[ "$HAS_NATIVE_JELLYFIN" == "1" ]]; then
-    echo "${starting_serverless:-Starting Jellyfin (serverless/native binary)...}"
+    echo "${starting_standalone:-Starting Jellyfin (standalone)...}"
     exec jellyfin "${JELLY_ARGS[@]}" ${FFMPEG_ARG[@]+"${FFMPEG_ARG[@]}"}
 fi
 

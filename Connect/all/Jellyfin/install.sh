@@ -125,7 +125,7 @@ else
 fi
 
 if [[ "$HAS_NATIVE_JELLYFIN" == "1" ]]; then
-    echo "${serverless_detected:-Native Jellyfin binary detected (serverless).}"
+    echo "${standalone_detected:-Standalone Jellyfin detected.}"
     rm -rf ./jellyfin
 elif [[ ! -f "./jellyfin/jellyfin.dll" && ! -x "./jellyfin/jellyfin" ]]; then
     download_portable || exit 1
@@ -136,8 +136,8 @@ fi
 NATIVE_JELLYFIN_PATH="no"
 [[ "$HAS_NATIVE_JELLYFIN" == "1" ]] && NATIVE_JELLYFIN_PATH="$(command -v jellyfin)"
 cat <<EOF > ./logs/install_log.txt
-Mode: install (nginx + dirs + network.xml + portable unless serverless)
-Serverless: ${NATIVE_JELLYFIN_PATH}
+Mode: install (nginx + dirs + network.xml + portable unless standalone)
+Standalone: ${NATIVE_JELLYFIN_PATH}
 Portable: $([[ -f ./jellyfin/jellyfin.dll || -x ./jellyfin/jellyfin ]] && echo "yes" || echo "no")
 EOF
 
